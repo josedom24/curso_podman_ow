@@ -10,5 +10,5 @@
     * Pods
     * podman compose
 6. Creación de imágenes con Podman y Buildah
-7. Gestión de imágene con Skopeo
+7. Gestión de imágenes con Skopeo
 8. Podman Desktop
