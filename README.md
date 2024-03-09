@@ -17,9 +17,9 @@
     * Ejemplo: Desplegando la aplicación MediaWiki
 3. Ejecución de contenedores con Podman
     * Rootfull us Rootless
-    * Ejecución de contenedores (1ª parte)
-    * Ejecución de contenedores (2ª parte)
-    * Ejecución de contenedores (3ª parte)
+    * Ejecución simple de contenedores
+    * Ejecutando un contenedor interactivo
+    * Ejecutando un contenedor demonio
     * Gestión de contenedores
     * Ejemplo: Ejecución de un contenedor con un servidor web
     * Ejemplo: Ejecución de un contenedor con un servidor de base de datos
@@ -31,8 +31,8 @@
     * Redes en contenedores rootful
     * Gestión de redes definida por el usuario
     * Redes en contenedores rootless
-    * Ejemplo 1
-    * Ejemplo 2
+    * Ejemplo 1: Contenedor NextCloud con almacenamiento persistente
+    * Ejemplo 2: Contenedor MariaDB con almacenamiento persistente    
 
 5. Ejecución avanzada de contenedores con Podman
     * Trabajando con Pods con Podman
