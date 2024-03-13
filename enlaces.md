@@ -24,3 +24,9 @@ Aquí hay una explicación de cada parte de la instrucción:
     dbus: Es el nombre del servicio que se desea iniciar. D-Bus es un sistema de comunicación entre procesos que permite que los procesos se comuniquen entre sí y proporciona un bus de mensajes para aplicaciones.
 
 En resumen, la instrucción systemctl --user start dbus inicia el servicio de D-Bus en el contexto del usuario actual sin necesidad de privilegios de superusuario. Esto asegura que los procesos en el entorno de usuario puedan comunicarse a través del sistema de mensajería de D-Bus.
+
+
+
+quay.io/libpod/banner 
+
+Imagen pequeña con servidor web
