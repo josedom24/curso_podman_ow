@@ -53,14 +53,14 @@ Lo podemos hacer de varias formas:
 * Ejecutando directamente el comando de creación del fichero `index.html` en el contenedor:
 
     ```bash
-    $ docker exec my-apache-app bash -c 'echo "<h1>Curso Docker</h1>" > /usr/local/apache2/htdocs/index.html'
+    $ sudo podman exec my-apache-app bash -c 'echo "<h1>Curso Podman</h1>" > /usr/local/apache2/htdocs/index.html'
     ```
 
-* Usando el comando `docker cp` y copiando el fichero `index.html` al contenedor:
+* Usando el comando `podman cp` y copiando el fichero `index.html` al contenedor:
 
     ```bash
-    $ echo "<h1>Curso Docker</h1>" > index.html
-    $ docker cp index.html  my-apache-app:/usr/local/apache2/htdocs/
+    $ echo "<h1>Curso Podman</h1>" > index.html
+    $ sudo podman cp index.html  my-apache-app:/usr/local/apache2/htdocs/
     ```
     
 Independientemente de cómo hayamos creado el fichero, podemos volver a acceder al servidor web y comprobar que efectivamente hemos cambiado el contenido del `index.html`:
