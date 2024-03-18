@@ -22,7 +22,7 @@
     * [Ejecutando un contenedor demonio](contenido/modulo3/demonio.md)
     * [Gestión de contenedores](contenido/modulo3/gestion.md)
     * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo3/web.md)
-    * Ejemplo: Ejecución de un contenedor con un servidor de base de datos
+    * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo3/mariadb.md)
     * Etiquetando los contenedores con Labels
     * Limitando los recursos en los contenedores
     * Introducción a los contenedores rootless
