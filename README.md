@@ -20,9 +20,12 @@
     * [Ejecución simple de contenedores](contenido/modulo3/contenedor.md)
     * [Ejecutando un contenedor interactivo](contenido/modulo3/interactivo.md)
     * [Ejecutando un contenedor demonio](contenido/modulo3/demonio.md)
-    * Gestión de contenedores
-    * Ejemplo: Ejecución de un contenedor con un servidor web
+    * [Gestión de contenedores](contenido/modulo3/gestion.md)
+    * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo3/web.md)
     * Ejemplo: Ejecución de un contenedor con un servidor de base de datos
+    * Etiquetando los contenedores con Labels
+    * Limitando los recursos en los contenedores
+    * Introducción a los contenedores rootless
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman
     * Trabajando con volúmenes en Podman
