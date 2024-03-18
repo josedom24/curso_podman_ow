@@ -18,8 +18,8 @@
 3. Ejecución de contenedores con Podman
     * [Rootfull us Rootless](contenido/modulo3/introduccion.md)
     * [Ejecución simple de contenedores](contenido/modulo3/contenedor.md)
-    * Ejecutando un contenedor interactivo
-    * Ejecutando un contenedor demonio
+    * [Ejecutando un contenedor interactivo](contenido/modulo3/interactivo.md)
+    * [Ejecutando un contenedor demonio](contenido/modulo3/demonio.md)
     * Gestión de contenedores
     * Ejemplo: Ejecución de un contenedor con un servidor web
     * Ejemplo: Ejecución de un contenedor con un servidor de base de datos
