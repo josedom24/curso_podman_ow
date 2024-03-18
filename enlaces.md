@@ -9,13 +9,15 @@
 ## rootless
 * https://kcore.org/2023/12/13/adventures-with-rootless-containers/
 * https://www.redhat.com/sysadmin/container-networking-podman
-
+* [Containers: Rootful, Rootless, Privileged and Super Privileged](https://infosecadalid.com/2021/08/30/containers-rootful-rootless-privileged-and-super-privileged/)
 
 ## volumen rootless
 
 * https://blog.christophersmart.com/2021/01/31/volumes-and-rootless-podman/
 * https://blog.christophersmart.com/2021/01/31/podman-volumes-and-selinux/
 * Más artículos sobre podman:https://blog.christophersmart.com/?s=podman
+
+
 
 
 La instrucción systemctl --user start dbus en Linux se utiliza para iniciar el servicio del sistema de mensajería de la base de datos de D-Bus (DBus) en el contexto del usuario actual.
