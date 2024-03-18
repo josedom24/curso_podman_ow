@@ -25,7 +25,7 @@
     * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo3/mariadb.md)
     * Etiquetando los contenedores con Labels
     * Limitando los recursos en los contenedores
-    * Introducción a los contenedores rootless
+    * [Introducción a los contenedores rootless](contenido/modulo3/rootless.md)
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman
     * Trabajando con volúmenes en Podman

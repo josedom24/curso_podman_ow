@@ -41,3 +41,7 @@ La figura anterior representa la asociación entre las distintas partes de la es
   * ....
 
 
+---------
+
+
+En modo rootful, todos los contenedores y el almacenamiento relacionado con contenedores está en /var/lib/containers/storage. En modo rootless, esto cambia al directorio home del usuario: /home/<usuario>/.local/share/containers/storage.
