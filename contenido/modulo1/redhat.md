@@ -1,6 +1,6 @@
 # Aplicaciones Red Hat para trabajar con contenedores OCI
 
-Antes ed definir las distintas aplicaciones que nos proporciona red Hat para trabajar con contenedores OCI, vamos a definir una serie de conceptos:
+Antes de definir las distintas aplicaciones que nos proporciona red Hat para trabajar con contenedores OCI, vamos a definir una serie de conceptos:
 
 ## Terminología sobre contenedores
 
