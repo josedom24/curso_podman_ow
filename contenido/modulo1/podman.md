@@ -1,19 +1,5 @@
 # Introducción a Podman
 
-## Terminología sobre contenedores
-
-* **Orquestador de contenedores**: es un programa que gestiona los contenedores que se ejecutan en un clúster de servidores. Nos ofrece muchas características: actualizaciones automáticas, balanceo de carga, tolerancia a fallos, escalabilidad,...
-
-![orquestadores](img/orquestador.png)
-
-* **Motor de contenedores**: Software que nos permite gestionar contenedores en un nodo local. Los contenedores puedes ser creados por orquestadores, en ese caso se usan motores com **containerd** o **cri-o**, o pueden ser gestionados por usuarios, en este caso se utilizan motores como **Docker** o **Podman**.
-
-![motores](img/motor.png)
-
-* **Entorno de ejecución de contenedores (runtime container)**: Software encargado de configurar el sistema para ejecutar los contenedores. Lo más utilizados son **runc** y **crun**. Otros ejemplos de entornos de ejecución puedes ser **Kata** y **gVisor**.
-
-![entornos](img/entornos.png)
-
 ## Podman
 
 * **Podman (the POD MANager)** es una herramienta para gestionar contenedores e imágenes OCI, volúmenes montados en esos contenedores y Pods (grupos de contenedores). 
@@ -23,33 +9,7 @@
 * Podman proporciona una interfaz de línea de comandos (CLI) familiar para cualquiera que haya utilizado el motor de contenedores Docker. 
 * Podman se basa en un OCI runtime (runc, crun, ...) para interactuar con el sistema operativo y crear los contenedores en ejecución. 
 
-## Elementos fundamentales de Podman
 
-* **Contenedor OCI**:
-    * Cumplen la especificación desarrollada por la OCI.
-    * Entorno aislado donde se ejecuta una aplicación. 
-    * Tiene su propio sistema de ficheros con todas las dependencias que necesita la aplicación para funcionar. 
-    * Puede estar conectado a una red virtual y utilizar almacenamiento adicional para no perder la información importante.
-    * Utiliza los recursos del servidor donde se está ejecutando (núcleo del sistema operativo, CPU, RAM).    
-    * Los contenedores suelen ejecutar un sólo proceso.
-    * Los contenedores son efímeros
-* **Imagen OCI**: 
-    * El formato de las imágenes cumplen la especificación desarrollado por la OCI. Del mismo modo, la distribución de dichas imágenes cumplen con la especificación OCI.
-    * Una imagen es una plantilla de sólo lectura con instrucciones para crear un contenedor OCI. 
-    * Contiene el sistema de fichero que tendrá el contenedor. 
-    * Además establece el comando que ejecutará el contenedor por defecto. 
-    * Podemos crear nuestras propias imágenes o utilizar las creadas por otros y publicadas en un registro. 
-    * Un contenedor es una instancia ejecutable de una imagen. 
-* **Registros de Imágenes**:
-    * Un registro almacena imágenes.
-    * Los registros pueden ser públicos o privados.
-    * Tenemos un registro local donde se descargan las imágenes desde la que vamos a crear los contenedores.
-    * Tenemos registros remotos desde donde podemos bajar las imágenes, o subirlas para su distribución.
-    * Podman puede configurar y trabajar con distintos registros:
-        * `docker.io`: El es registro público de Docker, llamado Docker Hub.
-        * `quay.io`: Es un registro público de imágenes proporcionado por Red Hat.
-        * `registry.access.redhat.com`: Es otro registro ofrecido por Red Hat, que ofrece imágenes de contenedores certificadas y soportadas por Red Hat Enterprise Linux (RHEL), OpenShift y otras tecnologías relacionadas con Red Hat.
-        * `registry.fedoraproject.org`: Es un registro de imágenes de contenedores OCI mantenido por el Proyecto Fedora. Contiene imágenes de contenedores basadas en Fedora y otras tecnologías relacionadas con Fedora.
 
 ## Características principales de Podman
 
