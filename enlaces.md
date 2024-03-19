@@ -10,6 +10,9 @@
 * https://kcore.org/2023/12/13/adventures-with-rootless-containers/
 * https://www.redhat.com/sysadmin/container-networking-podman
 * [Containers: Rootful, Rootless, Privileged and Super Privileged](https://infosecadalid.com/2021/08/30/containers-rootful-rootless-privileged-and-super-privileged/)
+## Firmar imágenes
+
+* https://gist.github.com/saschagrunert/1d0b3cc40ce0418558d7c2a5a8fe8a1c
 
 ## volumen rootless
 
