@@ -26,6 +26,8 @@ Podemos hacer la siguiente clasificación de contenedores según el uso que hace
 
 ## Ventajas del uso de contenedores de aplicaciones
 
+Los contenedores simplifican la producción, distribución, descubrimiento y uso de aplicaciones con todas sus dependencias y archivos de configuración empaquetados. Por lo tanto las ventajas de su uso son: 
+
 1. **Portabilidad**: Los contenedores encapsulan una aplicación y todas sus dependencias de manera aislada. Esto facilita la portabilidad, ya que los contenedores pueden ejecutarse de manera consistente en diferentes entornos, como desarrollo, pruebas y producción.
 2. **Aislamiento**: Los contenedores proporcionan un nivel de aislamiento entre la aplicación y el sistema operativo del anfitrión. Esto asegura que las aplicaciones se ejecuten sin interferencias con otras aplicaciones o componentes del sistema, evitando conflictos de dependencias y problemas de compatibilidad.
 3. **Eficiencia en el uso de recursos**: Al compartir el núcleo del sistema operativo y solo incluir las bibliotecas y dependencias necesarias, los contenedores son más eficientes en términos de recursos en comparación con las máquinas virtuales. Esto permite una utilización más efectiva de los recursos del sistema y una mayor densidad de aplicaciones por servidor.
