@@ -35,7 +35,7 @@ Los contenedores simplifican la producción, distribución, descubrimiento y uso
 
 ## Open Container Initiative
 
-La **Open Container Initiative (OCI)**, es un proyecto de la **Linux Foundation** para diseñar un estándar abierto para **virtualización basada en contenedores**. El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
+La [**Open Container Initiative (OCI)**](https://opencontainers.org/), es un proyecto de la **Linux Foundation** para diseñar un estándar abierto para **virtualización basada en contenedores**. El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
 
 Se funda en 2015, y actualmente son muchas las empresas que forman parte de esta inciativa, y cuyo objetivo es desarrollar las siguientes especificaciones:​
 
