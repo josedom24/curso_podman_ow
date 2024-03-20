@@ -22,7 +22,7 @@
     * [Introducción a los contenedores rootless](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI
     * Imágenes OCI
-    * OverlayFS: Composición de imágenes OCI
+    * Estructura de imágenes OCI
     * Registros de imágenes OCI
     * Gestión de imágenes OCI
     * Almacenamiento de imágenes OCI
