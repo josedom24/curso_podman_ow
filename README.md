@@ -8,25 +8,25 @@
     * [Introducción de Podman](contenido/modulo1/podman.md)
     * Instalación de Podman en Linux
     * Instalación de Podman en Windows
-    * [El "Hola Mundo" en Podman](contenido/modulo1/holamundo.md)
-2. Gestión de imágenes con Podman
+2. Ejecución de contenedores OCI con Podman
+    * [El "Hola Mundo" en Podman](contenido/modulo2/holamundo.md)
+    * [Rootfull us Rootless](contenido/modulo2/introduccion.md)
+    * [Ejecución simple de contenedores](contenido/modulo2/contenedor.md)
+    * [Ejecutando un contenedor interactivo](contenido/modulo2/interactivo.md)
+    * [Ejecutando un contenedor demonio](contenido/modulo2/demonio.md)
+    * [Gestión de contenedores](contenido/modulo2/gestion.md)
+    * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo2/web.md)
+    * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo2/mariadb.md)
+    * Etiquetando los contenedores con Labels
+    * Limitando los recursos en los contenedores
+    * [Introducción a los contenedores rootless](contenido/modulo2/rootless.md)
+3. Gestión de imágenes OCI
     * Imágenes OCI
     * OverlayFS: Composición de imágenes OCI
     * Registros de imágenes OCI
     * Gestión de imágenes OCI
     * Almacenamiento de imágenes OCI
     * Ejemplo: Desplegando la aplicación MediaWiki
-3. Ejecución de contenedores con Podman
-    * [Rootfull us Rootless](contenido/modulo3/introduccion.md)
-    * [Ejecución simple de contenedores](contenido/modulo3/contenedor.md)
-    * [Ejecutando un contenedor interactivo](contenido/modulo3/interactivo.md)
-    * [Ejecutando un contenedor demonio](contenido/modulo3/demonio.md)
-    * [Gestión de contenedores](contenido/modulo3/gestion.md)
-    * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo3/web.md)
-    * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo3/mariadb.md)
-    * Etiquetando los contenedores con Labels
-    * Limitando los recursos en los contenedores
-    * [Introducción a los contenedores rootless](contenido/modulo3/rootless.md)
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman
     * Trabajando con volúmenes en Podman
