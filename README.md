@@ -26,7 +26,7 @@
     * Registros de imágenes OCI
     * Gestión de imágenes OCI
     * Almacenamiento de imágenes OCI
-    * Ejemplo: Desplegando la aplicación MediaWiki
+    * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman
     * Trabajando con volúmenes en Podman
