@@ -24,16 +24,16 @@ podman run -d -p 8081:80 --name drupal2 docker.io/drupal:10.1.8
 
 Si accedemos a la dirección IP de nuestro ordenador, al puerto 8081/tcp, podemos observar la versión que hemos instalado:
 
-![drupal](img/drupal1.png)
+![drupal](img/drupal2.png)
 
 Y finalmente vamos a instalar otra versión en otro contenedor:
 
 ```bash
-podman run -d -p 8081:80 --name drupal2 docker.io/drupal:10.0.11
+podman run -d -p 8082:80 --name drupal3 docker.io/drupal:10.0.11
 ```
 
 Si accedemos a la dirección IP de nuestro ordenador, al puerto 8082/tcp, podemos observar la versión instalada:
 
-![mediawiki](img/mediawiki1396.png)
+![drupal](img/drupal3.png)
 
 **Nota: Puedes observar que la primera imagen que se baja, descarga todas las capas, sin embargo al descargar las otras versiones de la imagen, sólo se bajan las capas que difieren de la primera imagen descargada.**
