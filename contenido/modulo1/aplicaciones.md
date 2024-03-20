@@ -1,4 +1,4 @@
-# Aplicaciones Red Hat para trabajar con contenedores OCI
+# Aplicaciones para trabajar con contenedores OCI
 
 Antes de definir las distintas aplicaciones que nos proporciona Red Hat para trabajar con contenedores OCI, vamos a definir una serie de conceptos:
 
@@ -43,6 +43,10 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
         * `quay.io`: Es un registro público de imágenes proporcionado por Red Hat.
         * `registry.access.redhat.com`: Es otro registro ofrecido por Red Hat, que ofrece imágenes de contenedores certificadas y soportadas por Red Hat Enterprise Linux (RHEL), OpenShift y otras tecnologías relacionadas con Red Hat.
         * `registry.fedoraproject.org`: Es un registro de imágenes de contenedores OCI mantenido por el Proyecto Fedora. Contiene imágenes de contenedores basadas en Fedora y otras tecnologías relacionadas con Fedora.
+        * Amazon Elastic Container Registry (ECR)
+        * Google Container Registry (GCR)
+        * Azure Container Registry (ACR)
+        * GitLab Container Registry
 
 ## Herramientas de Red Hat para trabajar con contenedores
 

@@ -4,7 +4,7 @@
 
 1. Introducción a Podman    
     * [Introducción a los contenedores OCI](contenido/modulo1/contenedores.md)
-    * [Aplicaciones Red Hat para trabajar con contenedores OCI](contenido/modulo1/redhat.md)
+    * [Aplicaciones para trabajar con contenedores OCI](contenido/modulo1/aplicaciones.md)
     * [Introducción de Podman](contenido/modulo1/podman.md)
     * Instalación de Podman en Linux
     * Instalación de Podman en Windows
