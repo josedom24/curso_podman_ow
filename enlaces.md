@@ -42,3 +42,8 @@ En resumen, la instrucción systemctl --user start dbus inicia el servicio de D-
 quay.io/libpod/banner 
 
 Imagen pequeña con servidor web
+
+
+# Podman Desktop
+
+* https://linuxiac.com/podman-desktop-1-8-integrates-kubernetes-explorer-and-enhanced-ui/
