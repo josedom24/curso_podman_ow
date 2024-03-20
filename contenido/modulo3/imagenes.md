@@ -45,9 +45,7 @@ Ejemplos de nombres de imágenes:
 
 [**Drupal**](https://www.drupal.org/) es una aplicación web escrita en PHP que nos permite construir un CMS. Si estudiamos la [documentación](https://hub.docker.com/_/drupal) de la imagen `drupal`, que encontramos en Docker Hub, podemos ver algunas de las etiquetas disponibles para la imagen que corresponden a versiones distintas de la aplicación. En marzo de 2024 serían las siguientes:
 
-![ ](img/drupal_tag1.png)
-![ ](img/drupal_tag2.png)
-![ ](img/drupal_tag3.png)
+![ ](img/drupal_tag.png)
 
 Cada imagen está identificada por un **identificador**. Una misma imagen, puede estar etiquetada por etiquetas diferentes.
 
