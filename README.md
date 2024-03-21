@@ -22,8 +22,8 @@
     * [Introducción a los contenedores rootless](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI em Podman
     * [Imágenes de contenedor](contenido/modulo3/imagenes.md)
-    * Almacenamiento de imágenes
-    * Almacenamiento de contenedores
+    * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md)
+    * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md)
     * Registros de imágenes
     * Gestión de imágenes 
     * Formato de imagen OCI???
