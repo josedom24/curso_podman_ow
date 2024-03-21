@@ -264,13 +264,26 @@ El directorio que tiene como nombre el identificador del contenedor que hemos cr
   }
 ]
 ```
-En el campo `layer` tenemos el identificador de la capa del contenedor, donde se irán escribiendo las diferencias de los ficheros del contenedor respectos a las capas inferiores correspondientes a la imagen. Por lo tanto podemos ver los ficheros que hemos escrito en esta capa:
+En el campo `layer` tenemos el identificador de la capa del contenedor, donde se irán escribiendo las diferencias de los ficheros del contenedor respectos a las capas inferiores correspondientes a la imagen. Por otro lado, hay que indicar que esta capa es temporal, existe mientras exista el contenedor, es por lo que decimos que los contenedores son efímeros.
+
+
+Por lo tanto podemos ver los ficheros que hemos escrito en esta capa:
 
 ```
 # cd overlay/206efdc36850d2f4d47776ef079828b712e07be796209122ba988df4a3e1362b/diff/tmp/
 # ls
 tmpfile.txt
 ```
+
+Finalmente vamos a fijarnos en el directorio donde se guarda información del contenedor. Este directorio se llama `userdata`:
+
+```
+# cd overlay-containers/ae697efd8d29d8d75988390c19cf787ed8057bacfb1cea82a93a2c36756f88ee/userdata/
+[root@podman userdata]# ls
+artifacts  attach  config.json  ctl  secrets  shm  winsz
+```
+
+Este directorio contiene varios archivos que se montan directamente en el contenedor para personalizarlo.
 
 ## Estructura de una imagen OCI
 
