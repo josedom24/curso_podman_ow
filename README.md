@@ -20,12 +20,13 @@
     * Etiquetando los contenedores con Labels
     * Limitando los recursos en los contenedores
     * [Introducción a los contenedores rootless](contenido/modulo2/rootless.md)
-3. Gestión de imágenes OCI
+3. Gestión de imágenes OCI em Podman
     * [Imágenes de contenedor](contenido/modulo3/imagenes.md)
-    * Estructura de las imágenes OCI
-    * Registros de imágenes OCI
-    * Gestión de imágenes OCI
-    * Almacenamiento de imágenes OCI
+    * Almacenamiento de imágenes
+    * Almacenamiento de contenedores
+    * Registros de imágenes
+    * Gestión de imágenes 
+    * Formato de imagen OCI???
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman

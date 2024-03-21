@@ -94,6 +94,8 @@ Los directorios que nos interesan son los siguientes:
 * `overlay-layers`: Contiene los archivos de todas las capas de las imágenes que tenemos descargadas.
 * `overlay`: Este es el directorio que contiene las capas descomprimidas de cada imagen.
 
+#### Directorio overlay-images
+
 Veamos el directorio `overlay-images`:
 
 ```
@@ -108,6 +110,8 @@ Como sólo tenemos una imagen descargada sólo tenemos un directorio cuyo nombre
 # cat images.json | jq
 ```
 
+#### Directorio overlay-layers
+
 Veamos el directorio `overlay-layers`:
 
 ```
@@ -119,6 +123,8 @@ Veamos el directorio `overlay-layers`:
 ```
 
 Como podemos ver, acabamos de encontrar todos los archivos de capas descargados de nuestra imagen. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas.
+
+#### Directorio overlay
 
 Las capas que hemos visto anteriormente están descomprimidas en el directorio `overlay`:
 
@@ -146,7 +152,9 @@ cualquier cambio en la capa.
 * `work`: Este directorio se utiliza para operaciones internas.
 * `link`: Este archivo contiene una cadena única para la capa.
 
-En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos con cadenas únicas que apuntan al directorio `diff` para cada capa. Los enlaces simbólicos hacen referencia a capas inferiores (las cadenas únicas indicadas en el fichero `link` de cada capa).
+En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos con identificadores de capa abreviados que apuntan al directorio `diff` para cada capa. Los enlaces simbólicos hacen referencia a capas inferiores (los identificadores de capa abreviados indicadas en el fichero `link` de cada capa).
+
+Se utilizan identificadores de cab abreviados y no los propios hashes de las capas para que el montaje sea máq eficiente, ya que los hashes son cadenas más grandes que los identificados abreviados y por lo tanto su gestión es más eficiente a la hora de realizar el montaje.
 
 ```
 # cd overlay/l
@@ -222,6 +230,9 @@ diff  empty  link  merged  work
 Como podemos comprobar, no hay ningún archivo `lower` dentro del directorio de la capa porque esta es la
 primera capa de nuestra imagen. La diferencia que podemos notar es la presencia de un directorio llamado `empty`. Esto se debe a que si una capa no tiene padre, el sistema de superposición creará un directorio vacío.
 
+
+#### Directorio overlay-container
+
 Finalmente, vamos a crear un contenedor, y veremos que se crea la capa del contenedor de lectura y escritura. Esta nueva capa  capa contendrá sólo las diferencias entre las inferiores. Para ello, ejecutamos:
  
 ```bash
@@ -284,6 +295,9 @@ artifacts  attach  config.json  ctl  secrets  shm  winsz
 ```
 
 Este directorio contiene varios archivos que se montan directamente en el contenedor para personalizarlo.
+
+
+podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  stoic_cerf
 
 ## Estructura de una imagen OCI
 

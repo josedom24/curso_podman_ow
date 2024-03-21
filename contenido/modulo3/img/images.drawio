@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2024-03-21T12:19:45.919Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="_hYe_s8nNspBFM2T699m" version="24.0.7" type="device">
+  <diagram name="Página-1" id="QNrzKvdkZUiNf-F4cxl6">
+    <mxGraphModel dx="1434" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="260" y="200" width="500" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-2" value="&lt;div&gt;Capa 1&lt;/div&gt;&lt;div&gt;hash: c61d16cfe03e&lt;/div&gt;&lt;div&gt;ID: 53498d66ad83&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;ID Abreviado: LCIWXBIPSMIGB2RTQV36QKTCRH&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="270" y="450" width="290" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-3" value="&lt;div&gt;Capa 2&lt;br&gt;&lt;/div&gt;&lt;div&gt;hash: 06c7e4737942&lt;/div&gt;&lt;div&gt;ID: 007d2037805f&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;ID Abreviado: IVBKXQVXCMS3S4MYZYTY4NQ3W5&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="270" y="340" width="290" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-7" value="&lt;div&gt;Capa 3&lt;br&gt;&lt;/div&gt;&lt;div&gt;hash: 8f001c8d7e00&lt;/div&gt;&lt;div&gt;ID: 8853b21ed9ab&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;ID Abreviado: ZXSJGMR5T7VDVVGRWHG3E2I6DZ&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="270" y="230" width="290" height="104" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
