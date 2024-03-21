@@ -95,7 +95,7 @@ $ sudo podman inspect --format='{{.Config.Image}}' hora-container2
 El valor de las variables de entorno definidas en el contenedor:
 
 ```bash
-$ sudo podman container inspect -f '{{range .Config.Env}}{{println .}}{{end}}' hora-container2
+$ sudo podman container inspect --format '{{range .Config.Env}}{{println .}}{{end}}' hora-container2
 ```
 
 El comando que hemos ejecutado en el contenedor:
