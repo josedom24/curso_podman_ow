@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2024-03-22T09:32:05.223Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="epdXD86ETRNQFTuwE6O1" version="24.0.7" type="device">
+  <diagram name="Página-1" id="QNrzKvdkZUiNf-F4cxl6">
+    <mxGraphModel dx="1194" dy="685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-1" value="&lt;div style=&quot;color: #000000;background-color: #ffffff;font-family: &#39;Droid Sans Mono&#39;, &#39;monospace&#39;, monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #a31515;&quot;&gt;quay.io/centos7/httpd-24-centos7:latest&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=bottom;" parent="1" vertex="1">
+          <mxGeometry x="240" y="210" width="350" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-2" value="&lt;div style=&quot;font-size: 22px;&quot;&gt;Capa 1&lt;/div&gt;&lt;div style=&quot;font-size: 22px;&quot;&gt;hash: c61d16cfe03e&lt;/div&gt;&lt;div&gt;id: 53498d66ad83&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="270" y="450" width="290" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-3" value="&lt;div style=&quot;font-size: 22px;&quot;&gt;Capa 2&lt;br style=&quot;font-size: 22px;&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 22px;&quot;&gt;hash: 06c7e4737942&lt;/div&gt;&lt;div&gt;id: 007d2037805f&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="270" y="340" width="290" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="IdGpFHFMFsSPEDV2ob-z-7" value="&lt;div style=&quot;font-size: 22px;&quot;&gt;Capa 3&lt;br style=&quot;font-size: 22px;&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 22px;&quot;&gt;hash: 8f001c8d7e00&lt;/div&gt;&lt;div style=&quot;font-size: 22px;&quot;&gt;id: 8853b21ed9ab&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="270" y="230" width="290" height="104" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

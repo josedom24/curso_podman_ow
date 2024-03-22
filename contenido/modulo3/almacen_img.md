@@ -162,7 +162,27 @@ Veamos el directorio `overlay-layers`:
 8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0.tar-split.gz
 ```
 
-Como podemos ver, acabamos de encontrar todos los archivos de capas descargados de nuestra imagen. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas.
+Como podemos ver, acabamos de encontrar todos los archivos de capas descargados de nuestra imagen. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas:
+
+```bash
+$ sudo cat overlay-layers/layers.json | jq
+[
+  {
+    "id": "53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
+    "created": "2024-03-21T07:38:50.395783286Z",
+    "compressed-diff-digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2",
+    "compressed-size": 78951426,
+    "diff-digest": "sha256:53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
+    "diff-size": 211829760,
+    "compression": 2,
+    ...
+```
+
+Además del hash que vimos que identifica a la capa, encontramos también el campo `id` que es una cadena única que también nos permite referenciar a la capa.
+
+De manera gráfica:
+
+![images2](img/images2.png)
 
 ### Directorio overlay
 
