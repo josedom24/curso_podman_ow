@@ -195,7 +195,7 @@ Las capas que hemos visto anteriormente están descomprimidas en el directorio `
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee  l
 ```
 
-En primer lugar tenemos un directorio por cada una de las capas descargadas, la estructura de este directorio es la siguiente:
+En primer lugar tenemos un directorio por cada una de las capas descargadas, estos directorios serán los que unamos para crear un sistema de archivos de unión al crear un contenedor. La estructura de estos directorios depende del orden de la capa, si vemos el contenido de una capa que no es la primera, tenemos la siguiente estructura:
 
 ```
 # cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
@@ -206,8 +206,8 @@ diff  link  lower  merged  work
 Veamos que guardan cada uno de estos directorios y ficheros:
 
 * `diff`: Este directorio representa la capa superior de la superposición, y se utiliza para almacenar
-cualquier cambio en la capa.
-* `lower`: Este archivo informa de todos los montajes de las capas inferiores, ordenados de mayor a menor.
+los cambios en la capa.
+* `lower`: 
 * `merged`: En este directorio se monta el sistema de fichero superpuesto.
 * `work`: Este directorio se utiliza para operaciones internas durante el montaje.
 * `link`: Este archivo contiene un identificador de capa abreviados.
