@@ -84,8 +84,8 @@ Como observamos esta imagen está formado por 3 capas (`Copying blob...`) y su c
 Veamos la estructura de directorio que tenemos en el directorio de almacenamiento, como `root` ejecutamos las siguientes instrucciones:
 
 ```bash
-# cd /var/lib/containers/storage/
-# ls
+$ cd /var/lib/containers/storage/
+$ ls
 db.sql  defaultNetworkBackend  libpod  overlay  overlay-containers  overlay-images  overlay-layers  secrets  storage.lock  tmp  userns.lock  volumes
 ```
 Los directorios que nos interesan son los siguientes:
@@ -98,9 +98,9 @@ Los directorios que nos interesan son los siguientes:
 
 Veamos el directorio `overlay-images`:
 
-```
-# cd overlay-images/
-# ls
+```bash
+$ cd overlay-images/
+$ ls
 d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a  images.json  images.lock
 ```
 
@@ -154,9 +154,9 @@ Podemos verlo de manera gráfica:
 
 Veamos el directorio `overlay-layers`:
 
-```
-# cd overlay-layers/
-# ls
+```bash
+$ cd overlay-layers/
+$ ls
 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c.tar-split.gz  layers.json
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee.tar-split.gz  layers.lock
 8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0.tar-split.gz
@@ -188,18 +188,18 @@ De manera gráfica:
 
 Las capas que hemos visto anteriormente están descomprimidas en el directorio `overlay`:
 
-```
-# cd overlay
-# ls
+```bash
+$ cd overlay
+$ ls
 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c  8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee  l
 ```
 
 En primer lugar tenemos un directorio por cada una de las capas descargadas. La estructura de estos directorios depende del orden de la capa, si vemos el contenido de una capa que no es la primera, tenemos la siguiente estructura:
 
-```
-# cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
-# ls
+```bash
+$ cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
+$ ls
 diff  link  lower  merged  work
 ```
 
@@ -221,7 +221,7 @@ Veamos que guardan cada uno de estos directorios y ficheros:
 
 En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos, cuyos nombres son los identificadores de capa abreviados, que apuntan al directorio `diff` para cada capa. 
 
-```
+```bash
 $ ls overlay/l
 total 12
 drwxr-xr-x. 1 root root 156 Mar 21 07:45 .
@@ -251,11 +251,121 @@ De manera gráfica, tenemos el siguiente esquema:
 
 ![images3](img/images3.png)
 
-## Ahorra de espacio de almacenamiento
+## Ahorro de espacio de almacenamiento
 
 La estructura de almacenamiento que hemos explicado favorece el ahorra de espacio en disco ocupado por las imágenes. Si al descarga una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
 
 Si a continuación bajamos otra versión de la misma imagen:
 
+```bash
+$ sudo podman pull quay.io/centos7/httpd-24-centos7:20230712
+Trying to pull quay.io/centos7/httpd-24-centos7:20230712...
+Getting image source signatures
+Copying blob c61d16cfe03e skipped: already exists  
+Copying blob 06c7e4737942 skipped: already exists  
+Copying blob cad88c5d6507 done   | 
+Copying config 6211883c1e done   | 
+Writing manifest to image destination
+6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b
+```
+
+Vemos cómo dos de las tres capas no se han descargados, porque son las mismas que teníamos ya descargadas. Si vemos el fichero de maniefiesto donde se indican las capas de esta nueva imagen:
+
+```bash
+$ sudo cat overlay-images/6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b/manifest | jq
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+  "config": {
+    "mediaType": "application/vnd.docker.container.image.v1+json",
+    "size": 15279,
+    "digest": "sha256:6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b"
+  },
+  "layers": [
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 78951426,
+      "digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 10435798,
+      "digest": "sha256:06c7e47379429b2a921140524d1596e2c2bf8bc7b29fa9df0ee73c91f5b4c24f"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 50603263,
+      "digest": "sha256:cad88c5d6507a80282a7942c790b0290aef5d302b790d988714de3535c7f8eb9"
+    }
+  ]
+}
+```
+Vemos que las dos primeras capas coinciden con las de la imagen anterior y por tanto no se han descargado. De forma gráfica lo podríamos ver de la siguiente manera:
+
+![images4](img/images4.png)
+
+## Calcular el espacio que ocupan las imágenes
+
+Vamos a descargas dos imágenes de tres capas que comparte dos capas:
+
+```bash
+$ sudo podman pull docker.io/josedom24/servidorweb:v1
+Trying to pull docker.io/josedom24/servidorweb:v1...
+Getting image source signatures
+Copying blob 4f6c4ab344d9 done   | 
+Copying blob 9532dfcb62dd done   | 
+Copying blob 209210f58112 done   | 
+Copying config d0d75af6b8 done   | 
+Writing manifest to image destination
+d0d75af6b8ec95cf4200ed1071d8250f733248bbccbbdd48200202a75ac70893
+
+$ sudo podman pull docker.io/josedom24/servidorweb:v2
+Trying to pull docker.io/josedom24/servidorweb:v2...
+Getting image source signatures
+Copying blob 9532dfcb62dd skipped: already exists  
+Copying blob 209210f58112 skipped: already exists  
+Copying blob 274f48ad3e93 done   | 
+Copying config f558b3613d done   | 
+Writing manifest to image destination
+f558b3613d2c526ceb863c1b64091f5b63149d2f62cb74652f9bac5c18e74954
+```
+
+Podemos observar que las dos primeras capas "ya existen", es decir, ya la tenemos almacenadas en nuestro registro, porque son iguales a las capas de la primera versión de la imagen.
+
+Si visualizamos las imágenes:
+
+```bash
+$ sudo podman images 
+REPOSITORY                        TAG         IMAGE ID      CREATED       SIZE
+docker.io/josedom24/servidorweb   v2          f558b3613d2c  8 weeks ago   193 MB
+docker.io/josedom24/servidorweb   v1          d0d75af6b8ec  8 weeks ago   193 MB
+```
+
+Podemos pensar que se ha ocupado en el disco duro 193Mb + 193 Mb, pero en realidad el espacio ocupado por las dos primeras capas sólo se guarda en el disco una vez, esas capas se comparten entre las dos versiones de la imagen. Esto lo podemos ver de manera más clara ejecutando el siguiente comando:
+
+```bash
+$ sudo podman system df -v
+Images space usage:
+
+REPOSITORY                        TAG         IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
+docker.io/josedom24/servidorweb   v1          d0d75af6b8ec  8 weeks     192.6MB     0B           192.6MB      0
+docker.io/josedom24/servidorweb   v2          f558b3613d2c  8 weeks     192.6MB     0B           192.6MB      0
+...
+```
+De los 193 MB que tienen de tamaño las imágenes, 192,6 MB están compartido (este es el tamaño de las dos primeras capas), por lo tanto el espacio ocupado por cada una de las imágenes corresponde a la tercera capa (el fichero index.html) que en este caso es 25B y 22B.
+
+Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 186,8MB + 25B + 22B. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
 
 
+```bash
+$ sudo podman system df -v
+Images space usage:
+
+REPOSITORY                        TAG         IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
+quay.io/centos7/httpd-24-centos7  latest      d7af31210b28  8 months    356.5MB     0B           356.5MB      0
+quay.io/centos7/httpd-24-centos7  20230712    6211883c1ed7  8 months    356.5MB     0B           356.5MB      0
+```
+
+De los 187 MB que tienen de tamaño las imágenes, 186,8 MB están compartido (este es el tamaño de las dos primeras capas), por lo tanto el espacio ocupado por cada una de las imágenes corresponde a la tercera capa (el fichero index.html) que en este caso es 25B y 22B.
+
+Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 186,8MB + 25B + 22B. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
