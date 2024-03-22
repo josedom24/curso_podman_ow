@@ -219,17 +219,10 @@ Veamos que guardan cada uno de estos directorios y ficheros:
 * `merged`: En este directorio se monta el sistema de fichero superpuesto.
 * `work`: Este directorio está vacío y se utiliza para operaciones internas durante el montaje.
 
-
-
-
-
-En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos con identificadores de capa abreviados que apuntan al directorio `diff` para cada capa. Los enlaces simbólicos hacen referencia a capas inferiores (los identificadores de capa abreviados indicadas en el fichero `link` de cada capa).
-
-Se utilizan identificadores de capa abreviados y no los propios hashes de las capas para que el montaje sea máq eficiente, ya que los hashes son cadenas más grandes que los identificados abreviados y por lo tanto su gestión es más eficiente a la hora de realizar el montaje.
+En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos, cuyos nombres son los identificadores de capa abreviados, que apuntan al directorio `diff` para cada capa. 
 
 ```
-# cd overlay/l
-# ls -al
+$ ls overlay/l
 total 12
 drwxr-xr-x. 1 root root 156 Mar 21 07:45 .
 drwx------. 1 root root 422 Mar 21 07:45 ..
@@ -238,65 +231,31 @@ lrwxrwxrwx. 1 root root  72 Mar 21 07:38 LCIWXBIPSMIGB2RTQV36QKTCRH -> ../53498d
 lrwxrwxrwx. 1 root root  72 Mar 21 07:39 ZXSJGMR5T7VDVVGRWHG3E2I6DZ -> ../8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff
 ```
 
-Volvamos a ver el manifiesto de la imagen con la que estamos trabajando:
+Nos podemos preguntar: ¿por qué usamos los identificados abreviados de capa y para qué sirven los enlaces simbólicos que encontramos en el directorio `l`?
+
+En el próximo capítulo cuando creemos un nuevo contenedores se montará el sistema de archivos de unión que utilizará el contenedor. en este montaje habrá que indicar el conjunto de capas inferiores con el parámetro `lowerdir`. Sin embargo, no se usarán los nombres de los directorios directamente, por ejemplo no se usará el nombre:
 
 ```
-# cd overlay-images/d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/
-# cat manifest | jq
-{
-  "schemaVersion": 2,
-  "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
-  "config": {
-    "mediaType": "application/vnd.docker.container.image.v1+json",
-    "size": 15278,
-    "digest": "sha256:d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a"
-  },
-  "layers": [
-    {
-      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
-      "size": 78951426,
-      "digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2"
-    },
-    {
-      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
-      "size": 10435798,
-      "digest": "sha256:06c7e47379429b2a921140524d1596e2c2bf8bc7b29fa9df0ee73c91f5b4c24f"
-    },
-    {
-      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
-      "size": 50603928,
-      "digest": "sha256:8f001c8d7e009adf9e088ff8b85806da558aa713eb545d2af045943eed1ad66a"
-    }
-  ]
-}
+var/lib/containers/storage/overlay/overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff
 ```
 
-Encontramos que nuestra imagen está formada por 3 capas, de cada capa tenemos un hash que la identifica la capa descargada comprimida. 
-
-A continuación, debemos comparar el hash de cada capa con la lista de todas las capas que hemos descargado:
+Si no que se usará el enlace simbólico correspondiente a dicha capa que se encuentra en el directorio `l`:
 
 ```
-# cd overlay-layers/
-# cat layers.json | jq
-[
-  {
-    "id": "53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
-    "created": "2024-03-21T07:38:50.395783286Z",
-    "compressed-diff-digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2",
-    "compressed-size": 78951426,
-    "diff-digest": "sha256:53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
-    "diff-size": 211829760,
-    "compression": 2,
-    ...
+/var/lib/containers/storage/overlay/l/ZXSJGMR5T7VDVVGRWHG3E2I6DZ
 ```
 
-Haciendo la comprobación de hash encontramos el identificados de nuestra primera capa, y podemos acceder a su contenido:
+El uso de enlaces simbólicos a la hora de montar un sistema de archivos de unión aporta mayor flexibilidad y eficiencia a la hora de trabajar con los ficheros de las diferentes capas.
 
-```
-# cd overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee
-# ls
-diff  empty  link  merged  work
-```
+De manera gráfica, tenemos el siguiente esquema:
 
-Como podemos comprobar, no hay ningún archivo `lower` dentro del directorio de la capa porque esta es la
-primera capa de nuestra imagen. La diferencia que podemos notar es la presencia de un directorio llamado `empty`. Esto se debe a que si una capa no tiene padre, el sistema de superposición creará un directorio vacío.
+![images3](img/images3.png)
+
+## Ahorra de espacio de almacenamiento
+
+La estructura de almacenamiento que hemos explicado favorece el ahorra de espacio en disco ocupado por las imágenes. Si al descarga una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
+
+Si a continuación bajamos otra versión de la misma imagen:
+
+
+
