@@ -21,11 +21,11 @@ Otra de las especificaciones desarrolladas por esta entidad es cómo se distribu
 
 En resumen, estas especificaciones estandarizan la manera en que se construyen y almacenan las imágenes de contenedores: dónde se guarda su configuración y cómo se almacena su sistema de ficheros en distintas capas para posteriormente crear el sistema de archivos del contenedor usando un driver de almacenamiento.
 
+## Almacenamiento de una imagen OCI en Podman
+
 Podman puede usar varios drivers para gestionar el sistema de archivos de unión que constituye una imagen: overlay, vfs, devmapper, aufs, btrfs, zfs,...
 
 El driver de almacenamiento que se usa por defecto para gestionar el conjunto de capas que forman parte de una imagen en la versión actual de Podman es **Overlay v2**. 
-
-## Almacenamiento de una imagen OCI en Podman
 
 El fichero de configuración de Podman donde se indica la configuración del almacenamiento es:
 
