@@ -195,7 +195,7 @@ Las capas que hemos visto anteriormente están descomprimidas en el directorio `
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee  l
 ```
 
-En primer lugar tenemos un directorio por cada una de las capas descargadas, estos directorios serán los que unamos para crear un sistema de archivos de unión al crear un contenedor. La estructura de estos directorios depende del orden de la capa, si vemos el contenido de una capa que no es la primera, tenemos la siguiente estructura:
+En primer lugar tenemos un directorio por cada una de las capas descargadas. La estructura de estos directorios depende del orden de la capa, si vemos el contenido de una capa que no es la primera, tenemos la siguiente estructura:
 
 ```
 # cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
@@ -205,12 +205,23 @@ diff  link  lower  merged  work
 
 Veamos que guardan cada uno de estos directorios y ficheros:
 
-* `diff`: Este directorio representa la capa superior de la superposición, y se utiliza para almacenar
-los cambios en la capa.
-* `lower`: 
+* `link`: Este archivo contiene un **identificador de capa abreviado**. Cada capa se identificará, además de por su hash y de su identificador con un nuevo identificados abreviado que corresponde a una cadena de texto más pequeño que el hash y el identificados. Posteriormente explicaremos porqué vamos a usar el identificador abreviado.
+* `lower`: Este fichero contiene la lista de los identificados abreviados de las capas inferiores en orden. Es decir el fichero `lower` de la capa 3 contiene los identificados abreviados de la capa 2 y la capa 1. El de la capa 2 tendrá el identificador abreviador de la capa 1. Finalmente, la primera capa, no tendrá este fichero (ya que no tiene ninguna capa inferior) y si tendra un directorio vacio llamado `empty`.
+    ```bash
+    $ sudo cat overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/lower
+    l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:l/LCIWXBIPSMIGB2RTQV36QKTCRH
+    $ sudo cat overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/lower
+    l/LCIWXBIPSMIGB2RTQV36QKTCRH
+    $ ls overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/
+    diff  empty  link  merged  work
+
+* `diff`: Este directorio representa la capa superior de la superposición, y se utiliza para almacenar los cambios en la capa. Estos directorios serán los que unamos para crear un sistema de archivos de unión al crear un contenedor (pero ya veremos cómo se hace).
 * `merged`: En este directorio se monta el sistema de fichero superpuesto.
-* `work`: Este directorio se utiliza para operaciones internas durante el montaje.
-* `link`: Este archivo contiene un identificador de capa abreviados.
+* `work`: Este directorio está vacío y se utiliza para operaciones internas durante el montaje.
+
+
+
+
 
 En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos con identificadores de capa abreviados que apuntan al directorio `diff` para cada capa. Los enlaces simbólicos hacen referencia a capas inferiores (los identificadores de capa abreviados indicadas en el fichero `link` de cada capa).
 
