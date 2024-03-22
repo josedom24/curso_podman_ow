@@ -178,6 +178,8 @@ $ sudo cat overlay-layers/layers.json | jq
     ...
 ```
 
+**parents** (hay que explicarlo!!!)
+
 Además del hash que vimos que identifica a la capa, encontramos también el campo `id` que es una cadena única que también nos permite referenciar a la capa.
 
 De manera gráfica:
