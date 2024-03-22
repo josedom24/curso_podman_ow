@@ -35,17 +35,25 @@ $ sudo mount overlay -t overlay -o lowerdir=lower,upperdir=upper,workdir=work me
 
 El directorio de trabajo (`workdir`) necesita ser un directorio vacío dentro del mismo sistema de archivos en el que está montado el directorio superior (`upper`).
 
+Podemos ver el punto de montaje que hemos creado, ejecutando:
+
+```bash
+$ sudo mount
+...
+overlay on /home/usuario/merged type overlay (rw,relatime,seclabel,lowerdir=lower,upperdir=upper,workdir=work,uuid=on)
+``````
+
 Ahora podemos ver el contenido del sistema de archivos de unión:
 
 ```bash
 $ ls -al merged/
 total 16
-drwxr-xr-x. 1 fedora fedora   8 Mar 22 08:13 .
-drwx------. 1 fedora fedora 274 Mar 22 08:13 ..
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f1
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f2
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f3
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f4
+drwxr-xr-x. 1 usuario usuario   8 Mar 22 08:13 .
+drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f1
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f2
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f3
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f4
 ```
 
 Ahora podemos añadir un fichero al sistema de archivos de unión, y veremos que se guarda en la capa superior de lectura y escritura:
@@ -55,21 +63,21 @@ $ echo "Fichero 5 en merged" > merged/f5
 
 $ ls -al merged/
 total 20
-drwxr-xr-x. 1 fedora fedora  12 Mar 22 08:17 .
-drwx------. 1 fedora fedora 274 Mar 22 08:13 ..
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f1
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f2
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f3
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f4
--rw-r--r--. 1 fedora fedora  20 Mar 22 08:17 f5
+drwxr-xr-x. 1 usuario usuario  12 Mar 22 08:17 .
+drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f1
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f2
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f3
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f4
+-rw-r--r--. 1 usuario usuario  20 Mar 22 08:17 f5
 
 ls -al upper/
 total 12
-drwxr-xr-x. 1 fedora fedora  12 Mar 22 08:17 .
-drwx------. 1 fedora fedora 274 Mar 22 08:13 ..
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f3
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f4
--rw-r--r--. 1 fedora fedora  20 Mar 22 08:17 f5
+drwxr-xr-x. 1 usuario usuario  12 Mar 22 08:17 .
+drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f3
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f4
+-rw-r--r--. 1 usuario usuario  20 Mar 22 08:17 f5
 ```
 
 Al eliminar un fichero en el sistema de archivos de unión, y veremos que se deja indicado en la capa superior:
@@ -79,21 +87,21 @@ $ rm merged/f2
 
 $ ls -al merged/
 total 16
-drwxr-xr-x. 1 fedora fedora  16 Mar 22 08:20 .
-drwx------. 1 fedora fedora 274 Mar 22 08:13 ..
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f1
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f3
--rw-r--r--. 1 fedora fedora  27 Mar 22 08:13 f4
--rw-r--r--. 1 fedora fedora  20 Mar 22 08:17 f5
+drwxr-xr-x. 1 usuario usuario  16 Mar 22 08:20 .
+drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f1
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f3
+-rw-r--r--. 1 usuario usuario  27 Mar 22 08:13 f4
+-rw-r--r--. 1 usuario usuario  20 Mar 22 08:17 f5
 
 $ ls -al upper/
 total 12
-drwxr-xr-x. 1 fedora fedora   16 Mar 22 08:20 .
-drwx------. 1 fedora fedora  274 Mar 22 08:13 ..
+drwxr-xr-x. 1 usuario usuario   16 Mar 22 08:20 .
+drwx------. 1 usuario usuario  274 Mar 22 08:13 ..
 c---------. 2 root   root   0, 0 Mar 22 08:20 f2
--rw-r--r--. 1 fedora fedora   27 Mar 22 08:13 f3
--rw-r--r--. 1 fedora fedora   27 Mar 22 08:13 f4
--rw-r--r--. 1 fedora fedora   20 Mar 22 08:17 f5
+-rw-r--r--. 1 usuario usuario   27 Mar 22 08:13 f3
+-rw-r--r--. 1 usuario usuario   27 Mar 22 08:13 f4
+-rw-r--r--. 1 usuario usuario   20 Mar 22 08:17 f5
 ```
 
 Y por último, si modificamos un fichero en el sistema de archivos de unión, dicha modificación quedará reflejada en la capa superior, pero no en la capa inferior:

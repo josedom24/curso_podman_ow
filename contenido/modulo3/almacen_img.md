@@ -65,7 +65,7 @@ store:
 
 ## Ejemplo de almacenamiento imagen
 
-Para ver este ejemplo, vamos a descargar una imagen para crear un contenedor rootful y veremos la estructura de los directorios donde se almacena. en primer lugar descargamos una imagen:
+Para ver este ejemplo, vamos a descargar una imagen para crear un contenedor rootful y veremos la estructura de los directorios donde se almacena. En primer lugar descargamos una imagen:
 
 ```bash
 $ sudo podman pull quay.io/centos7/httpd-24-centos7:latest
@@ -79,20 +79,19 @@ Writing manifest to image destination
 d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a
 ```
 
-Como observamos esta imagen está formado por 3 capas (`Copying blob...`).
+Como observamos esta imagen está formado por 3 capas (`Copying blob...`) y su configuración (`Copying config...`).
 
-Veamos la estructura de directorio que tenemos en el directorio de almacenamiento, como `root`ejecutamos las siguientes instrucciones:
+Veamos la estructura de directorio que tenemos en el directorio de almacenamiento, como `root` ejecutamos las siguientes instrucciones:
 
 ```bash
 # cd /var/lib/containers/storage/
 # ls
 db.sql  defaultNetworkBackend  libpod  overlay  overlay-containers  overlay-images  overlay-layers  secrets  storage.lock  tmp  userns.lock  volumes
 ```
-
 Los directorios que nos interesan son los siguientes:
 
-* `overlay-images`: Contiene los metadatos de las imágenes descargadas.
-* `overlay-layers`: Contiene los archivos de todas las capas de las imágenes que tenemos descargadas.
+* `overlay-images`: Contiene la configuración (los metadatos) de las imágenes descargadas.
+* `overlay-layers`: Contiene los archivos comprimidos de todas las capas de las imágenes que tenemos descargadas.
 * `overlay`: Este es el directorio que contiene las capas descomprimidas de cada imagen.
 
 ### Directorio overlay-images
@@ -105,11 +104,51 @@ Veamos el directorio `overlay-images`:
 d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a  images.json  images.lock
 ```
 
-Como sólo tenemos una imagen descargada sólo tenemos un directorio cuyo nombre es el identificados de la imagen. En ese directorio encontramos el archivo de manifiesto que describe las capas que componen la imagen.En el fichero `images.json`encontramos un índice con las imágenes que tenemos descargas en nuestro registro local. Podemos usar la utilidad `jq` para visualizar de manera correcta el formato json del fichero:
+Los ficheros y directorios que nos encontramos son los siguientes:
 
+* `images.json`: Es un índice de las imágenes que tenemos descargas. Para visualizarlo de manera correcta este fichero podemos usar la utilidad `jq`: `cat images.json | jq`.
+* Distintos directorios que corresponde a las imágenes que tenemos descargadas en nuestro registro local. El nombre de estos directorios corresponden a los identificados de las imágenes. En estos directorios encontramos:
+  * Un fichero de manifiesto llamado `manifest`, que describe las capas que componen la imagen.
+  * Y distintos ficheros con las configuración de la imagen.
+
+Podemos ver las capas que forman parte de la imagen que hemos descargado, ejecutando:
+
+```bash
+$ sudo cat overlay-images/d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/manifest | jq
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+  "config": {
+    "mediaType": "application/vnd.docker.container.image.v1+json",
+    "size": 15278,
+    "digest": "sha256:d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a"
+  },
+  "layers": [
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 78951426,
+      "digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 10435798,
+      "digest": "sha256:06c7e47379429b2a921140524d1596e2c2bf8bc7b29fa9df0ee73c91f5b4c24f"
+    },
+    {
+      "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+      "size": 50603928,
+      "digest": "sha256:8f001c8d7e009adf9e088ff8b85806da558aa713eb545d2af045943eed1ad66a"
+    }
+  ]
+}
 ```
-# cat images.json | jq
-```
+
+Como vemos la imagen está formada por una configuración y por un conjunto de capas ordenadas, que están referenciada con un hash.
+
+Podemos verlo de manera gráfica:
+
+![images1](img/images1.png)
+
 
 ### Directorio overlay-layers
 
