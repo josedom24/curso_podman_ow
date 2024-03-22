@@ -209,12 +209,12 @@ Veamos que guardan cada uno de estos directorios y ficheros:
 cualquier cambio en la capa.
 * `lower`: Este archivo informa de todos los montajes de las capas inferiores, ordenados de mayor a menor.
 * `merged`: En este directorio se monta el sistema de fichero superpuesto.
-* `work`: Este directorio se utiliza para operaciones internas.
-* `link`: Este archivo contiene una cadena única para la capa.
+* `work`: Este directorio se utiliza para operaciones internas durante el montaje.
+* `link`: Este archivo contiene un identificador de capa abreviados.
 
 En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos con identificadores de capa abreviados que apuntan al directorio `diff` para cada capa. Los enlaces simbólicos hacen referencia a capas inferiores (los identificadores de capa abreviados indicadas en el fichero `link` de cada capa).
 
-Se utilizan identificadores de cab abreviados y no los propios hashes de las capas para que el montaje sea máq eficiente, ya que los hashes son cadenas más grandes que los identificados abreviados y por lo tanto su gestión es más eficiente a la hora de realizar el montaje.
+Se utilizan identificadores de capa abreviados y no los propios hashes de las capas para que el montaje sea máq eficiente, ya que los hashes son cadenas más grandes que los identificados abreviados y por lo tanto su gestión es más eficiente a la hora de realizar el montaje.
 
 ```
 # cd overlay/l
