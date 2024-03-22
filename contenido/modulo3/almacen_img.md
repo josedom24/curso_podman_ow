@@ -72,7 +72,7 @@ $ sudo podman pull quay.io/centos7/httpd-24-centos7:latest
 Trying to pull quay.io/centos7/httpd-24-centos7:latest...
 Getting image source signatures
 Copying blob 8f001c8d7e00 done   | 
-Copying blob c61d16cfe03e do  ne   | 
+Copying blob c61d16cfe03e done   | 
 Copying blob 06c7e4737942 done   | 
 Copying config d7af31210b done   | 
 Writing manifest to image destination
