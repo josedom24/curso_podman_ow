@@ -51,30 +51,5 @@ Si al referenciar a una imagen usamos su nombre corto, es decir no indicamos el 
         quay.io/nginx:latest
     ```
 
-    Al elegir la imagen concreta que queremos descargar, se creará un alias en el ficchero `/var/cache/containers/short-name-aliases.conf` si estamos trabajando con el usuario `root`o en el fichero `/home/usuario/.cache/containers/short-name-aliases.conf` si trabajamos con el usuario `usuario`.
-
-## Búsqueda de imágenes en registros remotos
-
-
-
-podman search
-
-
-## Examinar imágenes
-
-podman image diff
-podman image tree
-podman image inspect
-
-## otros
-podman tag / untag
-podman rmi
-podman mount
-podman image exists
-
-
-## Más adelante 
-podman push
-podman login
-podman history
+    Al elegir la imagen concreta que queremos descargar, se creará un alias en el fichero `/var/cache/containers/short-name-aliases.conf` si estamos trabajando con el usuario `root`o en el fichero `/home/usuario/.cache/containers/short-name-aliases.conf` si trabajamos con el usuario `usuario`.
 

@@ -25,8 +25,8 @@
     * [Introducción a los sistemas de archivos de unión](contenido/modulo3/overlay.md)
     * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md)
     * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md)
-    * Registros de Imágenes
-    * Gestión de imágenes 
+    * [Registros de imágenes](contenido/modulo3/registro.md)
+    * [Gestión de imágenes](contenido/modulo3/gestion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
     * Almacenamiento en Podman
