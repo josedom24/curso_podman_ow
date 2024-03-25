@@ -16,7 +16,6 @@
 * Existen **registros remotos** que nos permiten distribuir las imágenes.
 * Los registros pueden ser **públicos o privados**. 
 * Podman, buildah y Skopeo pueden gestionar y trabajar con distintos registros:
-        
    * `docker.io`: El es registro público de Docker, llamado Docker Hub.
    * `quay.io`: Es un registro público de imágenes proporcionado por Red Hat.
    * `registry.access.redhat.com`: Es otro registro ofrecido por Red Hat, que ofrece imágenes de contenedores certificadas y soportadas por Red Hat Enterprise Linux (RHEL), OpenShift y otras tecnologías relacionadas con Red Hat.
