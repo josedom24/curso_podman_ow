@@ -110,4 +110,23 @@ Visto de forma gráfica:
 
 ## Ejemplo de almacenamiento de contenedores
 
+Al crear el contenedor, el tamaño de la **capa del contenedor** es muy pequeño, ya que sólo guarda las diferencia respecto a las capas inferiores.
+En nuestro caso la imagen tiene un tamaño de 356 MB. Hemos creado un contenedor y le hemos copiado un fichero. Veamos el tamaño del contenedor con la opción `-s` (size) del comando `podman ps`:
+
+```bash
+$ sudo podman ps -s
+CONTAINER ID  IMAGE                                    COMMAND               CREATED     STATUS      PORTS       NAMES        SIZE
+579635db3532  quay.io/centos7/httpd-24-centos7:latest  /usr/bin/run-http...  ... ago     Up ...                 contenedor1  38.7kB (virtual 357MB)
+```
+
+Vemos que el tamaño real del contenedor es 38.7 kB, aunque el sistema de archivos del contenedor (tamaño virtual) es de 357 MB. Este tamaño es el de la imagen, cuyo sistema de ficheros se comparte con el contenedor.
+
+Si creamos un nuevo fichero en el contenedor, aumenta el tamaño del contenedor, en realidad la **Capa del Contenedor** de lectura y escritura ha aumentado ya que hemos creado un nuevo fichero.
+
+Por todo lo que hemos explicado, ahora se entiende  que **no podemos eliminar una imagen cuando tenemos contenedores creados a a partir de ella**.
+
+```bash
+$ sudo podman rmi quay.io/centos7/httpd-24-centos7:latest
+Error: image used by 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775: image is in use by a container: consider listing external containers and force-removing image
+```
 
