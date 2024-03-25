@@ -76,12 +76,37 @@ Este directorio contiene varios archivos que se montan directamente en el conten
 
 ## Creación del sistema de ficheros superpuesto
 
+Cuando se crea un nuevo contenedor se crea un nuevos sistema de archivo de unión que es el utiliza el contenedor. Podemos verlo ejecutando la siguiente instrucción:
+
+```bash
+$ mount | grep overlay
+...
+overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged type overlay (rw,nodev,relatime,context="system_u:object_r:container_file_t:s0:c14,c100",lowerdir=/var/lib/containers/storage/overlay/l/ZXSJGMR5T7VDVVGRWHG3E2I6DZ:/var/lib/containers/storage/overlay/l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:/var/lib/containers/storage/overlay/l/LCIWXBIPSMIGB2RTQV36QKTCRH,upperdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff,workdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/work,redirect_dir=on,uuid=on,metacopy=on)
+...
+```
+
+* El directorio donde se han unido todo los directorios es el directorio `merge` de la capa del contenedor:
+  ```
+  $  ls /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
+  anaconda-post.log  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+  ```
+* Las capas inferiores indicadas con el parámetro `lowedir` referencian a los enlaces simbólicos que tenemos guardados el directorio `overlay/l`. Estas capas serán de sólo lectura.
+* La capa superior donde se guardan las diferencias del contenedor, es una capa de lectura y escritura referenciada por el parámetro `upperdir`.
+
+También podemos ver los directorios que se usan para construir el sistema de archivo de unión examinando la configuración del contenedor:
+
+```bash
+$ podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  contenedor1
+LowerDir = /var/lib/containers/storage/overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff:/var/lib/containers/storage/overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/diff:/var/lib/containers/storage/overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/diff
+MergedDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
+UpperDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff
+WorkDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/work
+```
+
+Visto de forma gráfica:
+
 ![container2](img/container2.png)
 
-podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  contenedor1
-
-
-mount | grep overlay
 
 ## Ejemplo de almacenamiento de contenedores
 
