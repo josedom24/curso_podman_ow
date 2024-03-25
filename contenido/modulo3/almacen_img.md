@@ -167,20 +167,19 @@ Como podemos ver, acabamos de encontrar todos los archivos de capas descargados 
 ```bash
 $ sudo cat overlay-layers/layers.json | jq
 [
-  {
-    "id": "53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
-    "created": "2024-03-21T07:38:50.395783286Z",
-    "compressed-diff-digest": "sha256:c61d16cfe03e7bfb4e7e312f09fb17a815be72096544133320058ee6ce55d0b2",
-    "compressed-size": 78951426,
-    "diff-digest": "sha256:53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee",
-    "diff-size": 211829760,
+    ...
+    "id": "141d44a9baf68743b5ce89308008653d57296b999a10350ca42639b33cc7e8b5",
+    "parent": "007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c",
+    "created": "2024-03-22T13:04:22.383948168Z",
+    "compressed-diff-digest": "sha256:cad88c5d6507a80282a7942c790b0290aef5d302b790d988714de3535c7f8eb9",
+    "compressed-size": 50603263,
+    "diff-digest": "sha256:5193cb56be73accb32574190c0638fb24e2386129be7dc436ba049ee400ec7a1",
+    "diff-size": 110338048,
     "compression": 2,
     ...
 ```
 
-**parents** (hay que explicarlo!!!)
-
-Además del hash que vimos que identifica a la capa, encontramos también el campo `id` que es una cadena única que también nos permite referenciar a la capa.
+Además del hash que vimos que identifica a la capa, encontramos también el campo `id` que es una cadena única que también nos permite referenciar a la capa. Además tenemos el campo `parent` donde encontramos el identificador de la capa superior (evidentemente la primera capa no tiene este parámetro).
 
 De manera gráfica:
 
