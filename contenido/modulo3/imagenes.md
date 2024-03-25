@@ -3,11 +3,27 @@
 ## ¿Qué es una imagen?
 
 * Una imagen es una plantilla de sólo lectura con instrucciones para crear un contenedor. 
-* Contiene el sistema de fichero que tendrá el contenedor. 
-* Además establece el comando que ejecutará el contenedor por defecto. 
+* La imagen esta formada por distintos sistemas de ficheros (**capas**), que se unirán para crear el sistema de archivos del contenedor.
+* Una imagen tiene una configuración, donde se guarda la metainformación de la imagen, por ejemplo se indica el comando que se ejecuta en el contenedor que ejecutemos a a partir de la imagen.
 * Podemos crear nuestras propias imágenes o utilizar las creadas por otros y publicadas en un registro. 
 * Un contenedor es una instancia ejecutable de una imagen. 
 * Con Podman, Buildah y Skopeo trabajamos con imágenes OCI, cuyo formato difieren de las imágenes de Docker, aunque son totalmente compatibles.
+
+## Medios de almacenamiento de imágenes
+
+Podman utiliza la librería [`containers/image`](https://github.com/containers/image) para gestionar las imágenes, y poder copiarlas y transferirlas entre distintos medios de almacenamiento. A los distintos medios de almacenamiento se le llama **transportes de imágenes** y podemos usar varios:
+
+* **docker**: Este es el transporte por defecto. Hace referencia a una imagen almacenada en un **Registro remoto de imágenes**. Los registros almacenan y comparten imágenes (por ejemplo, `docker.io` y `quay.io`).
+* **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas e encuentran en el directorio local como archivos individuales.
+* **dir**: Hace referencia a una imagen con formato Docker, guardado en un directorio local.
+* **oci-archive**: Hace referencia a una imagen con formato OCI comprimida en una archivo tar.
+* **docker-archive**: Hace referencia a una imagen con formato Docker comprimida en una archivo tar.
+* **docker-daemon**: Hace referencia a una imagen guardada en un registro local de Docker.
+* **container-storage**: Hace referencia a una imagen gurdada en un registro local de Podman.
+
+En los ejemplos de esta unidad no vamos a indicar explícitamente el transporte utilizado, por lo que utilizaremos el medio por defecto, que es **docker**, es decir trabajaremos con registros remotos de imágenes.
+
+Posteriormente estudiaremos la herramienta **skopeo** que es un cliente de la librería `containers/image` y que nos permite trabajar con imágenes sin necesidad de descargarlas a un registro local.
 
 ## Registro de imágenes
 
