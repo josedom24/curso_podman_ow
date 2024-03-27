@@ -20,7 +20,7 @@
     * Etiquetando los contenedores con Labels
     * Limitando los recursos en los contenedores
     * [Introducción a los contenedores rootless](contenido/modulo2/rootless.md)
-    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/funcionamiento.md
+    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/funcionamiento.md)
 3. Gestión de imágenes OCI en Podman
     * [Imágenes de contenedor](contenido/modulo3/imagenes.md)
     * [Introducción a los sistemas de archivos de unión](contenido/modulo3/overlay.md)
