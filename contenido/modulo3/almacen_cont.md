@@ -85,7 +85,7 @@ overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7
 ...
 ```
 
-* El directorio donde se han unido todo los directorios es el directorio `merge` de la capa del contenedor:
+* El directorio donde se han unido todo los directorios es el directorio `merged` de la capa del contenedor:
   ```
   $  ls /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
   anaconda-post.log  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
