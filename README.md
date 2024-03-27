@@ -26,7 +26,7 @@
     * [Introducción a los sistemas de archivos de unión](contenido/modulo3/overlay.md)
     * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md)
     * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md)
-    * [Almacenamiento de contenedores rootless](contenedio/modulo3/rootless.md)
+    * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md)
     * [Registros de imágenes](contenido/modulo3/registro.md)
     * [Gestión de imágenes](contenido/modulo3/gestion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
