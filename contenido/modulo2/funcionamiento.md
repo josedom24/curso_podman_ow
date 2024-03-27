@@ -179,3 +179,27 @@ El mapeo que se ha realizado es el siguiente:
 Desde el punto de vista de la seguridad es un aspecto muy positivo, ya que la ejecución del contenedor y de los procesos dentro del contenedor se hacer por usuarios diferentes y sin privilegios. El rango de IDs que mapea un usuario, no tiene no tiene ningún privilegio especial en el sistema, ni siquiera como el usuario `usuario` (UID = 1000). Esto significa que si un proceso en el contenedor tiene un problema de seguridad estará restringido en el host del contenedor.
 
 Por lo tanto es uso de contenedores rootless aumenta la seguridad consiguiendo un **aislamiento de privilegios**, ya que al ejecutar contenedores en modo rootless, el usuario no necesita privilegios de superusuario para iniciar y administrar los contenedores. Además como se usan un conjunto de IDs de usuario y grupo dentro del contenedor que son diferentes de los IDs en el sistema anfitrión, nos proporciona una capa adicional de aislamiento de seguridad, ya que los procesos dentro del contenedor no tienen privilegios en el sistema anfitrión. Dicho de otro modo, se reduce el riesgo de que un contenedor comprometido pueda acceder o modificar recursos críticos del sistema anfitrión.
+
+## podman unshare
+
+La instrucción `podman unshare`, nos permite entrar en un espacio de nombres de usuario sin lanzar un contenedor. Le permite examinar lo que está sucediendo dentro del espacio de nombres de usuario, cambiado el conjuntos de IDs que se está usando para identifcar a los usuarios y los grupos.
+
+Por ejemplo, si ejecutamos la siguiente instrucción en el host:
+
+```
+$ cat /proc/self/uid_map
+         0          0 4294967295
+```
+
+Se nos muestra el mapeo en los contenedores roorful, el ID 0 se mapea con el 0, y así sucesivamente con todos el rango de identificadores.
+
+Sin embargo, podemos entrar en el espacio de nombre de usuario y ejecutar esa misma instrucción:
+
+```
+$ podman unshare cat /proc/self/uid_map
+         0       1000          1
+         1     524288      65536
+```
+
+Obteniendo el mismo resultado que al ejecutarla dentro del contenedor.
+
