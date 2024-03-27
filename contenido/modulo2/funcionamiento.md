@@ -152,7 +152,16 @@ Por ejemplo, como vimos en los ejemplos anteriores:
 
 ![rootless](img/rootless2.png)
 
+Cada usuario no privilegiado que creemos en nuestro host, tenfra un conjunto de UID y GID que podrá mapear a usuarios y grupos dentro del contenedor:
 
+* En el fichero `/etc/subuid`, por cada usuario tenemos el UID inicial y la cantidad de identificadores que puede mapear. Cada usuario tiene que tener un conjunto de identificadores diferentes.
+    ```
+    $ cat /etc/subuid
+    usuario:524288:65536
+    ```
+
+    El usuario `usuario` puede mapear desde el UID 524288 y tiene asignado 65536 identificadores.
+* En el fichero `/etc/subgid` está definido, con el mismo formato los identificadores de grupos que puede mapear cad usuario.
 
 
 Aislamiento de privilegios: Cuando se ejecutan contenedores en modo rootless, el usuario no necesita privilegios de superusuario para iniciar y administrar los contenedores. El user namespace permite asignar un conjunto de IDs de usuario y grupo dentro del contenedor que son diferentes de los IDs en el sistema anfitrión. Esto proporciona una capa adicional de aislamiento de seguridad, ya que los procesos dentro del contenedor no tienen privilegios en el sistema anfitrión.
