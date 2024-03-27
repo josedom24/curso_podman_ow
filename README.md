@@ -31,9 +31,11 @@
     * [Gestión de imágenes](contenido/modulo3/gestion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
-    * Almacenamiento en Podman
+    * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md)
     * Trabajando con volúmenes en Podman
     * Trabajando con bind mount en Podman
+    * Trabajando con almacenamiento en contenedores rootless
+    
     * Redes en Podman
     * Redes en contenedores rootful
     * Gestión de redes definida por el usuario
