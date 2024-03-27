@@ -35,7 +35,6 @@
     * Trabajando con volúmenes en Podman
     * Trabajando con bind mount en Podman
     * Trabajando con almacenamiento en contenedores rootless
-    
     * Redes en Podman
     * Redes en contenedores rootful
     * Gestión de redes definida por el usuario
