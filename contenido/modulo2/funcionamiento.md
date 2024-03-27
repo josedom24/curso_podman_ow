@@ -163,7 +163,19 @@ Cada usuario no privilegiado que creemos en nuestro host, tenfra un conjunto de 
     El usuario `usuario` puede mapear desde el UID 524288 y tiene asignado 65536 identificadores.
 * En el fichero `/etc/subgid` está definido, con el mismo formato los identificadores de grupos que puede mapear cad usuario.
 
+Podemos ver el mapero de identificadores de usuario que se ha realizado leyendo el fichero `/proc/self/uid_amp` en el contenedor. Si ejecutamos la siguiente instrucción en el último ejemplo que hemos presentado (contenedor rootlees cuyos procesos se ejcuta por el usuario `sync`):
 
-Aislamiento de privilegios: Cuando se ejecutan contenedores en modo rootless, el usuario no necesita privilegios de superusuario para iniciar y administrar los contenedores. El user namespace permite asignar un conjunto de IDs de usuario y grupo dentro del contenedor que son diferentes de los IDs en el sistema anfitrión. Esto proporciona una capa adicional de aislamiento de seguridad, ya que los procesos dentro del contenedor no tienen privilegios en el sistema anfitrión.
+```
+$ podman exec contenedor1 cat /proc/self/uid_map
+         0       1000          1
+         1     524288      65536
+```
 
-Seguridad mejorada: Al limitar los privilegios del contenedor a través del user namespace, se reduce el riesgo de que un contenedor comprometido pueda acceder o modificar recursos críticos del sistema anfitrión.
+El mapeo que se ha realizado es el siguiente:
+
+* El usuario `root` (UID = 0) está mapeado con el usuario `usuario (UID = 1000) para un rango de 1. 
+* Luego el UID 1 está mapeado al UID 524288 para un rango de 65536 UIDS. Por eso el usuario `sync` con UID = 5, se mapea al UID = 524292.
+
+Desde el punto de vista de la seguridad es un aspecto muy positivo, ya que la ejecución del contenedor y de los procesos dentro del contenedor se hacer por usuarios diferentes y sin privilegios. El rango de IDs que mapea un usuario, no tiene no tiene ningún privilegio especial en el sistema, ni siquiera como el usuario `usuario` (UID = 1000). Esto significa que si un proceso en el contenedor tiene un problema de seguridad estará restringido en el host del contenedor.
+
+Por lo tanto es uso de contenedores rootless aumenta la seguridad consiguiendo un **aislamiento de privilegios**, ya que al ejecutar contenedores en modo rootless, el usuario no necesita privilegios de superusuario para iniciar y administrar los contenedores. Además como se usan un conjunto de IDs de usuario y grupo dentro del contenedor que son diferentes de los IDs en el sistema anfitrión, nos proporciona una capa adicional de aislamiento de seguridad, ya que los procesos dentro del contenedor no tienen privilegios en el sistema anfitrión. Dicho de otro modo, se reduce el riesgo de que un contenedor comprometido pueda acceder o modificar recursos críticos del sistema anfitrión.
