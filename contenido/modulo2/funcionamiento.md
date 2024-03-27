@@ -133,7 +133,28 @@ En resumen:
 
 ![resumen](img/rootless.png)
 
+## Espacio de nombres de usuario
+
+Los espacios de nombres (**namespaces**) son un mecanismo que el kernel utiliza para aislar y restringir recursos del sistema operativo, como procesos, redes, sistemas de archivos, entre otros. Los namespaces permiten crear entornos de ejecución independientes
+
+Cuando ejecutamos contenedores rootless, hemos visto que podemos ejecutar los procesos dentro del contenedor con otros usuarios. Además dentro de la imagen que estamos usando para crear el contenedor pueden estar definidos varios usuarios. Sin embargo, el kernel de Linux impide a un usuario sin privilegios usar más de UID, por ello necesitamos un mecanismo que consiga que nuestro usuario sin privilegio pueda utilizar distintos UID y GID.
+
+Es por todo ello, que se use un espacio de nombre de usuario (**user username**):
+
+* Nos permite **asignar un rango de IDs de usuario y grupo** en un espacio de nombres aislado. Esto significa que los procesos que se ejecutan dentro de ese namespace tienen una visión limitada de los usuarios y grupos del sistema en comparación con el sistema anfitrión. 
+* Nos permite establecer una correspondencia entre los ID de usuario del contenedor y los ID de usuario del host.
+* En el espacio de nombres de usuario de Podman, hay un nuevo conjunto de IDs de usuario e IDs de grupo, que están separados de los UIDs y GIDs de su host.
+
+Por ejemplo, como vimos en los ejemplos anteriores:
+
+* Cuando creamos un contenedor rootless donde se ejecutan los procesos como `root` (uid = 0), en el host se están ejecutando con el usuario que ha creado el contenedor, en nuestro caso con el usuario `usuario` (uid = 1000).
+* Cuando creamos un contenedor rootless donde se ejecutan los procesos con el usuario `sync` (uid = 5), en el host se están ejecutando con un usuario sin privilegios con uid = 524292.
+
+![rootless](img/rootless2.png)
 
 
 
 
+Aislamiento de privilegios: Cuando se ejecutan contenedores en modo rootless, el usuario no necesita privilegios de superusuario para iniciar y administrar los contenedores. El user namespace permite asignar un conjunto de IDs de usuario y grupo dentro del contenedor que son diferentes de los IDs en el sistema anfitrión. Esto proporciona una capa adicional de aislamiento de seguridad, ya que los procesos dentro del contenedor no tienen privilegios en el sistema anfitrión.
+
+Seguridad mejorada: Al limitar los privilegios del contenedor a través del user namespace, se reduce el riesgo de que un contenedor comprometido pueda acceder o modificar recursos críticos del sistema anfitrión.
