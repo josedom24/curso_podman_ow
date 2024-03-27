@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2024-03-27T10:09:17.518Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="4blvxUTiVF2JW7SmFkb9" version="24.0.8" type="device">
+  <diagram name="Página-1" id="T-ccIKmUGfybLykyubkR">
+    <mxGraphModel dx="1434" dy="728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n8GPavvwp4c2amqTbjbu-2" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;root&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="140" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-3" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;root&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-4" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;root (UID=0)&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="420" y="200" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-10" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;root&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="140" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-11" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Usuario no privilegiado&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-12" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;UID del usuario que ejecuta el proceso dentro del contenedor&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="270" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-13" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Usuario no privilegiado&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="140" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-14" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;root&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-15" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;UID del usuario sin privilegios&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="420" y="340" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-16" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Usuario no privilegiado&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="140" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-17" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Usuario no privilegiado&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-18" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;UID de un usuario sin privilegio&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="420" y="410" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Ejecutamos contenedor con...&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-20" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Los procesos dentro del contenedor se ejecutan con...&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/b&gt;" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="140" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="n8GPavvwp4c2amqTbjbu-21" value="&lt;b&gt;El UID del usuario visible en el host...&lt;br&gt;&lt;/b&gt;" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
