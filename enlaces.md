@@ -52,3 +52,12 @@ Imagen pequeña con servidor web
 # Podman Desktop
 
 * https://linuxiac.com/podman-desktop-1-8-integrates-kubernetes-explorer-and-enhanced-ui/
+* 
+
+
+
+From https://stackoverflow.com/questions/75817076/no-matter-what-i-do-podman-is-mounting-volumes-as-root:
+
+
+    "z" (Lowercase z): When a file or directory has the "z" context flag, it means that the object is labeled with a private unshared label. This is typically used for files or directories that are created by a process running inside a container. Objects with the "z" context are confined within the container and are not accessible to other containers or the host system.
+    "Z" (Uppercase Z): On the other hand, the "Z" context flag is used for shared objects. Files or directories labeled with the "Z" flag are accessible to other containers and the host system. This flag allows multiple containers to share resources and access the same files or directories.
