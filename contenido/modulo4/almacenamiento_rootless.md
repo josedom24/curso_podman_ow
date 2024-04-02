@@ -102,3 +102,55 @@ En resumen, el uso de volúmenes o bind mount en contenedores rootlees cuando se
 
 ##  Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
+El volumen lo crea el usuario del host, pero se monta con el identificador de usuario del contenedor. Por lo tanto del conteendor se puede escribir, pero desde fuera no se pueda escribir.
+
+```bash
+[fedora@podman ~]$ podman volume create vol1
+vol1
+[fedora@podman ~]$ podman run -dit -u 123:123 -v vol1:/test --name alpine alpine
+73d54eef873cc17a4c9de6c0ebe5c7090b1c1140917454c5eb1f76eca0d67dd6
+[fedora@podman ~]$ podman exec alpine touch /test/fichero1
+[fedora@podman ~]$ touch .local/share/containers/storage/volumes/vol1/_data/fichero2
+touch: cannot touch '.local/share/containers/storage/volumes/vol1/_data/fichero2': Permission denied
+[fedora@podman ~]$ ls -l .local/share/containers/storage/volumes/vol1
+total 0
+drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
+[fedora@podman ~]$ podman exec -it alpine ls -ld test
+drwxr-xr-x    1 ntp      ntp             16 Apr  2 11:30 test
+```
+
+##  Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
+
+Creamos un directorio con un fichero que pertenecen a `usuario`:
+
+```
+$ mkdir test
+$ touch test/fichero1
+```
+
+```
+$ podman run -dit -u 123:123 -v ./test:/test:Z --name alpine2 alpine
+b995cd087bf9e18d0f3925b896d782489df29c271447654eafb717eaeb94a294
+[fedora@podman ~]$ podman exec alpine2 touch /test/fichero1
+touch: /test/fichero1: Permission denied
+[fedora@podman ~]$ podman stop alpine2
+WARN[0010] StopSignal SIGTERM failed to stop container alpine2 in 10 seconds, resorting to SIGKILL 
+alpine2
+[fedora@podman ~]$ podman rm alpine2
+alpine2
+[fedora@podman ~]$ podman run -dit -u 123:123 -v ./test:/test:Z,U --name alpine2 alpine
+4ced2326f465b0debedf8f722095167553335ac7a2aa6413cd0dfae52cd9231d
+[fedora@podman ~]$ podman exec alpine2 touch /test/fichero1
+[fedora@podman ~]$ podman rm alpine2
+Error: cannot remove container 4ced2326f465b0debedf8f722095167553335ac7a2aa6413cd0dfae52cd9231d as it is running - running or paused containers cannot be removed without force: container state improper
+[fedora@podman ~]$ podman rm -f alpine2
+WARN[0010] StopSignal SIGTERM failed to stop container alpine2 in 10 seconds, resorting to SIGKILL 
+alpine2
+[fedora@podman ~]$ podman unshare chown -R 123:123 test
+[fedora@podman ~]$ podman run -dit -u 123:123 -v ./test:/test:Z --name alpine2 alpine
+64d76500e8b6835bc1370a005baf4743e250b30f82bf09806ee599cf5965a9ab
+[fedora@podman ~]$ podman exec alpine2 touch /test/fichero2
+``
+
+
+
