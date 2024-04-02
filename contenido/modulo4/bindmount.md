@@ -1,6 +1,6 @@
 # Trabajando con bind mount en Podman
 
-## Creación de contenedores con bind mount
+## Creación de contenedores con bind mount con la opción --volumen
 
 Seguimos en este ejemplo, utilizando contenedores rootful. En este caso, vamos a crear un directorio en el sistema de archivos del host, donde vamos a crear un fichero `index.html`:
 
@@ -13,7 +13,37 @@ $ cd web
 Y podemos montar ese directorio en un contenedor, en este caso usamos la opción `-v`:
 
 ```bash
-$ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache2/htdocs -p 8080:80 httpd:2.4
+$ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache2/htdocs -p 8080:80 docker.io/httpd:2.4
+```
+
+Comprobamos si estamos sirviendo el fichero que tenemos en el directorio que hemos creado:
+
+```bash
+$ curl http://localhost:8080
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access this resource.</p>
+</body></html>
+```
+
+Sin embargo comprobamos que nos da un error: el contenedor no puede acceder al directorio que hemos montado.
+
+## Montaje de directorio cuando usamos SELinux
+
+El ejemplo anterior hubiera funcionado sin problemas, si en nuestro host no tuviéramos activado SELinux. 
+En nuestro ejemplo, el error se ha producido porque tenemos activo SELinux, el directorio `/home/usuario/web` no está configurado de forma adecuada para ser accesible desde el contenedor.
+
+Por lo tanto, como hemos visto anteriormente, a la hora de montar el directorio, tendremos que usar la opción `:z` si dicho directorio lo queremos montar en otros contenedores o `:Z` si sólo se va a montar en este contenedor.
+
+Por lo tanto eliminamos el contenedor anterior y lo volvemos a crear de forma adecuada:
+
+```bash
+$ sudo podman rm -f my-apache-app
+my-apache-app
+$ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache2/htdocs:Z -p 8080:80 docker.io/httpd:2.4
 ```
 
 Podemos comprobar en la información del contenedor los puntos de montaje que tiene configurado:
@@ -30,13 +60,21 @@ $ curl http://localhost:8080
 <h1>Hola</h1>
 ```
 
-Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahora usando la opción `--mount`:
+## Creación de contenedores con bind mount con la opción --mount
+
+Cuando configuramos un directorio para ser montado en un contenedor con la opción `:z` o `:Z`, la configuración que se realiza no se deshace aunque eliminemos el contenedor. ese directorio continúa estando accesible desde los contenedores que creemos y no será necesario volver a usar la opción. Si queremos volver a configurar el directorio con sus permisos de accesos originales, debemos ejecutar:
 
 ```bash
-$ docker rm -f my-apache-app 
-my-apache-app
+$ sudo restorecon -F -R /home/usuario/web
+```
 
-$ docker run -d --name my-apache-app --mount type=bind,src=/home/usuario/web,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4
+Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahora usando la opción `--mount`. en este caso para montar un directorio compartido (similar a usar la opción `:z`), utilizaríamos la opción `relabel=shared`. Si queremos hacer un montaje privado, sólo para el contenedor (similar a la opción `:Z`) usaremos la opción `relabel=private`
+
+```bash
+$ sudo podman rm -f my-apache-app 
+
+$ sudo podman run -d --name my-apache-app --mount type=bind,src=/home/fedora/web,dst=/usr/local/apache2/htdocs,relabel=private -p 8080:80 httpd:2.4
+
 
 $ curl http://localhost:8080
 <h1>Hola</h1>

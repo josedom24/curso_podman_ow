@@ -104,3 +104,4 @@ $ curl http://localhost:8080
 <h1>Hola</h1>
 ```
 
+Como hemos comprobado, cuando trabajamos con volúmenes no tenemos ningún problema aunque trabajemos con sistemas operativos con SELinux activado, ya que el directorio donde se guarda los volúmenes está configurado de forma adecuada en el contexto de seguridad de SELinux y es accesible desde los contenedores.
