@@ -43,7 +43,7 @@
     * Ejemplo 2: Contenedor MariaDB con almacenamiento persistente    
 
 5. Ejecución avanzada de contenedores con Podman
-    * Trabajando con Pods con Podman
+    * Trabajando con Pods en Podman
     * Generación de un archivo YAML de Kubernetes con Podman
     * Gestionando contenedores y Pods con systemd
     * Especificación Compose
