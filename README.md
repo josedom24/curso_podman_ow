@@ -34,7 +34,7 @@
     * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md)
     * [Trabajando con volúmenes](contenido/modulo4/volumen.md)
     * [Trabajando con bind mount](contenido/modulo4/bindmount.md)
-    * Trabajando con almacenamiento en contenedores rootless
+    * [Trabajando con almacenamiento en contenedores rootless](contenido/modulo4/almacenamiento_rootless.md)
     * Redes en Podman
     * Redes en contenedores rootful
     * Gestión de redes definida por el usuario
