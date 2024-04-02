@@ -45,3 +45,13 @@ IMAGEN
 * Es importante que nuestros contenedores en producción se ejecuten conectados a una red bridge definida por el usuario.
 
 IMAGEN
+
+## Red slirp4netns
+
+* Es el mecanismo de red usado en los contenedores rootless, ya que los usuarios sin privilegios no pueden crear interfaces de red en el host.
+* Crea un entorno de red aislado para el contenedor y utilizando el módulo `slirp` del kernel para realizar la traducción de direcciones de red (NAT), lo que permite que el contenedor acceda a internet a través de la conexión de red del host.
+* Crea un dispositivo TAP en el espacio de nombres de red del contenedor y se conecta a la pila TCP/IP en modo usuario. 
+* Al utilizar este tipo de red, el usuario sin privilegio tendrá que usar puertos no privilegiados, mayores que el 1024.
+* Uno de los inconvenientes de slirp4netns es que los contenedores están completamente aislados unos de otros, por lo que tendrán que utilizar los puertos expuestos para comunicarse.
+
+IMAGEN  
