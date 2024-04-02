@@ -51,6 +51,18 @@ Podman nos proporciona varias soluciones para persistir los datos de los contene
 * Del mismo modo, si inicias un contenedor y especificas un volumen que aún no existe, se creará un volumen vacío para ti. 
 * Si montas un bind mount o un volumen no vacío en un directorio del contenedor en el que existen algunos archivos o directorios, estos archivos o directorios quedan ocultos por el montaje.
 
+## Almacenamiento y SELinux
+
+SELinux, que significa "Security-Enhanced Linux" (Linux con seguridad mejorada), es una función de seguridad para sistemas operativos Linux que proporciona un control avanzado sobre los permisos de acceso del sistema. 
+
+Cuando trabajamos con Podman en un sistema operativo en que SELinux está activo, tenemos que tener en cuenta algunas consideraciones a la hora de montar directorios en los contenedores.
+
+SELinux configura ciertos directorios de manera adecuada para que puedan ser accesibles por Podman y los contenedores. Esto se hace para garantizar que los contenedores puedan funcionar correctamente y acceder a los recursos necesarios.
+
+Sin embargo, cuando se trata de otros directorios que no están configurados de forma predeterminada para ser accesibles por Podman y los contenedores, es posible que estos no puedan acceder a ellos debido a las políticas de seguridad de SELinux. SELinux puede aplicar restricciones sobre qué procesos pueden acceder a qué recursos, y si un directorio no está configurado adecuadamente o si está fuera del contexto permitido por SELinux, los contenedores pueden tener dificultades para acceder a él.
+
+Deberemos aplicar aplicar etiquetas de contexto adecuadas a los directorios para permitir el acceso de los contenedores según sea necesario. 
+
 ## Uso de almacenamiento en contenedores
 
 En la creación de contenedores con `podman run` puedo indicar que vamos a usar almacenamiento para guardar la información de ciertos directorios. Tanto en el caso de uso de volúmenes como en el caso del uso de bind mount podemos indicar el uso de almacenamiento en la creación de un contenedor con las siguientes parámetros del comando `podman run`:
@@ -63,13 +75,18 @@ En general, `--mount` es más explícito y detallado. La mayor diferencia es que
 * Si usamos `-v` se debe indicar tres campos separados por dos puntos:
     * El primer campo es el nombre del volumen, debe ser único en una determinada máquina. Para volúmenes anónimos, el primer campo se omite.
     * El segundo campo es la ruta donde se montan el archivo o directorio en el contenedor.
-    * El tercer campo es opcional, y es una lista de opciones separadas por comas. Por ejemplo podemos indicar `ro` para configurar el montaje sólo de lectura.
+    * El tercer campo es opcional, y es una lista de opciones separadas por comas, la más utilizadas son:
+        * `:ro`: Para indicar que el montaje es de sólo lectura.
+        * `:z`: Cuando trabajamos en sistemas operativos con SELinux nos permite cambiar la etiqueta del contexto de seguridad del directorio para que sea accesible desde el contenedor. Además el directorio podrá ser compartido con otros contenedores.
+        * `:Z`: Cuando trabajamos en sistemas operativos con SELinux nos permite cambiar la etiqueta del contexto de seguridad del directorio para que sea accesible desde el contenedor, pero de forma privada, no se podrá compartir con otros contenedores.
 * Si usamos `--mount` hay que indicar un conjunto de datos de la forma `clave=valor`, separados por coma.
-    * Clave `type`: Indica el tipo de montaje. Los valores pueden ser `bind`, `volume` o `tmpfs`.
+    * Clave `type`: Indica el tipo de montaje. Los valores pueden ser `bind`, `volume`, `tmpfs` `devpts`, `glob`, `image` o `ramfs`.
     * Clave `source` o `src`: La fuente del montaje. Se indica el volumen o el directorio que se va montar con bind mount.
     * Clave `dst` o `target`: Será la ruta donde está montado el fichero o directorio en el contenedor. 
-    * La opción `readonly` o `ro` es optativa, e indica que el montaje es de sólo lectura.
-    * La clave `volume-opt` para indicar opciones más específicas del montaje.
+* en los dos casos podemos indicar 
+    * Se pueden indicar opciones según el tipo de la fuente de montaje, en el caso de los volúmenes y los bind mount, las opciones más utilizadas son:
+        * La opción `readonly` o `ro` es optativa, e indica que el montaje es de sólo lectura.
+        * `relabel`, puede tener dos valores: `shared` funcionaría de forma similar a cómo lo hace la opción `:z` en el caso de utilizar la sintaxis `-v`, y `private` funcionaría de forma similar a utilizar la opción `:Z`.
 
 
 ## ¿Qué información tenemos que guardar?
