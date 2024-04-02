@@ -1,5 +1,4 @@
-# Trabajando con volúmenes en Podman
-
+# Trabajando con volúmenes
 Este apartado lo vamos a realizar con contenedores rootful, en un apartado concreto estudiaremos el almacenamiento en contenedores rootless.
 
 ## Gestionando volúmenes

@@ -32,8 +32,8 @@
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
     * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md)
-    * [Trabajando con volúmenes en Podman](contenido/modulo4/volumen.md)
-    * [Trabajando con bind mount en Podman](contenido/modulo4/bindmount.md)
+    * [Trabajando con volúmenes](contenido/modulo4/volumen.md)
+    * [Trabajando con bind mount](contenido/modulo4/bindmount.md)
     * Trabajando con almacenamiento en contenedores rootless
     * Redes en Podman
     * Redes en contenedores rootful

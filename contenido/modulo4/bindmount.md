@@ -1,4 +1,4 @@
-# Trabajando con bind mount en Podman
+# Trabajando con bind mount
 
 ## Creación de contenedores con bind mount con la opción --volumen
 
