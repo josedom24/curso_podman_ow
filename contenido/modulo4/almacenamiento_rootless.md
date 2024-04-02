@@ -12,10 +12,10 @@ Si creamos un volumen y lo montamos en un contenedor rootless cuyos procesos se 
 ```bash
 $ podman volume create vol1
 
-$ podman run -dit -v vol1:/mnt --name alpine alpine
+$ podman run -dit -v vol1:/destino --name alpine1 alpine
 
-$ podman exec alpine ls -ld /mnt
-drwxr-xr-x    1 root     root             0 Jan 26 17:53 /mnt
+$ podman exec alpine1 ls -ld /destino
+drwxr-xr-x    1 root     root             0 Jan 26 17:53 /destino
 ```
 
 Cómo cabría esperar, comprobamos que el directorio que hemos montado pertenece al usuario `root`.
@@ -57,13 +57,13 @@ Si creamos un fichero en el volumen desde el host o desde el contenedor:
 
 ```bash
 $ touch .local/share/containers/storage/volumes/vol1/_data/fichero1
-$ podman exec alpine touch /mnt/fichero2
+$ podman exec alpine1 touch /destino/fichero2
 ```
 
 Comprobamos que dentro del contenedor pertenecen a `root`:
 
 ```bash
-$ podman exec alpine ash -c "ls -l /mnt"
+$ podman exec alpine1 ash -c "ls -l /destino"
 total 0
 -rw-r--r--    1 root     root             0 Apr  2 08:14 fichero1
 -rw-r--r--    1 root     root             0 Apr  2 08:15 fichero2
@@ -91,9 +91,9 @@ total 4
 Creamos el contenedor y comprobamos el propietario del fichero:
 
 ```bash
-$ podman run -dit -v ${PWD}/web:/mnt:Z --name alpine alpine
+$ podman run -dit -v ${PWD}/web:/destino:Z --name alpine2 alpine
 
-$ podman exec -it alpine ls -l /mnt
+$ podman exec -it alpine2 ls -l /destino
 total 4
 -rw-r--r--    1 root     root            15 Apr  2 07:53 index.html
 ```
@@ -102,55 +102,94 @@ En resumen, el uso de volúmenes o bind mount en contenedores rootlees cuando se
 
 ##  Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
-El volumen lo crea el usuario del host, pero se monta con el identificador de usuario del contenedor. Por lo tanto del conteendor se puede escribir, pero desde fuera no se pueda escribir.
+El volumen lo crea el usuario del host, pero dentro del contenedor es propiedad del usuario del contenedor. Por lo tanto desde contenedor se puede escribir, pero desde fuera no se pueda escribir.
 
 ```bash
-[fedora@podman ~]$ podman volume create vol1
-vol1
-[fedora@podman ~]$ podman run -dit -u 123:123 -v vol1:/test --name alpine alpine
-73d54eef873cc17a4c9de6c0ebe5c7090b1c1140917454c5eb1f76eca0d67dd6
-[fedora@podman ~]$ podman exec alpine touch /test/fichero1
-[fedora@podman ~]$ touch .local/share/containers/storage/volumes/vol1/_data/fichero2
-touch: cannot touch '.local/share/containers/storage/volumes/vol1/_data/fichero2': Permission denied
-[fedora@podman ~]$ ls -l .local/share/containers/storage/volumes/vol1
+$ podman volume create vol2
+
+$ podman run -dit -u 123:123 -v vol2:/destino --name alpine3 alpine
+
+$ podman exec alpine3 touch /destino/fichero1
+
+$ touch .local/share/containers/storage/volumes/vol2/_data/fichero2
+touch: cannot touch '.local/share/containers/storage/volumes/vol2/_data/fichero2': Permission denied
+```
+
+Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp`que tiene UDI y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario cou UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
+
+```bash
+$ podman exec -it alpine3 ls -ld destino
+drwxr-xr-x    1 ntp      ntp             16 Apr  2 11:30 destino
+
+
+$ ls -l .local/share/containers/storage/volumes/vol2
 total 0
 drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
-[fedora@podman ~]$ podman exec -it alpine ls -ld test
-drwxr-xr-x    1 ntp      ntp             16 Apr  2 11:30 test
+
 ```
 
 ##  Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
-Creamos un directorio con un fichero que pertenecen a `usuario`:
+Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, ne nuestro caso usuario:
 
-```
-$ mkdir test
-$ touch test/fichero1
+```bash
+$ mkdir origen
+$ touch origen/fichero1
 ```
 
+Creamos un contador y montamos el directorio `origen` con la opción `:Z` para configurar de forma adecuada SELinux y sea accesible desde el contenedor. Comprobamos que al pertenecer el directorio `origen` a nuestro usuario `usuario`, el directorio `destino` será propiedad del root (mapeo de usuario) y por lo tanto el usuario con UID 123 no podrá acceder al directorio:
+
+```bash
+$ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine4 alpine
+
+$ podman exec -it alpine4 ls -ld destino
+drwxr-xr-x    1 root     root            16 Apr  2 14:28 destino
+
+$ podman exec alpine4 touch /destino/fichero2
+touch: /destino/fichero2: Permission denied
 ```
-$ podman run -dit -u 123:123 -v ./test:/test:Z --name alpine2 alpine
-b995cd087bf9e18d0f3925b896d782489df29c271447654eafb717eaeb94a294
-[fedora@podman ~]$ podman exec alpine2 touch /test/fichero1
-touch: /test/fichero1: Permission denied
-[fedora@podman ~]$ podman stop alpine2
-WARN[0010] StopSignal SIGTERM failed to stop container alpine2 in 10 seconds, resorting to SIGKILL 
-alpine2
-[fedora@podman ~]$ podman rm alpine2
-alpine2
-[fedora@podman ~]$ podman run -dit -u 123:123 -v ./test:/test:Z,U --name alpine2 alpine
-4ced2326f465b0debedf8f722095167553335ac7a2aa6413cd0dfae52cd9231d
-[fedora@podman ~]$ podman exec alpine2 touch /test/fichero1
-[fedora@podman ~]$ podman rm alpine2
-Error: cannot remove container 4ced2326f465b0debedf8f722095167553335ac7a2aa6413cd0dfae52cd9231d as it is running - running or paused containers cannot be removed without force: container state improper
-[fedora@podman ~]$ podman rm -f alpine2
-WARN[0010] StopSignal SIGTERM failed to stop container alpine2 in 10 seconds, resorting to SIGKILL 
-alpine2
-[fedora@podman ~]$ podman unshare chown -R 123:123 test
-[fedora@podman ~]$ podman run -dit -u 123:123 -v ./test:/test:Z --name alpine2 alpine
-64d76500e8b6835bc1370a005baf4743e250b30f82bf09806ee599cf5965a9ab
-[fedora@podman ~]$ podman exec alpine2 touch /test/fichero2
-``
+
+Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurarnos que el directorio `destino` le pertenece. Para conseguir esto lo podemos hacer de dos formas distintas:
+
+1. A la hora de montar el directorio utilizar la opción `:U` que cambia el usuario y grupo de forma recursiva al directorio montado dentro del contenedor con el usuario y grupo que se esté ejecutando dentro del contenedor. En nuestro caso, creamos un nuevo contenedor con dicha opción:
+
+     ```bash
+     $ podman run -dit -u 123:123 -v ./origen:/destino:Z,U --name alpine4 alpine
+
+     $ podman exec -it alpine2 ls -ld destino
+     drwxr-xr-x    1 ntp      ntp             16 Apr  2 14:28 destino
+     
+     $ podman exec alpine4 touch /destino/fichero2
+     ```
+
+2. Otra opción sería cambiar el propietario del directorio `origen` en el host con el UID y GID del usuario que se ejecuta dentro del contenedor. Para ello es necesario que esa instrucción la ejecutemos en el espacio de nombres de usuario del contenedor, para ello usaremos la instrucción `podman unshare`:
+
+     ```
+     $ podman unshare chown -R 123:123 origen
+     ```
+
+     Comprobamos que en fuera del contenedor el UID que se asignado es el correspondiente al mapeo de UID realizado:
+
+     ```bash
+     $ ls -ld origen
+     drwxr-xr-x. 1 524410 524410 32 Apr  2 14:39 origen
+     ```
+
+     Creamos un nuevo contenedor y comprobamos que dentro del contenedor el cambio de propietario se refleja de forma y correcta (pertence al usuario `ntp:ntp`, que corresponde con el UID y GID 123) y ahora si podemos acceder al directorio:
+
+     ```bash
+     $ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine5 alpine
+
+     $ podman exec -it alpine5 ls -ld destino
+     drwxr-xr-x    1 ntp      ntp             32 Apr  2 14:39 destino
+
+     $ podman exec -it alpine5 ls -l destino
+     total 0
+     -rw-r--r--    1 ntp      ntp              0 Apr  2 14:28 fichero1
+     -rw-r--r--    1 ntp      ntp              0 Apr  2 14:39 fichero2
+
+     $ podman exec -it alpine5 touch destino/fichero3
+     ```
 
 
 
