@@ -36,7 +36,7 @@
     * [Trabajando con bind mount](contenido/modulo4/bindmount.md)
     * [Trabajando con almacenamiento en contenedores rootless](contenido/modulo4/almacenamiento_rootless.md)
     * [Redes en Podman](contenido/modulo4/redes.md)
-    * Redes en contenedores rootful
+    * [Redes en contenedores rootful](contenido/modulo4/bridge.md)
     * Gestión de redes definida por el usuario
     * Redes en contenedores rootless
     * Ejemplo 1: Contenedor NextCloud con almacenamiento persistente
