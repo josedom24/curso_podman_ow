@@ -2,7 +2,7 @@
 
 En este ejemplo vamos a crear un contenedor demonio que ejecuta un servidor web Apache, para ello vamos a usar la imagen `httpd:2.4` del registro **Docker Hub** (en este caso hemos indicado el nombre de la imagen y su etiqueta `2.4` que nos indica la versión del servidor web que vamos a usar):
 
-```bash
+```
 $ sudo podman run -d --name my-apache-app -p 8080:80 docker.io/httpd:2.4
 ```
 
@@ -10,14 +10,14 @@ Hay que tener en cuenta que los contenedores que estamos creando se conectan a u
 
 Podemos ver los puertos que están mapeados en un contenedor de dos maneras distintas. Usando el comando `podman port`:
 
-```bash
+```
 $ sudo podman port my-apache-app
 80/tcp -> 0.0.0.0:8080
 ```
 
 O utilizando el comando `podman inspect` con un filtro:
 
-```bash
+```
 $ sudo podman inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}  {{(index $conf 0).HostPort}} -> {{$p}} {{end}}' my-apache-app
 ```
 
@@ -30,7 +30,7 @@ Para probarlo accedemos desde un navegador web:
 
 Para acceder al log del contenedor podemos ejecutar:
 
-```bash
+```
 $ sudo podman logs my-apache-app
 ```
 
@@ -42,7 +42,7 @@ Lo podemos hacer de varias formas:
 
 * Accediendo de forma interactiva al contenedor y haciendo la modificación:
 
-    ```bash
+    ```
     $ sudo podman exec -it my-apache-app bash
 
     root@cf3cd01a4993:/usr/local/apache2# cd /usr/local/apache2/htdocs/
@@ -52,13 +52,13 @@ Lo podemos hacer de varias formas:
 
 * Ejecutando directamente el comando de creación del fichero `index.html` en el contenedor:
 
-    ```bash
+    ```
     $ sudo podman exec my-apache-app bash -c 'echo "<h1>Curso Podman</h1>" > /usr/local/apache2/htdocs/index.html'
     ```
 
 * Usando el comando `podman cp` y copiando el fichero `index.html` al contenedor:
 
-    ```bash
+    ```
     $ echo "<h1>Curso Podman</h1>" > index.html
     $ sudo podman cp index.html  my-apache-app:/usr/local/apache2/htdocs/
     ```

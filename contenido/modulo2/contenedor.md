@@ -5,7 +5,7 @@ En este caso vamos a descargar primero la imagen del registro público Docker Hu
 
 Para descargar la imagen ejecutamos:
 
-```bash
+```
 $ sudo podman pull ubuntu
 Trying to pull docker.io/library/ubuntu:latest...
 Getting image source signatures
@@ -19,14 +19,14 @@ ca2b0f26964cf2e80ba3e084d5983dab293fdb87485dc6445f3f7bbfc89d7459
 
 A continuación, creamos y ejecutamos un nuevo contenedor indicando el comando que va a ejecutar:
 
-```bash
+```
 $ sudo podman run ubuntu echo 'Hello world'
 Hello world
 ```
 
 Comprobamos que el contenedor ha ejecutado el comando que hemos indicado y se ha parado:
 
-```bash
+```
 $ sudo podman ps -a
 CONTAINER ID  IMAGE                            COMMAND           CREATED        STATUS                    PORTS       NAMES
 6e8e46cee350  docker.io/library/ubuntu:latest  echo Hello world  2 seconds ago  Exited (0) 2 seconds ago              eloquent_hodgkin
@@ -34,13 +34,13 @@ CONTAINER ID  IMAGE                            COMMAND           CREATED        
 
 Los contenedores que hemos creado se nombran de manera aleatoria. Podemos cambiar el nombre de cualquier contenedor usando el comando `podman rename`:
 
-```bash
+```
 $ sudo podman rename eloquent_hodgkin contenedor_ubuntu
 ```
 
 Y comprobamos que el nombre ha cambiado:
 
-```bash
+```
 $ sudo podman ps -a
 CONTAINER ID  IMAGE                            COMMAND           CREATED             STATUS                         PORTS       NAMES
 6e8e46cee350  docker.io/library/ubuntu:latest  echo Hello world  About a minute ago  Exited (0) About a minute ago              contenedor_ubuntu
@@ -50,13 +50,13 @@ CONTAINER ID  IMAGE                            COMMAND           CREATED        
 
 Para terminar podemos ver las distintas etapas por las que pasa la creación de un contenedor ejecutando `podman events`. Para ello en una terminal ejecutamos el comando:
 
-```bash
+```
 $ sudo podman events
 ```
 
 Y en otro terminal ejecutamos un contenedor:
 
-```bash
+```
 $ sudo podman run ubuntu echo 'Hello world' 
 ```
 

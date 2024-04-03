@@ -18,7 +18,7 @@ Cada árbol de directorio forma lo que denominamos una **capa**. En el siguiente
 
 Veamos un ejemplo. Vamos a crear la estructura de directorios y vamos a crear los ficheros dentro de cada capa:
 
-```bash
+```
 $ mkdir lower upper merged work
 $ echo "Fichero 1 en la capa lower" > lower/f1
 $ echo "Fichero 2 en la capa lower" > lower/f2
@@ -29,7 +29,7 @@ $ echo "Fichero 4 en la capa upper" > upper/f4
 
 A continuación podemos montar el sistema de archivo de unión ejecutando la siguiente instrucción:
 
-```bash
+```
 $ sudo mount overlay -t overlay -o lowerdir=lower,upperdir=upper,workdir=work merged
 ```
 
@@ -37,7 +37,7 @@ El directorio de trabajo (`workdir`) necesita ser un directorio vacío dentro de
 
 Podemos ver el punto de montaje que hemos creado, ejecutando:
 
-```bash
+```
 $ sudo mount
 ...
 overlay on /home/usuario/merged type overlay (rw,relatime,seclabel,lowerdir=lower,upperdir=upper,workdir=work,uuid=on)
@@ -45,7 +45,7 @@ overlay on /home/usuario/merged type overlay (rw,relatime,seclabel,lowerdir=lowe
 
 Ahora podemos ver el contenido del sistema de archivos de unión:
 
-```bash
+```
 $ ls -al merged/
 total 16
 drwxr-xr-x. 1 usuario usuario   8 Mar 22 08:13 .
@@ -58,7 +58,7 @@ drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
 
 Ahora podemos añadir un fichero al sistema de archivos de unión, y veremos que se guarda en la capa superior de lectura y escritura:
 
-```bash
+```
 $ echo "Fichero 5 en merged" > merged/f5
 
 $ ls -al merged/
@@ -82,7 +82,7 @@ drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
 
 Al eliminar un fichero en el sistema de archivos de unión, y veremos que se deja indicado en la capa superior:
 
-```bash
+```
 $ rm merged/f2
 
 $ ls -al merged/
@@ -106,7 +106,7 @@ c---------. 2 root   root   0, 0 Mar 22 08:20 f2
 
 Y por último, si modificamos un fichero en el sistema de archivos de unión, dicha modificación quedará reflejada en la capa superior, pero no en la capa inferior:
 
-```bash
+```
 $ echo "Modifico fichero 1" > merged/f1
 
 $ cat merged/f1
@@ -121,6 +121,6 @@ Fichero 1 en la capa lower
 
 Para terminar indicar que la capa inferior `lowerdir` de sólo lectura se puede construir a partir de la unión de varias capas:
 
-```bash
+```
 $ mount -t overlay overlay -o lowerdir=lower1:lower2:lower3,upperdir=upper,workdir=work merged
 ```

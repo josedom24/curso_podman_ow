@@ -24,7 +24,7 @@ Existen dos tipos de redes bridge:
 ### Red bridge por defecto
 
 * Es creada durante la instalación de Podman.
-    ```bash
+    ```
     $ sudo podman network ls
     NETWORK ID    NAME        DRIVER
     2f259bab93aa  podman      bridge

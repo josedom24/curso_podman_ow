@@ -4,7 +4,7 @@
 
 Seguimos en este ejemplo, utilizando contenedores rootful. En este caso, vamos a crear un directorio en el sistema de archivos del host, donde vamos a crear un fichero `index.html`:
 
-```bash
+```
 $ mkdir web
 $ cd web
 /web$ echo "<h1>Hola</h1>" > index.html
@@ -12,13 +12,13 @@ $ cd web
 
 Y podemos montar ese directorio en un contenedor, en este caso usamos la opción `-v`:
 
-```bash
+```
 $ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache2/htdocs -p 8080:80 docker.io/httpd:2.4
 ```
 
 Comprobamos si estamos sirviendo el fichero que tenemos en el directorio que hemos creado:
 
-```bash
+```
 $ curl http://localhost:8080
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
@@ -40,7 +40,7 @@ Por lo tanto, como hemos visto anteriormente, a la hora de montar el directorio,
 
 Por lo tanto eliminamos el contenedor anterior y lo volvemos a crear de forma adecuada:
 
-```bash
+```
 $ sudo podman rm -f my-apache-app
 my-apache-app
 $ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache2/htdocs:Z -p 8080:80 docker.io/httpd:2.4
@@ -48,14 +48,14 @@ $ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache
 
 Podemos comprobar en la información del contenedor los puntos de montaje que tiene configurado:
 
-```bash
+```
 $ $ sudo podman inspect --format='{{json .Mounts}}' my-apache-app 
 [{"Type":"bind","Source":"/home/usuario/web","Destination":"/usr/local/apache2/htdocs","Driver":"","Mode":"","Options":["rbind"],"RW":true,"Propagation":"rprivate"}]
 ```
 
 Y comprobamos que realmente estamos sirviendo el fichero que tenemos en el directorio que hemos creado.
 
-```bash
+```
 $ curl http://localhost:8080
 <h1>Hola</h1>
 ```
@@ -64,13 +64,13 @@ $ curl http://localhost:8080
 
 Cuando configuramos un directorio para ser montado en un contenedor con la opción `:z` o `:Z`, la configuración que se realiza no se deshace aunque eliminemos el contenedor. ese directorio continúa estando accesible desde los contenedores que creemos y no será necesario volver a usar la opción. Si queremos volver a configurar el directorio con sus permisos de accesos originales, debemos ejecutar:
 
-```bash
+```
 $ sudo restorecon -F -R /home/usuario/web
 ```
 
 Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahora usando la opción `--mount`. en este caso para montar un directorio compartido (similar a usar la opción `:z`), utilizaríamos la opción `relabel=shared`. Si queremos hacer un montaje privado, sólo para el contenedor (similar a la opción `:Z`) usaremos la opción `relabel=private`
 
-```bash
+```
 $ sudo podman rm -f my-apache-app 
 
 $ sudo podman run -d --name my-apache-app --mount type=bind,src=/home/fedora/web,dst=/usr/local/apache2/htdocs,relabel=private -p 8080:80 httpd:2.4
@@ -82,7 +82,7 @@ $ curl http://localhost:8080
 
 Además, podemos comprobar que al modificar el contenido del fichero se modificará en el contenedor:
 
-```bash
+```
 $ echo "<h1>Adios</h1>" > web/index.html 
 $ curl http://localhost:8080
 <h1>Adios</h1>

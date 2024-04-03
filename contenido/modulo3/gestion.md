@@ -4,7 +4,7 @@
 
 Si queremos borrar una imagen, usaremos la instrucción `docker image rm` o la siguiente instrucción:
 
-```bash
+```
 $ podman rmi docker.io/nginx
 ```
 
@@ -14,7 +14,7 @@ $ podman rmi docker.io/nginx
 
 Si queremos buscar imágenes de algún registro remoto desde la línea de comandos, podemos usar la instrucción `podman search`. Podemos indicar el nombre del registro o solo el nombre de la imagen:
 
-```bash
+```
 $ podman search registry.access.redhat.com/httpd
 $ podman search httpd
 ```
@@ -23,7 +23,7 @@ $ podman search httpd
 
 Es posible obtener información detallada sobre una imagen. Para ello usaremos la instrucción `podmanimage inspect` o de forma abreviada:
 
-```bash
+```
 $ podman inspect docker.io/nginx:stable
 ```
 
@@ -40,37 +40,37 @@ La información más destacable que podemos ver:
 
 Podemos usar filtros, como en el caso de los contenedores. Por ejemplo, para mostrar el identificador de la imagen, ejecutamos
 
-```bash
+```
 $ podman inspect --format='{{.Id}}' docker.io/nginx:stable
 ```
 
 Consultar los puertos que expone el contenedor que creemos a a partir de esta imagen:
 
-```bash
+```
 $ podman inspect --format='{{range $port,$key := .Config.ExposedPorts}}{{$port}}{{end}}' docker.io/nginx:stable
 ```
 
 Consultar el sistema operativo y la arquitectura:
 
-```bash
+```
 $ podman inspect --format='{{.Os}} {{.Architecture}}' docker.io/nginx:stable
 ```
 
 Consultar las variables de entorno definidas en la imagen:
 
-```bash
+```
 $ podman inspect --format='{{range .Config.Env}}{{println .}}{{end}}' docker.io/nginx:stable
 ```
 
 Y por último, para consultar los identificadores de las capas que forman la imagen:
 
-```bash
+```
 $ podman inspect --format='{{range .RootFS.Layers}}{{println .}}{{end}}' docker.io/nginx:stable
 ```
 
 Para visualizar los identificadores de las capas que forman parte de la imagen, podemos ejecutar:
 
-```bash
+```
 $ podman image tree docker.io/nginx:stable
 Image ID: 7f0fd59e0094
 Tags:     [docker.io/library/nginx:stable]
@@ -86,7 +86,7 @@ Image Layers
 
 Para comparar los sistemas de archivos de las imágenes podemos usar el comando `podman image diff`. Como resultado aparecerá la lista de archivos y una letra: `C` si ha cambiado, `A` si se ha añadido o `D` si se ha borrado. Si indicamos una sola imagen, esta se comparará con su capa inferior, si damos el nombre de dos imágenes se compararán entre ellas. Por ejemplo:
 
-```bash
+```
 $ podman image diff docker.io/nginx:stable
 $ podman image diff docker.io/nginx:stable docker.io/nginx:latest
 ```
@@ -97,7 +97,7 @@ Podman nos permite montar el sistema de archivos raíz de una imagen en modo só
 
 Por ejemplo, podemos montar una imagen descargada por el usuario `root`:
 
-```bash
+```
 $ sudo podman image mount docker.io/library/nginx
 /var/lib/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
 
@@ -110,14 +110,14 @@ $ sudo podman image unmount docker.io/library/nginx
 
 Si queremos montar una imagen descargada por un usuario sin privilegios:
 
-```bash
+```
  podman image mount docker.io/library/nginx
 Error: cannot run command "podman image mount" in rootless mode, must execute `podman unshare` first
 ```
 
 La razón de este error es que el modo rootless no permite montar imágenes. Necesitamos acceder al namespace de usuario sin privilegio, para ello tenemos que usar la instrucción `podman unshare`, que permitirá el acceso a los nombres de espació de usuario y de montaje hasta que indiquemos la instrucción `exit`.
 
-```bash
+```
 $ podman unshare
 # podman image mount docker.io/library/nginx
 /home/fedora/.local/share/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged

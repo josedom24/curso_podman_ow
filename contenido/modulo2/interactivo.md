@@ -6,14 +6,14 @@ Hemos usado el comando `podman run` para crear y ejecutar contenedores. Este com
 
 A la hora de la creación del contenedor podemos ponerle un nombre (usando el parámetro `--name`) y también, podemos indicar el hostname (con al opción `-h` o `--hostname`). Veamos un ejemplo:
 
-```bash
+```
 $ sudo podman run --name contenedor1 -h contendor_ubuntu ubuntu hostname
 contendor_ubuntu
 ```
 
 Hemos comprobado que el hostname lo hemos configurado, y veamos que el nombre del contenedor también lo hemos configurado:
 
-```bash
+```
 $ sudo podman ps -a
 CONTAINER ID  IMAGE                            COMMAND     CREATED         STATUS                     PORTS       NAMES
 7e28abf08454  docker.io/library/ubuntu:latest  hostname    19 seconds ago  Exited (0) 19 seconds ago              contenedor1
@@ -23,14 +23,14 @@ CONTAINER ID  IMAGE                            COMMAND     CREATED         STATU
 
 En este caso usamos la opción `-i` para abrir una sesión interactiva, `-t` nos permite crear un pseudo-terminal que nos va a permitir interaccionar con el contenedor. El comando que vamos a ejecutar en el contenedor es `bash` para que podamos acceder al terminal:
 
-```bash
+```
 $ sudo podman run -it --name contenedor2 -h cont1 ubuntu bash 
 root@cont1:/#
 ```
 
 El contenedor se para cuando salimos de él. Para volver a conectarnos a él:
 
-```bash
+```
 $ sudo podman start contenedor2
 contendor2
 $ sudo podman attach contenedor2
@@ -41,7 +41,7 @@ Con `podman attach` nos conectamos a la entrada estándar y a la salida estánda
 
 En realidad, todas las imágenes tienen definidas un proceso que se ejecuta por defecto si no se indica de manera explicita cuando creamos el contenedor. En concreto, la imagen `ubuntu` ( y en general todas las imágenes que corresponden al sistemas operativos) tiene definida por defecto el proceso `bash`, por lo que podríamos haber ejecutado:
 
-```bash
+```
 $ sudo podman run -it --name contenedor2 ubuntu
 ```
 
@@ -49,7 +49,7 @@ $ sudo podman run -it --name contenedor2 ubuntu
 
 Como hemos visto hasta ahora cuando un contenedor termina de ejecutar el comando indicado, se para. Si queremos que cuando finalice la ejecución del contenedor se borre, usaremos la opción `--rm`. Por ejemplo:
 
-```bash
+```
 $ sudo podman run -it --rm --name contenedor3 ubuntu top
 ```
 

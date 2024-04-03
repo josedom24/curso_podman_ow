@@ -6,7 +6,7 @@ Podman puede trabajar con distintos registros remotos de imágenes que cumplan l
 
 Otra manera de descargar una imagen a nuestro registro local, es usando la instrucción `podman image pull` o `podman pull` e indicando el nombre completa de la imagen qué como hemos visto estará formada por: el nombre del registro, el nombre de la imagen y opcionalmente, el nombre de la etiqueta. Por ejemplo: 
 
-```bash
+```
 $  podman pull docker.io/nginx:stable
 ```
 
@@ -14,7 +14,7 @@ Recordamos que las imágenes descargadas con el usuario `root` se guardarán, po
 
 Para mostrar las imágenes que tenemos en nuestro registro local podemos usar `podman image ls` o la siguiente instrucción:
 
-```bash
+```
 $ podman images
 ```
 

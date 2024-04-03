@@ -8,7 +8,7 @@ Vamos a crear distintos contenedores usando etiquetas distintas al indicar el no
 
 En primer lugar vamos a instalar la última versión:
 
-```bash
+```
 podman run -d -p 8080:80 --name drupal1 docker.io/drupal
 ```
 
@@ -18,7 +18,7 @@ Si accedemos a la dirección IP de nuestro ordenador, al puerto 8080/tcp, podemo
 
 A continuación vamos a instalar otra versión de Drupal, la 10.1.8, creamos otro contenedor con otro nombre y mapeamos otro puerto:
 
-```bash
+```
 podman run -d -p 8081:80 --name drupal2 docker.io/drupal:10.1.8
 ```
 
@@ -28,7 +28,7 @@ Si accedemos a la dirección IP de nuestro ordenador, al puerto 8081/tcp, podemo
 
 Y finalmente vamos a instalar otra versión en otro contenedor:
 
-```bash
+```
 podman run -d -p 8082:80 --name drupal3 docker.io/drupal:10.0.11
 ```
 

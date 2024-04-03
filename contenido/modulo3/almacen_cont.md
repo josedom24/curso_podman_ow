@@ -13,27 +13,27 @@ Cuando creamos un contenedor a partir de una imagen ocurren la siguientes cosas:
 
 Vamos a crear un contenedor, y veremos que se crea la **capa del contenedor** de lectura y escritura, que será la capa superior en el sistema de archivo de unión. Esta nueva capa  capa contendrá sólo las diferencias entre las inferiores. Para ello, ejecutamos:
  
-```bash
+```
 $ sudo podman run -d --name contenedor1 quay.io/centos7/httpd-24-centos7
 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775
 ```
 
 Y vamos a crear un fichero en el nuevo contenedor:
 
-```bash
+```
 $ sudo podman exec contenedor1 bash -c "echo 'Ejemplo Podman' > /tmp/tmpfile.txt"
 ```
 
 En el directorio de almacenamiento (`/var/lib/containers/storage/` en los contenedores rootful) tenemos un directorio llamado `overlay-containers` donde encontramos la información de almacenamiento de los contenedores que hemos creado:
 
-```bash
+```
 $ ls overlay-containers
 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775  containers.json  containers.lock
 ```
 
 El directorio que tiene como nombre el identificador del contenedor que hemos creado tiene información del contenedor, y en el fichero `containers.json` tenemos un índice de los contenedores que hemos creado:
 
-```bash
+```
 $ cat overlay-containers/containers.json | jq
 [
   {
@@ -58,7 +58,7 @@ En el campo `layer` tenemos el identificador de la **capa del contenedor**, dond
 
 Por lo tanto podemos ver los ficheros que hemos escrito en esta capa:
 
-```bash
+```
 $ ls overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff/tmp
 tmpfile.txt
 ```
@@ -78,7 +78,7 @@ Este directorio contiene varios archivos que se montan directamente en el conten
 
 Cuando se crea un nuevo contenedor se crea un nuevos sistema de archivo de unión que es el utiliza el contenedor. Podemos verlo ejecutando la siguiente instrucción:
 
-```bash
+```
 $ mount | grep overlay
 ...
 overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged type overlay (rw,nodev,relatime,context="system_u:object_r:container_file_t:s0:c14,c100",lowerdir=/var/lib/containers/storage/overlay/l/ZXSJGMR5T7VDVVGRWHG3E2I6DZ:/var/lib/containers/storage/overlay/l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:/var/lib/containers/storage/overlay/l/LCIWXBIPSMIGB2RTQV36QKTCRH,upperdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff,workdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/work,redirect_dir=on,uuid=on,metacopy=on)
@@ -95,7 +95,7 @@ overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7
 
 También podemos ver los directorios que se usan para construir el sistema de archivo de unión examinando la configuración del contenedor:
 
-```bash
+```
 $ podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  contenedor1
 LowerDir = /var/lib/containers/storage/overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff:/var/lib/containers/storage/overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/diff:/var/lib/containers/storage/overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/diff
 MergedDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
@@ -113,7 +113,7 @@ Visto de forma gráfica:
 Al crear el contenedor, el tamaño de la **capa del contenedor** es muy pequeño, ya que sólo guarda las diferencia respecto a las capas inferiores.
 En nuestro caso la imagen tiene un tamaño de 356 MB. Hemos creado un contenedor y le hemos copiado un fichero. Veamos el tamaño del contenedor con la opción `-s` (size) del comando `podman ps`:
 
-```bash
+```
 $ sudo podman ps -s
 CONTAINER ID  IMAGE                                    COMMAND               CREATED     STATUS      PORTS       NAMES        SIZE
 579635db3532  quay.io/centos7/httpd-24-centos7:latest  /usr/bin/run-http...  ... ago     Up ...                 contenedor1  38.7kB (virtual 357MB)
@@ -125,7 +125,7 @@ Si creamos un nuevo fichero en el contenedor, aumenta el tamaño del contenedor,
 
 Por todo lo que hemos explicado, ahora se entiende  que **no podemos eliminar una imagen cuando tenemos contenedores creados a a partir de ella**.
 
-```bash
+```
 $ sudo podman rmi quay.io/centos7/httpd-24-centos7:latest
 Error: image used by 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775: image is in use by a container: consider listing external containers and force-removing image
 ```

@@ -3,14 +3,14 @@
 En este apartado vamos a trabajar con las dos redes que hemos creado en el apartado anterior.
 En primer lugar vamos a crear dos contenedores conectados a la primera red, para ello usaremos el parámetro `--network` en el comando `podman run`:
 
-```bash
+```
 $ sudo podman run -d --name servidorweb --network red1 nginx
 $ sudo podman run -it --name cliente --network red1 alpine
 ```
 
 Lo primero que vamos a comprobar es la resolución DNS desde el contenedor `cliente`:
 
-```bash
+```
 # nslookup servidorweb
 Server:		10.89.0.1
 Address:	10.89.0.1:53
@@ -22,7 +22,7 @@ Address: 10.89.0.2
 
 Tenemos un servidor DNS en la dirección IP `10.89.0.1` que nos resuelve el nombre del primer contenedor en el dominio `dns.podman` con su dirección IP. Podemos comprobar que ese servidor DNS es el que tiene configurado el contenedor:
 
-```bash
+```
 # cat /etc/resolv.conf 
 search dns.podman
 nameserver 10.89.0.1
@@ -30,7 +30,7 @@ nameserver 10.89.0.1
 
 Y por lo tanto podemos realizar conexiones usando el nombre de los contenedores:
 
-```bash
+```
 # ping servidorweb
 PING servidorweb (10.89.0.2): 56 data bytes
 64 bytes from 10.89.0.2: seq=0 ttl=42 time=0.342 ms
@@ -41,13 +41,13 @@ PING servidorweb (10.89.0.2): 56 data bytes
 
 A continuación, creamos un contenedor conectado a la segunda red (`red2`):
 
-```bash
+```
 $ sudo podman run -it --name cliente2 --network red2 alpine
 ```
 Comprobemos ahora la conectividad entre los contenedores, para ello obtenemos su dirección IP y su puerta de enlace, e intentamos acceder a uno de los contenedores creados anteriormente:
 
 
-```bash
+```
 # ip a
 2: eth0@if95: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
     link/ether 6a:62:12:a1:24:f9 brd ff:ff:ff:ff:ff:ff
@@ -64,7 +64,7 @@ ping: bad address 'servidorweb'
 
 Veamos cómo podemos conectar un contenedor a una red. Para ello usaremos el comando `podman network connect` y para desconectarla usaremos `podman network disconnect`. Salimos del contenedor que acabamos de crear, lo iniciamos y lo conectamos a la primera red:
 
-```bash
+```
 $ sudo podman start cliente2
 $ sudo podman network connect red1 cliente2
 $ sudo podman attach cliente2
@@ -72,7 +72,7 @@ $ sudo podman attach cliente2
 
 Comprobamos que se ha creado una nueva interfaz de red con el direccionamiento de la red `red1`:
 
-```bash
+```
 # ip a
 ...
 2: eth0@if97: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
@@ -87,7 +87,7 @@ Comprobamos que se ha creado una nueva interfaz de red con el direccionamiento d
 
 Ahora podemos comprobar si tenemos conectividad con el contenedor `servidorweb`:
 
-```bash
+```
 # ping servidorweb
 PING servidorweb (10.89.0.2): 56 data bytes
 64 bytes from 10.89.0.2: seq=0 ttl=42 time=0.413 ms
@@ -96,7 +96,7 @@ PING servidorweb (10.89.0.2): 56 data bytes
 
 Finalmente podemos desconectar el contenedor de la red, ejecutando el siguiente comando:
 
-```bash
+```
 $ sudo podman network disconnect red1 cliente2
 ```
 
@@ -104,7 +104,7 @@ $ sudo podman network disconnect red1 cliente2
 
 Como indicábamos anteriormente, al conectar contenedores a una determinada red se ha crea en el host un *Linux Bridge* que utiliza esa red. En nuestro caso, al estar trabajando con dos redes, se han creado dos *Linux Bridge*, podemos verlo ejecutando en el host la siguiente instrucción:
 
-```bash
+```
 $ ip a
 4 : podman1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether 16:c6:77:f4:e1:e6 brd ff:ff:ff:ff:ff:ff
@@ -123,7 +123,7 @@ Tanto al crear un contenedor con el parámetro `--network` para conectarlo a una
 
 Veamos un ejemplo donde vamos a crear un contenedor en la red `red2` que tenemos creada:
 
-```bash
+```
 $ sudo podman run -it --name contenedor --network red2 \
                                    --ip 192.168.0.10 \
                                    --add-host=testing.example.com:192.168.0.20 \
@@ -134,13 +134,13 @@ $ sudo podman run -it --name contenedor --network red2 \
 
 * `--hostname servidor1`: Indicamos el nombre de la máquina. Lo comprobamos:
 
-    ```bash
+    ```
     # cat /etc/hostname 
     servidor1
     ```
 * `--ip 192.168.0.10`: Nos permite poner una dirección IP fija en el contenedor. Vamos a comprobarlo:
 
-    ```bash
+    ```
     # ip a
     ...
     2: eth0@if100: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
@@ -150,7 +150,7 @@ $ sudo podman run -it --name contenedor --network red2 \
     ```
 * `--add-host=testing.example.com:192.168.100.20`: Añadimos un nuevo nombre de host como resolución estática. Lo comprobamos:
 
-    ```bash
+    ```
     # cat /etc/hosts
     ...
     192.168.0.20	testing.example.com
@@ -160,7 +160,7 @@ $ sudo podman run -it --name contenedor --network red2 \
     PING testing.example.com (192.168.0.20): 56 data bytes
     ```
 * `--dns 1.1.1.1`: Hemos configurado como DNS el servidor `1.1.1.1`. Veamos esto con detenimiento, como hemos visto anteriormente al conectar el contenedor a una red bridge definida por el usuario se crea un servidor DNS que nos permite la resolución por el nombre del contenedor veamos el servidor DNS:
-    ```bash
+    ```
     # cat /etc/resolv.conf 
     search dns.podman
     nameserver 192.168.0.100

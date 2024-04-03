@@ -9,7 +9,7 @@
 
 Si creamos un volumen y lo montamos en un contenedor rootless cuyos procesos se están ejecutando con el usuario `root`. Veamos los usuarios propietarios de los ficheros:
 
-```bash
+```
 $ podman volume create vol1
 
 $ podman run -dit -v vol1:/destino --name alpine1 alpine
@@ -23,7 +23,7 @@ Cómo cabría esperar, comprobamos que el directorio que hemos montado pertenece
 Podemos inspeccionar el volumen y obtenemos el directorio donde se ha creado en el host:
 
 
-```bash
+```
 $ podman volume inspect vol1
 [
      {
@@ -43,7 +43,7 @@ $ podman volume inspect vol1
 
 Estamos utilizando un usuario sin privilegio en el host con UID = 1000. Veamos el propietario del directorio donde se almacenan los ficheros del volumen en el host:
 
-```bash
+```
 $ id
 uid=1000(usuario) gid=1000(usuario) groups=1000(usuario),4(adm),10(wheel),190(systemd-journal) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 
@@ -55,14 +55,14 @@ Comprobamos que en el host el propietario es nuestro usuario sin privilegios.
 
 Si creamos un fichero en el volumen desde el host o desde el contenedor:
 
-```bash
+```
 $ touch .local/share/containers/storage/volumes/vol1/_data/fichero1
 $ podman exec alpine1 touch /destino/fichero2
 ```
 
 Comprobamos que dentro del contenedor pertenecen a `root`:
 
-```bash
+```
 $ podman exec alpine1 ash -c "ls -l /destino"
 total 0
 -rw-r--r--    1 root     root             0 Apr  2 08:14 fichero1
@@ -70,7 +70,7 @@ total 0
 ```
 Y que en el host pertenecen al usuario `usuario`:
 
-```bash
+```
 $ ls -l .local/share/containers/storage/volumes/vol1/_data/
 total 0
 -rw-r--r--. 1 usuario usuario 0 Apr  2 08:14 fichero1
@@ -83,14 +83,14 @@ En este caso el uso de bind mount no tiene ninguna dificultad, ya que los usuari
 
 Si tenemos activo SELinux tendremos que usar la opción `:z` o `:Z` según nos interese. El el directorio `web` tenemos un fichero `index.html`:
 
-```bash 
+``` 
 $ ls -l web
 total 4
 -rw-r--r--. 1 usuario usuario 15 Apr  2 07:53 index.html
 ```
 Creamos el contenedor y comprobamos el propietario del fichero:
 
-```bash
+```
 $ podman run -dit -v ${PWD}/web:/destino:Z --name alpine2 alpine
 
 $ podman exec -it alpine2 ls -l /destino
@@ -104,7 +104,7 @@ En resumen, el uso de volúmenes o bind mount en contenedores rootlees cuando se
 
 El volumen lo crea el usuario del host, pero dentro del contenedor es propiedad del usuario del contenedor. Por lo tanto desde contenedor se puede escribir, pero desde fuera no se pueda escribir.
 
-```bash
+```
 $ podman volume create vol2
 
 $ podman run -dit -u 123:123 -v vol2:/destino --name alpine3 alpine
@@ -117,7 +117,7 @@ touch: cannot touch '.local/share/containers/storage/volumes/vol2/_data/fichero2
 
 Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp`que tiene UDI y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario cou UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
 
-```bash
+```
 $ podman exec -it alpine3 ls -ld destino
 drwxr-xr-x    1 ntp      ntp             16 Apr  2 11:30 destino
 
@@ -132,14 +132,14 @@ drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
 
 Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, ne nuestro caso usuario:
 
-```bash
+```
 $ mkdir origen
 $ touch origen/fichero1
 ```
 
 Creamos un contador y montamos el directorio `origen` con la opción `:Z` para configurar de forma adecuada SELinux y sea accesible desde el contenedor. Comprobamos que al pertenecer el directorio `origen` a nuestro usuario `usuario`, el directorio `destino` será propiedad del root (mapeo de usuario) y por lo tanto el usuario con UID 123 no podrá acceder al directorio:
 
-```bash
+```
 $ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine4 alpine
 
 $ podman exec -it alpine4 ls -ld destino
@@ -153,7 +153,7 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
 
 1. A la hora de montar el directorio utilizar la opción `:U` que cambia el usuario y grupo de forma recursiva al directorio montado dentro del contenedor con el usuario y grupo que se esté ejecutando dentro del contenedor. En nuestro caso, creamos un nuevo contenedor con dicha opción:
 
-     ```bash
+     ```
      $ podman run -dit -u 123:123 -v ./origen:/destino:Z,U --name alpine4 alpine
 
      $ podman exec -it alpine2 ls -ld destino
@@ -170,14 +170,14 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
 
      Comprobamos que en fuera del contenedor el UID que se asignado es el correspondiente al mapeo de UID realizado:
 
-     ```bash
+     ```
      $ ls -ld origen
      drwxr-xr-x. 1 524410 524410 32 Apr  2 14:39 origen
      ```
 
      Creamos un nuevo contenedor y comprobamos que dentro del contenedor el cambio de propietario se refleja de forma y correcta (pertence al usuario `ntp:ntp`, que corresponde con el UID y GID 123) y ahora si podemos acceder al directorio:
 
-     ```bash
+     ```
      $ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine5 alpine
 
      $ podman exec -it alpine5 ls -ld destino

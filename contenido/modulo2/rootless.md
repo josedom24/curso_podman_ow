@@ -6,7 +6,7 @@ Todos los ejemplos que hemos estudiado en los apartados anteriores han sido de c
 
 La manera de trabajar es similar a la anterior. En este caso podemos ejecutar con un usuario sin privilegios, el siguiente comando:
 
-```bash
+```
 $ podman run hello-world
 Resolved "hello-world" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
 Trying to pull quay.io/podman/hello:latest...
@@ -22,7 +22,7 @@ Como podemos observar para crear el contenedor se ha tenido que descargar la ima
 
 Vemos que sólo tenemos una imagen en nuestro registro local:
 
-```bash
+```
 $ podman images
 REPOSITORY                TAG         IMAGE ID      CREATED       SIZE
 quay.io/podman/hello      latest      a4e07799a34b  37 hours ago  1.7 MB
@@ -30,7 +30,7 @@ quay.io/podman/hello      latest      a4e07799a34b  37 hours ago  1.7 MB
 
 Además, comprobamos que el contenedor se ha parado después de mostrar el mensaje de bienvenida.
 
-```bash
+```
 $ podman ps -a
 CONTAINER ID  IMAGE                            COMMAND               CREATED        STATUS                      PORTS       NAMES
 1a729ea5ce72  quay.io/podman/hello:latest      /usr/local/bin/po...  4 minutes ago  Exited (0) 4 minutes ago                dreamy_fermat
@@ -38,7 +38,7 @@ CONTAINER ID  IMAGE                            COMMAND               CREATED    
 
 Finalmente podemos eliminar el contenedor:
 
-```bash
+```
 $ podman rm dreamy_fermat
 dreamy_fermat
 ```
@@ -47,7 +47,7 @@ dreamy_fermat
 
 De manera similar a la ejecución de contenedores roolful, podemos crear crear un contenedor rootless interactivo de la siguiente manera:
 
-```bash
+```
 $ podman run -it --name contenedor1 alpine
 ...
 / #
@@ -55,7 +55,7 @@ $ podman run -it --name contenedor1 alpine
 
 Para crear un contenedor demonio, podemos ejecutar la siguiente instrucción:
 
-```bash
+```
 podman run -d --name miweb -p 8080:80 quay.io/libpod/banner
 ```
 
@@ -64,7 +64,7 @@ podman run -d --name miweb -p 8080:80 quay.io/libpod/banner
 
 Para comprobar que funciona, podemos acceder desde el mismo host. Por ejemplo, con la herramienta `curl`:
 
-```bash
+```
 $ curl http://localhost:8080
    ___          __              
   / _ \___  ___/ /_ _  ___ ____ 

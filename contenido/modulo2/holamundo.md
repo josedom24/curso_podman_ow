@@ -2,7 +2,7 @@
 
 Vamos a crear nuestro primer contenedor, para comprobar que todo está funcionando y vamos a explicar el proceso que se va a realizar en la creación del contenedor. Vamos a crear un contenedor **rootful**, es decir un contenedor ejecutado por el usuario `root`, por eso usaremos la instrucción `sudo`:
 
-```bash
+```
 $ sudo podman run hello-world
 Resolved "hello-world" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
 Trying to pull quay.io/podman/hello:latest...
@@ -40,14 +40,14 @@ Pero, ¿qué es lo que está sucediendo al ejecutar esa orden?:
 
 **NOTA**: En realidad todas los comandos del cliente Podman que trabajan con contenedores son subcomandos de `podman container`, pero se puede abreviar omitiendo el comando `container`, es decir estos dos comandos son iguales:
 
-```bash
+```
 $ sudo podman container run ...
 $ sudo podman run...
 ```
 
 Si listamos los contenedores que se están ejecutando (`podman ps`):
 
-```bash
+```
 $ sudo podman ps
 CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
 ```
@@ -56,7 +56,7 @@ Comprobamos que este contenedor no se está ejecutando. **Un contenedor ejecuta 
 
 Para ver los contenedores que no se están ejecutando (observa que se ha asignado un nombre aleatorio al contenedor), ejecutamos:
 
-```bash
+```
 $ sudo podman ps -a
 CONTAINER ID  IMAGE                            COMMAND               CREATED         STATUS                     PORTS       NAMES
 03038845a764  quay.io/podman/hello:latest      /usr/local/bin/po...  3 minutes ago   Exited (0) 3 minutes ago               stupefied_mcnulty
@@ -64,13 +64,13 @@ CONTAINER ID  IMAGE                            COMMAND               CREATED    
 
 Para eliminar el contenedor podemos identificarlo con su `id`:
 
-```bash
+```
 $ sudo podman rm 03038845a764
 ```
 
 o con su nombre:
 
-```bash
+```
 $ sudo podman rm stupefied_mcnulty
 ```
 
@@ -78,7 +78,7 @@ $ sudo podman rm stupefied_mcnulty
 
 De manera habitual vamos a usar `podman run` para crear y ejecutar un contenedor. Podríamos también crear un contenedor que no se ejecute y posteriormente dar la orden de ejecución. Vamos a observar que la creación de este segundo contenedor será mucho más rápida ya que tenemos la imagen descargada en nuestro registro local. Para crear un contenedor y no iniciar su ejecución utilizaremos el comando `podman create`:
 
-```bash
+```
 $ sudo podman create hello-world
 7eb70aea838788181a00ad14e3e447ef231dcff680fc37f7b0025e551080fbf8
 ```
@@ -86,7 +86,7 @@ $ sudo podman create hello-world
 Podemos ver que el contenedor está creado pero no en ejecución:
 
 
-```bash
+```
 $ sudo podman ps -a
 CONTAINER ID  IMAGE                            COMMAND               CREATED         STATUS                     PORTS       NAMES
 7eb70aea8387  quay.io/podman/hello:latest      /usr/local/bin/po...  12 seconds ago  Created                                pensive_gagarin
@@ -95,7 +95,7 @@ CONTAINER ID  IMAGE                            COMMAND               CREATED    
 
 Podemos iniciar la ejecución de este contenedor usando `podman start -a`. La opción `-a` nos permite conectar a la salida estándar del contenedor y poder ver en nuestro terminal la salida.
 
-```bash
+```
 $ sudo podman start -a pensive_gagarin
 !... Hello Podman World ...!
 ...
