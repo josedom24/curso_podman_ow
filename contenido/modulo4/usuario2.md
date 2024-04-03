@@ -100,7 +100,7 @@ Finalmente podemos desconectar el contenedor de la red, ejecutando el siguiente 
 $ sudo podman network disconnect red1 cliente2
 ```
 
-## Creación de Linux Brifge en el host
+## Creación de Linux Bridge en el host
 
 Como indicábamos anteriormente, al conectar contenedores a una determinada red se ha crea en el host un *Linux Bridge* que utiliza esa red. En nuestro caso, al estar trabajando con dos redes, se han creado dos *Linux Bridge*, podemos verlo ejecutando en el host la siguiente instrucción:
 
