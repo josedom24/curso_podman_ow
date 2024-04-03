@@ -37,7 +37,8 @@
     * [Trabajando con almacenamiento en contenedores rootless](contenido/modulo4/almacenamiento_rootless.md)
     * [Redes en Podman](contenido/modulo4/redes.md)
     * [Redes en contenedores rootful](contenido/modulo4/bridge.md)
-    * Gestión de redes definida por el usuario
+    * [Gestión de redes definida por el usuario](contenido/modulo4/usuario.md)
+    * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)
     * Redes en contenedores rootless
     * Ejemplo 1: Contenedor NextCloud con almacenamiento persistente
     * Ejemplo 2: Contenedor MariaDB con almacenamiento persistente    
