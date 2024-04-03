@@ -109,3 +109,33 @@ La dirección IP que tiene el contenedor:
 ```
 $ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hora-container2
 ```
+
+## Etiquetando los contenedores con Labels
+
+Las etiquetas son un mecanismo para guardar metadatos en los objetos Docker: en contenedores, imágenes, volúmenes, redes, etc. Podemos utilizar etiquetas para organizar los distintos objetos Docker que estemos utilizando.
+
+Una etiqueta es una información del tipo clave-valor, almacenado como una cadena. Para etiquetar un contenedor en su creación utilizaremos el parámetro `-l` (`--label`).
+
+```
+$ sudo podman run -l servicio=bd -l entorno=produccion --name contenedor ubuntu
+```
+
+Hay que tener en cuenta que estos contenedores tendrán además de las etiquetas indicadas en su creación, las etiquetas que estén definidas en la imagen que hemos utilizado para su creación.
+
+```
+$ sudo podman inspect --format '{{range $key, $value := .Config.Labels}}{{$key}}: {{$value}}{{"\n"}}{{end}}' contenedor
+entorno: produccion
+org.opencontainers.image.ref.name: ubuntu
+org.opencontainers.image.version: 22.04
+servicio: bd
+```
+
+A la hora de listar los contenedores podemos filtrar por varios criterios, entre ellos podemos usar las etiquetas para hacer el filtro.
+
+Mostrar los contenedores que tienen la etiqueta entorno con el valor `produccion`:
+
+```
+sudo podman ps -a --filter="label=entorno=produccion"
+```
+
+
