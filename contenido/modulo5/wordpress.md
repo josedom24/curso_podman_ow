@@ -12,6 +12,7 @@ A continuación vamos a crear el Pod:
 
 ```
 $ sudo podman pod create --name pod_wep -p 8888:80 --network red_wp
+```
 
 Siguiendo la documentación de la imagen [`docker.io/mariadb`](https://hub.docker.com/_/mariadb) y la imagen [`docker.io/wordpress`](https://hub.docker.com/_/wordpress) podemos ejecutar los siguientes comandos para añadir los dos contenedores:
 
