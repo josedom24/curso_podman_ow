@@ -47,5 +47,5 @@ d43308bffcf8  localhost/podman-pause:4.9.4-1711445992                        5 m
 
 Comprobamos:
 
-
+![nginx_php](img/nginx_php.png)
 
