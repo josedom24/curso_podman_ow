@@ -46,6 +46,7 @@
 
 5. Gestión de Pods en Podman
     * [Trabajando con Pods en Podman](contenido/modulo5/pod.md)
+    * [Gestión de Pods](contenido/modulo5/gestion.md)
     * Generación de un archivo YAML de Kubernetes con Podman
     * Gestionando contenedores y Pods con systemd
     * Ejemplo
