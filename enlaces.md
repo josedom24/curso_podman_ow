@@ -65,3 +65,28 @@ From https://stackoverflow.com/questions/75817076/no-matter-what-i-do-podman-is-
 
 restorecon -F -R: Cambia el label de un directorio y lo deja cómo estaba.
 
+## podman- compose
+
+rootless
+
+```
+cat compose.yaml 
+version: '3.1'
+services:
+  app:
+    network_mode: "slirp4netns:port_handler=slirp4netns"
+    environment:
+      - NETWORK_INTERFACE=tap0
+    container_name: webserver
+    image: quay.io/libpod/banner
+    restart: always
+    ports:
+      - 8085:80
+```
+
+Pods:
+
+```
+podman-compose --in-pod=1 --pod-args='--infra=true --share=""' up -d
+podman-compose --in-pod=1 down -v
+```
