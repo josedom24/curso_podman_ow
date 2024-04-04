@@ -52,7 +52,7 @@
 
 
 6. Gestionando escenarios multicontenedor con podman-compose
-    * [Creando escenarios multicontenedor con Compose](contenido/modulo5/compose.md)
+    * [Creando escenarios multicontenedor con Compose](contenido/modulo6/compose.md)
     * El fichero compose.yaml
     * El comando podman-compose
     * Almacenamiento con Compose
