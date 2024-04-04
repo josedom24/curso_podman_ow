@@ -44,7 +44,14 @@
     * Ejemplo 3: Despliegue de WordPress + MariaDB
     * Ejemplo 4: Despliegue de Apache Tomcat + nginx
 
-5. Gestionando escenarios multicontenedor con podman-compose
+5. Gestión de Pods en Podman
+    * Trabajando con Pods en Podman
+    * Generación de un archivo YAML de Kubernetes con Podman
+    * Gestionando contenedores y Pods con systemd
+    * Ejemplo
+
+
+6. Gestionando escenarios multicontenedor con podman-compose
     * [Creando escenarios multicontenedor con Compose](contenido/modulo5/compose.md)
     * El fichero compose.yaml
     * El comando podman-compose
@@ -57,11 +64,6 @@
     * Uso de parámetros con Compose
     * Eliminar objetos Podman no utilizados
 
-6. Gestión de Pods en Podman
-    * Trabajando con Pods en Podman
-    * Generación de un archivo YAML de Kubernetes con Podman
-    * Gestionando contenedores y Pods con systemd
-    * Ejemplo
 
 7. Creación de imágenes con Podman
     * Introducción a la construcción y distribución de imágenes OCI
