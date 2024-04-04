@@ -44,10 +44,7 @@
     * Ejemplo 3: Despliegue de WordPress + MariaDB
     * Ejemplo 4: Despliegue de Apache Tomcat + nginx
 
-5. Ejecución avanzada de contenedores con Podman
-    * Trabajando con Pods en Podman
-    * Generación de un archivo YAML de Kubernetes con Podman
-    * Gestionando contenedores y Pods con systemd
+5. Gestionando escenarios multicontenedor con podman-compose
     * Especificación Compose
     * Creando escenarios multicontenedor con Compose
     * El fichero compose.yaml
@@ -61,7 +58,13 @@
     * Uso de parámetros con Compose
     * Eliminar objetos Podman no utilizados
 
-6. Creación de imágenes con Podman
+6. Gestión de Pods en Podman
+    * Trabajando con Pods en Podman
+    * Generación de un archivo YAML de Kubernetes con Podman
+    * Gestionando contenedores y Pods con systemd
+    * Ejemplo
+
+7. Creación de imágenes con Podman
     * Introducción a la construcción y distribución de imágenes OCI
     * El fichero Containerfile 
     * Creación de imágenes con podman build
@@ -74,7 +77,7 @@
     * Creación de imágenes con Compose
     * Uso de ficheros Containerfile parametrizados
     
-7. Gestión de imágenes OCI con Buildah y Skopeo
+8. Gestión de imágenes OCI con Buildah y Skopeo
     * Introducción a Buildah y Skopeo
     * Crear una imagen con Buildah desde cero
     * Crear una imagen con Buildah desde un contenedor
@@ -85,4 +88,4 @@
     * Gestión de imágenes OCI en registros remotos
     * Firmar imágenes OCI 
 
-8. Podman Desktop
+9. Podman Desktop
