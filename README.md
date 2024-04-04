@@ -45,8 +45,7 @@
     * Ejemplo 4: Despliegue de Apache Tomcat + nginx
 
 5. Gestionando escenarios multicontenedor con podman-compose
-    * Especificación Compose
-    * Creando escenarios multicontenedor con Compose
+    * [Creando escenarios multicontenedor con Compose](contenido/modulo5/compose.md)
     * El fichero compose.yaml
     * El comando podman-compose
     * Almacenamiento con Compose
