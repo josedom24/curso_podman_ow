@@ -26,7 +26,7 @@ Esto es util, cuando queremos que cualquier usuario del sistema pueda ejecutar c
 
 Esta característica nos ofrece un alto grado de seguridad en la ejecución de contenedores.
 
-Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nueva del producto. sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
+Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nueva del producto. Sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
 
 ### Arquitectura Fork/Exec
 
