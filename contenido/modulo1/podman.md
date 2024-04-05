@@ -30,7 +30,7 @@ Aunque en Docker también se puede hacer uso de esta [característica](https://d
 
 ### Arquitectura Fork/Exec
 
-Docker posee una arquitectura cliente-servidor. el cliente Docker se conecta al demonio Docker para gestionar el contenedor. Podemos entender el demonio docker como un intermediario entre el Docker CLI y el OCI runtime que gestiona el contenedor. Veamos el diagrama:
+Docker posee una arquitectura cliente-servidor. El cliente Docker se conecta al demonio Docker para gestionar el contenedor. Podemos entender el demonio Docker como un intermediario entre el cliente Docker y el OCI runtime que gestiona el contenedor. Veamos el diagrama:
 
 ![docker](img/docker.png)
 
@@ -52,7 +52,7 @@ Sin embargo para permitir que otros programas puedan usar Podman como gestor de 
 
 ### Integración con systemd
 
-Systemd es el principal sistema de inicialización en los sistemas operativos Linux. Es el repsonsable de crear el proceso `init` que inicializa el espacio de usuario durante el proceso de arranque de Linux y gestionar posteriormente todos los demás procesos.
+Systemd es el principal sistema de inicialización en los sistemas operativos Linux. Es el responsable de crear el proceso `init` que inicializa el espacio de usuario durante el proceso de arranque de Linux y gestionar posteriormente todos los demás procesos.
 
 Podman puede integrar completamente la ejecución de contenedores con el sistema de systemd. Por lo tanto, podemos usar systemd para gestionar el ciclo de vida de los contenedores.
 
