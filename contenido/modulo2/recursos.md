@@ -13,7 +13,7 @@ $ nproc --all
 Para limitar la cantidad de recursos de CPU que puede utilizar un contenedor, puedes utilizar la opción `--cpus`. Puedes especificar la cantidad de CPUs que deseas asignar al contenedor, ya sea en términos de núcleos completos o fracciones de núcleos. Por ejemplo, para limitar un contenedor a utilizar un núcleo completo:
 
 ```
-$ sudo podman docker run -d --cpus 1 --name servidor_web httpd:2.4
+$ sudo podman docker run -d --cpus 1 --name servidor_web docker.io/httpd:2.4
 ```
 
 Podríamos indicar que utilice medio núcleo (`--cpus=0.5`), o usar 2 núcleos (`--cpus=2`) o usar una fracción de cpu, por ejemplo el 75% (`--cpus=0.75`).
@@ -43,7 +43,7 @@ Este fragmento de código convierte los *nanocpus* a CPUs dividiendo por 1000000
 Para limitar la cantidad de memoria que puede utilizar un contenedor, puedes utilizar la opción `--memory`. Puedes especificar la memoria en bytes, kilobytes, megabytes, gigabytes, o utilizando el formato abreviado con las letras *b, k, m, g*. Por ejemplo para limitar un contenedor a 512 megabytes de memoria:
 
 ```
-$ sudo podman run -d --memory 512m --name servidor_web httpd:2.4
+$ sudo podman run -d --memory 512m --name servidor_web docker.io/httpd:2.4
 ```
 
 Con el comando `podman stats` podemos ver los recursos que está consumiendo un contenedor, y además vemos el límite de RAM que le hemos configurado:
@@ -73,5 +73,5 @@ En este fragmento de código, estoy dividiendo el límite de memoria en bytes po
 Para terminar, indicar que evidentemente podemos limitar la memoria y el número de CPUs utilizadas al mismo tiempo al crear un contenedor:
 
 ```
-$ sudo podman run -d --memory 512m --cpus 0.5 --name servidor_web httpd:2.4
+$ sudo podman run -d --memory 512m --cpus 0.5 --name servidor_web docker.io/httpd:2.4
 ```
