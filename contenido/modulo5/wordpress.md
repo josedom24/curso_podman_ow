@@ -11,7 +11,7 @@ $ sudo podman network create red_wp
 A continuación vamos a crear el Pod:
 
 ```
-$ sudo podman pod create --name pod_wp -p 8888:80 --network red_wp
+$ sudo podman pod create --name pod-wp -p 8888:80 --network red_wp
 ```
 
 Siguiendo la documentación de la imagen [`docker.io/mariadb`](https://hub.docker.com/_/mariadb) y la imagen [`docker.io/wordpress`](https://hub.docker.com/_/wordpress) podemos ejecutar los siguientes comandos para añadir los dos contenedores:
@@ -20,7 +20,7 @@ Siguiendo la documentación de la imagen [`docker.io/mariadb`](https://hub.docke
 $ mkdir -p wp/data
 $ mkdir -p wp/cms
 
-$ sudo podman run --pod pod_wp -d --name servidor_mariadb \
+$ sudo podman run --pod pod-wp -d --name servidor_mariadb \
                 -v ${PWD}/wp/data:/var/lib/mysql:Z \
                 -e MARIADB_DATABASE=bd_wp \
                 -e MARIADB_USER=user_wp \
@@ -28,7 +28,7 @@ $ sudo podman run --pod pod_wp -d --name servidor_mariadb \
                 -e MARIADB_ROOT_PASSWORD=asdasd \
                 docker.io/mariadb
 
-$ sudo podman  run --pod pod_wp -d --name servidor_wp \
+$ sudo podman  run --pod pod-wp -d --name servidor_wp \
                 -v ${PWD}/wp/cms:/var/www/html:Z \
                 -e WORDPRESS_DB_HOST=127.0.0.1 \
                 -e WORDPRESS_DB_USER=user_wp \
@@ -42,13 +42,13 @@ Vemos los Pods y contenedores que hemos creado:
 ```
 $ sudo podman pod ps --ctr-names
 POD ID        NAME        STATUS      CREATED         INFRA ID      NAMES
-d1d937d15358  pod_wp      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,servidor_mariadb,servidor_wp
+d1d937d15358  pod-wp      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,servidor_mariadb,servidor_wp
 
 $ sudo podman ps --pod
 CONTAINER ID  IMAGE                                    COMMAND               CREATED        STATUS        PORTS                 NAMES               POD ID        PODNAME
-27326c5e4a67  localhost/podman-pause:4.9.4-1711445992                        3 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  d1d937d15358-infra  d1d937d15358  pod_wp
-cd4aea32b99f  docker.io/library/mariadb:latest         mariadbd              3 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  servidor_mariadb    d1d937d15358  pod_wp
-bb71fd462b64  docker.io/library/wordpress:latest       apache2-foregroun...  2 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  servidor_wp         d1d937d15358  pod_wp
+27326c5e4a67  localhost/podman-pause:4.9.4-1711445992                        3 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  d1d937d15358-infra  d1d937d15358  pod-wp
+cd4aea32b99f  docker.io/library/mariadb:latest         mariadbd              3 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  servidor_mariadb    d1d937d15358  pod-wp
+bb71fd462b64  docker.io/library/wordpress:latest       apache2-foregroun...  2 minutes ago  Up 2 minutes  0.0.0.0:8888->80/tcp  servidor_wp         d1d937d15358  pod-wp
 ```
 
 Y comprobamos que podemos acceder a la aplicación:
