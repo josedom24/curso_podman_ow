@@ -50,7 +50,7 @@
     * [Funcionamiento de la red en un Pod](contenido/modulo5/red.md)
     * [Almacenamiento compartido entre los contenedores de un Pod](contenido/modulo5/almacenamiento.md)
     * [Ejemplo: Despliegue de WordPress + MariaDB en un Pod](contenido/modulo5/wordpress.md)
-    * Creación de Pods en modo rootless
+    * [Creación de Pods en modo rootless](contenedio/modul5/rootless.md)
     * Generación de un archivo YAML de Kubernetes con Podman
     * Gestionando contenedores y Pods con systemd
 
