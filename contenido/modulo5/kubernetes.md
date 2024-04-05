@@ -124,33 +124,113 @@ status: {}
 
 ## Generación de recursos YAML de Kubernetes a partir de Pods
 
-En este caso, vamos a coger un ejemplo anterior, y vamos a generar los recursos YAML de Kubernetes. Creamos el Pod que nos despliega Wordpress pero en este caso vamos a usar volúmenes para el almacenamiento:
+Para el primer ejemplo partimos del ejemplo anterior donde hemos **Deplegado WordPress + MariaDB en un Pod** utilizando bind mount para conseguir la persistencia.
 
 ```
-$ podman pod create --name pod_wp -p 8888:80 
-$ podman run --pod pod_wp -d --name servidor_mariadb \
-                -v vol-data:/var/lib/mysql \
-                -e MARIADB_DATABASE=bd_wp \
-                -e MARIADB_USER=user_wp \
-                -e MARIADB_PASSWORD=asdasd \
-                -e MARIADB_ROOT_PASSWORD=asdasd \
-                docker.io/mariadb
-$ podman  run --pod pod_wp -d --name servidor_wp \
-                -v vol-wp:/var/www/html \
-                -e WORDPRESS_DB_HOST=127.0.0.1 \
-                -e WORDPRESS_DB_USER=user_wp \
-                -e WORDPRESS_DB_PASSWORD=asdasd \
-                -e WORDPRESS_DB_NAME=bd_wp \
-                docker.io/wordpress
+$ sudo podman pod ps --ctr-names
+POD ID        NAME        STATUS      CREATED        INFRA ID      NAMES
+49cdd1ad01b6  pod-wp-bd   Running     5 minutes ago  e78a5bb025f7  49cdd1ad01b6-infra,servidor_mariadb,servidor_wp
 ```
 
-Y ahora generamos el fichero YAML de Kubernetes indicando el nombre del Pod y de los volúmenes:
+En este caso se va a generar un Pod con dos contenedores y con volúmenes del tipo hostPath:
 
 ```
-$ podman kube generate -s -f wp-pod.yaml pod_wp vol-data vol-wp
+$ podman kube generate -s -f wp-mariadb-pod.yaml pod-wp-bd 
 ```
 
-Y el fichero `wp-pod.yaml` quedaría:
+Y el fichero `wp-mariadb-pod.yaml` quedaría:
+
+```yaml
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-4.9.4
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-04-05T15:44:39Z"
+  labels:
+    app: pod-wp-bd
+  name: pod-wp-bd
+spec:
+  ports:
+  - name: "80"
+    nodePort: 31032
+    port: 80
+    targetPort: 80
+  selector:
+    app: pod-wp-bd
+  type: NodePort
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    bind-mount-options: /home/fedora/wp/cms:Z
+  creationTimestamp: "2024-04-05T15:44:39Z"
+  labels:
+    app: pod-wp-bd
+  name: pod-wp-bd
+spec:
+  containers:
+  - args:
+    - mariadbd
+    env:
+    - name: MARIADB_USER
+      value: user_wp
+    - name: MARIADB_PASSWORD
+      value: asdasd
+    - name: MARIADB_ROOT_PASSWORD
+      value: asdasd
+    - name: MARIADB_DATABASE
+      value: bd_wp
+    image: docker.io/library/mariadb:latest
+    name: servidormariadb
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: home-fedora-wp-data-host-0
+  - args:
+    - apache2-foreground
+    env:
+    - name: WORDPRESS_DB_HOST
+      value: 127.0.0.1
+    - name: WORDPRESS_DB_USER
+      value: user_wp
+    - name: WORDPRESS_DB_NAME
+      value: bd_wp
+    - name: WORDPRESS_DB_PASSWORD
+      value: asdasd
+    image: docker.io/library/wordpress:latest
+    name: servidorwp
+    volumeMounts:
+    - mountPath: /var/www/html
+      name: home-fedora-wp-cms-host-0
+  volumes:
+  - hostPath:
+      path: /home/fedora/wp/data
+      type: Directory
+    name: home-fedora-wp-data-host-0
+  - hostPath:
+      path: /home/fedora/wp/cms
+      type: Directory
+    name: home-fedora-wp-cms-host-0
+```
+
+En 
+
+```
+$ sudo podman pod ps --ctr-names
+POD ID        NAME        STATUS      CREATED             INFRA ID      NAMES
+5bd8b8618742  pod-wp      Running     About a minute ago  060087c84d1b  5bd8b8618742-infra,servidor_wp
+5725c5fbc7a9  pod-bd      Running     About a minute ago  f84f780b98b0  5725c5fbc7a9-infra,servidor_mariadb
+```
+
+
+```
+$ sudo podman kube generate -s -f wp-mariadb-multipod.yaml pod-wp pod-bd vol-wp vol-data
+```
 
 ```yaml
 # Save the output of this file and use kubectl create -f to import
@@ -162,8 +242,8 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     volume.podman.io/driver: local
-  creationTimestamp: "2024-04-05T07:28:19Z"
-  name: vol-data
+  creationTimestamp: "2024-04-05T15:56:19Z"
+  name: vol-wp
 spec:
   accessModes:
   - ReadWriteOnce
@@ -177,8 +257,8 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     volume.podman.io/driver: local
-  creationTimestamp: "2024-04-05T07:28:19Z"
-  name: vol-wp
+  creationTimestamp: "2024-04-05T15:56:19Z"
+  name: vol-data
 spec:
   accessModes:
   - ReadWriteOnce
@@ -190,36 +270,85 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2024-04-05T07:28:20Z"
+  creationTimestamp: "2024-04-05T15:56:19Z"
   labels:
-    app: podwp
-  name: podwp
+    app: pod-wp
+  name: pod-wp
 spec:
   ports:
   - name: "80"
-    nodePort: 32287
+    nodePort: 30039
     port: 80
     targetPort: 80
   selector:
-    app: podwp
+    app: pod-wp
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-04-05T15:56:19Z"
+  labels:
+    app: pod-bd
+  name: pod-bd
+spec:
+  ports:
+  - name: "3306"
+    nodePort: 31693
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: pod-bd
   type: NodePort
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: "2024-04-05T07:28:20Z"
+  creationTimestamp: "2024-04-05T15:56:19Z"
   labels:
-    app: podwp
-  name: podwp
+    app: pod-wp
+  name: pod-wp
+spec:
+  containers:
+  - args:
+    - apache2-foreground
+    env:
+    - name: WORDPRESS_DB_PASSWORD
+      value: asdasd
+    - name: WORDPRESS_DB_USER
+      value: user_wp
+    - name: WORDPRESS_DB_NAME
+      value: bd_wp
+    - name: WORDPRESS_DB_HOST
+      value: pod-bd
+    image: docker.io/library/wordpress:latest
+    name: servidorwp
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /var/www/html
+      name: vol-wp-pvc
+  volumes:
+  - name: vol-wp-pvc
+    persistentVolumeClaim:
+      claimName: vol-wp
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-04-05T15:56:19Z"
+  labels:
+    app: pod-bd
+  name: pod-bd
 spec:
   containers:
   - args:
     - mariadbd
     env:
-    - name: MARIADB_DATABASE
-      value: bd_wp
     - name: MARIADB_ROOT_PASSWORD
       value: asdasd
+    - name: MARIADB_DATABASE
+      value: bd_wp
     - name: MARIADB_USER
       value: user_wp
     - name: MARIADB_PASSWORD
@@ -227,31 +356,12 @@ spec:
     image: docker.io/library/mariadb:latest
     name: servidormariadb
     ports:
-    - containerPort: 80
+    - containerPort: 3306
     volumeMounts:
     - mountPath: /var/lib/mysql
       name: vol-data-pvc
-  - args:
-    - apache2-foreground
-    env:
-    - name: WORDPRESS_DB_HOST
-      value: 127.0.0.1
-    - name: WORDPRESS_DB_NAME
-      value: bd_wp
-    - name: WORDPRESS_DB_USER
-      value: user_wp
-    - name: WORDPRESS_DB_PASSWORD
-      value: asdasd
-    image: docker.io/library/wordpress:latest
-    name: servidorwp
-    volumeMounts:
-    - mountPath: /var/www/html
-      name: vol-wp-pvc
   volumes:
   - name: vol-data-pvc
     persistentVolumeClaim:
       claimName: vol-data
-  - name: vol-wp-pvc
-    persistentVolumeClaim:
-      claimName: vol-wp
 ```
