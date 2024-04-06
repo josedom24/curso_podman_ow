@@ -124,244 +124,77 @@ status: {}
 
 ## Generación de recursos YAML de Kubernetes a partir de Pods
 
-Para el primer ejemplo partimos del ejemplo anterior donde hemos **Deplegado WordPress + MariaDB en un Pod** utilizando bind mount para conseguir la persistencia.
+### Ejemplo: Desplegado WordPress + MariaDB en un Pod
+
+Para el primer ejemplo partimos del escenario que creamos en el apartado **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
+
+```
+sudo podman pod ps --ctr-names
+POD ID        NAME               STATUS      CREATED         INFRA ID      NAMES
+d1d937d15358  wordpress-pod      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,db,wordpress
+```
+
+En este caso se va a generar un Pod con dos contenedores y dos PersistentVolumeClaim correspondientes a los volúmenes:
+
+```
+$ sudo podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
+```
+
+El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace]()https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-pod.yaml.
+
+Podemos desplegar el fichero en nuestro clúster de Kuberentes:
+
+```
+$ kubectl apply -f wp-mariadb-pod.yaml 
+$ kubectl expose --type=NodePort pod/wordpress-pod
+
+$ kubectl get all,pvc
+NAME                READY   STATUS    RESTARTS   AGE
+pod/wordpress-pod   2/2     Running   0          10s
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP        80d
+service/wordpress-pod   NodePort    10.103.123.157   <none>        80:32747/TCP   3s
+
+NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+persistentvolumeclaim/dbvol   Bound    pvc-8de76765-48f2-46ab-ba91-f0b9e6b1a3a5   1Gi        RWO            standard       10s
+persistentvolumeclaim/wpvol   Bound    pvc-c15a471d-3029-467e-88fe-6ed987e65ea7   1Gi        RWO            standard       10s
+```
+
+
+### Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod
+
+
+Para el segundo ejemplo partimos del escenario que creamos en el apartado **Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod**: 
 
 ```
 $ sudo podman pod ps --ctr-names
-POD ID        NAME        STATUS      CREATED        INFRA ID      NAMES
-49cdd1ad01b6  pod-wp-bd   Running     5 minutes ago  e78a5bb025f7  49cdd1ad01b6-infra,servidor_mariadb,servidor_wp
-```
-
-En este caso se va a generar un Pod con dos contenedores y con volúmenes del tipo hostPath:
-
-```
-$ sudo podman kube generate -s -f wp-mariadb-pod.yaml pod-wp-bd 
-```
-
-Y el fichero `wp-mariadb-pod.yaml` quedaría:
-
-```yaml
-# Save the output of this file and use kubectl create -f to import
-# it into Kubernetes.
-#
-# Created with podman-4.9.4
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: "2024-04-05T15:44:39Z"
-  labels:
-    app: pod-wp-bd
-  name: pod-wp-bd
-spec:
-  ports:
-  - name: "80"
-    nodePort: 31032
-    port: 80
-    targetPort: 80
-  selector:
-    app: pod-wp-bd
-  type: NodePort
----
-apiVersion: v1
-kind: Pod
-metadata:
-  annotations:
-    bind-mount-options: /home/fedora/wp/cms:Z
-  creationTimestamp: "2024-04-05T15:44:39Z"
-  labels:
-    app: pod-wp-bd
-  name: pod-wp-bd
-spec:
-  containers:
-  - args:
-    - mariadbd
-    env:
-    - name: MARIADB_USER
-      value: user_wp
-    - name: MARIADB_PASSWORD
-      value: asdasd
-    - name: MARIADB_ROOT_PASSWORD
-      value: asdasd
-    - name: MARIADB_DATABASE
-      value: bd_wp
-    image: docker.io/library/mariadb:latest
-    name: servidormariadb
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - mountPath: /var/lib/mysql
-      name: home-fedora-wp-data-host-0
-  - args:
-    - apache2-foreground
-    env:
-    - name: WORDPRESS_DB_HOST
-      value: 127.0.0.1
-    - name: WORDPRESS_DB_USER
-      value: user_wp
-    - name: WORDPRESS_DB_NAME
-      value: bd_wp
-    - name: WORDPRESS_DB_PASSWORD
-      value: asdasd
-    image: docker.io/library/wordpress:latest
-    name: servidorwp
-    volumeMounts:
-    - mountPath: /var/www/html
-      name: home-fedora-wp-cms-host-0
-  volumes:
-  - hostPath:
-      path: /home/fedora/wp/data
-      type: Directory
-    name: home-fedora-wp-data-host-0
-  - hostPath:
-      path: /home/fedora/wp/cms
-      type: Directory
-    name: home-fedora-wp-cms-host-0
-```
-
-En 
-
-```
-$ sudo podman pod ps --ctr-names
-POD ID        NAME        STATUS      CREATED             INFRA ID      NAMES
-5bd8b8618742  pod-wp      Running     About a minute ago  060087c84d1b  5bd8b8618742-infra,servidor_wp
-5725c5fbc7a9  pod-bd      Running     About a minute ago  f84f780b98b0  5725c5fbc7a9-infra,servidor_mariadb
+POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
+4539e047ef62  mariadb-pod        Running     2 minutes ago  7ee82573c019  4539e047ef62-infra,db
+9646085b179e  wordpress-pod      Running     8 minutes ago  4274fc776781  9646085b179e-infra,wordpress
 ```
 
 
 ```
-$ sudo podman kube generate -s -f wp-mariadb-multipod.yaml pod-wp pod-bd vol-wp vol-data
+$ sudo podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-multipod.yaml 
 ```
 
-```yaml
-# Save the output of this file and use kubectl create -f to import
-# it into Kubernetes.
-#
-# Created with podman-4.9.4
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  annotations:
-    volume.podman.io/driver: local
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  name: vol-wp
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-status: {}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  annotations:
-    volume.podman.io/driver: local
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  name: vol-data
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-status: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  labels:
-    app: pod-wp
-  name: pod-wp
-spec:
-  ports:
-  - name: "80"
-    nodePort: 30039
-    port: 80
-    targetPort: 80
-  selector:
-    app: pod-wp
-  type: NodePort
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  labels:
-    app: pod-bd
-  name: pod-bd
-spec:
-  ports:
-  - name: "3306"
-    nodePort: 31693
-    port: 3306
-    targetPort: 3306
-  selector:
-    app: pod-bd
-  type: NodePort
----
-apiVersion: v1
-kind: Pod
-metadata:
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  labels:
-    app: pod-wp
-  name: pod-wp
-spec:
-  containers:
-  - args:
-    - apache2-foreground
-    env:
-    - name: WORDPRESS_DB_PASSWORD
-      value: asdasd
-    - name: WORDPRESS_DB_USER
-      value: user_wp
-    - name: WORDPRESS_DB_NAME
-      value: bd_wp
-    - name: WORDPRESS_DB_HOST
-      value: pod-bd
-    image: docker.io/library/wordpress:latest
-    name: servidorwp
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - mountPath: /var/www/html
-      name: vol-wp-pvc
-  volumes:
-  - name: vol-wp-pvc
-    persistentVolumeClaim:
-      claimName: vol-wp
----
-apiVersion: v1
-kind: Pod
-metadata:
-  creationTimestamp: "2024-04-05T15:56:19Z"
-  labels:
-    app: pod-bd
-  name: pod-bd
-spec:
-  containers:
-  - args:
-    - mariadbd
-    env:
-    - name: MARIADB_ROOT_PASSWORD
-      value: asdasd
-    - name: MARIADB_DATABASE
-      value: bd_wp
-    - name: MARIADB_USER
-      value: user_wp
-    - name: MARIADB_PASSWORD
-      value: asdasd
-    image: docker.io/library/mariadb:latest
-    name: servidormariadb
-    ports:
-    - containerPort: 3306
-    volumeMounts:
-    - mountPath: /var/lib/mysql
-      name: vol-data-pvc
-  volumes:
-  - name: vol-data-pvc
-    persistentVolumeClaim:
-      claimName: vol-data
+```
+$ kubectl apply -f wp-mariadb-multipod.yaml 
+$ kubectl expose --type=NodePort pod/wordpress-pod
+$ kubectl expose --type=ClusterIP pod/mariadb-pod
+
+$ kubectl get all,pvc
+NAME                READY   STATUS    RESTARTS   AGE
+pod/mariadb-pod     1/1     Running   0          32s
+pod/wordpress-pod   1/1     Running   0          32s
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP        80d
+service/mariadb-pod     ClusterIP   10.101.138.22    <none>        3306/TCP       1s
+service/wordpress-pod   NodePort    10.103.123.157   <none>        80:32747/TCP   6s
+
+NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+persistentvolumeclaim/dbvol   Bound    pvc-c0d55626-abe2-4dbc-9cb2-f313ae58d8de   1Gi        RWO            standard       32s
+persistentvolumeclaim/wpvol   Bound    pvc-c12fe215-546c-4c39-a7d9-fe228d9cebb1   1Gi        RWO            standard       32s
 ```
