@@ -135,7 +135,7 @@ POD ID        NAME        STATUS      CREATED        INFRA ID      NAMES
 En este caso se va a generar un Pod con dos contenedores y con volúmenes del tipo hostPath:
 
 ```
-$ podman kube generate -s -f wp-mariadb-pod.yaml pod-wp-bd 
+$ sudo podman kube generate -s -f wp-mariadb-pod.yaml pod-wp-bd 
 ```
 
 Y el fichero `wp-mariadb-pod.yaml` quedaría:
