@@ -32,14 +32,14 @@ Vemos los Pods y contenedores que hemos creado:
 
 ```
 $ sudo podman pod ps --ctr-names
-POD ID        NAME        STATUS      CREATED         INFRA ID      NAMES
+POD ID        NAME               STATUS      CREATED         INFRA ID      NAMES
 d1d937d15358  wordpress-pod      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,db,wordpress
 
 $ sudo podman ps --pod
 CONTAINER ID  IMAGE                                    COMMAND               CREATED        STATUS        PORTS                 NAMES               POD ID        PODNAME
 27326c5e4a67  localhost/podman-pause:4.9.4-1711445992                        3 minutes ago  Up 2 minutes  0.0.0.0:8080->80/tcp  d1d937d15358-infra  d1d937d15358  wordpress-pod
-cd4aea32b99f  docker.io/library/mariadb:latest         mariadbd              3 minutes ago  Up 2 minutes  0.0.0.0:8080->80/tcp  db          d1d937d15358  wordpress-pod
-bb71fd462b64  docker.io/library/wordpress:latest       apache2-foregroun...  2 minutes ago  Up 2 minutes  0.0.0.0:8080->80/tcp  wordpress         d1d937d15358  wordpress-pod
+cd4aea32b99f  docker.io/library/mariadb:latest         mariadbd              3 minutes ago  Up 2 minutes  0.0.0.0:8080->80/tcp  db                  d1d937d15358  wordpress-pod
+bb71fd462b64  docker.io/library/wordpress:latest       apache2-foregroun...  2 minutes ago  Up 2 minutes  0.0.0.0:8080->80/tcp  wordpress           d1d937d15358  wordpress-pod
 ```
 
 Y comprobamos que podemos acceder a la aplicación:

@@ -20,27 +20,27 @@ $ sudo podman network create red_wp
 A continuación vamos a crear los dos Pods:
 
 ```
-$ sudo podman pod create --name pod-bd -p 3306:3306 --network red_wp
-$ sudo podman pod create --name pod-wp -p 8889:80 --network red_wp
+$ sudo podman pod create --name mariadb-pod -p 3306:3306 --network red_wp
+$ sudo podman pod create --name wordpress-pod -p 8080:80 --network red_wp
 ```
 
 A continuación añadimos el contenedor a cada Pod:
 
 ```
-$ sudo podman run --pod pod-bd -d --name servidor_mariadb \
-                -v vol-data:/var/lib/mysql \
-                -e MARIADB_DATABASE=bd_wp \
-                -e MARIADB_USER=user_wp \
-                -e MARIADB_PASSWORD=asdasd \
-                -e MARIADB_ROOT_PASSWORD=asdasd \
+$ sudo podman run --pod mariadb-pod -d --name db \
+                -v dbvol:/var/lib/mysql \
+                -e MARIADB_DATABASE=wordpress \
+                -e MARIADB_USER=wordpress \
+                -e MARIADB_PASSWORD=wordpress \
+                -e MARIADB_ROOT_PASSWORD=myrootpasswd \
                 docker.io/mariadb
 
-$ sudo podman  run --pod pod-wp -d --name servidor_wp \
-                -v vol-wp:/var/www/html \
-                -e WORDPRESS_DB_HOST=pod-bd \
-                -e WORDPRESS_DB_USER=user_wp \
-                -e WORDPRESS_DB_PASSWORD=asdasd \
-                -e WORDPRESS_DB_NAME=bd_wp \
+$ sudo podman  run --pod wordpress-pod -d --name wordpress \
+                -v wpvol:/var/www/html \
+                -e WORDPRESS_DB_HOST=mariadb-pod \
+                -e WORDPRESS_DB_USER=wordpress \
+                -e WORDPRESS_DB_PASSWORD=wordpress \
+                -e WORDPRESS_DB_NAME=wordpress \
                 docker.io/wordpress
 ```
 
@@ -48,18 +48,18 @@ Vemos los Pods y contenedores que hemos creado:
 
 ```
 $ sudo podman pod ps --ctr-names
-POD ID        NAME        STATUS      CREATED        INFRA ID      NAMES
-4539e047ef62  pod-bd      Running     2 minutes ago  7ee82573c019  4539e047ef62-infra,servidor_mariadb
-9646085b179e  pod-wp      Running     8 minutes ago  4274fc776781  9646085b179e-infra,servidor_wp
+POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
+4539e047ef62  mariadb-pod        Running     2 minutes ago  7ee82573c019  4539e047ef62-infra,db
+9646085b179e  wordpress-pod      Running     8 minutes ago  4274fc776781  9646085b179e-infra,wordpress
 
 $ sudo podman ps --pod
 CONTAINER ID  IMAGE                                    COMMAND               CREATED             STATUS             PORTS                   NAMES               POD ID        PODNAME
-4274fc776781  localhost/podman-pause:4.9.4-1711445992                        9 minutes ago       Up 6 minutes       0.0.0.0:8889->80/tcp    9646085b179e-infra  9646085b179e  pod-wp
-7ee82573c019  localhost/podman-pause:4.9.4-1711445992                        2 minutes ago       Up About a minute  0.0.0.0:3306->3306/tcp  4539e047ef62-infra  4539e047ef62  pod-bd
-2d10f3953300  docker.io/library/mariadb:latest         mariadbd              About a minute ago  Up About a minute  0.0.0.0:3306->3306/tcp  servidor_mariadb    4539e047ef62  pod-bd
-9a9dee02cb0a  docker.io/library/wordpress:latest       apache2-foregroun...  38 seconds ago      Up 38 seconds      0.0.0.0:8889->80/tcp    servidor_wp         9646085b179e  pod-wp
-```
+4274fc776781  localhost/podman-pause:4.9.4-1711445992                        9 minutes ago       Up 6 minutes       0.0.0.0:8080->80/tcp    9646085b179e-infra  9646085b179e  wordpress-pod
+7ee82573c019  localhost/podman-pause:4.9.4-1711445992                        2 minutes ago       Up About a minute  0.0.0.0:3306->3306/tcp  4539e047ef62-infra  4539e047ef62  mariadb-pod
+2d10f3953300  docker.io/library/mariadb:latest         mariadbd              About a minute ago  Up About a minute  0.0.0.0:3306->3306/tcp  db                  4539e047ef62  mariadb-pod
+9a9dee02cb0a  docker.io/library/wordpress:latest       apache2-foregroun...  38 seconds ago      Up 38 seconds      0.0.0.0:8080->80/tcp    wordpress           9646085b179e  wordpress-pod
+``` 
 
 Y comprobamos que podemos acceder a la aplicación:
 
-![wp](img/wp2.png)
+![wp](img/wp.png)
