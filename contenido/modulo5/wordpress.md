@@ -11,9 +11,6 @@ $ sudo podman pod create --name wordpress-pod -p 8080:80
 Siguiendo la documentación de la imagen [`docker.io/mariadb`](https://hub.docker.com/_/mariadb) y la imagen [`docker.io/wordpress`](https://hub.docker.com/_/wordpress) podemos ejecutar los siguientes comandos para añadir los dos contenedores:
 
 ```
-$ mkdir -p wp/data
-$ mkdir -p wp/cms
-
 $ sudo podman run --pod wordpress-pod -d --name db \
                 -v wpvol:/var/lib/mysql \
                 -e MARIADB_DATABASE=wordpress \
