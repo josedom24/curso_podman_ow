@@ -142,7 +142,7 @@ $ sudo podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
 
 El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace]()https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-pod.yaml.
 
-Podemos desplegar el fichero en nuestro clúster de Kuberentes:
+Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
 ```
 $ kubectl apply -f wp-mariadb-pod.yaml 
@@ -181,7 +181,7 @@ $ sudo podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-
 
 El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace]()https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-multipod.yaml.
 
-Podemos desplegar el fichero en nuestro clúster de Kuberentes:
+Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
 ```
 $ kubectl apply -f wp-mariadb-multipod.yaml 
