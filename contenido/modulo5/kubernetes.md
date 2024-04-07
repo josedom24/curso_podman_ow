@@ -2,7 +2,7 @@
 
 Kubernetes es un orquestador de contenedores muy usado en nuestro días. Básicamente, Kubernetes controla la ejecución de Pods en distintos nodos de un clúster de servidores.
 
-Una de las características más importantes de Podman es la capacidad de generar recursos Kubernetes en formato YAML. Además Podman puede crear contenedores y Pods a partir de ficheros YAML de Kubernetes. De está forma con los subcomandos de la instrucción `podman kube` podremos gestionar manifiestos YAMLd e Kubernetes desde Podman.
+Una de las características más importantes de Podman es la capacidad de generar recursos Kubernetes en formato YAML. Además Podman puede crear contenedores y Pods a partir de ficheros YAML de Kubernetes. De está forma con los subcomandos de la instrucción `podman kube` podremos gestionar manifiestos YAML de Kubernetes desde Podman.
 
 ## Generación de recursos YAML de Kubernetes a partir de contenedores
 
