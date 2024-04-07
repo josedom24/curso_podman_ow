@@ -58,11 +58,15 @@
     * [Creación de Pods en modo rootless](contenido/modulo5/rootless.md)
     * [Generación de un archivo YAML de Kubernetes con Podman](contenido/modulo5/kubernetes.md)
     * Ejecutando recursos de Kubernetes en Podman
-    * Gestionando contenedores y Pods con systemd
 
+6. Gestionando recursos de Podman con systemd
+    * Introducción a Quadlet
+    * Ejecución de contenedores con systemd
+    * Ejecución de Pods con systemd
+    * Gestión de ...
 
-6. Gestionando escenarios multicontenedor con podman-compose
-    * [Creando escenarios multicontenedor con Compose](contenido/modulo6/compose.md)
+7. Gestionando escenarios multicontenedor con podman-compose
+    * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md)
     * El fichero compose.yaml
     * El comando podman-compose
     * Almacenamiento con Compose
@@ -77,7 +81,7 @@
     * Eliminar objetos Podman no utilizados
 
 
-7. Creación de imágenes con Podman
+8. Creación de imágenes con Podman
     * Introducción a la construcción y distribución de imágenes OCI
     * El fichero Containerfile 
     * Creación de imágenes con podman build
@@ -90,7 +94,7 @@
     * Creación de imágenes con Compose
     * Uso de ficheros Containerfile parametrizados
     
-8. Gestión de imágenes OCI con Buildah y Skopeo
+9. Gestión de imágenes OCI con Buildah y Skopeo
     * Introducción a Buildah y Skopeo
     * Crear una imagen con Buildah desde cero
     * Crear una imagen con Buildah desde un contenedor
@@ -101,4 +105,4 @@
     * Gestión de imágenes OCI en registros remotos
     * Firmar imágenes OCI 
 
-9. Podman Desktop
+10. Podman Desktop
