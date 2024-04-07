@@ -37,9 +37,9 @@ Los contenedores simplifican la producción, distribución, descubrimiento y uso
 
 La [**Open Container Initiative (OCI)**](https://opencontainers.org/), es un proyecto de la **Linux Foundation** para diseñar un estándar abierto para **virtualización basada en contenedores**. El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
 
-Se funda en 2015, y actualmente son muchas las empresas que forman parte de esta inciativa, y cuyo objetivo es desarrollar las siguientes especificaciones:​
+Se funda en 2015, y actualmente son muchas las empresas que forman parte de esta iniciativa, y cuyo objetivo es desarrollar las siguientes especificaciones:​
 
-* Una especificación de **entorno de ejecución de contenedores** (Open Container Initiative Runtime Specification normalmente abreviado en OCI Runtime Specification). Describe cómo debe proceder un OCI Runtime para crear un contenedor a partir de una image. Los OCI runtime más utilizados son **runC** y **crun**.
+* Una especificación de **entorno de ejecución de contenedores** (Open Container Initiative Runtime Specification normalmente abreviado en OCI Runtime Specification). Describe cómo debe proceder un OCI Runtime para crear un contenedor a partir de una imagen. Los OCI runtime más utilizados son **runC** y **crun**.
 * Una especificación de **formato de imagen** (Open Container Initiative Image Format normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software.
 * Una especificación de **distribución de imágenes**(Open Container Initiative Distribution Specification normalmente abreviado en OCI Distribution Specification''). Su objetivo es estandarizar la distribución de imágenes de contenedores.
 

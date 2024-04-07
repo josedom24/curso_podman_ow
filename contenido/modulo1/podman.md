@@ -4,7 +4,7 @@
 
 * **Podman (the POD MANager)** es una herramienta para gestionar contenedores e imágenes OCI, volúmenes montados en esos contenedores y Pods (grupos de contenedores). 
 * Podman ejecuta contenedores en **Linux**, pero también puede utilizarse en sistemas **Mac y Windows** utilizando una máquina virtual gestionada por Podman. 
-* Podman se basa en **libpod**, una biblioteca para la gestión del ciclo de vida de los contenedores. La librería libpod proporciona APIs para la gestión de contenedores, pods, imágenes de contenedores y volúmenes.
+* Podman se basa en **libpod**, una biblioteca para la gestión del ciclo de vida de los contenedores. La librería libpod proporciona APIs para la gestión de contenedores, Pods, imágenes de contenedores y volúmenes.
 * Podman es una herramienta nativa de Linux, de **código abierto** y **sin demonio**, diseñada para facilitar la búsqueda, ejecución, creación, uso compartido y despliegue de aplicaciones mediante contenedores e imágenes OCI.
 * Podman proporciona una interfaz de línea de comandos (CLI) familiar para cualquiera que haya utilizado el motor de contenedores Docker. 
 * Podman se basa en un OCI runtime (runc, crun, ...) para interactuar con el sistema operativo y crear los contenedores en ejecución. 
@@ -20,7 +20,7 @@ Podman se ha desarrollado después de Docker, por lo que sus creadores se han ba
 
 ### Contenedores rootless
 
-Probablemente la característica más significativa de Podman es su capacidad para contenedores por un usuario sin privilegios. No es necesario usar `root` para la ejecución de contenedores.
+Probablemente la característica más significativa de Podman es su capacidad para ejecutar contenedores por un usuario sin privilegios. No es necesario usar `root` para la ejecución de contenedores.
 
 Esto es util, cuando queremos que cualquier usuario del sistema pueda ejecutar contenedores y construir imágenes de contenedores, sin requerir acceso de `root`. 
 

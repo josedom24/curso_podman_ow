@@ -19,7 +19,7 @@ Podman utiliza la librería [`containers/image`](https://github.com/containers/i
 * **oci-archive**: Hace referencia a una imagen con formato OCI comprimida en una archivo tar.
 * **docker-archive**: Hace referencia a una imagen con formato Docker comprimida en una archivo tar.
 * **docker-daemon**: Hace referencia a una imagen guardada en un registro local de Docker.
-* **container-storage**: Hace referencia a una imagen gurdada en un registro local de Podman.
+* **container-storage**: Hace referencia a una imagen guarda en un registro local de Podman.
 
 En los ejemplos de esta unidad no vamos a indicar explícitamente el transporte utilizado, por lo que utilizaremos el medio por defecto, que es **docker**, es decir trabajaremos con registros remotos de imágenes.
 
