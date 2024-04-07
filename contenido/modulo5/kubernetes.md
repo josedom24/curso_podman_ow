@@ -140,7 +140,7 @@ En este caso se va a generar un Pod con dos contenedores y dos PersistentVolumeC
 $ sudo podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
 ```
 
-El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace]()https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-pod.yaml.
+El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-pod.yaml).
 
 Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
@@ -179,7 +179,7 @@ POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
 $ sudo podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-multipod.yaml 
 ```
 
-El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace]()https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-multipod.yaml.
+El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-multipod.yaml).
 
 Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
