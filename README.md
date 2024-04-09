@@ -72,8 +72,7 @@
     * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md)
     * [El fichero compose.yaml](contenido/modulo7/compose_yaml.md)
     * [El comando podman-compose](contenido/modulo7/podman_compose.md)
-    * [Almacenamiento con Compose]
-    * Redes con Compose
+    * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
     * Ejemplo 1: Despliegue de la aplicación Guestbook
     * Ejemplo 2: Despliegue de la aplicación Temperaturas
     * Ejemplo 3: Despliegue de WordPress + MariaDB
