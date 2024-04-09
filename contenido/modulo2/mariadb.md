@@ -1,9 +1,16 @@
 # Ejemplo: Configuración de un contenedor con la imagen MariaDB
 
-En ocasiones es obligatorio el inicializar alguna variable de entorno para que el contenedor pueda ser ejecutado. Si miramos la [documentación](https://hub.docker.com/_/mariadb) en Docker Hub de la imagen `mariadb`, observamos que podemos definir algunas variables de entorno para la creación y configuración del contenedor (por ejemplo: `MARIADB_DATABASE`,`MARIADB_USER`, `MARIADB_PASSWORD`,...). Pero hay una que la tenemos que indicar de forma obligatoria, la contraseña del usuario `root` (`MARIADB_ROOT_PASSWORD`), por lo tanto:
+En ocasiones es obligatorio el inicializar alguna variable de entorno para que el contenedor pueda ser ejecutado. Si miramos la [documentación](https://hub.docker.com/_/mariadb) en Docker Hub de la imagen `mariadb`, observamos que podemos definir algunas variables de entorno para la creación y configuración del contenedor (por ejemplo: `MARIADB_DATABASE`,`MARIADB_USER`, `MARIADB_PASSWORD`,...). Pero hay una que la tenemos que indicar de forma obligatoria, la contraseña del usuario `root` (`MARIADB_ROOT_PASSWORD`). Podríamos ejecutar el contenedor indicando directamente la variable de entorno:
 
 ```
 $ sudo podman run -d --name mimariadb -e MARIADB_ROOT_PASSWORD=my-secret-pw docker.io/mariadb:10.5
+```
+
+Pero como la contraseña es una información sensible vamos a guardar dicho valor en un Secret y posteriormente creamos el contenedor:
+
+```
+$ echo "my-secret-pw" | sudo podman secret create pass_root -
+$ sudo podman run -d --name mimariadb --secret pass_root,type=env,target=MARIADB_ROOT_PASSWORD docker.io/mariadb:10.5
 $ sudo podman ps
 CONTAINER ID  IMAGE                           COMMAND     CREATED        STATUS        PORTS       NAMES
 6c1488d6cb4a  docker.io/library/mariadb:10.5  mysqld      8 seconds ago  Up 7 seconds              mimariadb
