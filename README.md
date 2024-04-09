@@ -63,7 +63,7 @@
 6. Gestionando recursos de Podman con Systemd y Quadlet
     * [Introducción a Quadlet](contenido/modulo6/quadlet.md)
     * [Ejecución de contenedores con Systemd y Quadlet](contenido/modulo6/contenedor.md)
-    * [Gestionando volúmenes y redes con Qudalet y Systemd]
+    * [Gestionando volúmenes y redes con Systemd y Quadlet](contenido/modulo6/vol_redes.md)
     * Ejecución de Pods con Systemd y Quadlet
     * Gestión de ...
 
