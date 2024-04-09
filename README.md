@@ -60,10 +60,11 @@
     * [Generación de un archivo YAML de Kubernetes con Podman](contenido/modulo5/kubernetes.md)
     * Ejecutando recursos de Kubernetes en Podman
 
-6. Gestionando recursos de Podman con systemd y Quadlet
+6. Gestionando recursos de Podman con Systemd y Quadlet
     * [Introducción a Quadlet](contenido/modulo6/quadlet.md)
-    * [Ejecución de contenedores con systemd y Quadlet](contenido/modulo6/contenedor.md)
-    * Ejecución de Pods con systemd y Quadlet
+    * [Ejecución de contenedores con Systemd y Quadlet](contenido/modulo6/contenedor.md)
+    * [Gestionando volúmenes y redes con Qudalet y Systemd]
+    * Ejecución de Pods con Systemd y Quadlet
     * Gestión de ...
 
 7. Gestionando escenarios multicontenedor con podman-compose

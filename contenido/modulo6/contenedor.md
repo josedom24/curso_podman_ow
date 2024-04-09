@@ -1,6 +1,4 @@
-# Ejecución de contenedores con systemd y Quadlet
-
-## Creación de un contenedor simple con Quadlet
+# Ejecución de contenedores con Systemd y Quadlet
 
 En este ejemplo vamos a gestionar un contenedor rootful que ofrece un servidor web nginx, por lo tanto vamos a escribir la siguiente plantilla de unidad Systemd, en el directorio `/etc/containers/systamd`. El nombre de la plantilla es `nginx.container` y tiene el siguiente contenido:
 
