@@ -36,6 +36,15 @@ services:
       - ./data:/data/directorio:Z
     hostname: contenedor1
     command: ash
+  c2:
+    container_name: contenedor2
+    image: alpine
+    tty: true
+    restart: always
+    networks:
+      - red_externa
+    hostname: contenedor2
+    command: ash
 
 networks:
     red_externa:
@@ -89,8 +98,8 @@ $ sudo podman inspect -f '{{json .Mounts}}' contenedor1
 Y comprobamos que podemos escribir en el volumen y listar los ficheros del bind mount:
 
 ```
-$ sudo podman exec contenedor1 touch /data/volumen/fichero2.txt
-$ sudo podman exec contenedor1 cat /data/directorio/fichero.txt
+$ sudo podman-compose exec c1 touch /data/volumen/fichero2.txt
+$ sudo podman-compose exec c1 cat /data/directorio/fichero.txt
 Curso Podman
 ```
 
@@ -111,7 +120,7 @@ Podemos ver que el nombre de la red está formado por el nombre del proyecto y e
 Finalmente podemos comprobar la configuración de red del contenedor:
 
 ```
-$ sudo podman exec contenedor1 ip a
+$ sudo podman-compose exec c1 ip a
 ...
 2: eth0@if280: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
     link/ether f2:fa:ef:ea:41:42 brd ff:ff:ff:ff:ff:ff
@@ -120,6 +129,31 @@ $ sudo podman exec contenedor1 ip a
 3: eth1@if282: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
     link/ether aa:78:53:f1:32:18 brd ff:ff:ff:ff:ff:ff
     inet 10.89.2.4/24 brd 10.89.2.255 scope global eth1
+```
+
+Comprobamos que tenemos resolución DNS tanto con el nombre del servicio como con el nombre del contenedor:
+
+```bash
+$ sudo podman-compose exec c1 nslookup contenedor2
+...
+Non-authoritative answer:
+Name:	contenedor2.dns.podman
+Address: 192.168.10.11
+
+$ sudo podman-compose exec c1 nslookup c2
+...
+Non-authoritative answer:
+Name:	contenedor2.dns.podman
+Address: 192.168.10.11
+```
+
+Y por último, comprobamos que hay conectividad:
+
+```bash
+sudo podman-compose exec c1 ping contenedor2
+PING contenedor2 (192.168.10.11): 56 data bytes
+64 bytes from 192.168.20.20: seq=0 ttl=64 time=0.072 ms
+...
 ```
 
 Recuerda que si necesitas iniciar el escenario desde 0, debes eliminar el volumen:
