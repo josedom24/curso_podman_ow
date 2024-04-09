@@ -71,8 +71,8 @@
 7. Gestionando escenarios multicontenedor con podman-compose
     * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md)
     * [El fichero compose.yaml](contenido/modulo7/compose_yaml.md)
-    * El comando podman-compose
-    * Almacenamiento con Compose
+    * [El comando podman-compose](contenido/modulo7/podman_compose.md)
+    * [Almacenamiento con Compose]
     * Redes con Compose
     * Ejemplo 1: Despliegue de la aplicación Guestbook
     * Ejemplo 2: Despliegue de la aplicación Temperaturas
