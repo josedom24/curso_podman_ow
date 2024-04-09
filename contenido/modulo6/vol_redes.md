@@ -59,6 +59,10 @@ local       vol-mariadb
 NETWORK ID    NAME                         DRIVER
 e913e24830f4  red-mariadb                  bridge
 
+# podman ps
+CONTAINER ID  IMAGE                           COMMAND               CREATED         STATUS         PORTS                 NAMES
+bb535bd81493  docker.io/library/mariadb:10.5  mysqld                16 minutes ago  Up 16 minutes                        contenedor_mariadb
+
 # podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor_mariadb
 192.168.100.2
 

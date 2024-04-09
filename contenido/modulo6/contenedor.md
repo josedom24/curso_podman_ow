@@ -71,6 +71,11 @@ Y ya podemos trabajar con la unidad de systemd que se ha generado:
              │ └─74431 "nginx: worker process"
     ...
 
+# podman ps
+CONTAINER ID  IMAGE                           COMMAND               CREATED         STATUS         PORTS                 NAMES
+0bacbe10921c  docker.io/library/nginx:latest  nginx -g daemon o...  4 seconds ago   Up 2 seconds   0.0.0.0:8888->80/tcp  contenedor_nginx
+
+
 # curl http://localhost:8888
 <!DOCTYPE html>
 <html>
