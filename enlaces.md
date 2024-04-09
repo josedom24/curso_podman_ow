@@ -99,3 +99,7 @@ sudo dnf install docker-compose  podman-docker
 sudo systemctl enable --now podman.socket
 sudo systemctl status podman.socket
 sudo docker-compose up -d
+
+---
+
+Se puede poner --network=host y funciona como en docker
