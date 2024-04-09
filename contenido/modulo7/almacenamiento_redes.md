@@ -36,6 +36,7 @@ services:
       - ./data:/data/directorio:Z
     hostname: contenedor1
     command: ash
+<<<<<<< HEAD
   c2:
     container_name: contenedor2
     image: alpine
@@ -45,6 +46,8 @@ services:
       - red_externa
     hostname: contenedor2
     command: ash
+=======
+>>>>>>> e732e804eceb25af2dd2a06b117b001f7a5e1712
 
 networks:
     red_externa:
@@ -130,6 +133,7 @@ $ sudo podman-compose exec c1 ip a
     link/ether aa:78:53:f1:32:18 brd ff:ff:ff:ff:ff:ff
     inet 10.89.2.4/24 brd 10.89.2.255 scope global eth1
 ```
+
 
 Comprobamos que tenemos resolución DNS tanto con el nombre del servicio como con el nombre del contenedor:
 
