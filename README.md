@@ -64,7 +64,7 @@
     * [Introducción a Quadlet](contenido/modulo6/quadlet.md)
     * [Ejecución de contenedores con Systemd y Quadlet](contenido/modulo6/contenedor.md)
     * [Gestionando volúmenes y redes con Systemd y Quadlet](contenido/modulo6/vol_redes.md)
-    * Ejecución de Pods con Systemd y Quadlet
+    * [Ejecución de Pods con Systemd y Quadlet](contenido/modulo6/pod.md)
     * Gestión de ...
 
 7. Gestionando escenarios multicontenedor con podman-compose

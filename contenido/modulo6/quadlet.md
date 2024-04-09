@@ -17,7 +17,7 @@ Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso
 * Contenedores
 * Volúmenes
 * Redes
-* Pods
+* Pods (En la versión Podman 5)
 
 ### ¿Cómo funciona Quadlet?
 
@@ -31,5 +31,5 @@ Los ficheros de plantilla de unidades Systemd tienen distintas extensiones segú
 * `.container`: Nos permite definir las características de un contenedor que será gestionado por Systemd ejecutando `podman run`.
 * `.volume`: Nos permite definir la definición de volúmenes que serán referenciados en la plantillas del tipo `.container`.
 * `.network`: Nos permite definir la definición de redes que serán referenciados en la plantillas del tipo `.container` p `.kube`.
-* `.pod`: Nos permite la definición de un Pod que será gestionado por Systemd.
+* `.pod`: Nos permite la definición de un Pod que será gestionado por Systemd. En la versión Podman 5.
 * `.kube`: Nos permite la definición de escenario creados a parir de ficheros YAML de Kubernetes con la instrucción `podman kube play`.
