@@ -90,3 +90,12 @@ Pods:
 podman-compose --in-pod=1 --pod-args='--infra=true --share=""' up -d
 podman-compose --in-pod=1 down -v
 ```
+
+---
+
+docker-compose
+
+sudo dnf install docker-compose  podman-docker
+sudo systemctl enable --now podman.socket
+sudo systemctl status podman.socket
+sudo docker-compose up -d

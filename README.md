@@ -77,7 +77,7 @@
     * Ejemplo 2: Despliegue de la aplicación Temperaturas
     * Ejemplo 3: Despliegue de WordPress + MariaDB
     * Ejemplo 4: Despliegue de Apache Tomcat + nginx
-    * Uso de parámetros con Compose
+    * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * Creación de contenedores rootless con podman-compose
     * Creación de Pods con podman-compose
     * Eliminar objetos Podman no utilizados
