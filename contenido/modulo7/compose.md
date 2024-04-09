@@ -21,7 +21,6 @@ El fichero de definición del escenario también puede ser llamado `compose.yml`
 
 Una vez instalado, podremos utilizar directamente el ejecutable de `podman-compose` o una utilidad que nos ofrece el cliente de Podman: `podman compose`.
 
-
 ## Ventajas de usar Compose
 
 * Hacer todo de manera **declarativa** para que no tenga que repetir todo el proceso cada vez que construyo el escenario.
