@@ -36,7 +36,6 @@ services:
       - ./data:/data/directorio:Z
     hostname: contenedor1
     command: ash
-<<<<<<< HEAD
   c2:
     container_name: contenedor2
     image: alpine
@@ -46,9 +45,6 @@ services:
       - red_externa
     hostname: contenedor2
     command: ash
-=======
->>>>>>> e732e804eceb25af2dd2a06b117b001f7a5e1712
-
 networks:
     red_externa:
         ipam:
