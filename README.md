@@ -97,10 +97,10 @@
     * Uso de ficheros Containerfile parametrizados
     
 9. Gestión de imágenes OCI con Buildah y Skopeo
-    * Introducción a Buildah y Skopeo
-    * Crear una imagen con Buildah desde cero
-    * Crear una imagen con Buildah desde un contenedor
+    * Introducción a Buildah
+    * Crear una imagen con Buildah desde una imagen base
     * Crear una imagen con Buildah desde un Containerfile
+    * Crear una imagen con Buildah desde cero
     * Introducción a Skopeo
     * Copiar imágenes OCI entre distintos registros
     * Inspeccionar una imagen OCI remota 

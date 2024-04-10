@@ -109,3 +109,18 @@ Se puede poner --network=host y funciona como en docker
 ## Buildah 
 
 * https://docs.fedoraproject.org/en-US/iot/buildah/
+
+```
+buildah from --name contenedor-work1 debian
+buildah containers
+buildah run contenedor-work1 bash -c "apt update && apt install -y apache2"
+echo "<h1>Podman</h1>">index.html
+buildah copy contenedor-work1 index.html /var/www/html/index.html
+buildah config --entrypoint "/usr/sbin/apache2ctl -DFOREGROUND" contenedor-work1
+buildah config --cmd "/usr/sbin/apache2ctl -DFOREGROUND" contenedor-work1
+buildah commit contenedor-work1 josedom24/debian-apache:latest
+buildah containers
+docker images
+podman run -d -p 8080:80 --name c2 josedom24/debian-apache
+podman ps
+```
