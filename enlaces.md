@@ -123,4 +123,7 @@ buildah containers
 docker images
 podman run -d -p 8080:80 --name c2 josedom24/debian-apache
 podman ps
+
+
+buildah push josedom24/debian-apache docker://quay.io/josedom24/debian-apache
 ```
