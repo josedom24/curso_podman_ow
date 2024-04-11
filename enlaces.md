@@ -118,6 +118,7 @@ echo "<h1>Podman</h1>">index.html
 buildah copy contenedor-work1 index.html /var/www/html/index.html
 buildah config --entrypoint "/usr/sbin/apache2ctl -DFOREGROUND" contenedor-work1
 buildah config --cmd "/usr/sbin/apache2ctl -DFOREGROUND" contenedor-work1
+buildah config -p 80 contenedor-work1
 buildah commit contenedor-work1 josedom24/debian-apache:latest
 buildah containers
 docker images
