@@ -254,7 +254,7 @@ De manera gráfica, tenemos el siguiente esquema:
 
 ## Ahorro de espacio de almacenamiento
 
-La estructura de almacenamiento que hemos explicado favorece el ahorra de espacio en disco ocupado por las imágenes. Si al descarga una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
+La estructura de almacenamiento que hemos explicado favorece el ahorra de espacio en disco ocupado por las imágenes. Si al descargar una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
 
 Si a continuación bajamos otra versión de la misma imagen:
 
@@ -270,7 +270,7 @@ Writing manifest to image destination
 6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b
 ```
 
-Vemos cómo dos de las tres capas no se han descargados, porque son las mismas que teníamos ya descargadas. Si vemos el fichero de maniefiesto donde se indican las capas de esta nueva imagen:
+Vemos cómo dos de las tres capas no se han descargados, porque son las mismas que teníamos ya descargadas. Si vemos el fichero de manifiesto donde se indican las capas de esta nueva imagen:
 
 ```
 $ sudo cat overlay-images/6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b/manifest | jq
@@ -307,66 +307,54 @@ Vemos que las dos primeras capas coinciden con las de la imagen anterior y por t
 
 ## Calcular el espacio que ocupan las imágenes
 
-Vamos a descargas dos imágenes de tres capas que comparte dos capas:
+Tenemos una imagen llamada `quay.io/josedom24/servidorweb:latest` que está construida a partir de la imagen `docker.io/debian:stable-slim`. Por lo tanto la capa que forma está última imagen es compartida con la primera imagen.
+
+Vamos a descargas las dos imágenes y comprobamos cuando ocupan realmente en disco:
 
 ```
-$ sudo podman pull docker.io/josedom24/servidorweb:v1
-Trying to pull docker.io/josedom24/servidorweb:v1...
+$ podman pull docker.io/debian:stable-slim
+Trying to pull docker.io/library/debian:stable-slim...
 Getting image source signatures
-Copying blob 4f6c4ab344d9 done   | 
-Copying blob 9532dfcb62dd done   | 
-Copying blob 209210f58112 done   | 
-Copying config d0d75af6b8 done   | 
+Copying blob 8bd61dcf2ae5 done   | 
+Copying config c3c8e6f4e5 done   | 
 Writing manifest to image destination
-d0d75af6b8ec95cf4200ed1071d8250f733248bbccbbdd48200202a75ac70893
+c3c8e6f4e51e5b4fb4f159dc88b8251f3c83f932f7700cc048d08c0e6820b279
 
-$ sudo podman pull docker.io/josedom24/servidorweb:v2
-Trying to pull docker.io/josedom24/servidorweb:v2...
+$ podman pull quay.io/josedom24/servidorweb:latest
+Trying to pull quay.io/josedom24/servidorweb:latest...
 Getting image source signatures
-Copying blob 9532dfcb62dd skipped: already exists  
-Copying blob 209210f58112 skipped: already exists  
-Copying blob 274f48ad3e93 done   | 
-Copying config f558b3613d done   | 
+Copying blob ac25718b410c skipped: already exists  
+Copying blob 82c502a57ff6 done   | 
+Copying config 20dc5273de done   | 
 Writing manifest to image destination
-f558b3613d2c526ceb863c1b64091f5b63149d2f62cb74652f9bac5c18e74954
+20dc5273de46e942048e158d148806432ae515d63c6e9dcbcb66a6a72dd8b347
 ```
 
-Podemos observar que las dos primeras capas "ya existen", es decir, ya la tenemos almacenadas en nuestro registro, porque son iguales a las capas de la primera versión de la imagen.
+Como hemos comentado la capa que forma parte de la imagen `docker.io/debian:stable-slim`, es la misma que una de las tres que forman la imagen `quay.io/josedom24/servidorweb:latest`.
 
 Si visualizamos las imágenes:
 
 ```
-$ sudo podman images 
-REPOSITORY                        TAG         IMAGE ID      CREATED       SIZE
-docker.io/josedom24/servidorweb   v2          f558b3613d2c  8 weeks ago   193 MB
-docker.io/josedom24/servidorweb   v1          d0d75af6b8ec  8 weeks ago   193 MB
+$ podman images 
+$ podman images 
+REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
+quay.io/josedom24/servidorweb  latest       20dc5273de46  52 minutes ago  212 MB
+docker.io/library/debian       stable-slim  c3c8e6f4e51e  30 hours ago    77.8 MB
 ```
 
-Podemos pensar que se ha ocupado en el disco duro 193Mb + 193 Mb, pero en realidad el espacio ocupado por las dos primeras capas sólo se guarda en el disco una vez, esas capas se comparten entre las dos versiones de la imagen. Esto lo podemos ver de manera más clara ejecutando el siguiente comando:
+Podemos pensar que se ha ocupado en el disco duro 212MB + 77.8MB, pero en realidad el tamaño de la capa que se compartes, sólo se guarda una vez en el disco duro. Podemos comprobarlo ejecutando el siguiente comando:
 
 ```
-$ sudo podman system df -v
+$ podman system df -v
 Images space usage:
 
-REPOSITORY                        TAG         IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
-docker.io/josedom24/servidorweb   v1          d0d75af6b8ec  8 weeks     192.6MB     0B           192.6MB      0
-docker.io/josedom24/servidorweb   v2          f558b3613d2c  8 weeks     192.6MB     0B           192.6MB      0
+REPOSITORY                     TAG          IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
+docker.io/library/debian       stable-slim  c3c8e6f4e51e  30 hours    77.84MB     77.84MB      0B           0
+quay.io/josedom24/servidorweb  latest       20dc5273de46  55 minutes  212MB       77.84MB      134.1MB      0
+
 ...
 ```
-De los 193 MB que tienen de tamaño las imágenes, 192,6 MB están compartido (este es el tamaño de las dos primeras capas), por lo tanto el espacio ocupado por cada una de las imágenes corresponde a la tercera capa (el fichero index.html) que en este caso es 25B y 22B.
+Vemos claramente que los 77.8 Mb que ocupa la capa compartida entre las dos imágenes aparece como tamaño compartido (`SHARED SIZED`).
 
-Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 186,8MB + 25B + 22B. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
+Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 77.8MB + 124.1MB. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
 
-
-```
-$ sudo podman system df -v
-Images space usage:
-
-REPOSITORY                        TAG         IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
-quay.io/centos7/httpd-24-centos7  latest      d7af31210b28  8 months    356.5MB     0B           356.5MB      0
-quay.io/centos7/httpd-24-centos7  20230712    6211883c1ed7  8 months    356.5MB     0B           356.5MB      0
-```
-
-De los 187 MB que tienen de tamaño las imágenes, 186,8 MB están compartido (este es el tamaño de las dos primeras capas), por lo tanto el espacio ocupado por cada una de las imágenes corresponde a la tercera capa (el fichero index.html) que en este caso es 25B y 22B.
-
-Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 186,8MB + 25B + 22B. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
