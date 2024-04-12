@@ -83,17 +83,17 @@
     * Eliminar objetos Podman no utilizados
 
 
-8. Creación de imágenes con Podman
-    * Introducción a la construcción y distribución de imágenes OCI
+8. Gestión de imágenes OCI con Podman
+    * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md)
     * El fichero Containerfile 
-    * Creación de imágenes con podman build
+    * Construcción de imágenes con podman build
     * Distribución de imágenes
     * Ejemplo 1: Construcción de imágenes con una página estática
     * Ejemplo 2: Construcción de imágenes con una una aplicación PHP
     * Ejemplo 3: Construcción de imágenes con una una aplicación Python
     * Ejemplo 4: Construcción de imágenes configurables con variables de entorno
     * Ejemplo 5: Configuración de imágenes con una aplicación Java
-    * Creación de imágenes con Compose
+    * Construcción de imágenes con Compose
     * Uso de ficheros Containerfile parametrizados
     
 9. Gestión de imágenes OCI con Buildah y Skopeo
