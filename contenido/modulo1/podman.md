@@ -38,7 +38,7 @@ En resumen, el cliente Docker se comunica con el demonio Docker, que a su vez se
 
 Podman sigue el modelo fork/Exec, que tradicionalmente ha funcionado en los sistemas Unix: cuando ejecutamos un nuevo programa, un proceso padre (por ejemplo, `bash`) ejecuta el nuevo programa como un proceso hijo.
 
-En el caso de Podman, al crear un contenedor se crea un proceso hijo, del proceso correspondiente qal OCI runtime. Veamos un esquema de este mecanismo:
+En el caso de Podman, al crear un contenedor se crea un proceso hijo, del proceso correspondiente al OCI runtime. Veamos un esquema de este mecanismo:
 
 ![podman](img/podman.png)
 
