@@ -70,7 +70,7 @@ Además, Podman es capaz de generar archivos YAML de de Kubernetes a partir de c
 
 Con Podman podemos gestionar imágenes OCI usando su nombre corto, sin necesidad de indicar el nombre del registro. 
 
-Por ejemplo, el nombre de imagen `ubi8`corresponde al nombre completo `registry.access.redhat.com/library/ubi8:latest`, donde se indica los nombres del registro, del repositorio, de la imagen y de la etiqueta.
+Por ejemplo, el nombre de imagen `ubi8` corresponde al nombre completo `registry.access.redhat.com/library/ubi8:latest`, donde se indica los nombres del registro, del repositorio, de la imagen y de la etiqueta.
 
 En Podman podemos especificar múltiples registros, de tal forma que cuando indicamos el nombre de una imagen, se nos da a elegir entre los distintos registros que tenemos configurados.
 
