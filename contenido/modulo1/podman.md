@@ -46,7 +46,7 @@ Este mecanismo de creación de contenedores es mucho más sencillo y nos proporc
 
 ### Podman no tiene demonio
 
-Como hemos visto anteriormente, Podman es un software *daemonless*. La diferencia fundamental entre Podman y docker, es que Podman no tiene un demonio en ejecución. Podman realiza las mismas operaciones que docker sin necesidad de tener un proceso demonio en ejecución que gestione el ciclo de vida de los contenedores.
+Como hemos visto anteriormente, Podman es un software *daemonless*. La diferencia fundamental entre Podman y Docker, es que Podman no tiene un demonio en ejecución. Podman realiza las mismas operaciones que docker sin necesidad de tener un proceso demonio en ejecución que gestione el ciclo de vida de los contenedores.
 
 Sin embargo para permitir que otros programas puedan usar Podman como gestor de contenedores, Podman puede ofrecer una API REST compatible con la ofrecida por Docker. 
 
