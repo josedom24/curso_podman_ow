@@ -128,3 +128,34 @@ podman ps
 
 buildah push josedom24/debian-apache docker://quay.io/josedom24/debian-apache
 ```
+
+## skopeo
+
+```
+skopeo inspect docker://registry.fedoraproject.org/fedora:latest
+skopeo inspect --config docker://registry.fedoraproject.org/fedora:latest
+skopeo copy docker://docker.io/josedom24/2048:v1 docker://quay.io/josedom24/2048:v1
+skopeo login --get-login quay.io
+skopeo login quay.io
+
+skopeo copy docker://docker.io/josedom24/2048:v1 oci-archive:2048.tar
+skopeo copy docker://docker.io/josedom24/2048:v1 oci:2048
+skopeo copy containers-storage:quay.io/josedom24/servidorweb:latest oci:servidorweb
+```
+Lo mismo que un push:
+
+```
+skopeo copy containers-storage:docker.io/library/debian:stable-slim docker://quay.io/josedom24/midebian
+```
+
+
+Borra la imagen, pero no borra el repositorio en quay.io:
+
+```
+skopeo delete  docker://quay.io/josedom24/midebian
+```
+```
+skopeo sync --src docker --dest dir quay.io/josedom24/servidorweb prueba
+$ skopeo list-tags docker://quay.io/josedom24/servidorweb
+```
+
