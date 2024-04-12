@@ -105,6 +105,5 @@
     * Copiar imágenes OCI entre distintos registros
     * Inspeccionar una imagen OCI remota 
     * Gestión de imágenes OCI en registros remotos
-    * Firmar imágenes OCI 
 
 10. Podman Desktop
