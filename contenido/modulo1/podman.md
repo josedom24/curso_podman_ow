@@ -36,7 +36,7 @@ Docker posee una arquitectura cliente-servidor. El cliente Docker se conecta al 
 
 En resumen, el cliente Docker se comunica con el demonio Docker, que a su vez se comunica con el demonio containerd, que finalmente lanza un OCI runtime como runc para lanzar el contenedor. La gestión de contenedores es compleja, y cualquier fallo en los elementos involucrados pueden hacer que el contenedor no funcione de manera adecuada.
 
-Podman sigue el modelo fork/Exec, que tradicionalmente ha funcionado en los sistemas Unix: cuando ejecutamos un nuevo programa, un proceso padre (por ejemplo, `bash`) ejecuta el nuevo programa como un proceso hijo.
+Podman sigue el modelo Fork/Exec, que tradicionalmente ha funcionado en los sistemas Unix: cuando ejecutamos un nuevo programa, un proceso padre (por ejemplo, `bash`) ejecuta el nuevo programa como un proceso hijo.
 
 En el caso de Podman, al crear un contenedor se crea un proceso hijo, del proceso correspondiente al OCI runtime. Veamos un esquema de este mecanismo:
 
