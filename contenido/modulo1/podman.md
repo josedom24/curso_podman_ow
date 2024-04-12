@@ -22,11 +22,11 @@ Podman se ha desarrollado después de Docker, por lo que sus creadores se han ba
 
 Probablemente la característica más significativa de Podman es su capacidad para ejecutar contenedores por un usuario sin privilegios. No es necesario usar `root` para la ejecución de contenedores.
 
-Esto es util, cuando queremos que cualquier usuario del sistema pueda ejecutar contenedores y construir imágenes de contenedores, sin requerir acceso de `root`. 
+Esto es útil, cuando queremos que cualquier usuario del sistema pueda ejecutar contenedores y construir imágenes de contenedores, sin requerir acceso de `root`. 
 
 Esta característica nos ofrece un alto grado de seguridad en la ejecución de contenedores.
 
-Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nueva del producto. Sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
+Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nuevas del producto. Sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
 
 ### Arquitectura Fork/Exec
 
