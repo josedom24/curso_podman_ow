@@ -73,4 +73,4 @@ $ curl http://localhost:8080
 
 ```
 
-En los aparatados posteriores iremos estudiando con detalle la ejecución de contenedores rootless, y profundizaremos sobre el almacenamiento y las redes en este tipo de contenedores.
+En los apartados posteriores iremos estudiando con detalle la ejecución de contenedores rootless, y profundizaremos sobre el almacenamiento y las redes en este tipo de contenedores.
