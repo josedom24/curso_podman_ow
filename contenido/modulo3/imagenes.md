@@ -14,7 +14,7 @@
 Podman utiliza la librería [`containers/image`](https://github.com/containers/image) para gestionar las imágenes, y poder copiarlas y transferirlas entre distintos medios de almacenamiento. A los distintos medios de almacenamiento se le llama **transportes de imágenes** y podemos usar varios:
 
 * **docker**: Este es el transporte por defecto. Hace referencia a una imagen almacenada en un **Registro remoto de imágenes**. Los registros almacenan y comparten imágenes (por ejemplo, `docker.io` y `quay.io`).
-* **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas e encuentran en el directorio local como archivos individuales.
+* **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas se encuentran en el directorio local como archivos individuales.
 * **dir**: Hace referencia a una imagen con formato Docker, guardado en un directorio local.
 * **oci-archive**: Hace referencia a una imagen con formato OCI comprimida en una archivo tar.
 * **docker-archive**: Hace referencia a una imagen con formato Docker comprimida en una archivo tar.
