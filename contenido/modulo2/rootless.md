@@ -45,7 +45,7 @@ dreamy_fermat
 
 ## Ejecución de contenedores rootless
 
-De manera similar a la ejecución de contenedores roolful, podemos crear crear un contenedor rootless interactivo de la siguiente manera:
+De manera similar a la ejecución de contenedores roolfull, podemos crear crear un contenedor rootless interactivo de la siguiente manera:
 
 ```
 $ podman run -it --name contenedor1 alpine
