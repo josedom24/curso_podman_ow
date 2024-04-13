@@ -2,7 +2,7 @@
 
 Ante de estudiar el funcionamiento de los contenedores rootless, vamos a ver cómo funcionan los contenedores rootful.
 
-## Ejecución de contenedores rootful
+## Ejecución de contenedores rootfull
 
 Como hemos indicado un contenedor rootful es un contenedor ejecutado por root en el host. Pero, ¿Qué usuario ejecuta los procesos dentro del contenedor?. La respuesta a esta pregunta nos ofrece dos posibilidades:
 
