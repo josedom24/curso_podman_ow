@@ -17,4 +17,4 @@ Los contenedores Podman tienen dos modos de ejecución:
         * No pueden gestionar las redes del host.
         * [Más limitaciones](https://github.com/containers/podman/blob/master/rootless.md)
 
-Los primeros ejemplos que vamos a ver en este módulo lo vamos a ejecutar sobre contenedores rootfull, pero serían válidos también para contenedores rootless. Cunado vayamos a ejecutar un contenedor rootfull voy a usar el comando `sudo` para recordar que lo estamos ejecutando con el usuario `root`.
+Los primeros ejemplos que vamos a ver en este módulo lo vamos a ejecutar sobre contenedores rootfull, pero serían válidos también para contenedores rootless. Cuando vayamos a ejecutar un contenedor rootfull voy a usar el comando `sudo` para recordar que lo estamos ejecutando con el usuario `root`.
