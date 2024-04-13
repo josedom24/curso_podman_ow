@@ -10,7 +10,7 @@ Cada árbol de directorio forma lo que denominamos una **capa**. En el siguiente
 
 ![overlay](img/overlay.png)
 
-1. Partimos de la unión de la capa **lower** con la cap **upper** obteniendo un sistema de archivos de unión **merged**. Como vemos en el sistema de archivos de unión encontramos el fichero **F3** que era diferente en la capa **upper**.
+1. Partimos de la unión de la capa **lower** con la capa **upper** obteniendo un sistema de archivos de unión **merged**. Como vemos en el sistema de archivos de unión encontramos el fichero **F3** que era diferente en la capa **upper**.
 2. Si en sistema de archivos de unión **merged** creamos un nuevo fichero **F5** se guardará en la capa superior **upper**.
 3. Si eliminamos el fichero **F2** del sistema de archivos de unión **merged**, esa diferencia se guardaría en la capa superior **upper**.
 4. Si modificamos el fichero **F1** del sistema de archivos de unión **merged**, esa diferencia se guardará en la cpa **upper** pero evidentemente no se modificará la capa **lower**.
