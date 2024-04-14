@@ -22,7 +22,8 @@
     * [Trabajando con Secrets](contenido/modulo2/secrets.md)
     * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo2/web.md)
     * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo2/mariadb.md)
-    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/funcionamiento.md)
+    * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
+    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI en Podman
     * [Imágenes de contenedor](contenido/modulo3/imagenes.md)
     * [Introducción a los sistemas de archivos de unión](contenido/modulo3/overlay.md)
