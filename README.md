@@ -18,10 +18,7 @@
     * [Ejecución de contenedores interactivos](contenido/modulo2/interactivo.md)
     * [Ejecución de contenedores demonios](contenido/modulo2/demonio.md)
     * [Gestión de contenedores](contenido/modulo2/gestion.md)
-    * [Limitando los recursos utilizados por un contenedor](contenido/modulo2/recursos.md)
-    * [Trabajando con Secrets](contenido/modulo2/secrets.md)
-    * [Ejemplo: Ejecución de un contenedor con un servidor web](contenido/modulo2/web.md)
-    * [Ejemplo: Ejecución de un contenedor con un servidor de base de datos](contenido/modulo2/mariadb.md)
+    * [Configuración de contenedores](contenido/modulo2/mariadb.md)    
     * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
     * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI en Podman
