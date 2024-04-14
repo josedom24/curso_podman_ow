@@ -1,4 +1,4 @@
-# Ejecutando un contenedor demonio
+# Ejecución de contenedores demonios
 
 En esta ocasión hemos utilizado la opción `-d` del comando `podman run`, para que la ejecución del comando en el contenedor se haga en segundo plano, de manera desatendida, sin estar conectada a la entrada y salida estándar.
 

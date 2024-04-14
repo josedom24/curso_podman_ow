@@ -1,4 +1,4 @@
-# Ejecutando un contenedor interactivo
+# Ejecución de contenedores interactivos
 
 Hemos usado el comando `podman run` para crear y ejecutar contenedores. Este comando tiene muchas opciones, veamos algunas de ellas:
 

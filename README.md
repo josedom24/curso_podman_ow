@@ -15,8 +15,8 @@
 2. Ejecución de contenedores OCI con Podman
     * [El "Hola Mundo" en Podman](contenido/modulo2/holamundo.md)
     * [Ejecución simple de contenedores](contenido/modulo2/contenedor.md)
-    * [Ejecutando un contenedor interactivo](contenido/modulo2/interactivo.md)
-    * [Ejecutando un contenedor demonio](contenido/modulo2/demonio.md)
+    * [Ejecución de contenedores interactivos](contenido/modulo2/interactivo.md)
+    * [Ejecución de contenedores demonios](contenido/modulo2/demonio.md)
     * [Gestión de contenedores](contenido/modulo2/gestion.md)
     * [Limitando los recursos utilizados por un contenedor](contenido/modulo2/recursos.md)
     * [Trabajando con Secrets](contenido/modulo2/secrets.md)
