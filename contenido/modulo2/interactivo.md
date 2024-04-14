@@ -24,16 +24,16 @@ CONTAINER ID  IMAGE                            COMMAND     CREATED         STATU
 En este caso usamos la opción `-i` para abrir una sesión interactiva, `-t` nos permite crear un pseudo-terminal que nos va a permitir interaccionar con el contenedor. El comando que vamos a ejecutar en el contenedor es `bash` para que podamos acceder al terminal:
 
 ```
-$ sudo podman run -it --name contenedor2 -h cont1 ubuntu bash 
+$ podman run -it --name contenedor2 -h cont1 ubuntu bash 
 root@cont1:/#
 ```
 
 El contenedor se para cuando salimos de él. Para volver a conectarnos a él:
 
 ```
-$ sudo podman start contenedor2
+$ podman start contenedor2
 contendor2
-$ sudo podman attach contenedor2
+$ podman attach contenedor2
 root@cont1:/#
 ```
 
@@ -42,7 +42,7 @@ Con `podman attach` nos conectamos a la entrada estándar y a la salida estánda
 En realidad, todas las imágenes tienen definidas un proceso que se ejecuta por defecto si no se indica de manera explicita cuando creamos el contenedor. En concreto, la imagen `ubuntu` ( y en general todas las imágenes que corresponden al sistemas operativos) tiene definida por defecto el proceso `bash`, por lo que podríamos haber ejecutado:
 
 ```
-$ sudo podman run -it --name contenedor2 ubuntu
+$ podman run -it --name contenedor2 ubuntu
 ```
 
 ## Eliminación automática de un contenedor 

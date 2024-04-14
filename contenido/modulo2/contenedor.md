@@ -7,6 +7,7 @@ Para descargar la imagen ejecutamos:
 
 ```
 $ sudo podman pull ubuntu
+Resolved "ubuntu" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
 Trying to pull docker.io/library/ubuntu:latest...
 Getting image source signatures
 Copying blob bccd10f490ab done   | 
@@ -46,26 +47,36 @@ CONTAINER ID  IMAGE                            COMMAND           CREATED        
 
 ## ¿Qué ocurre cuando creamos un contenedor?
 
-Para terminar podemos ver las distintas etapas por las que pasa la creación de un contenedor ejecutando `podman events`. Para ello en una terminal ejecutamos el comando:
+Para terminar podemos ver las distintas etapas por las que pasa la creación de un contenedor ejecutando `podman events`. Para ello en una terminal vamos a crear un contenedor rootless y en otra terminal ejecutamos `podman events`
+
+En el primer terminal:
 
 ```
-$ sudo podman events
+$ podman run ubuntu echo 'Hello world' 
+Resolved "ubuntu" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/ubuntu:latest...
+Getting image source signatures
+Copying blob bccd10f490ab done   | 
+Copying config ca2b0f2696 done   | 
+Writing manifest to image destination
+Hello world
 ```
 
-Y en otro terminal ejecutamos un contenedor:
+Como es de esperar el usuario sin privilegio que crea el contenedor rootless no tiene guardada en su registro local la imagen `docker.io/library/ubuntu:latest` por lo que se la baja de nuevo.
+
+Es importante tener en cuenta que cada usuario tiene su propio conjunto de imágenes descargadas, es decir:
+
+* Si creamos contenedores rootful con el usuario `root`, las imágenes se guardarán en el directorio `/var/lib/containers/storage`.
+* Si creamos contenedores rootless con el usuario `usuario`, las imágenes se guardarán en el directorio `/home/usuario/.local/share/containers/storage`.
+
+En el segundo terminal veremos las operaciones que se han dio produciendo:
 
 ```
-$ sudo podman run ubuntu echo 'Hello world' 
-```
-
-En el primer terminal veremos las operaciones que se han dio produciendo:
-
-```
-2024-03-18 08:27:46.280712472 +0000 UTC image pull ca2b0f26964cf2e80ba3e084d5983dab293fdb87485dc6445f3f7bbfc89d7459 ubuntu
-2024-03-18 08:27:46.388517553 +0000 UTC container create d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
-2024-03-18 08:27:46.986584664 +0000 UTC container init d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
-2024-03-18 08:27:47.016922576 +0000 UTC container start d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
-2024-03-18 08:27:47.054394528 +0000 UTC container attach d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
-2024-03-18 08:27:47.055102924 +0000 UTC container died d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
-2024-03-18 08:27:47.595430945 +0000 UTC container cleanup d9873a66cbf1b0b81f9ffa96914cf2deedaa65cdacb94a27ad6c7ddd193e84ef (image=docker.io/library/ubuntu:latest, name=angry_austin, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:20.592277325 +0000 UTC image pull ca2b0f26964cf2e80ba3e084d5983dab293fdb87485dc6445f3f7bbfc89d7459 ubuntu
+2024-04-14 19:24:20.956225765 +0000 UTC container create 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:21.502238172 +0000 UTC container init 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:21.544584186 +0000 UTC container start 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:21.602046252 +0000 UTC container attach 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:21.603927126 +0000 UTC container died 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
+2024-04-14 19:24:23.146601679 +0000 UTC container cleanup 80c2732ff6dbb93a9e95d0a218176a14bd9db537f200de92d3a192ba2b018785 (image=docker.io/library/ubuntu:latest, name=eloquent_noether, org.opencontainers.image.ref.name=ubuntu, org.opencontainers.image.version=22.04)
 ```

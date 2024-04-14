@@ -37,6 +37,27 @@ Hay que tener en cuenta que un contenedor que esta ejecutándose no puede ser el
 ```
 $ sudo podman rm -f contenedor4
 ```
+## Ejecución de contenedores demonios rootless
+
+Para crear un contenedor demonio, podemos ejecutar la siguiente instrucción:
+
+```
+$ podman run -d --name miweb -p 8080:80 quay.io/libpod/banner
+```
+
+* La imagen `quay.io/libpod/banner` es un servidor web con una página predeterminada. Es una imagen muy liviana.
+* Al crear un contenedor rootless no podemos utilizar los puertos privilegiados (menores del 1024), por lo que hemos mapeado el puerto 8080.
+
+Para comprobar que funciona, podemos acceder desde el mismo host. Por ejemplo, con la herramienta `curl`:
+
+```
+$ curl http://localhost:8080
+   ___          __              
+  / _ \___  ___/ /_ _  ___ ____ 
+ / ___/ _ \/ _  /  ' \/ _ `/ _ \
+/_/   \___/\_,_/_/_/_/\_,_/_//_/
+
+```
 
 ## Configuración de contenedores con variables de entorno
 
@@ -45,7 +66,7 @@ Más adelante veremos que al crear un contenedor que necesita alguna configuraci
 Para crear una variable de entorno al crear un contenedor usamos el flag `-e` o `--env`:
 
 ```
-$ sudo podman run -it --name contenedor5 -e USUARIO=prueba ubuntu
+$ podman run -it --name contenedor5 -e USUARIO=prueba ubuntu
 root@145b1105bc62:/# echo $USUARIO
 prueba
 ```
