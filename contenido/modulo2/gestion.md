@@ -5,16 +5,16 @@
 Para ver un ejemplo de los comandos que gestionan el ciclo de vida de un contenedor vamos a ejecutar un contenedor demonio que va escribiendo la hora cada segundo, para ver la salida visualizamos sus logs:
 
 ```
-$ sudo podman run -d --name hora-container ubuntu bash -c 'while true; do echo $(date +"%T"); sleep 1; done'
-$ sudo podman logs -f hora-container
+$ podman run -d --name hora-container ubuntu bash -c 'while true; do echo $(date +"%T"); sleep 1; done'
+$ podman logs -f hora-container
 ```
 En otra terminal vamos ejecutando los comandos que nos permiten controlar su ciclo de vida:
 
-* `sudo podman start`: Inicia la ejecución de un contenedor que está parado.
-* `sudo podman stop`: Detiene la ejecución de un contenedor en ejecución.
-* `sudo podman restart`: Para y vuelve a iniciar la ejecución de un contenedor.
-* `sudo podman pause`: Pausa la ejecución de un contenedor.
-* `sudo podman unpause`: Continúa la ejecución de un contenedor que estaba pausado..
+* `podman start`: Inicia la ejecución de un contenedor que está parado.
+* `podman stop`: Detiene la ejecución de un contenedor en ejecución.
+* `podman restart`: Para y vuelve a iniciar la ejecución de un contenedor.
+* `podman pause`: Pausa la ejecución de un contenedor.
+* `podman unpause`: Continúa la ejecución de un contenedor que estaba pausado..
 
 
 ## Ejecución de comandos en contenedores
@@ -22,12 +22,12 @@ En otra terminal vamos ejecutando los comandos que nos permiten controlar su cic
 Si tenemos un contenedor que está iniciado, podemos ejecutar comandos en él con `podman exec`. En esta ocasión vamos a crear un contenedor que hace algo parecido al anterior, pero en este caso guarda la hora en un fichero cada segundo:
 
 ```
-$ sudo podman run -d --name hora-container2 ubuntu bash -c 'while true; do date +"%T" >> hora.txt; sleep 1; done'
-$ sudo podman exec hora-container2 ls
+$ podman run -d --name hora-container2 ubuntu bash -c 'while true; do date +"%T" >> hora.txt; sleep 1; done'
+$ podman exec hora-container2 ls
 ...
 hora.txt
 ...
-$ sudo podman exec hora-container2 cat hora.txt
+$ podman exec hora-container2 cat hora.txt
 ```
 
 ## Copiar ficheros en contenedores
@@ -36,20 +36,20 @@ Con el comando `podman cp` podemos copiar ficheros a o desde un contenedor. Por 
 
 ```
 $ echo "Curso Podman">podman.txt
-$ sudo podman cp podman.txt hora-container2:/tmp
+$ podman cp podman.txt hora-container2:/tmp
 ```
 
 Podemos comprobar que el fichero existe en el contenedor:
 
 ```
-$ sudo podman exec hora-container2 cat /tmp/podman.txt
+$ podman exec hora-container2 cat /tmp/podman.txt
 Curso Podman
 ```
 
 Evidentemente, también podemos copiar ficheros desde el contenedor a nuestro equipo:
 
 ```
-$ sudo podman cp hora-container2:hora.txt .
+$ podman cp hora-container2:hora.txt .
 ```
 
 ## Visualizar procesos que se ejecutan en un contenedor
@@ -57,7 +57,7 @@ $ sudo podman cp hora-container2:hora.txt .
 Podemos visualizar los procesos que se están ejecutando en un contenedor con el comando `docker top`:
 
 ```
-$ sudo podman top hora-container2
+$ podman top hora-container2
 ```
 
 ## Obtener información de los contenedores
@@ -65,7 +65,7 @@ $ sudo podman top hora-container2
 Para obtener información de cualquier objeto Docker vamos a usar el subcomando `inspect`. En el caso de los contenedores, ejecutamos:
 
 ```
-$ sudo podman inspect hora-container2
+$ podman inspect hora-container2
 ```
 Nos muestra mucha información en formato JSON (JavaScript Object Notation) y nos da datos sobre aspectos como:
 
@@ -83,31 +83,31 @@ Como nos devuelve mucha información podemos filtrar los campos que nos interesa
 El identificado del contenedor:
 
 ```
-$ sudo podman inspect --format='{{.Id}}' hora-container2
+$ podman inspect --format='{{.Id}}' hora-container2
 ```
 
 El nombre de la imagen que hemos usado para crear el contenedor:
 
 ```
-$ sudo podman inspect --format='{{.Config.Image}}' hora-container2
+$ podman inspect --format='{{.Config.Image}}' hora-container2
 ```
 
 El valor de las variables de entorno definidas en el contenedor:
 
 ```
-$ sudo podman container inspect --format '{{range .Config.Env}}{{println .}}{{end}}' hora-container2
+$ podman container inspect --format '{{range .Config.Env}}{{println .}}{{end}}' hora-container2
 ```
 
 El comando que hemos ejecutado en el contenedor:
 
 ```
-$ sudo podman inspect --format='{{range .Config.Cmd}}{{println .}}{{end}}' hora-container2
+$ podman inspect --format='{{range .Config.Cmd}}{{println .}}{{end}}' hora-container2
 ```
 
 La dirección IP que tiene el contenedor:
 
 ```
-$ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hora-container2
+$ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hora-container2
 ```
 
 ## Etiquetando los contenedores con Labels
@@ -117,13 +117,13 @@ Las etiquetas son un mecanismo para guardar metadatos en los objetos Docker: en 
 Una etiqueta es una información del tipo clave-valor, almacenado como una cadena. Para etiquetar un contenedor en su creación utilizaremos el parámetro `-l` (`--label`).
 
 ```
-$ sudo podman run -l servicio=bd -l entorno=produccion --name contenedor ubuntu
+$ podman run -l servicio=bd -l entorno=produccion --name contenedor ubuntu
 ```
 
 Hay que tener en cuenta que estos contenedores tendrán además de las etiquetas indicadas en su creación, las etiquetas que estén definidas en la imagen que hemos utilizado para su creación.
 
 ```
-$ sudo podman inspect --format '{{range $key, $value := .Config.Labels}}{{$key}}: {{$value}}{{"\n"}}{{end}}' contenedor
+$ podman inspect --format '{{range $key, $value := .Config.Labels}}{{$key}}: {{$value}}{{"\n"}}{{end}}' contenedor
 entorno: produccion
 org.opencontainers.image.ref.name: ubuntu
 org.opencontainers.image.version: 22.04
@@ -135,7 +135,7 @@ A la hora de listar los contenedores podemos filtrar por varios criterios, entre
 Mostrar los contenedores que tienen la etiqueta entorno con el valor `produccion`:
 
 ```
-sudo podman ps -a --filter="label=entorno=produccion"
+podman ps -a --filter="label=entorno=produccion"
 ```
 
 
