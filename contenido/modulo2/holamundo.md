@@ -108,7 +108,7 @@ Hola Mundo!!!
 En este caso:
 
 1. Hemos ejecutado la instrucción `podman run` con un usuario sin privilegios.
-2. Al indicar la imagen hemos usado su nombre completo, indicando el nombre del registro, el nombre del usuario, el nombre de la iamge, y el nombre de la etiqueta (si no se indica el nombre de la etiqueta se escogerá por defecto `latest`).
+2. Al indicar la imagen hemos usado su nombre completo, indicando el nombre del registro, el nombre del usuario, el nombre de la imagen, y el nombre de la etiqueta (si no se indica el nombre de la etiqueta se escogerá por defecto `latest`).
 3. Se crea el contenedor que ejecuta un comando por defecto que muestra el mensaje que hemos leído y se detiene.
 
 Cada usuario gestiona sus imágenes y sus contenedores, por lo tanto el usuario sin privilegio no veo las imágenes ni los contenedores del `root`:
@@ -121,6 +121,7 @@ quay.io/josedom24/hola-mundo   latest       3ab8e3c3fd4e  15 minutes ago  7.68 M
 $ podman ps -a
 CONTAINER ID  IMAGE                                COMMAND           CREATED        STATUS                    PORTS       NAMES
 1e2b7e2a7494  quay.io/josedom24/hola-mundo:latest  ash /opt/hola.sh  3 minutes ago  Exited (0) 8 minutes ago              gracious_dubinsky
+```
 
 ## Creación de contenedores sin ejecutarlos
 
