@@ -15,8 +15,6 @@ Writing manifest to image destination
 ca2b0f26964cf2e80ba3e084d5983dab293fdb87485dc6445f3f7bbfc89d7459
 ```
 
-**Nota:** En este caso no indicamos el nombre del registro, ya que la imagen ubuntu esta definida en el fichero `/etc/containers/registries.conf.d/000-shortnames.conf` donde indicamos alias a los nombres de las imágenes para que sea más fácil su gestión.
-
 A continuación, creamos y ejecutamos un nuevo contenedor indicando el comando que va a ejecutar:
 
 ```
