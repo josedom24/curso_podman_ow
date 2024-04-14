@@ -2,7 +2,7 @@
 
 Vamos a usar la instrucción `podman-compose` para gestionar el ciclo de vida del escenario que tenemos definido en el fichero `compose.yaml`. 
 
-Vamos a ejecutar este fichero con el comando `sudo` por lo que vamos a crear contenedores rootfull.
+Vamos a ejecutar este fichero con el comando `sudo` por lo que vamos a crear contenedores Rootful.
 
 Puedes encontrar el fichero en el [Repositorio con el código de los ejemplos](...).
 

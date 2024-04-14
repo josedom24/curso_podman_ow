@@ -1,6 +1,6 @@
 # Gestionando volúmenes y redes con Systemd y Quadlet
 
-En este ejemplo, vamos a gestionar un contenedor rootfull ofreciendo un servidor de base de datos MariaDB. el contenedor será persistente usando un volumen y estará conectado a una red bridge definida por el usuario.
+En este ejemplo, vamos a gestionar un contenedor Rootful ofreciendo un servidor de base de datos MariaDB. el contenedor será persistente usando un volumen y estará conectado a una red bridge definida por el usuario.
 
 Para ello vamos a crear tres plantillas de unidad de Systemd, en el directorio `/etc/containers/systemd`.
 

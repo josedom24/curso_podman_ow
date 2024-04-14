@@ -58,7 +58,7 @@ CONTAINER ID  IMAGE                                    COMMAND               CRE
 
 ## Ejecución de Pods con Systemd y Quadlet (Podman 5)
 
-En este ejemplo, vamos a gestionar un Pod rootfull con un contenedor ofreciendo un servidor web de prueba.
+En este ejemplo, vamos a gestionar un Pod Rootful con un contenedor ofreciendo un servidor web de prueba.
 
 Para ello vamos a crear dos plantillas de unidad de Systemd, en el directorio `/etc/containers/systemd`.
 

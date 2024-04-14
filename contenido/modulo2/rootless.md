@@ -1,6 +1,6 @@
 # Introducción a los contenedores rootless
 
-Todos los ejemplos que hemos estudiado en los apartados anteriores han sido de contenedoires rootfull. En este apartado vamos a ejecutar nuestro primer contenedor rootless. Cómo hemos indicado anterioriormente, un contenedor rootless, es un contenedor que puede ejecutarse sin privilegios de `root` en el host. Por lo tanto los siguientes comandos lo vamos a ejecutar con un usuario sin privilegios, y por lo tanto no vamos a usar `sudo`.
+Todos los ejemplos que hemos estudiado en los apartados anteriores han sido de contenedoires Rootful. En este apartado vamos a ejecutar nuestro primer contenedor rootless. Cómo hemos indicado anterioriormente, un contenedor rootless, es un contenedor que puede ejecutarse sin privilegios de `root` en el host. Por lo tanto los siguientes comandos lo vamos a ejecutar con un usuario sin privilegios, y por lo tanto no vamos a usar `sudo`.
 
 ## Ejecución de nuestro primer contenedor rootless
 

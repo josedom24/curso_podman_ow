@@ -14,7 +14,7 @@
     * Instalación de Podman en Windows
 2. Ejecución de contenedores OCI con Podman
     * [El "Hola Mundo" en Podman](contenido/modulo2/holamundo.md)
-    * [Rootfull us Rootless](contenido/modulo2/introduccion.md)
+    * [Rootful us Rootless](contenido/modulo2/introduccion.md)
     * [Ejecución simple de contenedores](contenido/modulo2/contenedor.md)
     * [Ejecutando un contenedor interactivo](contenido/modulo2/interactivo.md)
     * [Ejecutando un contenedor demonio](contenido/modulo2/demonio.md)
