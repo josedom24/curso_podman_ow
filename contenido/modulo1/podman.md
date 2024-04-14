@@ -17,16 +17,25 @@
 
 Podman se ha desarrollado después de Docker, por lo que sus creadores se han basado en muchas de sus funcionalidades. Entre ellas, el CLI, las opciones de línea de comandos de Podman son muy similares al CLI de Docker, por lo que en un primer momento basta con cambiar el comando `docker` por `podman` y podemos empezar a trabajar con contenedores. Muchas distribuciones Linux ofrecen un paquete llamado `podman-docker` que añade un alias para que al poner el comando `docker` se ejecute el comando `podman`.
 
+### Rootful us Rootless
 
-### Contenedores rootless
+Los contenedores Podman tienen dos modos de ejecución:
 
-Probablemente la característica más significativa de Podman es su capacidad para ejecutar contenedores por un usuario sin privilegios. No es necesario usar `root` para la ejecución de contenedores.
-
-Esto es útil, cuando queremos que cualquier usuario del sistema pueda ejecutar contenedores y construir imágenes de contenedores, sin requerir acceso de `root`. 
-
-Esta característica nos ofrece un alto grado de seguridad en la ejecución de contenedores.
-
-Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nuevas del producto. Sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
+* **Contenedor rootful**: es un contenedor ejecutado por `root` en el host. Por lo tanto, tiene acceso a toda la funcionalidad que el usuario `root` tiene. 
+    * De todas maneras, es posible que algunos procesos ejecutados en el contenedor no se ejecuten como `root`. 
+    * Este modo de funcionamiento puede tener problemas de seguridad, ya que si hay una vulnerabilidad en la funcionalidad, el usuario del contenedor será `root` con los posibles riesgos de seguridad que esto conlleva.
+    * Aunque en Docker también se puede hacer uso de esta [característica](https://docs.docker.com/engine/security/rootless/), su implantación se ha introducido en versiones más nuevas del producto. Sin embargo, en Podman está característica fue desarrolla desde el comienzo del proyecto.
+* **Contenedor rootless**: es un contenedor que puede ejecutarse sin privilegios de `root` en el host. 
+    * Podman no utiliza ningún demonio y no necesita `root` para ejecutar contenedores.
+    * Esto no significa que el usuario dentro del contenedor no sea `root`, aunque sea el usuario por defecto.
+    * Si tenemos una vulnerabilidad en la ejecución del contenedor, el atacante no obtendrá privilegios de `root` en el host.
+    * Estos contenedores tienen algunas limitaciones:
+        * No tienen acceso a todas las características del sistema operativo.
+        * No se pueden crear contenedores que se unan a puertos privilegiados (menores que 1024).
+        * Algunos modos de almacenamiento pueden dar problemas.
+        * Por defecto, no se puede hacer `ping` a servidores remotos.
+        * No pueden gestionar las redes del host.
+        * [Más limitaciones](https://github.com/containers/podman/blob/master/rootless.md)
 
 ### Arquitectura Fork/Exec
 
