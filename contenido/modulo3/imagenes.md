@@ -1,4 +1,4 @@
-# Imágenes de contenedor
+# Introducción a las imágenes OCI
 
 ## ¿Qué es una imagen?
 
@@ -8,6 +8,14 @@
 * Podemos crear nuestras propias imágenes o utilizar las creadas por otros y publicadas en un registro. 
 * Un contenedor es una instancia ejecutable de una imagen. 
 * Con Podman, Buildah y Skopeo trabajamos con imágenes OCI, cuyo formato difieren de las imágenes de Docker, aunque son totalmente compatibles.
+
+## Especificación de imagen OCI
+
+* [Open Container Initiative (OCI)](https://opencontainers.org/) es la organización responsable de estandarizar las especificaciones referentes al trabajo con los contenedores. 
+* Una de las especificaciones que desarrolla es el **formato de imagen** (Open Container Initiative Image Format normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software. Con esto conseguimos que distintas aplicaciones (motores de contenedores, registros de imágenes,...) puedan trabajar con el mismo formato de imágenes.
+* El formato de las imágenes Docker, llamado **Docker V2** difiere al formato de imágenes OCI, pero son totalmente compatibles.
+* Otra de las especificaciones desarrolladas por esta entidad es cómo se **distribuyen las imágenes y como se almacenan en los registros de imágenes**. La especificación OCI de distribución de imágenes está basada en la especificación Docker de distribución.
+* En resumen, estas especificaciones estandarizan la manera en que se construyen y almacenan las imágenes de contenedores: dónde se guarda su configuración y cómo se almacena su sistema de ficheros en distintas capas para posteriormente crear el sistema de archivos del contenedor usando un driver de almacenamiento.
 
 ## Medios de almacenamiento de imágenes
 
@@ -37,7 +45,7 @@ Posteriormente estudiaremos la herramienta **skopeo** que es un cliente de la li
    * `registry.access.redhat.com`: Es otro registro ofrecido por Red Hat, que ofrece imágenes de contenedores certificadas y soportadas por Red Hat Enterprise Linux (RHEL), OpenShift y otras tecnologías relacionadas con Red Hat.
    * `registry.fedoraproject.org`: Es un registro de imágenes de contenedores mantenido por el Proyecto Fedora. Contiene imágenes de contenedores basadas en Fedora y otras tecnologías relacionadas con Fedora.
    * ...
-   
+
 ## Nombre de las imágenes
 
 El nombre de una imagen suele estar formado por varios elementos:
