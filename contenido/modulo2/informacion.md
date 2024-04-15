@@ -1,46 +1,17 @@
-# Gestión de contenedores Docker
+# Obteniendo información de los contenedores
 
-## Ejecución de comandos en contenedores
-
-Si tenemos un contenedor que está iniciado, podemos ejecutar comandos en él con `podman exec`. En esta ocasión vamos a crear un contenedor que hace algo parecido al anterior, pero en este caso guarda la hora en un fichero cada segundo:
+En esta ocasión vamos a usar la imagen la imagen `quay.io/libpod/banner` que nos ofrece un servidor web con una página predeterminada. Es una imagen muy liviana.
 
 ```
-$ podman run -d --name hora-container2 ubuntu bash -c 'while true; do date +"%T" >> hora.txt; sleep 1; done'
-$ podman exec hora-container2 ls
-...
-hora.txt
-...
-$ podman exec hora-container2 cat hora.txt
-```
-
-## Copiar ficheros en contenedores
-
-Con el comando `podman cp` podemos copiar ficheros a o desde un contenedor. Por ejemplo, si tengo un fichero en mi equipo lo puedo copiar al contenedor:
-
-```
-$ echo "Curso Podman">podman.txt
-$ podman cp podman.txt hora-container2:/tmp
-```
-
-Podemos comprobar que el fichero existe en el contenedor:
-
-```
-$ podman exec hora-container2 cat /tmp/podman.txt
-Curso Podman
-```
-
-Evidentemente, también podemos copiar ficheros desde el contenedor a nuestro equipo:
-
-```
-$ podman cp hora-container2:hora.txt .
+$ podman run -d --name webserver -p 8081:80 quay.io/libpod/banner
 ```
 
 ## Visualizar procesos que se ejecutan en un contenedor
 
-Podemos visualizar los procesos que se están ejecutando en un contenedor con el comando `docker top`:
+Podemos visualizar los procesos que se están ejecutando en un contenedor con el comando `podman top`:
 
 ```
-$ podman top hora-container2
+$ podman top webserver
 ```
 
 ## Obtener información de los contenedores
@@ -48,7 +19,7 @@ $ podman top hora-container2
 Para obtener información de cualquier objeto Docker vamos a usar el subcomando `inspect`. En el caso de los contenedores, ejecutamos:
 
 ```
-$ podman inspect hora-container2
+$ podman inspect webserver
 ```
 Nos muestra mucha información en formato JSON (JavaScript Object Notation) y nos da datos sobre aspectos como:
 
@@ -66,36 +37,36 @@ Como nos devuelve mucha información podemos filtrar los campos que nos interesa
 El identificado del contenedor:
 
 ```
-$ podman inspect --format='{{.Id}}' hora-container2
+$ podman inspect --format='{{.Id}}' webserver
 ```
 
 El nombre de la imagen que hemos usado para crear el contenedor:
 
 ```
-$ podman inspect --format='{{.Config.Image}}' hora-container2
+$ podman inspect --format='{{.Config.Image}}' webserver
 ```
 
 El valor de las variables de entorno definidas en el contenedor:
 
 ```
-$ podman container inspect --format '{{range .Config.Env}}{{println .}}{{end}}' hora-container2
+$ podman container inspect --format '{{range .Config.Env}}{{println .}}{{end}}' webserver
 ```
 
 El comando que hemos ejecutado en el contenedor:
 
 ```
-$ podman inspect --format='{{range .Config.Cmd}}{{println .}}{{end}}' hora-container2
+$ podman inspect --format='{{range .Config.Cmd}}{{println .}}{{end}}' webserver
 ```
 
 La dirección IP que tiene el contenedor:
 
 ```
-$ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hora-container2
+$ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' webserver
 ```
 
 ## Etiquetando los contenedores con Labels
 
-Las etiquetas son un mecanismo para guardar metadatos en los objetos Docker: en contenedores, imágenes, volúmenes, redes, etc. Podemos utilizar etiquetas para organizar los distintos objetos Docker que estemos utilizando.
+Las etiquetas son un mecanismo para guardar metadatos en los objetos Podman: en contenedores, imágenes, volúmenes, redes, etc. Podemos utilizar etiquetas para organizar los distintos objetos Podman que estemos utilizando.
 
 Una etiqueta es una información del tipo clave-valor, almacenado como una cadena. Para etiquetar un contenedor en su creación utilizaremos el parámetro `-l` (`--label`).
 
