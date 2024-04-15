@@ -134,4 +134,34 @@ En resumen:
 ![resumen](img/rootless.png)
 
 
+## Ejemplos de modos de funcionamiento de los contenedores
+
+Veamos cómo podemos ejecutar contenedores con un servidor web usando los cuatro mods que hemos estudiado. Para ello, vamos a utilizar dos imágenes:
+
+* `docker.io/nginx`: Imagen oficial del servidor web nginx. El proceso de nginx se ejecuta dentro del contenedor con el usuario `root`. El servicio se ofrece en el puerto 80/tcp.
+* `dokcer.io/bitnami/nginx`: Imagen de la empresa bitnami, que ofrece un servidor web nginx. El proceso nginx se ejecuta dentro del contenedor con un usuario sin privilegio, por lo tanto dentro del contenedor el usuario no puede usar el puerto 80/tcp, se ejecuta nginx en el puerto 8080/tcp.
+
+**Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose como root**
+
+```
+$ sudo podman run -d -p 80:80 --name webserver docker.io/nginx
+```
+
+**Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose con usuarios no privilegiados**
+
+```
+$ sudo podman run -d -p 80:8080 --name webserver docker.io/bitnami/nginx
+```
+
+**Ejecución de contenedores rootless, con procesos en el contenedor ejecutándose como root**
+
+```
+$ podman run -d -p 8080:80 --name webserver docker.io/nginx
+```
+
+**Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose con usuarios no privilegiados**
+
+```
+$ podman run -d -p 8080:8080 --name webserver docker.io/bitnami/nginx
+```
 
