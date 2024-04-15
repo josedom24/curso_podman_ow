@@ -1,18 +1,5 @@
 # Almacenamiento de imágenes
 
-Las imágenes de contenedor se construyen a partir de de dos elementos:
-
-* Una configuración: donde se guarda la metainformación de la imagen, por ejemplo se indica el comando que se ejecuta en el contenedor que ejecutemos a a partir de la imagen.
-* Un sistema de archivos de unión, que estará formado por varias **capas ordenadas**. 
-
-Veamos las implicaciones que tiene el uso de sistemas de archivos de unión en la estructura de una imagen de contenedor:
-
-* Como hemos estudiado anteriormente, podemos pensar en una capa como un conjunto de cambios en el sistema de archivos. Es decir, un conjunto de diferencias con respecto a la capa anterior que se guardan en diferentes directorios.
-* En el proceso de creación de las imágenes, los comandos que cambian el sistema de archivos (instalaciones, modificación de ficheros, copiar ficheros,...) producen una nueva capa.
-* Si tienes muchas imágenes basadas en capas similares (capas que contienen sistemas operativos similares o ficheros comunes), entonces todas estas capas comunes serán almacenadas sólo una vez.
-
-## Almacenamiento de una imagen OCI en Podman
-
 Podman puede usar varios drivers para gestionar el sistema de archivos de unión que constituye una imagen: overlay, vfs, devmapper, aufs, btrfs, zfs,...
 
 El driver de almacenamiento que se usa por defecto para gestionar el conjunto de capas que forman parte de una imagen en la versión actual de Podman es **Overlay v2**. 
