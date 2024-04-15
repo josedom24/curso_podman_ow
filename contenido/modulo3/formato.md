@@ -134,7 +134,7 @@ $ mount -t overlay overlay -o lowerdir=lower1:lower2:lower3,upperdir=upper,workd
 ```
 
 
-## Concluusiones
+## Conclusiones
 
 
 Veamos las implicaciones que tiene el uso de sistemas de archivos de unión en la estructura de una imagen de contenedor:
