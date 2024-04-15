@@ -24,8 +24,8 @@
     * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
     * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI en Podman
-    * [Imágenes de contenedor](contenido/modulo3/imagenes.md)
-    * [Introducción a los sistemas de archivos de unión](contenido/modulo3/overlay.md)
+    * [Introducción a las imágenes OCI](contenido/modulo3/imagenes.md)
+    * [Introducción al formato de imagen OCI](contenido/modulo3/formato.md)
     * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md)
     * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md)
     * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md)

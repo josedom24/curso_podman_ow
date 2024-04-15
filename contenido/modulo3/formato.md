@@ -1,12 +1,20 @@
-# Introducción a los sistemas de archivos de unión
+# Introducción al formato de imagen OCI
 
-Un **Sistema de Archivos Unión (UnionFS)** en Linux nos permite fusionar el contenido de uno o varios sistemas de archivos (directorios) mientras se mantiene el contenido físicamente separado. 
+Las imágenes de contenedor se construyen a partir de de dos elementos:
 
-Existen varios sistemas de archivos que me permiten crear un sistema de archivos de unión, por ejemplo OverlayFS, AUFS, btrfs, UnionFS, ...
+* Una configuración: donde se guarda la metainformación de la imagen, por ejemplo se indica el comando que se ejecuta en el contenedor que ejecutemos a a partir de la imagen.
+* Un sistema de archivos de unión, que estará formado por varias **capas ordenadas**. 
 
-En este ejemplo, vamos a usar el sistema **OverlayFS**, que nos permite superponer arboles de directorios, almacenando sólo las diferencias, pero mostrando el último árbol de directorios actualizado cómo si fuera un sólo conjunto de directorios. Este sistema de archivo está incluido en el kernel de Linux y se activa de forma dinámica una vez que se inicia un montaje con este sistema de archivos.
+## Sistemas de archivos de unión
 
-Cada árbol de directorio forma lo que denominamos una **capa**. En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llama do `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión , que estará guardado en el directorio **merge**.
+* Un **Sistema de Archivos Unión (UnionFS)** en Linux nos permite fusionar el contenido de uno o varios sistemas de archivos (directorios) mientras se mantiene el contenido físicamente separado. 
+* Existen varios sistemas de archivos que me permiten crear un sistema de archivos de unión, por ejemplo OverlayFS, AUFS, btrfs, UnionFS, ...
+* Por ejemplo, el sistema **OverlayFS**, nos permite superponer arboles de directorios, almacenando sólo las diferencias, pero mostrando el último árbol de directorios actualizado cómo si fuera un sólo conjunto de directorios. Este sistema de archivo está incluido en el kernel de Linux y se activa de forma dinámica una vez que se inicia un montaje con este sistema de archivos.
+* Cada árbol de directorio forma lo que denominamos una **capa**. 
+
+### Ejemplo se sistema de archivo OvertlayFS
+
+En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llama do `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión , que estará guardado en el directorio **merge**.
 
 ![overlay](img/overlay.png)
 
@@ -124,3 +132,13 @@ Para terminar indicar que la capa inferior `lowerdir` de sólo lectura se puede 
 ```
 $ mount -t overlay overlay -o lowerdir=lower1:lower2:lower3,upperdir=upper,workdir=work merged
 ```
+
+
+## Concluusiones
+
+
+Veamos las implicaciones que tiene el uso de sistemas de archivos de unión en la estructura de una imagen de contenedor:
+
+* Como hemos estudiado anteriormente, podemos pensar en una capa como un conjunto de cambios en el sistema de archivos. Es decir, un conjunto de diferencias con respecto a la capa anterior que se guardan en diferentes directorios.
+* En el proceso de creación de las imágenes, los comandos que cambian el sistema de archivos (instalaciones, modificación de ficheros, copiar ficheros,...) producen una nueva capa.
+* Si tienes muchas imágenes basadas en capas similares (capas que contienen sistemas operativos similares o ficheros comunes), entonces todas estas capas comunes serán almacenadas sólo una vez.
