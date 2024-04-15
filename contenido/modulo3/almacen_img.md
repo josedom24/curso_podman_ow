@@ -4,41 +4,16 @@ Podman puede usar varios drivers para gestionar el sistema de archivos de unión
 
 El driver de almacenamiento que se usa por defecto para gestionar el conjunto de capas que forman parte de una imagen en la versión actual de Podman es **Overlay v2**. 
 
-El fichero de configuración de Podman donde se indica la configuración del almacenamiento es:
+En el fichero de configuración de Podman donde se indica la configuración del almacenamiento los parámetros más importantes de estos ficheros son `graphDriverName`, donde se indica el driver utilizado y `graphroot` donde se indica el directorio de almacenamiento de las imágenes.
 
-* Para contenedores rootful: `/usr/share/containers/storage.conf`.
-* Para contenedores rootless creados por el usuario `usuario`: `/home/usuario/.config/containers/storage.conf`
+Dependiendo del modo de funcionamiento:
 
-Los parámetros más importantes de estos ficheros son `driver`, donde se indica el driver utilizado y `graphroot` donde se indica el directorio de almacenamiento de las imágenes. Este directorio será el siguiente:
-
-* Para contenedores rootful: `/var/lib/containers/storage`.
-* Para contenedores rootless creados por el usuario `usuario`: `/home/usuario.local/share/containers/storage/`.
-
-La información de la configuración de almacenamiento, la podemos ver ejecutando el siguiente comando para contenedores rootful:
-
-```
-$ sudo podman info|grep -A19 store
-store:
-  configFile: /usr/share/containers/storage.conf
-  ...
-  graphDriverName: overlay
-  ...
-  graphRoot: /var/lib/containers/storage
-  ...
-```
-
-Y para contenedores rooless:
-
-```
-$ podman info|grep -A19 store
-store:
-  configFile: /home/usuario/.config/containers/storage.conf
-  ...
-  graphDriverName: overlay
-  ...
-  graphRoot: /home/usuario/.local/share/containers/storage/
-  ...
-```
+* **Modo rootful**. Fichero de configuración: `/usr/share/containers/storage.conf`.
+  * `graphDriverName: overlay`
+  * `graphRoot: /var/lib/containers/storage`
+* **Modo rootless**. ficher de configuración: `$HOME/.config/containers/storage.conf`
+  * `graphDriverName: overlay`
+  * `graphRoot: /home/usuario/.local/share/containers/storage/`
 
 ## Ejemplo de almacenamiento imagen
 
@@ -312,7 +287,6 @@ Como hemos comentado la capa que forma parte de la imagen `docker.io/debian:stab
 Si visualizamos las imágenes:
 
 ```
-$ podman images 
 $ podman images 
 REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
 quay.io/josedom24/servidorweb  latest       20dc5273de46  52 minutes ago  212 MB
