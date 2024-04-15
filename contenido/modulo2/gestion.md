@@ -1,22 +1,5 @@
 # Gestión de contenedores Docker
 
-## Ciclo de vida de los contenedores
-
-Para ver un ejemplo de los comandos que gestionan el ciclo de vida de un contenedor vamos a ejecutar un contenedor demonio que va escribiendo la hora cada segundo, para ver la salida visualizamos sus logs:
-
-```
-$ podman run -d --name hora-container ubuntu bash -c 'while true; do echo $(date +"%T"); sleep 1; done'
-$ podman logs -f hora-container
-```
-En otra terminal vamos ejecutando los comandos que nos permiten controlar su ciclo de vida:
-
-* `podman start`: Inicia la ejecución de un contenedor que está parado.
-* `podman stop`: Detiene la ejecución de un contenedor en ejecución.
-* `podman restart`: Para y vuelve a iniciar la ejecución de un contenedor.
-* `podman pause`: Pausa la ejecución de un contenedor.
-* `podman unpause`: Continúa la ejecución de un contenedor que estaba pausado..
-
-
 ## Ejecución de comandos en contenedores
 
 Si tenemos un contenedor que está iniciado, podemos ejecutar comandos en él con `podman exec`. En esta ocasión vamos a crear un contenedor que hace algo parecido al anterior, pero en este caso guarda la hora en un fichero cada segundo:
