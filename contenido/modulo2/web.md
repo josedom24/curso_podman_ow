@@ -3,7 +3,7 @@
 En este ejemplo vamos a crear un contenedor demonio que ejecuta un servidor web Apache, para ello vamos a usar la imagen `httpd:2.4` del registro **Docker Hub** (en este caso hemos indicado el nombre de la imagen y su etiqueta `2.4` que nos indica la versión del servidor web que vamos a usar). Podemos crear un contenedor rootful:
 
 ```
-$ sudo podman run -d --name my-apache-app -p 80:80 docker.io/httpd:2.4
+$ podman run -d --name my-apache-app -p 80:80 docker.io/httpd:2.4
 ```
 
 O podemos crear un contenedor rootless, teniendo en cuenta que no podemos utilizar los puertos privilegiados (menores del 1024), por lo que en este caso hemos mapeado el puerto 8080:
@@ -49,7 +49,7 @@ Lo podemos hacer de varias formas:
 * Accediendo de forma interactiva al contenedor y haciendo la modificación:
 
     ```
-    $ sudo podman exec -it my-apache-app bash
+    $ podman exec -it my-apache-app bash
 
     root@cf3cd01a4993:/usr/local/apache2# cd /usr/local/apache2/htdocs/
     root@cf3cd01a4993:/usr/local/apache2/htdocs# echo "<h1>Curso Podman</h1>" > index.html
@@ -59,14 +59,14 @@ Lo podemos hacer de varias formas:
 * Ejecutando directamente el comando de creación del fichero `index.html` en el contenedor:
 
     ```
-    $ sudo podman exec my-apache-app bash -c 'echo "<h1>Curso Podman</h1>" > /usr/local/apache2/htdocs/index.html'
+    $ podman exec my-apache-app bash -c 'echo "<h1>Curso Podman</h1>" > /usr/local/apache2/htdocs/index.html'
     ```
 
 * Usando el comando `podman cp` y copiando el fichero `index.html` al contenedor:
 
     ```
     $ echo "<h1>Curso Podman</h1>" > index.html
-    $ sudo podman cp index.html  my-apache-app:/usr/local/apache2/htdocs/
+    $ podman cp index.html  my-apache-app:/usr/local/apache2/htdocs/
     ```
     
 Independientemente de cómo hayamos creado el fichero, podemos volver a acceder al servidor web y comprobar que efectivamente hemos cambiado el contenido del `index.html`:
