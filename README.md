@@ -7,9 +7,9 @@
 ## Contenido
 
 1. Introducción a Podman    
-    * [Introducción a los contenedores OCI](contenido/modulo1/contenedores.md)
-    * [Aplicaciones para trabajar con contenedores OCI](contenido/modulo1/aplicaciones.md)
-    * [Introducción de Podman](contenido/modulo1/podman.md)
+    * [Introducción a los contenedores OCI](contenido/modulo1/contenedores.md) (P)
+    * [Aplicaciones para trabajar con contenedores OCI](contenido/modulo1/aplicaciones.md) (P)
+    * [Introducción de Podman](contenido/modulo1/podman.md) (P)
     * Instalación de Podman en Linux
     * Instalación de Podman en Windows
 2. Ejecución de contenedores OCI con Podman
@@ -24,11 +24,11 @@
     * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
     * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI en Podman
-    * [Introducción a las imágenes OCI](contenido/modulo3/imagenes.md)
-    * [Introducción al formato de imagen OCI](contenido/modulo3/formato.md)
-    * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md)
-    * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md)
-    * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md)
+    * [Introducción a las imágenes OCI](contenido/modulo3/imagenes.md) (P)
+    * [Introducción al formato de imagen OCI](contenido/modulo3/formato.md) (P)
+    * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md) (P)
+    * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md) (P)
+    * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md) (P)
     * [Registros de imágenes](contenido/modulo3/registro.md)
     * [Gestión de imágenes](contenido/modulo3/gestion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
