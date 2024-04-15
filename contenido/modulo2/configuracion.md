@@ -104,7 +104,7 @@ Para eliminar un Secret que tenemos guardado, sólo tenemos que ejecutar esta in
 $ podman secret rm secreto1
 ```
 
-### Limitando los recursos utilizados por un contenedor
+## Limitando los recursos utilizados por un contenedor
 
 Cuando creamos un contenedor, los procesos que se ejecuten en él pueden usar todos los recursos del host en el que se está ejecutando. Puedes limitar los recursos de CPU y memoria al crear un contenedor en Podman utilizando las opciones `--cpus` y `--memory` respectivamente:
 
