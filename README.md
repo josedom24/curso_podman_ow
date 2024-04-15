@@ -20,6 +20,7 @@
     * [Ejecución de un contenedor demonio con un servidor web](contenido/modulo2/web.md)
     * [Obteniendo información de los contenedores](contenido/modulo2/informacion.md)
     * [Configuración de contenedores](contenido/modulo2/configuracion.md)    
+    * [Ejecución de un contenedor con un servidor de base de datos](contenido/modulo2/mariadb.md)    
     * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
     * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
 3. Gestión de imágenes OCI en Podman
