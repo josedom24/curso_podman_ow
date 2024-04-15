@@ -3,7 +3,6 @@
 * La manera de trabajar con el almacenamiento en contenedores rootless es similar a la vista anteriormente con contenedores rootful.
 * Cuando trabajamos con volúmenes con un usuario no privilegiado el directorio donde se crean los volúmenes es `~/.local/share/containers/storage/volumes/`.
 * De manera similar cuando se utilice un bind mount con un directorio que no es accesible por el contenedor a causa de SELinux, tendremos que usar las opciones adecuadas para configurar el directorio y hacerlo accesible.
-* 
 
 ## Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose como root
 
