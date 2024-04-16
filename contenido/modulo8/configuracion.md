@@ -28,7 +28,7 @@ Para crear la imagen ejecutamos:
 
 ```bash
 $ docker build -t josedom24/ejemplo2:v1 .
-```
+```     q
 
 Comprobamos que la imagen se ha creado:
 
