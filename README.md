@@ -33,11 +33,11 @@
     * [Obteniendo información de las imágenes](contenido/modulo3/informacion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
-    * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md)
+    * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md) (P)
     * [Trabajando con volúmenes](contenido/modulo4/volumen.md)
     * [Trabajando con bind mount](contenido/modulo4/bindmount.md)
     * [Trabajando con almacenamiento en contenedores rootless](contenido/modulo4/almacenamiento_rootless.md)
-    * [Redes en Podman](contenido/modulo4/redes.md)
+    * [Redes en Podman](contenido/modulo4/redes.md) (P)
     * [Redes en contenedores rootful](contenido/modulo4/bridge.md)
     * [Gestión de redes definida por el usuario](contenido/modulo4/usuario.md)
     * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)

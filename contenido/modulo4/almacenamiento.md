@@ -4,7 +4,7 @@ Cuando se elimina un contenedor, la capa del contenedor de lectura y escritura t
 
 Podman nos proporciona varias soluciones para persistir los datos de los contenedores:
 
-* Volúmenes Podman
+* **Volúmenes Podman**, directorios creados por Podman que podemos montar en el contenedor.
 * Los **bind mount**, montaje de un directorio o archivo desde el host en el contenedor.
 * Los **tmpfs mounts**, montaje de un sistema de archivos en memoria temporal (tmpfs) en el contenedor.
 * Los **glob mounts**, montaje de varios archivos o directorios que coinciden con un patrón dentro del contenedor. Es útil cuando se necesita montar múltiples archivos o directorios que siguen un patrón específico.
