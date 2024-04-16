@@ -34,7 +34,7 @@ Existen dos tipos de redes bridge:
 * El direccionamiento de esta red es 10.88.0.0/16.
 * Por compatibilidad con las red por defecto que crea Docker, esta red no tiene un servidor DNS activo.
 
-IMAGEN
+![](img/defecto.png)
 
 ### Red bridge definida por el usuario
 
@@ -44,7 +44,7 @@ IMAGEN
 * Nos proporcionan **más control sobre la configuración de las redes**. Los contenedores de la red por defecto comparten todos la misma configuración de red (MTU, reglas de cortafuegos, etc...).
 * Es importante que nuestros contenedores en producción se ejecuten conectados a una red bridge definida por el usuario.
 
-IMAGEN
+![](img/usuario.png)
 
 ## Red slirp4netns
 
@@ -54,4 +54,4 @@ IMAGEN
 * Al utilizar este tipo de red, el usuario sin privilegio tendrá que usar puertos no privilegiados, mayores que el 1024.
 * Uno de los inconvenientes de slirp4netns es que los contenedores están completamente aislados unos de otros, por lo que tendrán que utilizar los puertos expuestos para comunicarse.
 
-IMAGEN  
+![](img/rootless.png)
