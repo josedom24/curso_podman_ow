@@ -44,6 +44,7 @@
     * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
     * Despliegue de la aplicación Citas (Versión 1)
     * Despliegue de la aplicación Citas (Versión 2)
+    * Despliegue de la aplicación Guestbook
 
 5. Gestión de Pods en Podman
     * [Trabajando con Pods en Podman](contenido/modulo5/pod.md)
