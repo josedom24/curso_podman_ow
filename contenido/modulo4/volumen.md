@@ -46,6 +46,21 @@ Y para eliminar un volumen, ejecutamos:
 $ sudo podman volume rm my-vol
 ```
 
+Si queremos borrar todos los volúmenes que no están siendo usados por al menos un contenedor:
+
+```
+$ sudo podman volume prune
+WARNING! This will remove all volumes not used by at least one container. 
+...
+Are you sure you want to continue? [y/N]
+```
+
+También podemos ejecutar:
+
+```
+$ sudo podman volume rm --all
+```
+
 ## Creación de contenedores con volúmenes
 
 Lo primero que vamos a hacer es crear un volumen:

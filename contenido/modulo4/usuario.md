@@ -41,6 +41,14 @@ Por último, para borrar una red podemos ejecutar:
 $ sudo podman network rm red1
 ```
 
+Para borrar todas las redes que no están siendo usadas al menos por un contenedor, ejecutamos:
+
+```
+$ sudo podman network prune
+WARNING! This will remove all networks not used by at least one container.
+Are you sure you want to continue? [y/N]
+```
+
 Teniendo en cuenta que no puedo borrar una red que tenga contenedores que la estén usando, deberé primero borrar los contenedores o desconectarlos de la red.
 
 ## Creación avanzada de redes bridge definidas por el usuario

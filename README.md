@@ -71,15 +71,12 @@
     * [El fichero compose.yaml](contenido/modulo7/compose_yaml.md)
     * [El comando podman-compose](contenido/modulo7/podman_compose.md)
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
-    * Ejemplo 1: Despliegue de la aplicación Guestbook
-    * Ejemplo 2: Despliegue de la aplicación Temperaturas
-    * Ejemplo 3: Despliegue de WordPress + MariaDB
-    * Ejemplo 4: Despliegue de Apache Tomcat + nginx
+    * Despliegue de la aplicación Citas (Versión 1)
+    * Despliegue de la aplicación Citas (Versión 2)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * Creación de contenedores rootless con podman-compose
     * Creación de Pods con podman-compose
-    * Eliminar objetos Podman no utilizados
-
+    
 
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md)

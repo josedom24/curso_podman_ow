@@ -90,3 +90,23 @@ Hay que tener en cuenta que un contenedor que esta ejecutándose no puede ser el
 ```
 $ podman rm -f contenedor1
 ```
+
+Para eliminar todos los contenedores que están parados:
+
+```
+$ podman container prune
+WARNING! This will remove all non running containers.
+Are you sure you want to continue? [y/N] 
+```
+
+Otra solución sería:
+
+```
+$ podman rm --all
+```
+
+Finalmente para eliminar todos los contenedores:
+
+```
+$ podman rm -f --all
+```

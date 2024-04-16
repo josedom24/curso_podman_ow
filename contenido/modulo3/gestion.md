@@ -2,13 +2,18 @@
 
 ## Borrar una imagen
 
-Si queremos borrar una imagen, usaremos la instrucción `docker image rm` o la siguiente instrucción:
+Si queremos borrar una imagen, usaremos la instrucción `podman image rm` o la siguiente instrucción:
 
 ```
 $ podman rmi docker.io/nginx
 ```
+No podemos eliminar una imagen si tenemos algún contenedor creado a partir de ella.
 
-**Nota**: No podemos eliminar una imagen si tenemos algún contenedor creado a partir de ella.
+Para eliminar todas las imágenes sin contenedores asociados:
+
+```
+$ podman rmi --all
+```
 
 ## Búsqueda de imágenes
 
