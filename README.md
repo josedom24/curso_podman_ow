@@ -42,10 +42,8 @@
     * [Gestión de redes definida por el usuario](contenido/modulo4/usuario.md)
     * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)
     * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
-    * Ejemplo 1: Despliegue de la aplicación Guestbook
-    * Ejemplo 2: Despliegue de la aplicación Temperaturas
-    * Ejemplo 3: Despliegue de WordPress + MariaDB
-    * Ejemplo 4: Despliegue de Apache Tomcat + nginx
+    * Despliegue de la aplicación Citas (Versión 1)
+    * Despliegue de la aplicación Citas (Versión 2)
 
 5. Gestión de Pods en Podman
     * [Trabajando con Pods en Podman](contenido/modulo5/pod.md)
@@ -76,18 +74,13 @@
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * Creación de contenedores rootless con podman-compose
     * Creación de Pods con podman-compose
-    
 
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md)
     * El fichero Containerfile 
     * Construcción de imágenes con podman build
     * Distribución de imágenes
-    * Ejemplo 1: Construcción de imágenes con una página estática
-    * Ejemplo 2: Construcción de imágenes con una una aplicación PHP
-    * Ejemplo 3: Construcción de imágenes con una una aplicación Python
-    * Ejemplo 4: Construcción de imágenes configurables con variables de entorno
-    * Ejemplo 5: Configuración de imágenes con una aplicación Java
+    * Construcción de imágenes configurables con variables de entorno
     * Construcción de imágenes con Compose
     * Uso de ficheros Containerfile parametrizados
     
@@ -102,3 +95,10 @@
     * Gestión de imágenes OCI en registros remotos
 
 10. Podman Desktop
+    * Introducción a la interfaz de Podman Desktop
+    * Gestión de imágenes en Podman Desktop
+    * Gestión de contenedores y Pods en Podman Desktop
+    * Gestión de volúmenes en Podman Desktop
+    * Gestión de creación de imágenes en Podman Desktop
+    * Compose con Podman Desktop
+    * Trabajar con Kubernetes en Podman Desktop
