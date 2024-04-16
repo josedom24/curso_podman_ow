@@ -29,8 +29,8 @@
     * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md) (P)
     * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md) (P)
     * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md) (P)
-    * [Registros de imágenes](contenido/modulo3/registro.md)
     * [Gestión de imágenes](contenido/modulo3/gestion.md)
+    * [Obteniendo información de las imágenes](contenido/modulo3/informacion.md)
     * [Ejemplo: Desplegando la aplicación Drupal](contenido/modulo3/drupal.md)
 4. Almacenamiento y redes en Podman
     * [Almacenamiento en Podman](contenido/modulo4/almacenamiento.md)
