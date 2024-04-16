@@ -36,6 +36,9 @@ Para crear la imagen ejecutamos:
 $ podman build -t josedom24/webserver:v1 .
 ```
 
+* El parámetro de `-t` nos permite nombrar la imagen.
+* Indicamos el directorio de contexto, en nuestro caso `.` porque estoy ejecutando esta instrucción dentro del directorio donde está el fichero `Containerfile`.
+
 Comprobamos que la imagen se ha creado:
 
 ```
@@ -69,14 +72,43 @@ Y acceder con el navegador a nuestra página:
 
 ![webserver](img/webserver1.png)
 
+### Uso de la caché en la construcción de imágenes OCI
+
+Como hemos indicado anteriormente, durante la construcción de una imagen OCI, se van guardando en caché las capas intermedias que se van generando. Vamos a ver qué ocurre si volvemos a construir la imagen después de alguna modificación:
+
+Si modificamos el fichero `index.html` y volvemos a construir la imagen:
+
+```
+$ docker build -t josedom24/webswever:v1 .
+...
+```
+    
+La construcción será muy rápida, ya que las imágenes intermedias que se van generando no se vuelven a generar porque están guardadas en caché. Sólo se ejecuta la instrucción donde copiamos el fichero que hemos modificado.
+
+Cuando empezamos a construir nuestras propias imágenes, nos encontramos que al listar las imágenes aparecen algunas con el nombre y la etiqueta con el valor `<none>`. Estas son imágenes intermedias que se han generado y que no forman parte de ninguna imagen, por lo tanto pueden ocupar espacio en disco que no es necesario. Estas imágenes se llaman "colgadas" (dangling).
+
+```
+$ podman images
+REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
+localhost/josedom24/webserver  v1           aa1a19a3a7b0  8 seconds ago   193 MB
+<none>                         <none>       a6582925a34d  31 seconds ago  193 MB
+docker.io/library/debian       stable-slim  c3c8e6f4e51e  6 days ago      77.8 MB
+```
+
+Para eliminar estas imágenes podemos ejecutar:
+
+```
+$ podman image prune
+WARNING! This command removes all dangling images.
+Are you sure you want to continue? [y/N]
+```
 
 ## Versión 2: Desde una imagen con Apache
 
-En este caso el fichero `Dockerfile` sería el siguiente:
+En este caso el fichero `Containerfile` sería el siguiente:
 
-```Dockerfile
-# syntax=docker/dockerfile:1
-FROM httpd:2.4
+```
+FROM docker.io/httpd:2.4
 COPY public_html /usr/local/apache2/htdocs/
 EXPOSE 80
 ```
@@ -88,17 +120,16 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/ejemplo1:v2 .
-$ docker run -d -p 80:80 --name ejemplo1 josedom24/ejemplo1:v2
+$ docker build -t josedom24/webswever:v2 .
+$ docker run -d -p 8082:80 --name webswever josedom24/webswever:v2
 ```
 
 ## Versión 3: Desde una imagen con nginx
 
-En este caso el fichero `Dockerfile` sería:
+En este caso el fichero `Containerfile` sería:
 
-```Dockerfile
-# syntax=docker/dockerfile:1
-FROM nginx:1.24
+```
+FROM docker.io/nginx:1.24
 COPY public_html /usr/share/nginx/html
 EXPOSE 80
 ```
@@ -106,91 +137,7 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/ejemplo1:v3 .
-$ docker run -d -p 80:80 --name ejemplo1 josedom24/ejemplo1:v3
+$ docker build -t josedom24/webswever:v3 .
+$ docker run -d -p 80:80 --name webswever josedom24/webswever:v3
 ```
 
-
-
-1. Vamos a crear un directorio (a este directorio se le llama **contexto**) donde vamos a crear un fichero `Containerfile` y un fichero `index.html`:
-
-    ```
-    cd build
-    ~/build$ ls
-    Containerfile  index.html
-    ```
-    El contenido de `Containerfile` es:
-
-    ```Dockerfile
-    FROM debian:stable-slim
-    RUN apt-get update  && apt-get install -y  apache2 
-    WORKDIR /var/www/html
-    COPY index.html .
-    CMD apache2ctl -D FOREGROUND
-    ```
-
-2. Para crear la imagen uso el comando `podman build`, indicando el nombre de la nueva imagen (opción `-t`) y el directorio **contexto**.
-
-    ```
-    $ podman build -t josedom24/myapache2:v2 .
-    ...
-    ```
-    **Nota:** Pongo como directorio el `.` porque estoy ejecutando esta instrucción dentro del directorio donde está el fichero `Dockerfile`.
-
-    Una vez terminado, podremos comprobar que hemos generado una nueva imagen:
-
-    ```
-    $ podman images
-    REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
-    josedom24/myapache2       v2                  3bd28de7ae88        43 seconds ago      195MB
-    ...
-    ```
-3. En este caso al crear el contenedor a partir de esta imagen no hay que indicar el proceso que se va a ejecutar, porque ya se ha indicando en el fichero `Dockerfile`, con el parámetro `CMD`:
-
-```
-$ podman run -d -p 8080:80 --name servidor_web josedom24/myapache2:v2 
-```            
-
-Si queremos ver los distintos pasos que hemos ejecutado para construir la imagen, podemos ejecutar la siguiente instrucción:
-
-```
-$ docker history josedom24/myapache2:v2
-IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
-b4836c1e7b7f   41 seconds ago   CMD ["/bin/sh" "-c" "apache2ctl -D FOREGROUN…   0B        buildkit.dockerfile.v0
-<missing>      41 seconds ago   COPY index.html . # buildkit                    22B       buildkit.dockerfile.v0
-<missing>      42 seconds ago   WORKDIR /var/www/html                           0B        buildkit.dockerfile.v0
-<missing>      44 seconds ago   RUN /bin/sh -c apt-get update  && apt-get in…   131MB     buildkit.dockerfile.v0
-<missing>      9 days ago       /bin/sh -c #(nop)  CMD [""]                 0B        
-<missing>      9 days ago       /bin/sh -c #(nop) ADD file:17e64d3a682fd256f…   74.8MB
-```
-
-Donde vemos los pasos que hemos ejecutado en la construcción de la imagen.
-
-## Uso de la caché en la construcción de imágenes Docker
-
-Como hemos indicado anteriormente, durante la construcción de una imagen Docker, se van guardando en caché las capas intermedias que se van generando. Vamos a ver qué ocurre si volvemos a construir la imagen después de alguna modificación:
-
-1. Si modificamos el fichero `index.html` y volvemos a construir la imagen:
-
-    ```
-    $ docker build -t josedom24/myapache2:v3 .
-    ...
-    ```
-    
-    La construcción será muy rápida, ya que las imágenes intermedias que se van generando no se vuelven a generar porque están guardadas en caché. Sólo se ejecuta la instrucción donde copiamos el fichero que hemos modificado.
-
-2. Si modificamos por ejemplo la instrucción donde se ejecuta la instalación del servidor web y ponemos por ejemplo:
-
-    ```
-    ...
-    RUN apt-get update  && apt-get install -y  apache2 git
-    ...
-    ```
-
-
-$ podman image prune
-WARNING! This command removes all dangling images.
-Are you sure you want to continue? [y/N]
-
-
-$ podman system prune --volumes
