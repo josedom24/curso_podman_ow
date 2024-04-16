@@ -5,7 +5,7 @@ La primera forma para crear nuevas imágenes OCI es partiendo de un contenedor q
 1. Vamos a crear un contenedor a partir de una imagen base.
 
     ```bash
-    $ podman  run -it --name contenedor debian 
+    $ podman run -it --name contenedor debian 
     ```
 
 2. Realizamos las modificaciones necesarias en el el contenedor (instalaciones, modificación de archivos,...). Por ejemplo, instalamos un servidor web y modificamos el fichero `index.html`:
