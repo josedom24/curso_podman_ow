@@ -58,6 +58,8 @@ Y por último, para consultar los identificadores de las capas que forman la ima
 $ podman inspect --format='{{range .RootFS.Layers}}{{println .}}{{end}}' docker.io/nginx:stable
 ```
 
+## Visualizar las capas de una imagen
+
 Para visualizar los identificadores de las capas que forman parte de la imagen, podemos ejecutar:
 
 ```
@@ -73,6 +75,8 @@ Image Layers
 ├── ID: b5fa8ef12cb9 Size: 3.584kB
 └── ID: 3688c0e283b4 Size: 7.168kB Top Layer of: [docker.io/library/nginx:stable]
 ```
+
+## Comparar imágenes
 
 Para comparar los sistemas de archivos de las imágenes podemos usar el comando `podman image diff`. Como resultado aparecerá la lista de archivos y una letra: `C` si ha cambiado, `A` si se ha añadido o `D` si se ha borrado. Si indicamos una sola imagen, esta se comparará con su capa inferior, si damos el nombre de dos imágenes se compararán entre ellas. Por ejemplo:
 
