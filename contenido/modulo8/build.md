@@ -65,7 +65,7 @@ c3c8e6f4e51e  6 days ago     /bin/sh -c #(nop)  CMD [""]                0B
 Y podemos crear un contenedor:
 
 ```
-$ podman run -d -p 8081:80 --name webserver josedom24/webserver:v1
+$ podman run -d -p 8081:80 --name webserver1 josedom24/webserver:v1
 ```
 
 Y acceder con el navegador a nuestra página:
@@ -79,7 +79,7 @@ Como hemos indicado anteriormente, durante la construcción de una imagen OCI, s
 Si modificamos el fichero `index.html` y volvemos a construir la imagen:
 
 ```
-$ docker build -t josedom24/webswever:v1 .
+$ docker build -t josedom24/webserver:v1 .
 ...
 ```
     
@@ -120,8 +120,8 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/webswever:v2 .
-$ docker run -d -p 8082:80 --name webswever josedom24/webswever:v2
+$ docker build -t josedom24/webserver:v2 .
+$ docker run -d -p 8082:80 --name websever2 josedom24/webserver:v2
 ```
 
 ## Versión 3: Desde una imagen con nginx
@@ -137,7 +137,7 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/webswever:v3 .
-$ docker run -d -p 80:80 --name webswever josedom24/webswever:v3
+$ docker build -t josedom24/webserver:v3 .
+$ docker run -d -p 8083:80 --name webserver3 josedom24/webserver:v3
 ```
 
