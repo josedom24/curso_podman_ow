@@ -78,7 +78,7 @@
 
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md)
-    * El fichero Containerfile 
+    * [El fichero Containerfile](contenido/modulo8/containerfile.md)
     * Construcción de imágenes con podman build
     * Distribución de imágenes
     * Construcción de imágenes configurables con variables de entorno
