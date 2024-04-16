@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-16T08:22:46.064Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="1_36kzKQjdcwDJ0--oxI" version="24.0.7" type="device">
+<mxfile host="app.diagrams.net" modified="2024-04-16T08:32:16.249Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="Mjrr0mlsfmjN5o13FCMa" version="24.0.7" type="device">
   <diagram id="k4pNC1rw3EwO7Iqltvwy" name="Page-1">
     <mxGraphModel dx="995" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -72,7 +72,7 @@
         <mxCell id="MHocgcyIS5ZqbI75Damo-4" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;10.0.2.2&lt;/div&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="390" y="420" width="70" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="MHocgcyIS5ZqbI75Damo-7" value="&lt;div&gt;Comunicación&lt;/div&gt;&lt;div&gt;Usando IP del Host&lt;/div&gt;&lt;div&gt;192.168.1.32&lt;/div&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MHocgcyIS5ZqbI75Damo-7" value="&lt;div&gt;Comunicación&lt;/div&gt;&lt;div&gt;Usando IP del Host&lt;/div&gt;&lt;div&gt;192.168.1.2&lt;/div&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="408.25" y="540" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="MHocgcyIS5ZqbI75Damo-11" value="&lt;div&gt;&lt;font color=&quot;#FF3333&quot;&gt;El host &lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#FF3333&quot;&gt;funciona &lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#FF3333&quot;&gt;como NAT&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
