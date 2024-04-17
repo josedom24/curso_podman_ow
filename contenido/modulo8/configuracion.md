@@ -12,7 +12,7 @@ Hay que tener en cuenta los siguientes aspectos:
 
 ## Imagen MariaDB
 
-En la documentación de la imagen `mariadb` nos informa que para inicializar la base de datos al crear un contenedor podemos copiar un fichero con extensión `sql` con las instrucciones SQL para la creación de las tablas de la base de datos en el directorio `/docker-entrypoint-initdb.d`.
+En la [documentación](https://hub.docker.com/_/mariadb) de la imagen `mariadb` nos informa que para inicializar la base de datos al crear un contenedor podemos copiar un fichero con extensión `sql` con las instrucciones SQL para la creación de las tablas de la base de datos en el directorio `/docker-entrypoint-initdb.d`.
 
 Por lo tanto en el directorio `mariadb` encontramos el fichero `Containerfile` para crear una nueva imagen, y el fichero `schema.sql` con las instrucciones SQL para la creación de la base de datos.
 
