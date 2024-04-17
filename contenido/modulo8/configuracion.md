@@ -1,16 +1,16 @@
-# Ejemplo 2: Construcción de imágenes con una una aplicación PHP
+# Construcción de imágenes configurables con variables de entorno
 
-En este ejemplo vamos a crear una imagen OCI que nos sirve una página desarrollada con PHP que accede a una tabla de una base de datos. 
+En este ejemplo vamos a desplegar una aplicación PHP que accede a una base de datos. Por lo tanto vamos a generar dos imágnes: una para servir la aplicación PHP y otra para servir nuestra base  de datos.
 Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
 
 Hay que tener en cuenta los siguientes aspectos:
 
-* Vamos a crear una imagen con una base de datos mariadb inicializada con una base de datos.
-* Vamos a crear dos versiones de la aplicación PHP:
+* Vamos a crear una imagen con una base de datos MariaDB inicializada con una base de datos.
+* Vamos a crear dos versiones de la imagen de la aplicación PHP:
   * Versión 1: Desde una imagen base
   * Versión 2: Desde una imagen con PHP instalado
 
-## Inicialización de una imagen de mariadb
+## Imagen MariaDB
 
 En la documentación de la imagen `mariadb` nos informa que para inicializar la base de datos al crear un contenedor podemos copiar un fichero con extensión `sql` con las instrucciones SQL para la creación de las tablas de la base de datos en el directorio `/docker-entrypoint-initdb.d`.
 
@@ -29,97 +29,13 @@ Para crear la nueva imagen ejecutamos:
 $ sudo podman build -t josedom24/mibd:latest .
 ```
 
-Cuando creemos un contenedor a partir de esta imagen se inicializará la base de datos con las instrucción del fichero `schema.sql` que crea una tabla `users` 
+Cuando creemos un contenedor a partir de esta imagen se inicializará la base de datos con las instrucción del fichero `schema.sql` que crea una tabla `users` e introduce algunos registros en la misma.
 
-## Versión 1: Desde una imagen base
+## Imagen aplicación PHP
 
-En el contexto vamos a tener el fichero `Conteinarfile` y un directorio, llamado `app`, con nuestra aplicación.
+Cuando programamos una aplicación tenemos que tener en cuenta que va a ser implantada usando contenedores tenemos que hacer algunas modificaciones, por ejemplo en este caso, las credenciales para el acceso a la base de datos la leemos de variables de entorno (que posteriormente serán creadas en el contenedor):
 
-En este caso vamos a usar una imagen base de un sistema operativo sin ningún servicio. El fichero `Conteinarfile` será el siguiente:
-
-```Conteinarfile
-FROM debian:stable-slim
-RUN apt-get update && apt-get install -y apache2 libapache2-mod-php php && apt-get clean && rm -rf /var/lib/apt/lists/*
-COPY app /var/www/html/
-RUN rm /var/www/html/index.html
-EXPOSE 80
-
-CMD apache2ctl -D FOREGROUND
 ```
-
-* Al usar una imagen base `debian:stable-slim` tenemos que instalar los paquetes necesarios para tener el servidor web, PHP y las librerías necesarias. 
-* A continuación añadiremos el contenido del directorio `app` al directorio `/var/www/html/` del contenedor. 
-* Hemos borrado el fichero `/var/www/html/index.html` para que no sea el fichero que se muestre por defecto.
-* Finalmente indicamos el comando que se deberá ejecutar al crear un contenedor a partir de esta imagen: iniciamos el servidor web en segundo plano.
-
-Para crear la imagen ejecutamos:
-
-```bash
-$ docker build -t josedom24/ejemplo2:v1 .
-```     q
-
-Comprobamos que la imagen se ha creado:
-
-```bash
-$ docker images
-REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-josedom24/ejemplo2     v1                  8c3275799063        1 minute ago      226MB
-```
-
-Y podemos crear un contenedor:
-
-```bash
-$ docker run -d -p 80:80 --name ejemplo2 josedom24/ejemplo2:v1
-```
-
-Y acceder con el navegador a nuestra página:
-
-![ejemplo2](img/ejemplo2.png)
-
-La aplicación tiene un fichero `info.php` que me da información sobre PHP, en este caso observamos que estamos usando la versión 8.2:
-
-![ejemplo2](img/ejemplo2_phpinfo.png)
-
-
-## Versión 2: Desde una imagen con PHP instalado
-
-En este caso el fichero `Conteinarfile` sería el siguiente:
-
-```Conteinarfile
-FROM php:7.4-apache
-COPY app /var/www/html/
-EXPOSE 80
-```
-
-* En este caso no necesitamos instalar nada, ya que la imagen tiene instalado el servidor web y PHP. 
-* No es necesario indicar el `CMD` ya que por defecto el contenedor creado a partir de esta imagen ejecutará el mismo proceso que la imagen base, es decir, la ejecución del servidor web.
-
-De forma similar, crearíamos una imagen y un contenedor:
-
-```bash
-$ docker build -t josedom24/ejemplo2:v2 .
-$ docker run -d -p 80:80 --name ejemplo2 josedom24/ejemplo2:v2
-```
-
-Podemos acceder al fichero `info.php` para comprobar la versión de PHP que estamos utilizando con esta imagen:
-
-![ejemplo2](img/ejemplo2_phpinfo2.png)
-
-# Ejemplo 4: Construcción de imágenes configurables con variables de entorno
-
-En este ejemplo vamos a construir una imagen de una aplicación PHP que necesita conectarse a una base de datos MariaDB para guardar o leer información. Por lo tanto, vamos a construir la imagen que tendrá distintas variables de entorno para configurar las credenciales de acceso a la base de datos. 
-
-Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_docker_ow).
-
-## Aplicación PHP
-
-Como ejemplo vamos a "dockerizar" una aplicación PHP simple que accede a una tabla de una base de datos. La aplicación la puedes encontrar en el directorio `build/app/index.php`.
-
-Algunas cosas que hay que tener en cuenta:
-
-* Cuando programamos una aplicación tenemos que tener en cuenta que va a ser implantada usando Docker tenemos que hacer algunas modificaciones, por ejemplo en este caso, las credenciales para el acceso a la base de datos la leemos de variables de entorno (que posteriormente serán creadas en el contenedor):
-
-```php
 <?php
  // Database host
  $host = getenv('DB_HOST');
@@ -152,91 +68,56 @@ Algunas cosas que hay que tener en cuenta:
  ?>
 ```
 
-* En el fichero `schema.sql` encontramos las instrucciones sql necesarias para inicializar la base de datos.
+Como hemos indicado vamos a crear dos versiones de esta imagen:
 
-## Configurar nuestra aplicación con variables de entorno
+### Versión 1: Desde una imagen base
 
-En los casos en que necesitamos modificar algo en la aplicación o hacer algún proceso en el momento de crear el contenedor, lo que hacemos es crear un script en bash que copiaremos en la imagen y que será la instrucción que indiquemos en el `CMD`. Este script en concreto hará las siguiente operaciones:
+En el contexto vamos a tener el fichero `Conteinarfile` y un directorio, llamado `app`, con nuestra aplicación.
 
-1. Utilizando el fichero `schema.sql` (que también guardaremos en la imagen) inicializará la base de datos.
-2. Ejecutar el servidor web en segundo plano.
+En este caso vamos a usar una imagen base de un sistema operativo sin ningún servicio. El fichero `Conteinarfile` será el siguiente:
 
-En el directorio de trabajo encontramos:
-
-* `build`: Será el contexto necesario para crear la imagen de la aplicación.
-* El fichero `compose.yaml`: Para crear el escenario.
-
-## El contexto (directorio build)
-
-En el directorio de contexto tendremos tres ficheros:
-
-### Fichero script.sh
-
-El fichero `script.sh` que se guardará en la imagen y se ejecutará con al iniciar el contenedor. Su contenido es el siguiente:
-
-```bash
-#!/bin/bash
-while ! mysql -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST}  -e ";" ; do
-	sleep 1
-done	
-mysql -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST} ${DB_NAME} < /opt/schema.sql
-apache2ctl -D FOREGROUND
 ```
-
-Esperamos hasta que la base de datos esté disponible, inicializamos la base de datos con el fichero `schema.sql` y finalmente iniciamos el servidor web.
-
-### Fichero schema.sql
-
-Son las instrucciones sql que nos permiten crear la tabla necesaria en la base de datos.
-
-### Fichero Conteinarfile
-
-El fichero`Conteinarfile` sería el siguiente:
-
-```Conteinarfile
-FROM php:7.4-apache
-RUN apt-get update && apt-get install -y mariadb-client
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+ROM debian:stable-slim
+RUN apt-get update && apt-get install -y apache2 libapache2-mod-php php php-mysql && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN rm /var/www/html/index.html
 COPY app /var/www/html/
 EXPOSE 80
 ENV DB_USER user1
 ENV DB_PASS asdasd
 ENV DB_NAME usuarios
 ENV DB_HOST mariadb
-COPY script.sh /usr/local/bin/script.sh
-COPY schema.sql /opt
-RUN chmod +x /usr/local/bin/script.sh
-CMD /usr/local/bin/script.sh
-
+VOLUME /var/log/apache2
+CMD apache2ctl -D FOREGROUND
 ```
 
-Algunas observaciones:
+* Al usar una imagen base `debian:stable-slim` tenemos que instalar los paquetes necesarios para tener el servidor web, PHP y las librerías necesarias. 
+* Hemos borrado el fichero `/var/www/html/index.html` para que no sea el fichero que se muestre por defecto.
+* A continuación añadiremos el contenido del directorio `app` al directorio `/var/www/html/` del contenedor. 
+* Finalmente indicamos el comando que se deberá ejecutar al crear un contenedor a partir de esta imagen: iniciamos el servidor web en segundo plano.
+* cuando creemos un contenedor a partir de esta imagen se creará un volumen anónimo que se montará en el directorio `/var/log/apache2`.
 
-1. Creamos la imagen desde una imagen PHP.  
-2. Instalamos el cliente de MariaDB que nos hará falta para inicializar la base de datos desde nuestro contenedor de la aplicación.
-3. Siguiendo la documentación de la [imagen oficial de PHP](https://hub.docker.com/_/php) instalamos el módulo PHP `mysqli`.
-4. Copiamos la aplicación en el servidor web.
-6. Creamos las variables de entorno y le damos valores por defecto, por si no se indican en la creación del contenedor.
-7. Copiamos los ficheros del script y del esquema de la base de datos a la imagen. Y le damos permisos de ejecución a `script.sh`.
-8. Finalmente indicamos con `CMD` el comando que se va a ejecutar al iniciar el contenedor. En este caso ejecutaremos el script.
+Para crear la imagen ejecutamos:
 
-### Creación de la imagen
+```
+$ sudo podman build -t josedom24/aplicacion_php .
+```     
 
-Ejecutamos dentro del directorio de contexto:
+Comprobamos que la imagen se ha creado:
 
-```bash
-$ docker build -t josedom24/aplicacion_php .
+```
+$ sudo podman images
+[fedora@podman2 version1]$ sudo podman images
+REPOSITORY                          TAG          IMAGE ID      CREATED        SIZE
+localhost/josedom24/aplicacion_php  latest       e9aa6b121186  1 min ago   225 MB
 ```
 
-## Despliegue de la aplicación 
+Y podemos crear el escenario utilizando el fichero `compose.yaml`:
 
-Usaremos el fichero `compose.yaml`:
-
-```yaml
+```
 version: '3.1'
 services:
   app:
-    container_name: contenedor_php
+    container_name: servidor_php
     image: josedom24/aplicacion_php
     restart: always
     environment:
@@ -250,7 +131,7 @@ services:
       - db
   db:
     container_name: servidor_mariadb
-    image: mariadb
+    image: josedom24/mibd
     restart: always
     environment:
       MARIADB_DATABASE: usuarios
@@ -263,10 +144,61 @@ volumes:
     mariadb_data:
 ```
 
-Y ya podemos levantar el escenario, ejecutando:
+Y creo el escenario:
 
-```bash
-$ docker compose up -d
+```
+$ sudo podman-compose up -d
+```
+Podemos comprobar los volúmenes que se han creado:
+
+```
+$ sudo podman volume ls
+DRIVER      VOLUME NAME
+local       php_mariadb_data
+local       927dbae27b74585c31fa80369d4a8ed2b35fe08209878205f32bfdbf0badf957
 ```
 
-Y finalmente podemos acceder a la aplicación y comprobar que funciona.
+Y acceder con el navegador a nuestra página:
+
+![php1](img/php1.png)
+
+La aplicación tiene un fichero `info.php` que me da información sobre PHP, en este caso observamos que estamos usando la versión 8.2:
+
+![php1](img/php2.png)
+
+Finalmente elimino los contenedores, sin eliminar los volúmenes:
+
+```
+$ sudo podman-compose down
+```
+
+### Versión 2: Desde una imagen con PHP instalado
+
+En este caso el fichero `Conteinarfile` sería el siguiente:
+
+```
+FROM docker.io/php:7.4-apache
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+COPY app /var/www/html/
+EXPOSE 80
+ENV DB_USER user1
+ENV DB_PASS asdasd
+ENV DB_NAME usuarios
+ENV DB_HOST mariadb
+VOLUME /var/log/apache2
+```
+
+* Creamos la imagen desde una imagen PHP, que ofrece un servidor web Apache con el módulo PHP.
+* Siguiendo la documentación de la [imagen oficial de PHP](https://hub.docker.com/_/php) instalamos el módulo PHP `mysqli`.
+* Copiamos la aplicación en el servidor web.
+* Creamos las variables de entorno y le damos valores por defecto, por si no se indican en la creación del contenedor.
+* Al igual que en la versión anterior se creará un volumen anónimo para guardar los logs del servidor web.
+* No hace falta indicar el CMD porque se ejecutará el de la imagen base.
+
+De forma similar, crearíamos una imagen y un contenedor:
+
+```
+$ sudo podman build -t josedom24/aplicacion_php .
+$ sudo podman-compose up -d
+```
+Hemos utilizado el mismo nombre con la etiqueta `latest` para no cambiar el fichero `compose.yaml`. Ahora podríamos acceder a la aplicación y comporbar que sigue funcionando, además podríamos acceder al fichero `info.php` para comprobar la versión de PHP que estamos utilizando.
