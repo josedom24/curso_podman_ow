@@ -84,7 +84,7 @@
     * [Construcción de imágenes configurables con variables de entorno](contenido/modulo8/configuracion.md)
     * [Construcción de imágenes con Compose](contenido/modulo8/compose.md)
     * Distribución de imágenes
-    * Uso de ficheros Containerfile parametrizados
+    * [Uso de ficheros Containerfile parametrizados](contenido/modulo8/variables.md)
     
 9. Gestión de imágenes OCI con Buildah y Skopeo
     * Introducción a Buildah
