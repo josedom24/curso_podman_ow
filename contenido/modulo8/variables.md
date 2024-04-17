@@ -35,12 +35,12 @@ Como vemos se ha creado una imagen a partir de la imagen `php:8.2-apache` y se h
 
 ![php](img/variables1.png)
 
-Podemos crear otra versión de la imagen sobreescribiendo los parámetros de construcción, para ello usamos el parámetro `--build-arg` en el comando `docker build`:
+Podemos crear otra versión de la imagen sobreescribiendo los parámetros de construcción, para ello usamos el parámetro `--build-arg` en el comando `podman build`:
 
 ```bash
-$ docker build --build-arg PHP_VERSION=7.4-apache --build-arg APP_VERSION=produccion -t josedom24/app_php:v2 .
-$ docker run -d -p 8082:80 --name app2 josedom24/app_php:v2
-$ docker exec -it app2 env
+$ podman build --build-arg PHP_VERSION=7.4-apache --build-arg APP_VERSION=produccion -t josedom24/app_php:v2 .
+$ podman run -d -p 8082:80 --name app2 josedom24/app_php:v2
+$ podman exec -it app2 env
 ...
 VERSION=produccion
 ...
