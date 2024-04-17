@@ -1,7 +1,35 @@
 # Ejemplo 2: Construcción de imágenes con una una aplicación PHP
 
-En este ejemplo vamos a crear una imagen OCI que nos sirve una página desarrollada con PHP. 
+En este ejemplo vamos a crear una imagen OCI que nos sirve una página desarrollada con PHP que accede a una tabla de una base de datos. 
 Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
+
+Hay que tener en cuenta los siguientes aspectos:
+
+* Vamos a crear una imagen con una base de datos mariadb inicializada con una base de datos.
+* Vamos a crear dos versiones de la aplicación PHP:
+  * Versión 1: Desde una imagen base
+  * Versión 2: Desde una imagen con PHP instalado
+
+## Inicialización de una imagen de mariadb
+
+En la documentación de la imagen `mariadb` nos informa que para inicializar la base de datos al crear un contenedor podemos copiar un fichero con extensión `sql` con las instrucciones SQL para la creación de las tablas de la base de datos en el directorio `/docker-entrypoint-initdb.d`.
+
+Por lo tanto en el directorio `mariadb` encontramos el fichero `Containerfile` para crear una nueva imagen, y el fichero `schema.sql` con las instrucciones SQL para la creación de la base de datos.
+
+el fichero `Containerfile` tendrá este contenido:
+
+```
+FROM docker.io/mariadb:10.5
+COPY schema.sql /docker-entrypoint-initdb.d/
+```
+
+Para crear la nueva imagen ejecutamos:
+
+```
+$ sudo podman build -t josedom24/mibd:latest .
+```
+
+Cuando creemos un contenedor a partir de esta imagen se inicializará la base de datos con las instrucción del fichero `schema.sql` que crea una tabla `users` 
 
 ## Versión 1: Desde una imagen base
 
