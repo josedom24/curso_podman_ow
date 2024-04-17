@@ -82,7 +82,7 @@
     * [El fichero Containerfile](contenido/modulo8/containerfile.md)
     * [Construcción de imágenes con podman build](contenido/modulo8/build.md)
     * [Construcción de imágenes configurables con variables de entorno](contenido/modulo8/configuracion.md)
-    * Construcción de imágenes con Compose
+    * [Construcción de imágenes con Compose](contenido/modulo8/compose.md)
     * Distribución de imágenes
     * Uso de ficheros Containerfile parametrizados
     
