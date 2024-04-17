@@ -52,7 +52,7 @@ $ sudo podman-compose up -d
 
 Como vemos para crear el servicio `app` se realiza el proceso de construcción de la imagen a a partir del fichero `Containerfile`. Podemos acceder a la aplicación:
 
-![python](img/python)
+![python](img/python.png)
 
 Evidentemente si borramos el escenario y volvemos a acceder no será necesario de nuevo la construcción de la imagen. Si se produce un cambio en la aplicación o en el fichero `Containerfile`, la próxima vez que levantemos el escenario tendremos que indicar que queremos volver a construir la imagen con el parámetro `--build`. Por ejemplo, hemos cambiado el mensaje que muestra la aplicación en la función principal de la aplicación, borramos el escenario y lo volvemos a crear indicando que queremos volver a construir la imagen del servicio `app`:
 
