@@ -83,7 +83,7 @@
     * [Construcción de imágenes con podman build](contenido/modulo8/build.md)
     * [Construcción de imágenes configurables con variables de entorno](contenido/modulo8/configuracion.md)
     * [Construcción de imágenes con Compose](contenido/modulo8/compose.md)
-    * Distribución de imágenes
+    * [Distribución de imágenes OCI](contenido/modulo8/distribucion.md)
     * [Uso de ficheros Containerfile parametrizados](contenido/modulo8/variables.md)
     
 9. Gestión de imágenes OCI con Buildah y Skopeo

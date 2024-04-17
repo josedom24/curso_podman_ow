@@ -25,13 +25,16 @@ Una vez que hemos creado nuestra imagen personalizada, es hora de distribuirla p
 Hay que recordar que tenemos varios medios de almacenamiento de imágenes, que llamamos **transportes de imágenes** y nos permiten almacenar una imagen. Los **transportes de imágenes OCI** son los siguientes:
 
 * **docker**: Este es el transporte por defecto. Hace referencia a una imagen almacenada en un **Registro remoto de imágenes**. Los registros almacenan y comparten imágenes (por ejemplo, `docker.io` y `quay.io`).
-* **containers-storage**: Hace referencia a una imagen guarda en un registro local de Podman.
-* **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas e encuentran en el directorio local como archivos individuales.
+* **docker-daemon**: Hace referencia a una imagen guardada en un registro local de Docker.
+* **containers-storage**: Hace referencia a una imagen guardada en un registro local de Podman.
+* **dir**: Hace referencia a una imagen con formato Docker, guardado en un directorio local.
+* **docker-archive**: Hace referencia a una imagen con formato Docker comprimida en una archivo tar.
+* **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas se encuentran en el directorio local como archivos individuales.
 * **oci-archive**: Hace referencia a una imagen con formato OCI comprimida en una archivo tar.
 
 Por lo tanto podremos usar cualquier **transporte de imagen** para enviar y distribuir una imagen OCI. Para realizar la distribución tenemos dos herramientas:
 
 * **Podman**: Podman nos ofrece varias instrucciones para usar los **transportes de imágenes OCI** para distribuir una imagen OCI:
-    * Utilizando los comandos `podman save / podman load` podemos guardar y recuperar una imagen que tenemos en el registro local en un fichero comprimido (usando el medio de transporte `oci-archive`) o en un directorio con ele contenido de la imagen (usando el medio de transporte `oci`).
-    * Utilizando los comando `podman push / podman pull` que aunque también permite trabajar con imágenes guards en ficheros comprimidos o directorios, se suelen usar almacenar y recuperar imágenes en registros de imágenes remotos y locales.
+    * Utilizando los comandos `podman save / podman load` podemos guardar y recuperar una imagen que tenemos en el registro local en un fichero comprimido (usando el medio de transporte `oci-archive`) o en un directorio con el contenido de la imagen (usando el medio de transporte `oci`).
+    * Utilizando los comando `podman push / podman pull` que aunque también permite trabajar con imágenes guarda en ficheros comprimidos o directorios, se suelen usar almacenar y recuperar imágenes en registros de imágenes remotos y locales.
 * **Skopeo**: Skopeo es una herramienta específica para la gestión de imágenes OCI, que entre otras cosas nos permite copiar imágenes usando los distintos medios de transportes de imágenes.
