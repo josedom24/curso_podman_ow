@@ -30,3 +30,31 @@ Las características principales son:
 * **Integración con sistemas de automatización**: Skopeo se puede integrar fácilmente en flujos de trabajo de sistema de integración y despliegue continúo.
 
 ## Instalación de Buildah y Skopeo
+
+Puedes encontrar el método de instalación de Buildah en su [página oficial](https://github.com/containers/buildah/blob/main/install.md). Por ejemplo:
+
+Para sistemas Debian/Ubuntu:
+
+```
+$ sudo apt install buildah
+```
+
+Para sistemas fedora:
+
+```
+$ sudo dnf install buildah
+```
+
+De manera similar, pueder consultar los métodos de instalación de Skopeo en su [página oficial](https://github.com/containers/skopeo/blob/main/install.md). Por ejemplo:
+
+Para sistemas Debian/Ubuntu:
+
+```
+$ sudo apt install skopeo
+```
+
+Para sistemas fedora:
+
+```
+$ sudo dnf install skopeo
+```
