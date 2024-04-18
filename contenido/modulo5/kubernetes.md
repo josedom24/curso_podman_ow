@@ -18,7 +18,7 @@ Veamos algunos ejemplos. En primer lugar vamos a crear un contenedor con un serv
 $ podman run -d --name webserver -p 8080:8080 quay.io/fedora/httpd-24:2.4
 ```
 
-A partir de este contenedor vamos a crear los ficheros YAML de definición de recursos de Kubernetes, vamos a crear la definición de un Pod y la definición de un Service (para llo ponemos la opción `-s`) y vamos a guardarlo en un fichero (opción `-f`):
+A partir de este contenedor vamos a crear los ficheros YAML de definición de recursos de Kubernetes, vamos a crear la definición de un Pod y la definición de un Service (para ello ponemos la opción `-s`) y vamos a guardarlo en un fichero (opción `-f`):
 
 ```
 $ podman kube generate -s -f web-pod.yaml webserver
