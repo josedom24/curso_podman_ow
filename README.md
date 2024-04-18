@@ -92,10 +92,8 @@
     * [Construcción de imágenes desde cero con Buildah](contenido/modulo9/scratch.md)
     * [Construcción de imágenes desde un Containerfile con Buildah](contenido/modulo9/build.md)
     * [Distribución de imágenes con Buildah](contenido/modulo9/distribucion.md)
-    * Copiar imágenes OCI entre distintos registros
-    * Inspeccionar una imagen OCI remota 
-    * Gestión de imágenes OCI en registros remotos
-
+    * [Gestión de imágenes con Skopeo](contenido/modulo9/skopeo.md)
+    
 10. Podman Desktop
     * Introducción a la interfaz de Podman Desktop
     * Gestión de imágenes en Podman Desktop
