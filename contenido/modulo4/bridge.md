@@ -1,4 +1,4 @@
-# Redes en contenedores rootful
+# Uso de la red bridge por defecto
 
 Hasta ahora todos los contenedores rootful lo hemos conectado a la red **bridge** por defecto. Como ya hemos dicho las características más importantes de este tipo de red son las siguientes:
     

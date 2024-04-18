@@ -38,10 +38,11 @@
     * [Trabajando con bind mount](contenido/modulo4/bindmount.md)
     * [Trabajando con almacenamiento en contenedores rootless](contenido/modulo4/almacenamiento_rootless.md)
     * [Redes en Podman](contenido/modulo4/redes.md) (P)
-    * [Redes en contenedores rootful](contenido/modulo4/bridge.md)
-    * [Gestión de redes definida por el usuario](contenido/modulo4/usuario.md)
+    * [Uso de la red bridge por defecto](contenido/modulo4/bridge.md)
+    * [Gestión de redes definidas por el usuario](contenido/modulo4/usuario.md)
     * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)
     * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
+    * [Uso de la red host en Podman](contenido/modulo4/host.md)
     * Despliegue de la aplicación Citas (Versión 1)
     * Despliegue de la aplicación Citas (Versión 2)
     * Despliegue de la aplicación Guestbook
