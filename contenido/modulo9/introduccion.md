@@ -28,3 +28,5 @@ Las características principales son:
 * **Transporte de imágenes**: Skopeo utiliza los distintos transportes de imágenes para distribuirlas. 
 * **Compatibilidad con múltiples formatos: Skopeo es compatible con varios formatos de imágenes de contenedores, incluyendo Docker y OCI.
 * **Integración con sistemas de automatización**: Skopeo se puede integrar fácilmente en flujos de trabajo de sistema de integración y despliegue continúo.
+
+## Instalación de Buildah y Skopeo
