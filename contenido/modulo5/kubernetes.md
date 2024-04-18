@@ -131,7 +131,7 @@ status: {}
 Para el primer ejemplo partimos del escenario que creamos en el apartado **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
 
 ```
-sudo podman pod ps --ctr-names
+$ sudo podman pod ps --ctr-names
 POD ID        NAME               STATUS      CREATED         INFRA ID      NAMES
 d1d937d15358  wordpress-pod      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,db,wordpress
 ```
