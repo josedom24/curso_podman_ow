@@ -53,4 +53,4 @@ $ podman pull oci:debian-apache
 En este caso no se nombra la imagen de forma correcta y la tenemos que renombrar a a partir de su ID:
 
 ```
-$ podman image tag bc4e4f799925 quay.io/josedom24/debian-apache
+$ buildah tag a93fcf5cd27e quay.io/josedom24/debian-apache
