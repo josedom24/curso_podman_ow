@@ -1,6 +1,6 @@
 # Generación de un archivo YAML de Kubernetes con Podman
 
-Kubernetes es un orquestador de contenedores muy usado en nuestro días. Básicamente, Kubernetes controla la ejecución de Pods en distintos nodos de un clúster de servidores.
+Kubernetes es un orquestador de contenedores muy usado en nuestros días. Básicamente, Kubernetes controla la ejecución de Pods en distintos nodos de un clúster de servidores.
 
 Una de las características más importantes de Podman es la capacidad de generar recursos Kubernetes en formato YAML. Además Podman puede crear contenedores y Pods a partir de ficheros YAML de Kubernetes. De está forma con los subcomandos de la instrucción `podman kube` podremos gestionar manifiestos YAML de Kubernetes desde Podman.
 
