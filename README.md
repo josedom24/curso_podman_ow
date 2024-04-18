@@ -10,7 +10,7 @@
     * [Introducción a los contenedores OCI](contenido/modulo1/contenedores.md) (P)
     * [Aplicaciones para trabajar con contenedores OCI](contenido/modulo1/aplicaciones.md) (P)
     * [Introducción de Podman](contenido/modulo1/podman.md) (P)
-    * Instalación de Podman en Linux
+    * [Instalación de Podman en Linux](contenido/modulo1/linux.md)
     * Instalación de Podman en Windows
 2. Ejecución de contenedores OCI con Podman
     * [El "Hola Mundo" en Podman](contenido/modulo2/holamundo.md)

@@ -4,7 +4,7 @@ Cuando trabajamos con contenedores rootless, tenemos una limitación ya que los 
 
 Por lo tanto tenemos que usar un mecanismo que se ejecute en el espacio de usuario que nos permite ofrecer conectividad a los contenedores rootless. 
 
-En nuestro caso vamos a usar el proyecto **slirp4netns** que crea un entorno de red aislado para el contenedor y utilizando el módulo `slirp` del kernel para realizar la traducción de direcciones de red (NAT), lo que permite que el contenedor acceda a internet a través de la conexión de red del host.
+En nuestro caso vamos a usar el proyecto [**slirp4netns**](https://github.com/rootless-containers/slirp4netns) que crea un entorno de red aislado para el contenedor y utilizando el módulo `slirp` del kernel para realizar la traducción de direcciones de red (NAT), lo que permite que el contenedor acceda a internet a través de la conexión de red del host.
 
 ## Ejemplo de uso de red en contenedores rootless
 
@@ -66,3 +66,23 @@ Como podemos comprobar dicho contenedor tiene la misma configuración de red que
  / ___/ _ \/ _  /  ' \/ _ `/ _ \
 /_/   \___/\_,_/_/_/_/\_,_/_//_/
 ```
+
+## Redes en contenedores rootless con Podman 5.0
+
+En la nueva versión de Podman, se ha cambiado el mecanismo de red de slirp4netns a [pasta](https://passt.top/passt/about/#pasta-pack-a-subtle-tap-abstraction). Este nuevo mecanismo ofrece mejor rendimiento y más funciones.
+
+En este caso la configuración de red de todos los contenedores rootless sería la siguiente:
+
+```
+$ podman run -it --rm alpine ip a
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65520 qdisc fq_codel state UNKNOWN qlen 1000
+    link/ether 42:61:0e:89:08:41 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.40/24 brd 10.0.0.255 scope global noprefixroute eth0
+...
+$ podman run -it --rm alpine ip r
+default via 10.0.0.1 dev eth0  metric 100 
+10.0.0.0/24 dev eth0 scope link  metric 100 
+...
+```
+
+
