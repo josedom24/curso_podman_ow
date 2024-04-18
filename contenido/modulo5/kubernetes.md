@@ -85,6 +85,8 @@ service/kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP      
 service/webserver-pod   NodePort    10.108.230.189   <none>        8080:30208/TCP   52s
 ```
 
+## ## Generación de recursos YAML de Kubernetes a partir de contenedores con volúmenes
+
 Si tenemos un contenedor donde hemos montado un volumen:
 
 ```
