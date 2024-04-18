@@ -25,7 +25,7 @@ Como vemos el formato de la plantilla es similar al formato de una unidad de Sys
     * `Restart=always`: Política de reinicio. en este caso, se intentará reiniciar el servicio siempre que se detenga.
     * `TimeoutStartSec=900`: Tiempo máximo (en segundos) que systemd esperará a que el servicio se inicie antes de considerarlo como un fallo.
     * `WantedBy=multi-user.target default.target`: El servicio será iniciado automáticamente durante el arranque del sistema.
-* En esta plantilla donde vamos a definir la ejecución de un contenedor tenemos una sección especial que se llama `[Container]`. Dentro de esta sección pondremos distintos parámetro para especificar las características que tendrá el contenedor que vamos a gestionar. Esta sección no aparecerá en la unidad Systemd generada, pero los parámetros indicados utilizarán para generar la configuración adecuada. Los parámetros más importantes que podemos indicar dentro de la sección `[Container]` son:
+* En esta plantilla donde vamos a definir la ejecución de un contenedor tenemos una sección especial que se llama `[Container]`. Dentro de esta sección pondremos distintos parámetro para especificar las características que tendrá el contenedor que vamos a gestionar. Esta sección no aparecerá en la unidad Systemd generada, pero los parámetros indicados se utilizarán para generar la configuración adecuada. Los parámetros más importantes que podemos indicar dentro de la sección `[Container]` son:
     * `Image`: Nos permite indicar la imagen desde la que se crea el contenedor.
     * `PublishPort`: Nos permite mapear puertos. Igual que la opción `-p` de `podman run`.
     * `ContainerName`: Nos permite indicar el nombre del contenedor.
