@@ -8,7 +8,7 @@ Systemd utiliza las **Unidades de Servicios**: Cada servicio o recurso que syste
 
 ## Quadlet
 
-Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades se servicios. En un principio se creaban una unidad Systemd que llamaba a podmancon el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
+Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades se servicios. En un principio se creaban una unidad Systemd que llamaba a podman con el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
 
 Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso de Quadlet (que ha sido integrado en Podman) para gestionar la ejecución de contenedores Podman con Systemd.
 
