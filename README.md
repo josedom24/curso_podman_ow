@@ -48,7 +48,7 @@
     * Despliegue de la aplicación Guestbook
 
 5. Gestión de Pods en Podman
-    * [Trabajando con Pods en Podman](contenido/modulo5/pod.md)
+    * [Trabajando con Pods en Podman](contenido/modulo5/pod.md) (P)
     * [Gestión de Pods](contenido/modulo5/gestion.md)
     * [Funcionamiento de la red en un Pod](contenido/modulo5/red.md)
     * [Almacenamiento compartido entre los contenedores de un Pod](contenido/modulo5/almacenamiento.md)
@@ -59,7 +59,7 @@
     * Ejecutando recursos de Kubernetes en Podman
 
 6. Gestionando recursos de Podman con Systemd y Quadlet
-    * [Introducción a Quadlet](contenido/modulo6/quadlet.md)
+    * [Introducción a Quadlet](contenido/modulo6/quadlet.md) (P)
     * [Ejecución de contenedores con Systemd y Quadlet](contenido/modulo6/contenedor.md)
     * [Gestionando volúmenes y redes con Systemd y Quadlet](contenido/modulo6/vol_redes.md)
     * [Ejecución de Pods con Systemd y Quadlet](contenido/modulo6/pod.md)
@@ -67,7 +67,7 @@
     * Ejecución de contenedores rootless con Systemd y Quadlet
 
 7. Gestionando escenarios multicontenedor con podman-compose
-    * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md)
+    * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md) (P)
     * [El fichero compose.yaml](contenido/modulo7/compose_yaml.md)
     * [El comando podman-compose](contenido/modulo7/podman_compose.md)
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
@@ -78,7 +78,7 @@
     * Creación de Pods con podman-compose
 
 8. Gestión de imágenes OCI con Podman
-    * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md)
+    * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md) (P)
     * [Creación de imágenes a partir de un contenedor](contenido/modulo8/contenedor.md)
     * [El fichero Containerfile](contenido/modulo8/containerfile.md)
     * [Construcción de imágenes con podman build](contenido/modulo8/build.md)
@@ -88,7 +88,7 @@
     * [Uso de ficheros Containerfile parametrizados](contenido/modulo8/variables.md)
     
 9. Gestión de imágenes OCI con Buildah y Skopeo
-    * [Introducción a Buildah y Skopeo](contenido/modulo9/introduccion.md)
+    * [Introducción a Buildah y Skopeo](contenido/modulo9/introduccion.md) (P)
     * [Construcción de imágenes desde una imagen base con Buildah](contenido/modulo9/base.md)
     * [Construcción de imágenes desde cero con Buildah](contenido/modulo9/scratch.md)
     * [Construcción de imágenes desde un Containerfile con Buildah](contenido/modulo9/build.md)
