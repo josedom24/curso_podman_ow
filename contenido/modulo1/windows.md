@@ -16,7 +16,9 @@ Los requistos para realizar la instalción son los siguientes:
 
 1. Descagamos el cliente de Podman desde la página de descargas [GitHub release page](https://github.com/containers/podman/releases). En este ejemplo vamos a bajar la versión 5.0.2, el fichero `podman-5.0.2-setup.exe`.
 2. Lo ejecutamos y realizamos la instalación.
+   
     ![win](img/win1.png)
+
 3. Abrimos una terminal de PowerShell y comenzamos el proceso de creación de la máquina virtual:
 
     ```
