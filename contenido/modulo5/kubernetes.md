@@ -10,7 +10,7 @@ Podman puede generar la definición en formato de varios recursos de Kubernetes:
 
 * **Pod**: es un recurso de Kubernetes que nos permite la definición de un Pod.
 * **Service**: es un recurso de Kubernetes que nos permite el acceso al Pod.
-* **PersistentVolumeClaim**: Es un recurso de Kubernetes que nos permite la creación de un volumen en Kubernetes. Este recurso se podrá crear si usamos volúmenes en Podman. si utilizamos bind mount para configurar el almacenamiento, en la definición del Pod se añadirá un volumen de tipo *hostPath* (es decir, un directorio en el nodo del clúster de Kubernetes).
+* **PersistentVolumeClaim**: Es un recurso de Kubernetes que nos permite la creación de un volumen en Kubernetes. Este recurso se creará apartir de los volúmenes de Podman. Si utilizamos bind mount para configurar el almacenamiento, en la definición del Pod se añadirá un volumen de tipo *hostPath* (es decir, un directorio en el nodo del clúster de Kubernetes).
 
 Veamos algunos ejemplos. En primer lugar vamos a crear un contenedor con un servidor web apache2:
 
