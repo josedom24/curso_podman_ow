@@ -44,7 +44,7 @@ Hemos recuperado la imagen con formato Docker, pero también podríamos haber re
 
 ## Distribución de imágenes usando registros
 
-Como hemos indicado podemos trabajar con varios registros de imágenes. Si los registros son públicos hemos usado `podman pull` para descargar imágenes. Si queremos subir nuestras imágenes usaremos `podman push` pero necesitaremos registrasnos en los registros y tener un usuario que nos permita subir nuestras imágenes.
+Como hemos indicado podemos trabajar con varios registros de imágenes. Si los registros son públicos hemos usado `podman pull` para descargar imágenes. Si queremos subir nuestras imágenes usaremos `podman push` pero necesitaremos registrarnos en los registros y tener un usuario que nos permita subir nuestras imágenes.
 
 ### Logueo en los registros
 
@@ -89,14 +89,14 @@ $ podman login --get-login quiay.io
 $ podman pull quay.io/josedom24/webserver:v1
 ```
 
-Pero usando los ditintos transportes de imágenes también podemos guardar una imagen a nuestro local a partir de un fichero o un directorio, de manera similar a `podman load`:
+Pero usando los distintos transportes de imágenes también podemos guardar una imagen a nuestro local a partir de un fichero o un directorio, de manera similar a `podman load`:
 
 ```
 $ podman pull oci-archive:alpine3.tar
 $ podman pull oci:alpine
 ```
 
-En este caso no se nombra la iamgen de forma correcta y la tenemos que renombrar a aprtir de su ID:
+En este caso no se nombra la imagen de forma correcta y la tenemos que renombrar a a partir de su ID:
 
 ```
 $ podman image tag bc4e4f799925 docker.io/alpine:latest

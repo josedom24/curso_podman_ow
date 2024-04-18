@@ -91,7 +91,7 @@
     * [Construcción de imágenes desde una imagen base con Buildah](contenido/modulo9/base.md)
     * [Construcción de imágenes desde cero con Buildah](contenido/modulo9/scratch.md)
     * [Construcción de imágenes desde un Containerfile con Buildah](contenido/modulo9/build.md)
-    * Distribución de imágenes con Buildah
+    * [Distribución de imágenes con Buildah](contenido/modulo9/distribucion.md)
     * Copiar imágenes OCI entre distintos registros
     * Inspeccionar una imagen OCI remota 
     * Gestión de imágenes OCI en registros remotos
