@@ -39,7 +39,7 @@ Para sistemas Debian/Ubuntu:
 $ sudo apt install buildah
 ```
 
-Para sistemas fedora:
+Para sistemas Fedora:
 
 ```
 $ sudo dnf install buildah
@@ -53,7 +53,7 @@ Para sistemas Debian/Ubuntu:
 $ sudo apt install skopeo
 ```
 
-Para sistemas fedora:
+Para sistemas Fedora:
 
 ```
 $ sudo dnf install skopeo
