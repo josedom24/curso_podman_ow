@@ -87,9 +87,9 @@
     * [Uso de ficheros Containerfile parametrizados](contenido/modulo8/variables.md)
     
 9. Gestión de imágenes OCI con Buildah y Skopeo
-    * [Introducción a Buildah y Skopeo](contenido/modulo8/introduccion.md)
-    * [Construcción de imágenes desde una imagen base con Buildah](contenido/modulo8/base.md)
-    * Construcción de imágenes desde cero con Buildah
+    * [Introducción a Buildah y Skopeo](contenido/modulo9/introduccion.md)
+    * [Construcción de imágenes desde una imagen base con Buildah](contenido/modulo9/base.md)
+    * [Construcción de imágenes desde cero con Buildah](contenido/modulo9/scratch.md)
     * Construcción de imágenes desde un Containerfile con Buildah
     * Distribución de imágenes con Buildah
     * Copiar imágenes OCI entre distintos registros

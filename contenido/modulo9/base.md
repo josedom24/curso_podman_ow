@@ -1,6 +1,6 @@
 # Construcción de imágenes desde una imagen base con Buildah
 
-Buidah utiliza el concepto de **Contenedor de Trabajo**. 
+Buildah utiliza el concepto de **Contenedor de Trabajo**. 
 
 Vamos a crear un contenedor a partir de una imagen base. Sobre este contenedor le podemos realizar distintas operaciones: ejecución de comandos, copiar ficheros, configurar distintos parámetros,...
 
@@ -42,7 +42,7 @@ $ buildah config --cmd "/usr/sbin/apache2ctl -DFOREGROUND" contenedor-work1
 $ buildah config -p 80 contenedor-work1
 ```
 
-Finalmente, usando `buidah commit` podemos crear nuestra nueva imagen:
+Finalmente, usando `buildah commit` podemos crear nuestra nueva imagen:
 
 ```
 $ buildah commit contenedor-work1 josedom24/debian-apache:latest
