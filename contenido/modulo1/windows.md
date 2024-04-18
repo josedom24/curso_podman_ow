@@ -1,6 +1,6 @@
 # Instalación de Podman en Windows/macOS
 
-Para el sistema operativo macOs puedes encontrar información en la página oficial de [instalación de Podman](https://podman.io/docs/installation#macos).
+Para el sistema operativo macOS puedes encontrar información en la página oficial de [instalación de Podman](https://podman.io/docs/installation#macos).
 
 En la [documentación oficial](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md) sobre la instalación de Podman en Windows puedes encontrar la información completa.
 
@@ -39,7 +39,7 @@ Los requistos para realizar la instalción son los siguientes:
     Por edefecto la máquina virtual se ha inciado para trabajar con contenedores rootless. Si queremos usar contenedores rootful, debemos ejecutar con la máquina parada:
 
     ```
-    > podman machine set --rotful
+    > podman machine set --rootful
     ```
     ![win](img/win3.png)
 
