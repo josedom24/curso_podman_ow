@@ -74,8 +74,7 @@
     * Despliegue de la aplicación Citas (Versión 1)
     * Despliegue de la aplicación Citas (Versión 2)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
-    * Creación de contenedores rootless con podman-compose
-    * Creación de Pods con podman-compose
+    * [Creación de contenedores rootless con podman-compose](contenido/modulo7/rootless.md)
 
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md) (P)

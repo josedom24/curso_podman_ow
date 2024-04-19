@@ -15,7 +15,7 @@ El fichero de definición del escenario también puede ser llamado `compose.yml`
 
 `podman-compose` es un script escrito en python, por lo que podemos hacer la instalación:
 
-* Utilizando el paquete oficial de la distribución: `apt install podman-compose`, `dfn install podman-compose`.
+* Utilizando el paquete oficial de la distribución: `apt install podman-compose`, `dnf install podman-compose`.
 * O utilizando `pip`: `pip3 install podman-compose`.
 * Coe puede usar también desde Podman Desktop.
 
