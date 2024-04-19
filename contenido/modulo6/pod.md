@@ -90,3 +90,26 @@ TimeoutStartSec=900
 WantedBy=multi-user.target default.target
 ```
 
+Y podemos iniciar el servicio, ejecutando:
+
+```
+$ sudo systemctl start webserver
+```
+
+Comprobamos los recursos que hemos creado:
+
+```
+$ sudo podman pod ps --ctr-names
+POD ID        NAME             STATUS      CREATED         INFRA ID      NAMES
+a05c8648fb84  pod-servidorweb  Running     57 seconds ago  e4add95514e8  a05c8648fb84-infra,contenedor_webserver
+```
+
+Y finalmente, comprobamos que funciona:
+
+```
+$ curl http://localhost:8889
+   ___          __              
+  / _ \___  ___/ /_ _  ___ ____ 
+ / ___/ _ \/ _  /  ' \/ _ `/ _ \
+/_/   \___/\_,_/_/_/_/\_,_/_//_/
+```
