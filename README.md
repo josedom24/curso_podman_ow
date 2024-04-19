@@ -44,7 +44,7 @@
     * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
     * [Uso de la red host en Podman](contenido/modulo4/host.md)
     * [Despliegue de la aplicación Guestbook](contenido/modulo4/guestbook.md)
-    * Despliegue de la aplicación Temperaturas
+    * [Despliegue de la aplicación Temperaturas](contenido/modulo4/temperaturas.md)
 
 5. Gestión de Pods en Podman
     * [Trabajando con Pods en Podman](contenido/modulo5/pod.md) (P)
@@ -72,7 +72,7 @@
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * [Creación de contenedores rootless con podman-compose](contenido/modulo7/rootless.md)
-    * [Despliegue de la aplicación Guestbook](contenido/modulo7/guestbook.md)
+    * Despliegue de la aplicación Guestbook
     * Despliegue de la aplicación Temperaturas
     
 8. Gestión de imágenes OCI con Podman
