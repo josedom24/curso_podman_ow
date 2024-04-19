@@ -43,9 +43,8 @@
     * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)
     * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
     * [Uso de la red host en Podman](contenido/modulo4/host.md)
-    * Despliegue de la aplicación Citas (Versión 1)
-    * Despliegue de la aplicación Citas (Versión 2)
     * Despliegue de la aplicación Guestbook
+    * Despliegue de la aplicación Temperaturas
 
 5. Gestión de Pods en Podman
     * [Trabajando con Pods en Podman](contenido/modulo5/pod.md) (P)
@@ -71,11 +70,11 @@
     * [El fichero compose.yaml](contenido/modulo7/compose_yaml.md)
     * [El comando podman-compose](contenido/modulo7/podman_compose.md)
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
-    * Despliegue de la aplicación Citas (Versión 1)
-    * Despliegue de la aplicación Citas (Versión 2)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * [Creación de contenedores rootless con podman-compose](contenido/modulo7/rootless.md)
-
+    * [Despliegue de la aplicación Guestbook](contenido/modulo7/guestbook.md)
+    * Despliegue de la aplicación Temperaturas
+    
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md) (P)
     * [Creación de imágenes a partir de un contenedor](contenido/modulo8/contenedor.md)
