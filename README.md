@@ -56,7 +56,7 @@
     * [Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod](contenido/modulo5/wordpress2.md)
     * [Creación de Pods en modo rootless](contenido/modulo5/rootless.md)
     * [Generación de un archivo YAML de Kubernetes con Podman](contenido/modulo5/kubernetes.md)
-    * Ejecutando recursos de Kubernetes en Podman
+    * [Ejecutando recursos de Kubernetes en Podman](contenido/modulo5/kubernetes2.md)
 
 6. Gestionando recursos de Podman con Systemd y Quadlet
     * [Introducción a Quadlet](contenido/modulo6/quadlet.md) (P)

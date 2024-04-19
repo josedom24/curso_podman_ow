@@ -2,6 +2,7 @@
 
 Además de poder generar definiciones de recursos de Kubernetes en fichero YAML. En Podman también podemos ejecutar Pods y contenedores a partir de manifiestos YAML de Kubernetes.
 
+En primer lugar vamos a ejecutar recursos en Podman a partir del fichero `wp-mariadb-pod.yaml` que hemos generado en el apartado anterior a partir del escenario que construimos en el **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
 
 ```
 $ sudo podman kube play wp-mariadb-pod.yaml
@@ -14,7 +15,11 @@ cd2d6fc0916ba73e769562382b80464108b1305e28db9847f963212c608a43e8
 Containers:
 93360a599956da91011c1b720e2fe599e49afd898810c19bba079a4ddf828b1c
 42621e47f8155ae40c1d3a7139279d8f23c1c40be21bbc65b742b511cced34c9
+```
 
+Podemos crear que hemos creado un Pod con dos contenedores y dos volúmenes:
+
+```
 $ sudo podman pod ps --ctr-names
 POD ID        NAME           STATUS      CREATED        INFRA ID      NAMES
 cd2d6fc0916b  wordpress-pod  Running     2 minutes ago  bee585832127  cd2d6fc0916b-infra,wordpress-pod-db,wordpress-pod-wordpress
@@ -24,6 +29,9 @@ DRIVER      VOLUME NAME
 local       dbvol
 local       wpvol
 ```
+
+Ahora crearemos recursos en Podman a partir del fichero `wp-mariadb-multipod.yaml` que hemos generado en el apartado anterior a partir del escenario que construimos en el **Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod**:
+
 
 ```
 $ sudo podman kube play wp-mariadb-multipod.yaml
@@ -39,7 +47,10 @@ Pod:
 b1dd4010698aeda650b9ba3c808de81ad16b1d4845a68be0a3d6013e18c217b1
 Container:
 7bc05f2f048843b03bba694fc4802d299c7c5454721123029f31f9b167c18379
+```
+Ahora comprobamos que hemos creados dos Pods, cada uno con un contenedor y los dos volúmenes:
 
+```
 $ sudo podman pod ps --ctr-names
 POD ID        NAME           STATUS      CREATED         INFRA ID      NAMES
 b1dd4010698a  mariadb-pod    Running     34 seconds ago  5cf7cb140f7a  b1dd4010698a-infra,mariadb-pod-db
