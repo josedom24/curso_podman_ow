@@ -97,3 +97,6 @@ local       dbvol
 local       wpvol
 ```
 
+Y podemos acceder a la aplicación para comprobar que está funcionando:
+
+![wordpress](img/wordpress.png)
