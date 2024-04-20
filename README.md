@@ -72,8 +72,8 @@
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
     * [Creación de contenedores rootless con podman-compose](contenido/modulo7/rootless.md)
-    * Despliegue de la aplicación Guestbook
-    * Despliegue de la aplicación Temperaturas
+    * [Despliegue de la aplicación Guestbook](contenido/modulo7/guestbook.md)
+    * [Despliegue de la aplicación Temperaturas](contenido/modulo7/temperaturas.md)
     
 8. Gestión de imágenes OCI con Podman
     * [Construcción y distribución de imágenes OCI](contenido/modulo8/introduccion.md) (P)
