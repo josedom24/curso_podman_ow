@@ -18,7 +18,7 @@ Podemos hacer la siguiente clasificación de contenedores según el uso que hace
 ¿Qué aplicaciones web son más idóneas para desplegar en contenedores?
 
 * Si tenemos aplicaciones monolíticas, vamos a usar un esquema multicapa, es decir cada servicio (servicio web, servicio de base de datos, ... ) se va a desplegar en un contenedor.
-* Realmente, las aplicaciones que mejor se ajustan al despliegue en contenedores son la desarrolladas con microservicios:
+* Realmente, las aplicaciones que mejor se ajustan al despliegue en contenedores son las desarrolladas con microservicios:
     * Cada componente de la aplicación (“microservicio”) se puede desplegar en un contenedor.
     * Comunicación vía HTTP API REST y colas de mensajes.
     * Facilita enormemente las actualizaciones de versiones de cada componente.
