@@ -85,7 +85,7 @@
     * [Distribución de imágenes OCI](contenido/modulo8/distribucion.md)
     * [Uso de ficheros Containerfile parametrizados](contenido/modulo8/variables.md)
     
-9. Gestión de imágenes OCI con Buildah y* Despliegue de la aplicación Temperaturas Skopeo
+9. Gestión de imágenes OCI con Buildah y Skopeo
     * [Introducción a Buildah y Skopeo](contenido/modulo9/introduccion.md) (P)
     * [Construcción de imágenes desde una imagen base con Buildah](contenido/modulo9/base.md)
     * [Construcción de imágenes desde cero con Buildah](contenido/modulo9/scratch.md)
