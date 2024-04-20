@@ -21,6 +21,39 @@ El fichero de definición del escenario también puede ser llamado `compose.yml`
 
 Una vez instalado, podremos utilizar directamente el ejecutable de `podman-compose` o una utilidad que nos ofrece el cliente de Podman: `podman compose`.
 
+## docker-compose
+
+`docker-compose` es un script escrito en Python que tradicionalmente se ha utilizado para crear escenarios multiescenario en Docker. Actualmente la funcionalidad para trabajar con Compose se ha añadido al cliente Docker y podemos usar el comando `docker compose` para trabajar.
+
+Como alternativa al uso de `podman-compose` podemos usar `docker-compose` para ello hay que instalar los siguiente paquetes:
+
+En distribuciones Debian/Ubuntu:
+
+```
+$ sudo apt install docker-compose podman-docker
+```
+
+El la distribución Fedora:
+
+```
+$ sudo dnf install docker-compose podman-docker 
+```
+
+El paquete `podman-docker` añade un alias para que al poner el comando `docker` se ejecute el comando `podman`. Por último necesitamos activar el socket de Podman para que `docker-compose` se pueda conectar a la API de Podman. 
+
+Si queremos usar `docker-compose` en entorno rootful:
+
+```
+$ sudo systemctl start podman.socket
+```
+
+Si queremos usarlo en entornos rootless:
+
+```
+$ systemctl --user start podman.socket
+$ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+```
+
 ## Ventajas de usar Compose
 
 * Hacer todo de manera **declarativa** para que no tenga que repetir todo el proceso cada vez que construyo el escenario.

@@ -38,7 +38,7 @@ Podemos acceder a la aplicación para comprobar su funcionamiento:
 En este caso el contenedor guestbook conectará al contenedor redis usando la dirección IP del host. Por lo tanto tenemos que tener en cuenta los siguiente:
 
 * En este ejemplo la dirección IP del host es `10.0.0.231`.
-* El valor de la variable de configuración `REDIS_SERVER` para configurar la aplicación Guestbook para indicarle donde tiene que conectar a la base d edatos debe valer la dirección IP del host.
+* El valor de la variable de configuración `REDIS_SERVER` para configurar la aplicación Guestbook para indicarle donde tiene que conectar a la base de datos debe valer la dirección IP del host.
 * En los dos contenedor debemos mapear el puerto: en el contenedor `guestbook` porque vamos acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `redis` porque se va a acceder desde el otro contenedor.
 * En este ejemplo hemos usado un volumen.
 
