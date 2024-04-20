@@ -17,7 +17,7 @@ El fichero de definición del escenario también puede ser llamado `compose.yml`
 
 * Utilizando el paquete oficial de la distribución: `apt install podman-compose`, `dnf install podman-compose`.
 * O utilizando `pip`: `pip3 install podman-compose`.
-* Coe puede usar también desde Podman Desktop.
+* Compose se puede usar también desde Podman Desktop.
 
 Una vez instalado, podremos utilizar directamente el ejecutable de `podman-compose` o una utilidad que nos ofrece el cliente de Podman: `podman compose`.
 
