@@ -25,7 +25,7 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
     * Puede estar conectado a una red virtual y utilizar almacenamiento adicional para no perder la información importante.
     * Utiliza los recursos del servidor donde se está ejecutando (núcleo del sistema operativo, CPU, RAM).    
     * Los contenedores suelen ejecutar un sólo proceso.
-    * Los contenedores son efímeros
+    * Los contenedores son efímeros.
 * **Imagen OCI**: 
     * El formato de las imágenes cumplen la especificación desarrollado por la OCI. Del mismo modo, la distribución de dichas imágenes cumplen con la especificación OCI.
     * Una imagen es una plantilla de sólo lectura con instrucciones para crear un contenedor OCI. 
