@@ -27,7 +27,7 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
     * Los contenedores suelen ejecutar un sólo proceso.
     * Los contenedores son efímeros.
 * **Imagen OCI**: 
-    * El formato de las imágenes cumplen la especificación desarrollado por la OCI. Del mismo modo, la distribución de dichas imágenes cumplen con la especificación OCI.
+    * El formato de las imágenes cumplen la especificación desarrollada por la OCI. Del mismo modo, la distribución de dichas imágenes cumplen con la especificación OCI.
     * Una imagen es una plantilla de sólo lectura con instrucciones para crear un contenedor OCI. 
     * Contiene el sistema de fichero que tendrá el contenedor. 
     * Además establece el comando que ejecutará el contenedor por defecto. 
