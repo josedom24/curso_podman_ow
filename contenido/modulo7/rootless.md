@@ -10,7 +10,7 @@ services:
   app:
     network_mode: "slirp4netns:port_handler=slirp4netns"
     environment:
-      - NETWORK_INTERFACE=tap0
+      NETWORK_INTERFACE: tap0
     container_name: webserver
     image: quay.io/libpod/banner
     restart: always
