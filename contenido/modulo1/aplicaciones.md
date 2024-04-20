@@ -49,6 +49,6 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
 
 Podman, Buildah y Skopeo son tres herramientas relacionadas que se utilizan en el mundo de los contenedores. Aunque tienen funcionalidades diferentes, trabajan en conjunto para facilitar la construcción, ejecución y administración de contenedores. 
 
-* **Podman**: Es un **motor de contenedores** de contenedores OCI, que permite a los usuarios crear, ejecutar y gestionar contenedores sin necesidad de un demonio (daemon) centralizado. Podman utiliza un enfoque basado en procesos, lo que lo hace más seguro y adecuado para entornos donde se requiere aislamiento y seguridad. 
+* **Podman**: Es un **motor de contenedores OCI**, que permite a los usuarios crear, ejecutar y gestionar contenedores sin necesidad de un demonio (daemon) centralizado. Podman utiliza un enfoque basado en procesos, lo que lo hace más seguro y adecuado para entornos donde se requiere aislamiento y seguridad. 
 * **Buildah**: Es una herramienta para la **construcción de imágenes de contenedores** sin necesidad de ejecutar un demonio. Permite a los usuarios construir imágenes de contenedores OCI desde cero o a partir de un contenedor existente sin necesidad de un fichero `Dockerfile`. 
 * **Skopeo**: Es una herramienta que facilita la **gestión de imágenes de contenedores**. Permite a los usuarios copiar imágenes de un registro a otro, inspeccionar imágenes y firmas, y realizar otras operaciones relacionadas con imágenes sin necesidad de descargarlas en el sistema local. 
