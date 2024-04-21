@@ -30,7 +30,7 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
     * El formato de las imágenes cumplen la especificación desarrollada por la OCI. Del mismo modo, la distribución de dichas imágenes cumplen con la especificación OCI.
     * Una imagen es una plantilla de sólo lectura con instrucciones para crear un contenedor OCI. 
     * Contiene el sistema de fichero que tendrá el contenedor. 
-    * Además establece el comando que ejecutará el contenedor por defecto. 
+    * Además guardan un conjunto de metadatos, por ejemplo el comando que ejecutará el contenedor por defecto. 
     * Podemos crear nuestras propias imágenes o utilizar las creadas por otros y publicadas en un registro. 
     * Un contenedor es una instancia ejecutable de una imagen. 
 * **Registros de Imágenes**:
@@ -50,5 +50,5 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
 Podman, Buildah y Skopeo son tres herramientas relacionadas que se utilizan en el mundo de los contenedores. Aunque tienen funcionalidades diferentes, trabajan en conjunto para facilitar la construcción, ejecución y administración de contenedores. 
 
 * **Podman**: Es un **motor de contenedores OCI**, que permite a los usuarios crear, ejecutar y gestionar contenedores sin necesidad de un demonio (daemon) centralizado. Podman utiliza un enfoque basado en procesos, lo que lo hace más seguro y adecuado para entornos donde se requiere aislamiento y seguridad. 
-* **Buildah**: Es una herramienta para la **construcción de imágenes de contenedores** sin necesidad de ejecutar un demonio. Permite a los usuarios construir imágenes de contenedores OCI desde cero o a partir de un contenedor existente sin necesidad de un fichero `Dockerfile`. 
-* **Skopeo**: Es una herramienta que facilita la **gestión de imágenes de contenedores**. Permite a los usuarios copiar imágenes de un registro a otro, inspeccionar imágenes y firmas, y realizar otras operaciones relacionadas con imágenes sin necesidad de descargarlas en el sistema local. 
+* **Buildah**: Es una herramienta para la **construcción de imágenes de contenedores** sin necesidad de ejecutar un demonio. Permite distintas maneras a los usuarios de construir imágenes de contenedores OCI: desde cero, desde una iamgen base, desde un fichero `Containerfile`.
+* **Skopeo**: Es una herramienta que facilita la **gestión de imágenes de contenedores**. Permite a los usuarios copiar imágenes de un registro a otro, inspeccionar imágenes, y realizar otras operaciones relacionadas con imágenes sin necesidad de descargarlas en el sistema local. 
