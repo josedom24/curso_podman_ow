@@ -101,7 +101,7 @@ Writing manifest to image destination
 Hola Mundo!!!
 
 1. Este contenedor se ha iniciado.
-2. Ha mostrado el mansaje.
+2. Ha mostrado el mensaje.
 3. Y finalmente se ha parado.
 ```
 
@@ -111,7 +111,7 @@ En este caso:
 2. Al indicar la imagen hemos usado su nombre completo, indicando el nombre del registro, el nombre del usuario, el nombre de la imagen, y el nombre de la etiqueta (si no se indica el nombre de la etiqueta se escogerá por defecto `latest`).
 3. Se crea el contenedor que ejecuta un comando por defecto que muestra el mensaje que hemos leído y se detiene.
 
-Cada usuario gestiona sus imágenes y sus contenedores, por lo tanto el usuario sin privilegio no veo las imágenes ni los contenedores del `root`:
+Cada usuario gestiona sus imágenes y sus contenedores, por lo tanto el usuario sin privilegio no ve las imágenes ni los contenedores del `root`:
 
 ```
 $ podman images
