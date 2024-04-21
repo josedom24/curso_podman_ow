@@ -16,7 +16,7 @@ prueba
 
 Cuando queremos configurar un contenedor y necesitamos enviarle información sensible (contraseñas, claves privadas, ...) podemos usar el recurso **Secret**.
 
-Secret nos permite guarda información sensible  que será codificada o cifrada. Y asegura que dicha información no se guarde en una imagen o en un repositorio de control de versiones.
+Secret nos permite guarda información sensible que será codificada o cifrada. Se asegura que dicha información no se guarde en una imagen o en un repositorio de control de versiones.
 
 Un Secret se podrá enviar a un contenedor guardada en un fichero o como valor de una variable de entorno.
 
@@ -62,7 +62,7 @@ $ podman secret inspect secreto1
             "Driver": {
                 "Name": "file",
                 "Options": {
-                    "path": "/var/lib/containers/storage/secrets/filedriver"
+                    "path": "/home/usuario/.local/share/containers/storage/secrets/filedriver"
                 }
             },
             "Labels": {}
@@ -71,15 +71,15 @@ $ podman secret inspect secreto1
 ]
 ```
 
-Donde observamos que el secreto se almacena en un fichero en el directorio `/var/lib/containers/storage/secrets/filedriver` (si estamos usando el usuario `root` para crearlo) que se llama `secretsdata.json`donde el valor del Secret estará codificado en base64.
-
-Si creamos un Secret con nuestro usuario si privilegio el directorio donde se almacena los Secrets será `/$HOME/.local/share/containers/storage/secrets/filedriver`.
+* Si creamos con un usuario sin privilegios el secreto, se almacenará en un fichero en el directorio `/$HOME/.local/share/containers/storage/secrets/`.
+* Si creamos con el usuario `root` el secreto, se almacenará en el directorio `/var/lib/containers/storage/secrets/filedriver`.
+* El fichero donde se almacena se llama `secretsdata.json`y su contenido será el valor del secreto codificado en base64.
 
 ### Utilización del Secret en la ejecución de un contenedor
 
 Para enviar el valor de un Secret a un contenedor cuando lo ejecutamos utilizaremos el parámetro `--secret`. El valor del Secret se puede mandar como:
 
-* Una variable de entorno: `--secret <nombre_Secret>,type=env.target=<nombre_variable_entorno>`. Si no se indica el nombre de la variable de entorno, esta se llamará como el Secret.
+* Una variable de entorno: `--secret <nombre_Secret>,type=env,target=<nombre_variable_entorno>`. Si no se indica el nombre de la variable de entorno, esta se llamará como el Secret.
 * El contenido de un fichero que se monta en el contenedor: `--secret <nombre_Secret>,type=mount,target=<path del fichero`. El tipo `mount` es el valor por defecto, además si no se indica el nombre del fichero, el valor por defecto será `/run/secrets/<nombre_Secret>`
 
 Veamos algunos ejemplos:
