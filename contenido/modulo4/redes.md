@@ -10,7 +10,7 @@ Dependiendo del tipo de contenedor que creemos, Podman utilizará distintos meca
 * **Red Brige**: Es escenario más común cuando trabajamos con contenedores rootful. Nos permite que los contenedores estén conectados a una red privada, con un direccionamiento privado conectado al host mediante un Linux Bridge. 
     * Nos permiten aislar los contenedores del acceso exterior.
     * Los contenedores conectados a un red **bridge** tienen acceso a internet por medio de una regla SNAT. 
-    * Usamos el parámetro `-p` en `docker run` para exponer algún puerto. Se crea una regla DNAT para tener acceso al puerto.
+    * Usamos el parámetro `-p` en `podman run` para exponer algún puerto. Se crea una regla DNAT para tener acceso al puerto.
 * **Redes macvlan o ipvlan**: Son configuraciones más avanzadas de red, donde se permite que el contenedor esté conectado directamente a la red donde está conectado el host. La diferencia entre las dos, es que mientras macvlan permite la comunicación entre contenedores, ipvlan aisla completamente a cada contenedor.
 * **Red slirp4netns**: Es una configuración de red con capacidades limitadas pero puede ser utilizada con los contenedores rootless. Crea un túnel desde el host al contenedor para reenviar el tráfico.
 
