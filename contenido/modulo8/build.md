@@ -79,7 +79,7 @@ Como hemos indicado anteriormente, durante la construcción de una imagen OCI, s
 Si modificamos el fichero `index.html` y volvemos a construir la imagen:
 
 ```
-$ docker build -t josedom24/webserver:v1 .
+$ podman build -t josedom24/webserver:v1 .
 ...
 ```
     
@@ -120,8 +120,8 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/webserver:v2 .
-$ docker run -d -p 8082:80 --name websever2 josedom24/webserver:v2
+$ podman build -t josedom24/webserver:v2 .
+$ podman run -d -p 8082:80 --name websever2 josedom24/webserver:v2
 ```
 
 ## Versión 3: Desde una imagen con nginx
@@ -129,7 +129,7 @@ $ docker run -d -p 8082:80 --name websever2 josedom24/webserver:v2
 En este caso el fichero `Containerfile` sería:
 
 ```
-FROM docker.io/nginx:1.24
+FROM podman.io/nginx:1.24
 COPY public_html /usr/share/nginx/html
 EXPOSE 80
 ```
@@ -137,7 +137,7 @@ EXPOSE 80
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ docker build -t josedom24/webserver:v3 .
-$ docker run -d -p 8083:80 --name webserver3 josedom24/webserver:v3
+$ podman build -t josedom24/webserver:v3 .
+$ podman run -d -p 8083:80 --name webserver3 josedom24/webserver:v3
 ```
 
