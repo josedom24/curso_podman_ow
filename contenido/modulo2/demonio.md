@@ -1,8 +1,8 @@
 # Ejecución de contenedores demonios
 
-En esta ocasión hemos utilizado la opción `-d` del comando `podman run`, para que la ejecución del comando en el contenedor se haga en segundo plano, de manera desatendida, sin estar conectada a la entrada y salida estándar.
+En esta ocasión hemos utilizado la opción `-d` o `--detach` del comando `podman run`, para que la ejecución del comando en el contenedor se haga en segundo plano, de manera desatendida, sin estar conectada a la entrada y salida estándar.
 
-Por ejemplo, en este ejemplo ejecutamos un proceso demonio en el contenedor (proceso que se ejecuta indefinidamente) y utilizamos la poción `-d` para que se ejecute de manera desatendida, en segundo planto. En el ejemplo ejecutamos un bucle infinito que va escribiendo secuencialmente número y los escribe en un fichero cada un segundo:
+Por ejemplo, en este ejemplo ejecutamos un proceso demonio en el contenedor (proceso que se ejecuta indefinidamente) y utilizamos la poción `-d` para que se ejecute de manera desatendida, en segundo planto. En el ejemplo ejecutamos un bucle infinito que va escribiendo secuencialmente números en la salida estándar y en un fichero cada un segundo:
 
 ```
 $ podman run -d --name contenedor1 ubuntu bash -c 'i=0;while true; do echo $((i=i+1)); echo $i >> numeros.txt; sleep 1; done'
@@ -28,7 +28,7 @@ Con la opción `logs -f` seguimos visualizando los logs en tiempo real.
 
 ## Ciclo de vida de los contenedores
 
-Tenemos varios comandos que nos permiten controlar el ciclo de vida del contenedor. En una terminar podemos visualizar los logs del contenedor y en otro terminar ejecutar los comando para ver como se comporta el contenedor:
+Tenemos varios comandos que nos permiten controlar el ciclo de vida del contenedor. En una terminal podemos visualizar los logs del contenedor y en otro terminal ejecutar los comandos para ver cómo se comporta el contenedor:
 
 * `podman start`: Inicia la ejecución de un contenedor que está parado.
 * `podman stop`: Detiene la ejecución de un contenedor en ejecución.
@@ -43,7 +43,7 @@ Si tenemos un contenedor que está iniciado, podemos ejecutar comandos en él co
 ```
 $ podman exec contenedor1 ls
 ...
-nuemeros.txt
+numeros.txt
 ...
 $ podman exec contenedor1 cat numeros.txt
 ```
@@ -78,14 +78,14 @@ $ podman cp contenedor1:numeros.txt .
 
 ## Eliminar un contenedor demonio
 
-Para eliminar un contenedor demonio, lo debemos para y posteriormente borrarlo:
+Hay que tener en cuenta que un contenedor que esta ejecutándose no puede ser eliminado. Tendríamos que parar el contenedor y posteriormente borrarlo:
 
 ```
 $ podman stop contenedor1
 $ podman rm contenedor1
 ```
 
-Hay que tener en cuenta que un contenedor que esta ejecutándose no puede ser eliminado. Tendríamos que parar el contenedor y posteriormente borrarlo. Otra opción es borrarlo a la fuerza:
+Otra opción es borrarlo a la fuerza:
 
 ```
 $ podman rm -f contenedor1
