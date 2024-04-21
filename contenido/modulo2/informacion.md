@@ -1,6 +1,6 @@
 # Obteniendo información de los contenedores
 
-En esta ocasión vamos a usar la imagen la imagen `quay.io/libpod/banner` que nos ofrece un servidor web con una página predeterminada. Es una imagen muy liviana.
+En esta ocasión vamos a usar la imagen `quay.io/libpod/banner` que nos ofrece un servidor web con una página predeterminada. Es una imagen muy liviana.
 
 ```
 $ podman run -d --name webserver -p 8081:80 quay.io/libpod/banner
@@ -16,12 +16,12 @@ $ podman top webserver
 
 ## Obtener información de los contenedores
 
-Para obtener información de cualquier objeto Docker vamos a usar el subcomando `inspect`. En el caso de los contenedores, ejecutamos:
+Para obtener información de cualquier objeto Podman vamos a usar el subcomando `inspect`. En el caso de los contenedores, ejecutamos:
 
 ```
 $ podman inspect webserver
 ```
-Nos muestra mucha información en formato JSON (JavaScript Object Notation) y nos da datos sobre aspectos como:
+Nos muestra mucha información en formato JSON (JavaScript Object Notation):
 
 * El id del contenedor.
 * Los puertos abiertos y sus redirecciones.
