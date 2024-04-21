@@ -1,14 +1,14 @@
 # Modos de funcionamiento de los contenedores
 
-Ante de estudiar el funcionamiento de los contenedores rootless, vamos a ver los modos de funcionamiento de los contenedores.
+Antes de estudiar el funcionamiento de los contenedores rootless, vamos a ver los modos de funcionamiento de los contenedores en Podman.
 
 ## Ejecución de contenedores Rootful
 
-Como hemos indicado un contenedor rootful es un contenedor ejecutado por root en el host. Pero, ¿Qué usuario ejecuta los procesos dentro del contenedor?. La respuesta a esta pregunta nos ofrece dos posibilidades:
+Como hemos indicado un contenedor rootful es un contenedor ejecutado por `root` en el host. Pero, ¿qué usuario ejecuta los procesos dentro del contenedor?. La respuesta a esta pregunta nos ofrece dos posibilidades:
 
 ### Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose como root
 
-Veamos un ejemplo:
+Veamos un ejemplo (el prompt `#` indica que los comandos se están ejecutando como `root`):
 
 ```
 # id
@@ -31,7 +31,7 @@ root        root
 1. En primer lugar vemos que el usuario que va a crear el contenedor es `root`.
 2. Comprobamos que el usuario que está ejecutando los procesos dentro del contenedor es `root`.
 3. Comprobamos que en el host, el proceso lo ejecuta el usuario `root`.
-4. Por último, vemos con la instrucción `podman top`, el usuario correspondiente al host (`HUSER`) que es `root`, y el usuario dentro del contenedor (`USER`) que en este caso, también es `root`.
+4. Por último, vemos con la instrucción `podman top`, que el usuario correspondiente al host (`HUSER`) es `root`, y el usuario dentro del contenedor (`USER`) también es `root`.
 
 Podemos concluir: cuando ejecutamos un contenedor como `root`, con el proceso del contenedor ejecutándose como `root`, el usuario real visible en el host que ejecuta el proceso es `root` con UID 0.
 
@@ -63,7 +63,7 @@ En este caso:
 3. Comprobamos que en el host, el proceso lo ejecuta el usuario `sync`.
 4. Por último, vemos que el usuario correspondiente al host (`HUSER`) es `sync`, y el usuario dentro del contenedor (`USER`) también es `sync`.
 
-Podemos concluir: cuando ejecutamos un contenedor como `root`, con el proceso del contenedor ejecutándose un usuario sin privilegios, el usuario real visible en el host que ejecuta el proceso es el usuario sin privilegio, con el UID del usuario que ejecuta el proceso dentro del contenedor.
+Podemos concluir: cuando ejecutamos un contenedor como `root`, con el proceso del contenedor ejecutándose por un usuario sin privilegios, el usuario real visible en el host que ejecuta el proceso es el usuario sin privilegio, con el UID del usuario que ejecuta el proceso dentro del contenedor.
 
 ## Ejecución de contenedores rootless
 
@@ -127,7 +127,7 @@ En este caso:
 3. Comprobamos que en el host, el proceso lo ejecuta un usuario con UID 524292.
 4. Por último, vemos que el usuario correspondiente al host (`HUSER`)es un usuario con UID 524292, y el usuario dentro del contenedor (`USER`) es `sync`. **Hay una correspondencia entre un usuario sin privelegios en el host y el usuario `sync` dentro del contenedor**.
 
-Podemos concluir: cuando ejecutamos un contenedor con un usuario sin privilegios, con el proceso del contenedor ejecutándose con un usuario sin privilegio, el usuario real visible en el host que ejecuta el proceso es otro usuario con privilegio con un UID propio.
+Podemos concluir: cuando ejecutamos un contenedor con un usuario sin privilegios, con el proceso del contenedor ejecutándose con un usuario sin privilegios, el usuario real visible en el host que ejecuta el proceso es otro usuario sin privilegios con un UID propio.
 
 En resumen:
 
@@ -136,10 +136,10 @@ En resumen:
 
 ## Ejemplos de modos de funcionamiento de los contenedores
 
-Veamos cómo podemos ejecutar contenedores con un servidor web usando los cuatro mods que hemos estudiado. Para ello, vamos a utilizar dos imágenes:
+Veamos cómo podemos ejecutar contenedores con un servidor web usando los cuatro modos que hemos estudiado. Para ello, vamos a utilizar dos imágenes:
 
 * `docker.io/nginx`: Imagen oficial del servidor web nginx. El proceso de nginx se ejecuta dentro del contenedor con el usuario `root`. El servicio se ofrece en el puerto 80/tcp.
-* `dokcer.io/bitnami/nginx`: Imagen de la empresa bitnami, que ofrece un servidor web nginx. El proceso nginx se ejecuta dentro del contenedor con un usuario sin privilegio, por lo tanto dentro del contenedor el usuario no puede usar el puerto 80/tcp, se ejecuta nginx en el puerto 8080/tcp.
+* `dokcer.io/bitnami/nginx`: Imagen de la empresa bitnami, que ofrece un servidor web nginx. El proceso nginx se ejecuta dentro del contenedor con un usuario sin privilegios, por lo tanto dentro del contenedor el usuario no puede usar el puerto 80/tcp, se ejecuta nginx en el puerto 8080/tcp.
 
 **Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose como root**
 
