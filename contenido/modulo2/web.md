@@ -3,7 +3,7 @@
 En este ejemplo vamos a crear un contenedor demonio que ejecuta un servidor web Apache, para ello vamos a usar la imagen `httpd:2.4` del registro **Docker Hub** (en este caso hemos indicado el nombre de la imagen y su etiqueta `2.4` que nos indica la versión del servidor web que vamos a usar). Podemos crear un contenedor rootful:
 
 ```
-$ podman run -d --name my-apache-app -p 80:80 docker.io/httpd:2.4
+$ sudo podman run -d --name my-apache-app -p 80:80 docker.io/httpd:2.4
 ```
 
 O podemos crear un contenedor rootless, teniendo en cuenta que no podemos utilizar los puertos privilegiados (menores del 1024), por lo que en este caso hemos mapeado el puerto 8080:
@@ -12,7 +12,7 @@ O podemos crear un contenedor rootless, teniendo en cuenta que no podemos utiliz
 $ podman run -d --name my-apache-app -p 8080:80 docker.io/httpd:2.4
 ```
 
-Hay que tener en cuenta que los contenedores que estamos creando se conectan a una red virtual privada y que toman direccionamiento dinámico. No solemos usar la dirección IP del contenedor para acceder al servicio que nos ofrece. Con la opción `-p` mapeamos un puerto del host, con el puerto del servicio ofrecido por el contenedor. Si accedemos a la dirección IP del ordenador que tiene instalado Podman al primer puerto indicado, se redireccionará la petición a la dirección IP del contenedor al segundo puerto indicado. **Nunca utilizamos directamente la dirección IP del contenedor para acceder a él**. 
+Hay que tener en cuenta que los contenedores rootful que estamos creando se conectan a una red virtual privada (más adelante estudiaremos la conexión de red de los contenedores rootless) y que toman direccionamiento dinámico. No solemos usar la dirección IP del contenedor para acceder al servicio que nos ofrece. Con la opción `-p` mapeamos un puerto del host, con el puerto del servicio ofrecido por el contenedor. Si accedemos a la dirección IP del ordenador que tiene instalado Podman al primer puerto indicado, se redireccionará la petición a la dirección IP del contenedor al segundo puerto indicado. **Nunca utilizamos directamente la dirección IP del contenedor para acceder a él**. 
 
 Podemos ver los puertos que están mapeados en un contenedor de dos maneras distintas. Usando el comando `podman port`:
 
@@ -21,16 +21,10 @@ $ podman port my-apache-app
 80/tcp -> 0.0.0.0:8080
 ```
 
-O utilizando el comando `podman inspect` con un filtro:
-
-```
-$ podman inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}  {{(index $conf 0).HostPort}} -> {{$p}} {{end}}' my-apache-app
-```
-
 Para probarlo accedemos desde un navegador web:
 
 * Si estamos accediendo desde el host, accederemos a `http://localhost:8080`.
-* Si estamos accediendo desde un ordenador remoto, accederemos a la dirección IP del host y al puerto, por ejemplo,si dirección IP del host es `172.22.201.251`, accederemos a `http://172.22.201.251:8080`:
+* Si estamos accediendo desde un ordenador remoto, accederemos a la dirección IP del host y al puerto, por ejemplo, si la dirección IP del host es `172.22.201.251`, accederemos a `http://172.22.201.251:8080`:
 
 ![web](img/web.png)
 
