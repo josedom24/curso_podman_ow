@@ -17,12 +17,8 @@ Podemos hacer la siguiente clasificación de contenedores según el uso que hace
 
 ¿Qué aplicaciones web son más idóneas para desplegar en contenedores?
 
-* Si tenemos aplicaciones monolíticas, vamos a usar un esquema multicapa, es decir cada servicio (servicio web, servicio de base de datos, ... ) se va a desplegar en un contenedor.
-* Realmente, las aplicaciones que mejor se ajustan al despliegue en contenedores son las desarrolladas con microservicios:
-    * Cada componente de la aplicación (“microservicio”) se puede desplegar en un contenedor.
-    * Comunicación vía HTTP API REST y colas de mensajes.
-    * Facilita enormemente las actualizaciones de versiones de cada componente.
-    * ...
+* Si tenemos **aplicaciones monolíticas**, vamos a usar un **esquema multicapa**, es decir cada servicio (servicio web, servicio de base de datos, ... ) se va a desplegar en un contenedor.
+* Realmente, las aplicaciones que mejor se ajustan al despliegue en contenedores son las desarrolladas con **microservicios**: cada componente de la aplicación ("microservicio") se puede desplegar en un contenedor, y estos se comunican usando API RESTful p colas de mensajes.
 
 ## Ventajas del uso de contenedores de aplicaciones
 
@@ -35,11 +31,11 @@ Los contenedores simplifican la producción, distribución, descubrimiento y uso
 
 ## Open Container Initiative
 
-La [**Open Container Initiative (OCI)**](https://opencontainers.org/), es un proyecto de la **Linux Foundation** para diseñar un estándar abierto para **virtualización basada en contenedores**. El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
+La [**Open Container Initiative (OCI)**](https://opencontainers.org/), es un proyecto de la **Linux Foundation** para diseñar estándares abiertos para la **virtualización basada en contenedores**. El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
 
 Se funda en 2015, y actualmente son muchas las empresas que forman parte de esta iniciativa, y cuyo objetivo es desarrollar las siguientes especificaciones:​
 
-* Una especificación de **entorno de ejecución de contenedores** (Open Container Initiative Runtime Specification normalmente abreviado en OCI Runtime Specification). Describe cómo debe proceder un OCI Runtime para crear un contenedor a partir de una imagen. Los OCI runtime más utilizados son **runC** y **crun**.
-* Una especificación de **formato de imagen** (Open Container Initiative Image Format normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software.
-* Una especificación de **distribución de imágenes**(Open Container Initiative Distribution Specification normalmente abreviado en OCI Distribution Specification). Su objetivo es estandarizar la distribución de imágenes de contenedores.
+* Una especificación de **entorno de ejecución de contenedores** (**Open Container Initiative Runtime Specification** normalmente abreviado en OCI Runtime Specification). Describe cómo debe proceder un OCI Runtime para crear un contenedor a partir de una imagen. Los OCI runtime más utilizados son **runC** y **crun**.
+* Una especificación de **formato de imagen** (**Open Container Initiative Image Format** normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software.
+* Una especificación de **distribución de imágenes**(**Open Container Initiative Distribution Specification** normalmente abreviado en OCI Distribution Specification). Su objetivo es estandarizar la distribución de imágenes de contenedores.
 
