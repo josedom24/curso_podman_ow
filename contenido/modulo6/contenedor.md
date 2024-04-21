@@ -23,7 +23,7 @@ Como vemos el formato de la plantilla es similar al formato de una unidad de Sys
 
 * Las secciones y parámetros propias de la definición de una unidad Systemd, por ejemplo `[Unit]`, `[Service]` y `[Install]` se copiaran directamente en el fichero generado. Hemos puesto algunos parámetros comunes de ejemplo, pero podemos indicar los que nos interesen:
     * `Restart=always`: Política de reinicio. en este caso, se intentará reiniciar el servicio siempre que se detenga.
-    * `TimeoutStartSec=900`: Tiempo máximo (en segundos) que systemd esperará a que el servicio se inicie antes de considerarlo como un fallo.
+    * `TimeoutStartSec=900`: Tiempo máximo (en segundos) que Systemd esperará a que el servicio se inicie antes de considerarlo como un fallo.
     * `WantedBy=multi-user.target default.target`: El servicio será iniciado automáticamente durante el arranque del sistema.
 * En esta plantilla donde vamos a definir la ejecución de un contenedor tenemos una sección especial que se llama `[Container]`. Dentro de esta sección pondremos distintos parámetros para especificar las características que tendrá el contenedor que vamos a gestionar. Esta sección no aparecerá en la unidad Systemd generada, pero los parámetros indicados se utilizarán para generar la configuración adecuada. Los parámetros más importantes que podemos indicar dentro de la sección `[Container]` son:
     * `Image`: Nos permite indicar la imagen desde la que se crea el contenedor.
@@ -43,7 +43,7 @@ Una vez que tenemos definida la plantilla y siempre que la modifiquemos tendremo
 # systemctl daemon-reload
 ```
 
-Y ya podemos trabajar con la unidad de systemd que se ha generado:
+Y ya podemos trabajar con la unidad de Systemd que se ha generado:
 
 ```
 # systemctl status nginx

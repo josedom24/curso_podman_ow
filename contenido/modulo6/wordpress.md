@@ -1,4 +1,4 @@
-# Ejemplo: Despliegue de WordPress + MariaDB con systemd y Quadlet
+# Ejemplo: Despliegue de WordPress + MariaDB con Systemd y Quadlet
 
 Para poder desplegar WordPress + MariaDB necesitamos guardar las siguientes plantillas de unidades de sistemas en el directorio `/etc/containers/systemd`:
 

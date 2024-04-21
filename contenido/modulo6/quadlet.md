@@ -4,7 +4,7 @@
 
 [Systemd](https://systemd.io/) es un sistema de inicio y administración de servicios para sistemas operativos basados en Linux. Además de ser el sistema de inicio que se usa actualmente en las distribuciones Linux, ofrece un conjunto de servicios básicos para el sistema.
 
-Systemd utiliza las **Unidades de Servicios**: Cada servicio o recurso que systemd administra está definido por un **archivo de unidad** (unit file) que especifica cómo debe ser gestionado. Estos archivos pueden configurar el comportamiento del servicio, sus dependencias, el entorno en el que se ejecuta y otras opciones.
+Systemd utiliza las **Unidades de Servicios**: Cada servicio o recurso que Systemd administra está definido por un **archivo de unidad** (unit file) que especifica cómo debe ser gestionado. Estos archivos pueden configurar el comportamiento del servicio, sus dependencias, el entorno en el que se ejecuta y otras opciones.
 
 ## Quadlet
 

@@ -1,6 +1,6 @@
 # Ejecución de contenedores rootless con Systemd y Quadlet
 
-Si queremos ejecutar recursos Podman como servicios con systemd, tenemos que guardar las plantillas de unidades de systemd en el directorio `$HOME/.config/containers/systemd`.
+Si queremos ejecutar recursos Podman como servicios con Systemd, tenemos que guardar las plantillas de unidades de Systemd en el directorio `$HOME/.config/containers/systemd`.
 
 Es posible que ese directorio lo tengamos que crear:
 
@@ -28,7 +28,7 @@ TimeoutStartSec=900
 WantedBy=multi-user.target default.target
 ```
 
-Y a continuación reiniciar systemd en el espacio de usuario y arrancar la unidad de sistema en el espacio del usuario:
+Y a continuación reiniciar Systemd en el espacio de usuario y arrancar la unidad de sistema en el espacio del usuario:
 
 ```
 $ systemctl --user daemon-reload

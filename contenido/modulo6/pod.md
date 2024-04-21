@@ -2,7 +2,7 @@
 
 ## Ejecución de ficheros YAML de Kubernetes con Systemd y Quadlet
 
-En este ejemplo vamos a crear una unidad de systemd que cree un Pod a partir de un YAML de Kubernetes ejecutando internamente `podman kube play`. Para ello partimos de la siguiente definición de recurso en YAML.
+En este ejemplo vamos a crear una unidad de Systemd que cree un Pod a partir de un YAML de Kubernetes ejecutando internamente `podman kube play`. Para ello partimos de la siguiente definición de recurso en YAML.
 
 El contenido del fichero `web-pod.yaml` es el siguiente:
 
@@ -40,7 +40,7 @@ Yaml=/opt/web-pod.yaml
 WantedBy=multi-user.target default.target
 ```
 
-Podemos iniciar la unidad de systemd y comprobar los recursos creados:
+Podemos iniciar la unidad de Systemd y comprobar los recursos creados:
 
 ```
 # systemctl daemon-reload
