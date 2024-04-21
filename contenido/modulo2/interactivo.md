@@ -4,7 +4,7 @@ Hemos usado el comando `podman run` para crear y ejecutar contenedores. Este com
 
 ## Nombrar los contenedores
 
-A la hora de la creación del contenedor podemos ponerle un nombre (usando el parámetro `--name`) y también, podemos indicar el hostname (con al opción `-h` o `--hostname`). Veamos un ejemplo:
+A la hora de la creación del contenedor podemos ponerle un nombre (usando el parámetro `--name`) y también, podemos indicar el hostname (con la opción `-h` o `--hostname`). Veamos un ejemplo:
 
 ```
 $ sudo podman run --name contenedor1 -h contendor_ubuntu ubuntu hostname
@@ -24,8 +24,8 @@ CONTAINER ID  IMAGE                            COMMAND     CREATED         STATU
 En este caso usamos la opción `-i` para abrir una sesión interactiva, `-t` nos permite crear un pseudo-terminal que nos va a permitir interaccionar con el contenedor. El comando que vamos a ejecutar en el contenedor es `bash` para que podamos acceder al terminal:
 
 ```
-$ podman run -it --name contenedor2 -h cont1 ubuntu bash 
-root@cont1:/#
+$ podman run -it --name contenedor2 -h cont2 ubuntu bash 
+root@cont2:/#
 ```
 
 El contenedor se para cuando salimos de él. Para volver a conectarnos a él:
@@ -34,12 +34,12 @@ El contenedor se para cuando salimos de él. Para volver a conectarnos a él:
 $ podman start contenedor2
 contendor2
 $ podman attach contenedor2
-root@cont1:/#
+root@cont2:/#
 ```
 
 Con `podman attach` nos conectamos a la entrada estándar y a la salida estándar y de error de un contenedor en ejecución, conectándonos a su terminal.
 
-En realidad, todas las imágenes tienen definidas un proceso que se ejecuta por defecto si no se indica de manera explicita cuando creamos el contenedor. En concreto, la imagen `ubuntu` ( y en general todas las imágenes que corresponden al sistemas operativos) tiene definida por defecto el proceso `bash`, por lo que podríamos haber ejecutado:
+En realidad, todas las imágenes tienen definidas un proceso que se ejecuta por defecto si no se indica de manera explicita cuando creamos el contenedor. En concreto, la imagen `ubuntu` ( y en general todas las imágenes que corresponden a sistemas operativos) tiene definida por defecto el proceso `bash`, por lo que podríamos haber ejecutado:
 
 ```
 $ podman run -it --name contenedor2 ubuntu
