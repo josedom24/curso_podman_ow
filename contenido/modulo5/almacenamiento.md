@@ -1,6 +1,6 @@
 # Almacenamiento compartido entre los contenedores de un Pod
 
-Aunque, como veremos en el próximo ejemplo, cada contenedor puede tener su medio de almacenamiento independiente. Podemos crear un Pod indicando un ponto de montaje que será compartido entre todos los contenedores del Pod. 
+Aunque, como veremos en el próximo ejemplo, cada contenedor puede tener su medio de almacenamiento independiente. Al crear un Pod podemos indicar un punto de montaje, que será que será compartido entre todos los contenedores del Pod. 
 
 El punto de montaje se puede indicar usando volúmenes o usando bind mount.
 
@@ -9,7 +9,7 @@ El punto de montaje se puede indicar usando volúmenes o usando bind mount.
 En este ejemplo vamos a tener el siguiente escenario:
 
 * Creamos un Pod, llamado `pod5` donde vamos a mapear el puerto 8082 al puerto 80 del Pod, y vamos a indicar un punto de montaje con un volumen.
-* El contenedor `web` se crea a partir de la imagen nginx, es el contenedor principal, encargado de servir la web. En este contenedor montamos el volumen en su *DocumentRoot* (`/usr/share/nginx/html`). Va a servir el fichero `index.html` que está modificando el otro contenedor.
+* El contenedor `web` se crea a partir de la imagen nginx, es el contenedor principal, encargado de servir la web. En este contenedor montamos el volumen en su *DocumentRoot* (`/usr/share/nginx/html`). Este servidor web va a servir el fichero `index.html` que está modificando el otro contenedor.
 * El contenedor `sidecar` es el auxiliar. En este caso, cada segundo, va a modificar el fichero `index.html` que sirve el contenedor principal.
 
 Para ello primero creamos el Pod, en el este caso usando un volumen:
