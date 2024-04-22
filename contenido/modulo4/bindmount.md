@@ -34,7 +34,7 @@ Sin embargo comprobamos que nos da un error: el contenedor no puede acceder al d
 ## Montaje de directorio cuando usamos SELinux
 
 El ejemplo anterior hubiera funcionado sin problemas, si en nuestro host no tuviéramos activado SELinux. 
-En nuestro ejemplo, el error se ha producido porque tenemos activo SELinux, el directorio `/home/usuario/web` no está configurado de forma adecuada para ser accesible desde el contenedor.
+En nuestro ejemplo, el error se ha producido porque tenemos activo SELinux y el directorio `/home/usuario/web` no está configurado de forma adecuada para ser accesible desde el contenedor.
 
 Por lo tanto, como hemos visto anteriormente, a la hora de montar el directorio, tendremos que usar la opción `:z` si dicho directorio lo queremos montar en otros contenedores o `:Z` si sólo se va a montar en este contenedor.
 
@@ -62,7 +62,7 @@ $ curl http://localhost:8080
 
 ## Creación de contenedores con bind mount con la opción --mount
 
-Cuando configuramos un directorio para ser montado en un contenedor con la opción `:z` o `:Z`, la configuración que se realiza no se deshace aunque eliminemos el contenedor. ese directorio continúa estando accesible desde los contenedores que creemos y no será necesario volver a usar la opción. Si queremos volver a configurar el directorio con sus permisos de accesos originales, debemos ejecutar:
+Cuando configuramos un directorio para ser montado en un contenedor con la opción `:z` o `:Z`, la configuración que se realiza no se deshace aunque eliminemos el contenedor. Ese directorio continúa estando accesible desde los contenedores que creemos y no será necesario volver a usar la opción. Si queremos volver a configurar el directorio con sus permisos de accesos originales, debemos ejecutar:
 
 ```
 $ sudo restorecon -F -R /home/usuario/web
