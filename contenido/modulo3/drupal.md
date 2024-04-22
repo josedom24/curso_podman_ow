@@ -16,7 +16,7 @@ Si accedemos a la dirección IP de nuestro ordenador, al puerto 8080/tcp, podemo
 
 ![drupal](img/drupal1.png)
 
-A continuación vamos a instalar otra versión de Drupal, la 10.1.8, creamos otro contenedor con otro nombre y mapeamos otro puerto:
+A continuación, vamos a instalar otra versión de Drupal, la 10.1.8, creamos otro contenedor con otro nombre y mapeamos otro puerto:
 
 ```
 podman run -d -p 8081:80 --name drupal2 docker.io/drupal:10.1.8
