@@ -12,9 +12,9 @@
 ## Especificación de imagen OCI
 
 * [Open Container Initiative (OCI)](https://opencontainers.org/) es la organización responsable de estandarizar las especificaciones referentes al trabajo con los contenedores. 
-* Una de las especificaciones que desarrolla es el **formato de imagen** (Open Container Initiative Image Format normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software. Con esto conseguimos que distintas aplicaciones (motores de contenedores, registros de imágenes,...) puedan trabajar con el mismo formato de imágenes.
+* Una de las especificaciones que desarrolla es el **formato de imagen** (**OCI Image Format**). Determina el formato para empaquetar la imagen del contenedor de software. Con esto conseguimos que distintas aplicaciones (motores de contenedores, registros de imágenes,...) puedan trabajar con el mismo formato de imágenes.
 * El formato de las imágenes Docker, llamado **Docker V2** difiere al formato de imágenes OCI, pero son totalmente compatibles.
-* Otra de las especificaciones desarrolladas por esta entidad es cómo se **distribuyen las imágenes y como se almacenan en los registros de imágenes**. La especificación OCI de distribución de imágenes está basada en la especificación Docker de distribución.
+* Otra de las especificaciones desarrolladas por esta entidad es cómo se **distribuyen las imágenes y como se almacenan en los registros de imágenes** (**OCI Distribution Specification**). La especificación OCI de distribución de imágenes está basada en la especificación Docker de distribución.
 * En resumen, estas especificaciones estandarizan la manera en que se construyen y almacenan las imágenes de contenedores: dónde se guarda su configuración y cómo se almacena su sistema de ficheros en distintas capas para posteriormente crear el sistema de archivos del contenedor usando un driver de almacenamiento.
 
 ## Medios de almacenamiento de imágenes
@@ -28,10 +28,6 @@ Podman utiliza la librería [`containers/image`](https://github.com/containers/i
 * **docker-archive**: Hace referencia a una imagen con formato Docker comprimida en una archivo tar.
 * **oci**: Hace referencia a una imagen con formato OCI, su configuración y capas se encuentran en el directorio local como archivos individuales.
 * **oci-archive**: Hace referencia a una imagen con formato OCI comprimida en una archivo tar.
-
-En los ejemplos de esta unidad no vamos a indicar explícitamente el transporte utilizado, por lo que utilizaremos el medio por defecto, que es **docker**, es decir trabajaremos con registros remotos de imágenes.
-
-Posteriormente estudiaremos la herramienta **skopeo** que es un cliente de la librería `containers/image` y que nos permite trabajar con imágenes sin necesidad de descargarlas a un registro local.
 
 ## Registro de imágenes
 
@@ -86,7 +82,7 @@ Si utilizamos el nombre de una imagen sin indicar la etiqueta, se toma por defec
 
 Podemos tener varios tipos de imágenes, según lo que nos ofrece:
 
-* Imágenes que nos ofrecen una **distribución completa de un sistema operativo** (Ubuntu, CentOs, Debian, Fedora, Alpine,...). La distribución **alpine** nos ofrece un sistema operativo que sólo incluyen los elementos esenciales necesarios para ejecutar una aplicación, por este motivo ocupa muy poco espacio, por lo tanto sus imágenes son muy pequeñas. Además, nos podemos encontrar imágenes de este tipo con la etiqueta **slim**, en este caso serán imágenes más livianas.
+* Imágenes que nos ofrecen una **distribución completa de un sistema operativo** (Ubuntu, CentOs, Debian, Fedora, Alpine,...). 
     * Ejemplo: **debian:bookworm**, **debian:bookworm-slim**, **ubuntu:22.04**, **alpine:3**.
 * Imágenes que nos ofrecen distintos **servicios** (servidor web, servidor de base de datos,...). En este caso las etiquetas suelen indicar la versión y el sistema operativo base que ofrece el servicio.
     * Ejemplo: **http:2.4-bookworm**, **http:2.4-alpine**, **mariadb:11.2-jammy**, **mariadb:10.6-focal**.
