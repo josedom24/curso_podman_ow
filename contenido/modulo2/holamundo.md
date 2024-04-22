@@ -111,7 +111,7 @@ En este caso:
 2. Al indicar la imagen hemos usado su nombre completo, indicando el nombre del registro, el nombre del usuario, el nombre de la imagen, y el nombre de la etiqueta (si no se indica el nombre de la etiqueta se escogerá por defecto `latest`).
 3. Se crea el contenedor que ejecuta un comando por defecto que muestra el mensaje que hemos leído y se detiene.
 
-Cada usuario gestiona sus imágenes y sus contenedores, por lo tanto el usuario sin privilegio no ve las imágenes ni los contenedores del `root`:
+Cada usuario gestiona sus imágenes y sus contenedores, por lo tanto el usuario sin privilegios no ve las imágenes ni los contenedores del `root`:
 
 ```
 $ podman images
