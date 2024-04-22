@@ -18,7 +18,7 @@ $ skopeo list-tags docker://quay.io/josedom24/servidorweb
 }
 ```
 
-Hemos indicado la imagen indicando el transporte de imagen, es este caso `docker` que hace referencia a un registro de imágenes remotos.
+Hemos indicado la imagen indicando el transporte de imagen, es este caso `docker` que hace referencia a un registro remoro de imágenes.
 
 Ahora podemos inspeccionar la imagen, ejecutando:
 
