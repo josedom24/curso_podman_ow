@@ -33,13 +33,13 @@ Las características principales son:
 
 Puedes encontrar el método de instalación de Buildah en su [página oficial](https://github.com/containers/buildah/blob/main/install.md). Por ejemplo:
 
-Para sistemas Debian/Ubuntu:
+Para distribuciones Debian/Ubuntu:
 
 ```
 $ sudo apt install buildah
 ```
 
-Para sistemas Fedora:
+Para la distribución Fedora:
 
 ```
 $ sudo dnf install buildah
