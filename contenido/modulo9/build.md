@@ -25,7 +25,7 @@ Para crear una nueva imagen usamos el comando `buildah build` indicando el nombr
 $ buildah build -t josedom24/app-python
 ```
 
-Por defecto Buildah busca un fichero `Containerfile` y el contexto en el directorio donde se está ejecutando si queremos indicar un fichero y un contexto en concreto lo tendremos que indicar:
+Por defecto Buildah busca un fichero `Containerfile` y el contexto en el directorio donde se está ejecutando. Si queremos indicar un fichero y un contexto en concreto lo tendremos que indicar:
 
 ```
 $ buildah build -t josedom24/app-python -f Containerfile .
