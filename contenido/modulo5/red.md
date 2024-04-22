@@ -76,7 +76,7 @@ $ curl http://localhost:8080
 
 ## Comunicación entre contenedores dentro del Pod
 
-Como hemos indicado para que un contenedor acceda al servicio de otro contenedor dentrop del Pod, deberá usar la interfaz loopback, la dirección IP `127.0.0.1` o el nombre `localhost`:
+Como hemos indicado para que un contenedor acceda al servicio de otro contenedor dentro del Pod, deberá usar la interfaz loopback: la dirección IP `127.0.0.1` o el nombre `localhost`:
 
 ```
 $ sudo podman run -it --pod pod3 --name cliente quay.io/libpod/banner curl http://localhost
