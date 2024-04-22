@@ -8,7 +8,7 @@ En nuestro caso vamos a usar el proyecto [**slirp4netns**](https://github.com/ro
 
 ## Ejemplo de uso de red en contenedores rootless
 
-La primera limitación que tenemos a la hora de trabajar con contenedores rootless desde el punto de vista de la red, es que los usuarios no privilegiados no pueden usar puerto privilegiados (menores que 1024). 
+La primera limitación que tenemos a la hora de trabajar con contenedores rootless desde el punto de vista de la red, es que los usuarios no privilegiados no pueden usar puertos privilegiados (menores que 1024). 
 
 ```
 $ podman run -dt --name webserver -p 80:80 quay.io/libpod/banner
