@@ -33,7 +33,7 @@ $ skopeo inspect --config docker://quay.io/josedom24/servidorweb:latest
 ```
 
 
-También podemos inspeccionar una imagen que estará guardada usando otro tranasporte de imagen, por ejemplo para inspeccionar una imagen guarda en un fichero, podríamos ejecutar:
+Podemos inspeccionar una imagen que estará guardada usando otro tranasporte de imagen, por ejemplo para inspeccionar una imagen guarda en un fichero, podríamos ejecutar:
 
 ```
 $ skopeo inspect oci-archive:debian-apache.tar
