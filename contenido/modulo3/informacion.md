@@ -11,7 +11,7 @@ $ podman search httpd
 
 ## Inspeccionar imágenes
 
-Es posible obtener información detallada sobre una imagen. Para ello usaremos la instrucción `podmanimage inspect` o de forma abreviada:
+Es posible obtener información detallada sobre una imagen. Para ello usaremos la instrucción `podman image inspect` o de forma abreviada:
 
 ```
 $ podman inspect docker.io/nginx:stable
@@ -95,9 +95,6 @@ Por ejemplo, podemos montar una imagen descargada por el usuario `root`:
 $ sudo podman image mount docker.io/library/nginx
 /var/lib/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
 
-$ sudo podman image mount docker.io/library/nginx
-/var/lib/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
-
 $ sudo podman image unmount docker.io/library/nginx
 92b11f67642b62bbb98e7e49169c346b30e20cd3c1c034d31087e46924b9312e
 ```
@@ -109,7 +106,7 @@ Si queremos montar una imagen descargada por un usuario sin privilegios:
 Error: cannot run command "podman image mount" in rootless mode, must execute `podman unshare` first
 ```
 
-La razón de este error es que el modo rootless no permite montar imágenes. Necesitamos acceder al namespace de usuario sin privilegio, para ello tenemos que usar la instrucción `podman unshare`, que permitirá el acceso a los nombres de espació de usuario y de montaje hasta que indiquemos la instrucción `exit`.
+La razón de este error es que el modo rootless no permite montar imágenes. Necesitamos acceder al namespace de usuario, para ello tenemos que usar la instrucción `podman unshare`, que permitirá el acceso a los nombres de espació de usuario y de montaje hasta que indiquemos la instrucción `exit`.
 
 ```
 $ podman unshare
