@@ -2,7 +2,8 @@
 
 En el fichero `compose.yaml` vamos a definir un escenario multicontenedor usando el formato YAML. **La instrucción `podman-compose` se debe ejecutar en el directorio donde se encuentra ese fichero**. Por lo tanto tenderemos un directorio con un fichero `compose.yaml` para cada una de las aplicaciones que queremos desplegar. 
 
-Puedes encontrar los ficheros necesarios para este ejemplo en el [Repositorio con el código de los ejemplos](...).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/letschat` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
 
 Veamos un fichero de ejemplo `compose.yaml` donde se define el escenario para desplegar la aplicación [Let's Chat](https://github.com/sdelements/lets-chat) que es un chat escrito en NodeJS, que guarda su información en una base de datos MongoDB:
 
@@ -33,7 +34,7 @@ volumes:
 ## Estructura del fichero compose.yaml
 
 * El parámetro `version` indica el formato de fichero Compose que se está utilizando. Se usa sólo a nivel informativo, no es necesario indicarlo.
-* Podemos indicar un nombra al escenario con el parámetro `name`. Si no se indica el nombre del proyecto será el nombre del directorio donde se encuentra el fichero `compose.yaml`.
+* Podemos indicar un nombre al escenario con el parámetro `name`. Si no se indica el nombre del proyecto será el nombre del directorio donde se encuentra el fichero `compose.yaml`.
 * Es escenario está formado por `services`. Cada uno ello representa un contenedor.
 * Podemos declarar volúmenes con el parámetros `volumes` y declarar redes con el parámetro `network`.
 
