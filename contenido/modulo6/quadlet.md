@@ -8,9 +8,9 @@ Systemd utiliza las **Unidades de Servicios**: Cada servicio o recurso que Syste
 
 ## Política de reinicio de los contenedores Podman
 
-Un posible incoveniente de que Podman no utilice un demonioo que controla la ejecución de los contenedores, es que si reinciamos el host los contenedores por defecto no se inician.
+Un incoveniente de que Podman no utilice un demonioo que controla la ejecución de los contenedores, es que si reinciamos el host, los contenedores no se inician.
 
-Una posible solución es activar el servicio `podman-restart` que reinicia los contenedores cuya politica de reinicio esté actica, con el parámetro `--restart=always` de `podman run`. Por ejemplo:
+Una posible solución es activar el servicio `podman-restart` que reinicia los contenedores cuya politica de reinicio esté activa, con el parámetro `--restart=always` de `podman run`. Por ejemplo:
 
 ```
 $ sudo podman run -d --name c1 --restart=always quay.io/libpod/banner
@@ -29,13 +29,13 @@ Para activar el servicio:
   $ systemctl --user enable podman-restart
   $ systemctl --user start podman-restart
   ```
-Ahora puedes comprobar que los contenedores se incian de forma automática trás el reinicio del host.
+Ahora puedes comprobar que los contenedores se inician de forma automática trás el reinicio del host.
 
 Otra solución al inicio automático de los contenedores después de un reinicio sería integrar la ejecución de contendores con Systemd. Para conseguir este objetivo vamos a usar Quadlet.
 
 ## Quadlet
 
-Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades se servicios. En un principio se creaban una unidad Systemd que llamaba a podman con el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
+Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades se servicios. En un principio se creaban una unidad Systemd que llamaba a Podman con el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
 
 Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso de Quadlet (que ha sido integrado en Podman) para gestionar la ejecución de contenedores Podman con Systemd.
 
@@ -51,7 +51,7 @@ Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso
 Quadlet buscará ficheros de plantilla de unidades de sistemas Systemd, en los siguientes directorios:
 
 * Si estamos trabajando con el usuario `root`, los directorio de búsqueda son: `/etc/containers/systemd/` y `/usr/share/containers/systemd/`.
-* Si trabajamos con un usuario sin privilegio, el directorio de búsqueda será `$HOME/.config/containers/systemd/`.
+* Si trabajamos con un usuario sin privilegios, el directorio de búsqueda será `$HOME/.config/containers/systemd/`.
 
 Los ficheros de plantilla de unidades Systemd tienen distintas extensiones según el recurso que queremos controlar:
 
