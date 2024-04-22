@@ -4,6 +4,9 @@
 
 En este ejemplo vamos a crear una unidad de Systemd que cree un Pod a partir de un YAML de Kubernetes ejecutando internamente `podman kube play`. Para ello partimos de la siguiente definición de recurso en YAML.
 
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/pod` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
+
 El contenido del fichero `web-pod.yaml` es el siguiente:
 
 ```yaml
@@ -58,7 +61,12 @@ CONTAINER ID  IMAGE                                    COMMAND               CRE
 
 ## Ejecución de Pods con Systemd y Quadlet (Podman 5)
 
-En este ejemplo, vamos a gestionar un Pod rootful con un contenedor ofreciendo un servidor web de prueba.
+En este ejemplo, vamos a gestionar un Pod rootful con un contenedor ofreciendo un servidor web de prueba. Para ello vamos a usar la versión 5 de Podman:
+
+```
+$ podman --version
+podman version 5.0.0
+```
 
 Para ello vamos a crear dos plantillas de unidad de Systemd, en el directorio `/etc/containers/systemd`.
 
