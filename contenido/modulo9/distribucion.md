@@ -50,7 +50,7 @@ $ podman pull oci-archive:debian-apache.tar
 $ podman pull oci:debian-apache
 ```
 
-En este caso no se nombra la imagen de forma correcta y la tenemos que renombrar a a partir de su ID:
+En este caso no se nombra la imagen de forma correcta y la tenemos que renombrar a partir de su ID:
 
 ```
 $ buildah tag a93fcf5cd27e quay.io/josedom24/debian-apache
