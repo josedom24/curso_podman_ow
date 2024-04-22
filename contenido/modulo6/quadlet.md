@@ -31,7 +31,7 @@ Para activar el servicio:
   ```
 Ahora puedes comprobar que los contenedores se incian de forma automática trás el reinicio del host.
 
-Otra solución al inicio automático de los contenedores después de unreincio sería integrar la ejecución de contendores con Systemd. Para conseguir este objetivo vamos a usar Quadlet.
+Otra solución al inicio automático de los contenedores después de un reinicio sería integrar la ejecución de contendores con Systemd. Para conseguir este objetivo vamos a usar Quadlet.
 
 ## Quadlet
 
