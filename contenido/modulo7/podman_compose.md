@@ -4,7 +4,7 @@ Vamos a usar la instrucción `podman-compose` para gestionar el ciclo de vida de
 
 Vamos a ejecutar este fichero con el comando `sudo` por lo que vamos a crear contenedores rootful.
 
-Puedes encontrar el fichero en el [Repositorio con el código de los ejemplos](...).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/letschat` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 **Es importante destacar que debemos ejecutar `podman-compose` en el directorio en el que se encuentra el fichero `compose.yaml`**.
 
@@ -51,7 +51,7 @@ Veamos más comandos que podemos ejecutar con podman-compose:
 * `podman-compose top`: Muestra  los procesos que están ejecutándose en cada uno de los contenedores de los servicios.
 
 
-Para destruir los contenedores creados en el escenario y la red, ejecutamos:
+Para destruir los contenedores creados en el escenario podemos ejecutar la siguientes instrucción. Hay que indicar que `podman-compose` no borra la red que ha creado a diferencia de `docker-compose`:S
 
 ```bash
 $ sudo podman-compose down
