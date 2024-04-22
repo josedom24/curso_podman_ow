@@ -5,8 +5,9 @@
 * Las variables tienen la forma de `clave=valor` y se guardan en un fichero llamado `.env`.
 * Para utilizar las variables en el fichero `compose.yaml` utilizaremos la sintaxis `${clave}`.
 
-Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](...
-Por ejemplo podríamos parametrizar el despliegue de WordPress + MariaDB utilizando las siguientes variables:
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/variables` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
+Por ejemplo podríamos parametrizar el despliegue de WordPress + MariaDB utilizando las siguientes variables en el fichero `compose.yaml`:
 
 ```yaml
 version: '3.1'
