@@ -1,12 +1,12 @@
 # Trabajando con almacenamiento en contenedores rootless
 
 * La manera de trabajar con el almacenamiento en contenedores rootless es similar a la vista anteriormente con contenedores rootful.
-* Cuando trabajamos con volúmenes con un usuario no privilegiado el directorio donde se crean los volúmenes es `~/.local/share/containers/storage/volumes/`.
-* De manera similar cuando se utilice un bind mount con un directorio que no es accesible por el contenedor a causa de SELinux, tendremos que usar las opciones adecuadas para configurar el directorio y hacerlo accesible.
+* Cuando trabajamos con volúmenes con un usuario no privilegiado el directorio donde se crean los volúmenes es `$HOME/.local/share/containers/storage/volumes/`.
+* De manera similar cuando se utilice un bind mount con un directorio que no es accesible por el contenedor por la configuración SELinux, tendremos que usar las opciones adecuadas para configurar el directorio y hacerlo accesible.
 
 ## Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose como root
 
-Si creamos un volumen y lo montamos en un contenedor rootless cuyos procesos se están ejecutando con el usuario `root`. Veamos los usuarios propietarios de los ficheros:
+Si creamos un volumen y lo montamos en un contenedor rootless cuyos procesos se están ejecutando con el usuario `root`, vamos los usuarios propietarios de los ficheros:
 
 ```
 $ podman volume create vol1
@@ -18,9 +18,7 @@ drwxr-xr-x    1 root     root             0 Jan 26 17:53 /destino
 ```
 
 Cómo cabría esperar, comprobamos que el directorio que hemos montado pertenece al usuario `root`.
-
 Podemos inspeccionar el volumen y obtenemos el directorio donde se ha creado en el host:
-
 
 ```
 $ podman volume inspect vol1
@@ -40,7 +38,7 @@ $ podman volume inspect vol1
 ]
 ```
 
-Estamos utilizando un usuario sin privilegio en el host con UID = 1000. Veamos el propietario del directorio donde se almacenan los ficheros del volumen en el host:
+Estamos utilizando un usuario sin privilegios en el host con UID = 1000. Veamos el propietario del directorio donde se almacenan los ficheros del volumen en el host:
 
 ```
 $ id
@@ -51,7 +49,6 @@ drwxr-xr-x. 1 usuario usuario 0 Jan 26 17:53 .local/share/containers/storage/vol
 ```
 
 Comprobamos que en el host el propietario es nuestro usuario sin privilegios.
-
 Si creamos un fichero en el volumen desde el host o desde el contenedor:
 
 ```
@@ -97,7 +94,7 @@ total 4
 -rw-r--r--    1 root     root            15 Apr  2 07:53 index.html
 ```
 
-En resumen, el uso de volúmenes o bind mount en contenedores rootlees cuando se ejecutan los procesos como `root` es muy similar a hacerlo con contenedores rootful. Simplemente tenemos que tener en cuenta que el directorio donde se crean los volúmenes se encuentra en el home del usuario: `~/.local/share/containers/storage/volumes/`.
+En resumen, el uso de volúmenes o bind mount en contenedores rootless cuando se ejecutan los procesos como `root` es muy similar a hacerlo con contenedores rootful. Simplemente tenemos que tener en cuenta que el directorio donde se crean los volúmenes se encuentra en el home del usuario: `$HOME/.local/share/containers/storage/volumes/`.
 
 ##  Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
@@ -114,7 +111,7 @@ $ touch .local/share/containers/storage/volumes/vol2/_data/fichero2
 touch: cannot touch '.local/share/containers/storage/volumes/vol2/_data/fichero2': Permission denied
 ```
 
-Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp`que tiene UDI y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario cou UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
+Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp` que tiene UID y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario cou UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
 
 ```
 $ podman exec -it alpine3 ls -ld destino
@@ -129,14 +126,14 @@ drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
 
 ##  Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
-Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, ne nuestro caso usuario:
+Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, ne nuestro caso `usuario`:
 
 ```
 $ mkdir origen
 $ touch origen/fichero1
 ```
 
-Creamos un contador y montamos el directorio `origen` con la opción `:Z` para configurar de forma adecuada SELinux y sea accesible desde el contenedor. Comprobamos que al pertenecer el directorio `origen` a nuestro usuario `usuario`, el directorio `destino` será propiedad del root (mapeo de usuario) y por lo tanto el usuario con UID 123 no podrá acceder al directorio:
+Creamos un contador y montamos el directorio `origen` con la opción `:Z` para configurar de forma adecuada SELinux y sea accesible desde el contenedor. Comprobamos que al pertenecer el directorio `origen` a nuestro usuario `usuario`, el directorio `destino` será propiedad del `root` (mapeo de `usuario`) y por lo tanto el usuario con UID 123 no podrá acceder al directorio:
 
 ```
 $ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine4 alpine
@@ -167,14 +164,14 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
      $ podman unshare chown -R 123:123 origen
      ```
 
-     Comprobamos que en fuera del contenedor el UID que se asignado es el correspondiente al mapeo de UID realizado:
+     Comprobamos que en fuera del contenedor el UID que se asigna es el correspondiente al mapeo de UID realizado:
 
      ```
      $ ls -ld origen
      drwxr-xr-x. 1 524410 524410 32 Apr  2 14:39 origen
      ```
 
-     Creamos un nuevo contenedor y comprobamos que dentro del contenedor el cambio de propietario se refleja de forma y correcta (pertence al usuario `ntp:ntp`, que corresponde con el UID y GID 123) y ahora si podemos acceder al directorio:
+     Creamos un nuevo contenedor y comprobamos que dentro del contenedor el cambio de propietario se refleja de forma y correcta (pertenece al usuario `ntp:ntp`, que corresponde con el UID y GID 123) y ahora si podemos acceder al directorio:
 
      ```
      $ podman run -dit -u 123:123 -v ./origen:/destino:Z --name alpine5 alpine
