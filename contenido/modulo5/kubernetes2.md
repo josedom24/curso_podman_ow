@@ -2,6 +2,8 @@
 
 Además de poder generar definiciones de recursos de Kubernetes en fichero YAML. En Podman también podemos ejecutar Pods y contenedores a partir de manifiestos YAML de Kubernetes.
 
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo5/kube` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
 En primer lugar vamos a ejecutar recursos en Podman a partir del fichero `wp-mariadb-pod.yaml` que hemos generado en el apartado anterior a partir del escenario que construimos en el **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
 
 ```
@@ -17,7 +19,7 @@ Containers:
 42621e47f8155ae40c1d3a7139279d8f23c1c40be21bbc65b742b511cced34c9
 ```
 
-Podemos crear que hemos creado un Pod con dos contenedores y dos volúmenes:
+Podemos comprobar que hemos creado un Pod con dos contenedores y dos volúmenes:
 
 ```
 $ sudo podman pod ps --ctr-names
