@@ -3,7 +3,7 @@
 Las imágenes de contenedor se construyen a partir de de dos elementos:
 
 * Una configuración: donde se guarda la metainformación de la imagen, por ejemplo se indica el comando que se ejecuta en el contenedor que ejecutemos a a partir de la imagen.
-* Un sistema de archivos de unión, que estará formado por varias **capas ordenadas**. 
+* Un sistema de archivos de unión, que estará formado por varios sistemas de archivos (directorios) a los que llamamos **capas**. 
 
 ## Sistemas de archivos de unión
 
@@ -14,7 +14,7 @@ Las imágenes de contenedor se construyen a partir de de dos elementos:
 
 ### Ejemplo se sistema de archivo OvertlayFS
 
-En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llama do `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión , que estará guardado en el directorio **merge**.
+En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llama do `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión, que estará guardado en el directorio **merge**.
 
 ![overlay](img/overlay.png)
 
@@ -88,7 +88,7 @@ drwx------. 1 usuario usuario 274 Mar 22 08:13 ..
 -rw-r--r--. 1 usuario usuario  20 Mar 22 08:17 f5
 ```
 
-Al eliminar un fichero en el sistema de archivos de unión, y veremos que se deja indicado en la capa superior:
+Al eliminar un fichero en el sistema de archivos de unión, veremos que se deja indicado en la capa superior:
 
 ```
 $ rm merged/f2
