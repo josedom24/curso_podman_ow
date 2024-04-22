@@ -4,7 +4,7 @@ En este apartado vamos a trabajar con las dos redes que hemos creado en el apart
 En primer lugar vamos a crear dos contenedores conectados a la primera red, para ello usaremos el parámetro `--network` en el comando `podman run`:
 
 ```
-$ sudo podman run -d --name servidorweb --network red1 nginx
+$ sudo podman run -d --name servidorweb --network red1 docker.io/nginx
 $ sudo podman run -it --name cliente --network red1 alpine
 ```
 
@@ -102,7 +102,7 @@ $ sudo podman network disconnect red1 cliente2
 
 ## Creación de Linux Bridge en el host
 
-Como indicábamos anteriormente, al conectar contenedores a una determinada red se ha crea en el host un *Linux Bridge* que utiliza esa red. En nuestro caso, al estar trabajando con dos redes, se han creado dos *Linux Bridge*, podemos verlo ejecutando en el host la siguiente instrucción:
+Como indicábamos anteriormente, al conectar contenedores a una determinada red se crea en el host un *Linux Bridge* que utiliza esa red. En nuestro caso, al estar trabajando con dos redes, se han creado dos *Linux Bridge*, podemos verlo ejecutando en el host la siguiente instrucción:
 
 ```
 $ ip a
