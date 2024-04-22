@@ -38,7 +38,7 @@ Si al referenciar a una imagen usamos su nombre corto, es decir no indicamos el 
     Writing manifest to image destination
     c978d997d5fe02d50ae8b7c1e4338f3fcdb61bcf9940a8ce8f87811a319ce586
     ```
-2. Que no haya definido un alias. En esta caso, Podman nos ofrecerá que elijamos descargarla de alguno de los registro que tiene configurado en el parámetro `unqualified-search-registries` del fichero `/etc/containers/registries.conf`:
+2. Que no haya definido un alias. En esta caso, Podman nos ofrecerá la posibilidad de elegir descargarla de alguno de los registros que tiene configurado en el parámetro `unqualified-search-registries` del fichero `/etc/containers/registries.conf`:
 
     ```
     unqualified-search-registries = ["registry.fedoraproject.org", "registry.access.redhat.com", "docker.io", "quay.io"]
@@ -55,7 +55,7 @@ Si al referenciar a una imagen usamos su nombre corto, es decir no indicamos el 
         quay.io/nginx:latest
     ```
 
-    Al elegir la imagen concreta que queremos descargar, se creará un alias en el fichero `/var/cache/containers/short-name-aliases.conf` si estamos trabajando con el usuario `root`o en el fichero `/home/usuario/.cache/containers/short-name-aliases.conf` si trabajamos con el usuario `usuario`.
+    Al elegir la imagen concreta que queremos descargar, se creará un alias en el fichero `/var/cache/containers/short-name-aliases.conf` si estamos trabajando con el usuario `root`o en el fichero `$HOME/.cache/containers/short-name-aliases.conf` si trabajamos con un usuario sin privilegios.
 
 ## Borrar una imagen
 
