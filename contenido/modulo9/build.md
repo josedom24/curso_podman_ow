@@ -31,7 +31,7 @@ Por defecto Buildah busca un fichero `Containerfile` y el contexto en el directo
 $ buildah build -t josedom24/app-python -f Containerfile .
 ```
 
-Una vez construida la imagen podremos ver que s eha creado, ejecutando:
+Una vez construida la imagen podremos ver que se ha creado, ejecutando:
 
 ```
 $ buildah images
