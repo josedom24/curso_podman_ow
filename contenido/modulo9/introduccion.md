@@ -45,7 +45,7 @@ Para la distribución Fedora:
 $ sudo dnf install buildah
 ```
 
-De manera similar, pueder consultar los métodos de instalación de Skopeo en su [página oficial](https://github.com/containers/skopeo/blob/main/install.md). Por ejemplo:
+De manera similar, puedes consultar los métodos de instalación de Skopeo en su [página oficial](https://github.com/containers/skopeo/blob/main/install.md). Por ejemplo:
 
 Para distribuciones Debian/Ubuntu:
 
