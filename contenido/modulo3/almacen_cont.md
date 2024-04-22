@@ -11,7 +11,7 @@ Cuando creamos un contenedor a partir de una imagen ocurren la siguientes cosas:
 
 ## Creación de un contenedor
 
-Vamos a crear un contenedor, y veremos que se crea la **capa del contenedor** de lectura y escritura, que será la capa superior en el sistema de archivo de unión. Esta nueva capa  capa contendrá sólo las diferencias entre las inferiores. Para ello, ejecutamos:
+Vamos a crear un contenedor, y veremos que se crea la **capa del contenedor** de lectura y escritura, que será la capa superior en el sistema de archivo de unión. Esta nueva capa contendrá sólo las diferencias entre las inferiores. Para ello, ejecutamos:
  
 ```
 $ sudo podman run -d --name contenedor1 quay.io/centos7/httpd-24-centos7
@@ -110,7 +110,7 @@ Visto de forma gráfica:
 
 ## Ejemplo de almacenamiento de contenedores
 
-Al crear el contenedor, el tamaño de la **capa del contenedor** es muy pequeño, ya que sólo guarda las diferencia respecto a las capas inferiores.
+Al crear el contenedor, el tamaño de la **capa del contenedor** es muy pequeño, ya que sólo guarda las diferencias respecto a las capas inferiores.
 En nuestro caso la imagen tiene un tamaño de 356 MB. Hemos creado un contenedor y le hemos copiado un fichero. Veamos el tamaño del contenedor con la opción `-s` (size) del comando `podman ps`:
 
 ```
