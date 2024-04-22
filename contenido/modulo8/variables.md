@@ -1,8 +1,8 @@
 # Uso de ficheros Containerfile parametrizados
 
-El uso de parámetros en la creación de ficheros `Containerfile` es una buena forma de añadir flexibilidad a tus construcciones de imágenes. El valor de estos parámetros se pueden pasar a la hora de construir la imagen con el comando `podman build` o indicados valores predeterminados si no se especifican en el momento de la construcción.
+El uso de parámetros en la creación de ficheros `Containerfile` es una buena forma de añadir flexibilidad a tus construcciones de imágenes. El valor de estos parámetros se pueden pasar a la hora de construir la imagen con el comando `podman build` o indicando valores predeterminados si no se especifican en el momento de la construcción.
 
-Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/variables` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 Veamos un ejemplo:
 
