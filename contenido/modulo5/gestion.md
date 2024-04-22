@@ -1,6 +1,6 @@
 # Gestión de Pods
 
-La gestión de los Pods la realizaremos utilizando el comando `podman pod`. en este apartado crearemos Pod con el usuario privilegiado por lo que vamos a usar `sudo` para la ejecución de los comandos.
+La gestión de los Pods la realizaremos utilizando el comando `podman pod`. En este apartado crearemos Pods con el usuario privilegiado por lo que vamos a usar `sudo` para la ejecución de los comandos.
 
 ## Creación de un Pod
 
