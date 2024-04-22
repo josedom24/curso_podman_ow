@@ -49,40 +49,31 @@ $ ip a
     link/ether fe:50:31:ca:47:30 brd ff:ff:ff:ff:ff:ff
     inet 10.88.0.1/16 brd 10.88.255.255 scope global podman0
     ...
-5: veth0@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master podman0 state UP group default qlen 1000
-...
 ```
 
 ### Conectividad del contenedor
 
 Podemos comprobar que el contenedor tiene acceso al exterior:
-
 ```
 # ping www.podman.io
 PING www.podman.io (185.199.109.153): 56 data bytes
 64 bytes from 185.199.109.153: seq=0 ttl=42 time=43.409 ms
 ```
-
 Además si instalamos un servidor web podemos acceder utilizando el puerto que hemos mapeado:
-
 ```
 # apk add apache2
 # httpd -D foreground
 ```
-
 Desde el host podemos probar el acceso:
-
 ```
 $ curl http://localhost:8080
 <html><body><h1>It works!</h1></body></html>
 ```
-
-Podemos comprobar la configuración de cortafuegos que se ha configurado en el host. 
+En el host se han creado distintas reglas de cortafuegos:
 
 * Para permitir que los contenedores conectados a la red **bridge** por defecto tengan conectividad al exterior tenemos que hacer una regla NAT, más concretamente SNAT. 
-* Cuando hemos mapeado el puerto 8080/tcp del host al puerto 80/tcp del contenedor, se ha creado una regla NAT, en concreto DNAT, que hace que todas las peticiones al puerto 8080/tcp del host se redirijan al puerto 80/tcp del contenedor. Veamos estas reglas iptables, en el host ejecutando:
-
-Si inicializamos el cortafuegos es posible que las reglas que ha configurado podman se pierdan. Podemos ejecutar la instrucción `podman network reload` para volver a configurar el cortafuegos de forma adecuada.
+* Cuando hemos mapeado el puerto 8080/tcp del host al puerto 80/tcp del contenedor, se ha creado una regla NAT, en concreto DNAT, que hace que todas las peticiones al puerto 8080/tcp del host se redirijan al puerto 80/tcp del contenedor.
+* Si inicializamos el cortafuegos es posible que las reglas que ha configurado podman se pierdan. Podemos ejecutar la instrucción `podman network reload` para volver a configurar el cortafuegos de forma adecuada.
 
 ## Mapeo de puertos
 
@@ -110,7 +101,7 @@ $ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}
 10.88.0.56
 ```
 
-A continuación desde el `contenedor1`intentamos conectamos al segundo contenedor:
+A continuación desde el `contenedor1` intentamos conectamos al segundo contenedor:
 
 ```
 $ sudo podman start contenedor1
