@@ -106,7 +106,7 @@ Podemos sincronizar todas las versiones de una imagen indicando el transporte de
 ```
 $ skopeo sync --src docker --dest docker docker.io/josedom24/2048 quay.io/josedom24
 ```
-Indicamos el transporte de origen en el parámetro `--src`, el transporte de destino en el parémetro de destino `--dest`. En este caso se han copiado doos imágenes con dos etiquetas:
+Indicamos el transporte de origen en el parámetro `--src`, el transporte de destino en el parémetro `--dest`. En este caso se han copiado dos imágenes con dos etiquetas:
 ```
 $ skopeo list-tags docker://quay.io/josedom24/2048
 {
