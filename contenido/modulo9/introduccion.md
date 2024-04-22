@@ -5,7 +5,7 @@
 [Buildah](https://buildah.io/) facilita la construcción de imágenes de contenedores OCI. Nos permite crear imágenes OCI de varias formas:
 
 * Puede crear un **contenedor de trabajo** utilizando una **imagen como punto de partida**. Puede modificar dicho contenedor y a partir de él crear una nueva imagen.
-* Puede crear un **contenedor de trabajo** vacío (*from sctratch*), montar el sistema de archivo e inicializarlo con un sistema base.
+* Puede crear un **contenedor de trabajo** vacío (*from scratch*), montar el sistema de archivo e inicializarlo con un sistema base.
 * Puede crear imágenes OCI a partir de fichero `Containerfile` o `Dockerfile`.
 
 Las características fundamentales de Buildah son:
