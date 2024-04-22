@@ -2,6 +2,9 @@
 
 Para poder desplegar WordPress + MariaDB necesitamos guardar las siguientes plantillas de unidades de sistemas en el directorio `/etc/containers/systemd`:
 
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/wordpress` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
+
 En primer lugar, definimos la red con la que vamos a trabajar en plantilla de unidad de Systemd `wordpress.network`:
 
 ```
