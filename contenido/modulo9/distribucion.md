@@ -43,7 +43,7 @@ $ buildah login --get-login quiay.io
 $ buildah pull quay.io/josedom24/debian-apache:latest
 ```
 
-Pero usando los distintos transportes de imágenes también podemos guardar una imagen a nuestro local a partir de un fichero o un directorio:
+Pero usando los distintos transportes de imágenes también podemos guardar una imagen a nuestro registro local a partir de un fichero o un directorio:
 
 ```
 $ podman pull oci-archive:debian-apache.tar
