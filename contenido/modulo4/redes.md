@@ -11,7 +11,8 @@ Dependiendo del tipo de contenedor que creemos, Podman utilizará distintos meca
     * Nos permiten aislar los contenedores del acceso exterior.
     * Los contenedores conectados a un red **bridge** tienen acceso a internet por medio de una regla SNAT. 
     * Usamos el parámetro `-p` en `podman run` para exponer algún puerto. Se crea una regla DNAT para tener acceso al puerto.
-* **Redes macvlan o ipvlan**: Son configuraciones más avanzadas de red, donde se permite que el contenedor esté conectado directamente a la red donde está conectado el host. La diferencia entre las dos, es que mientras macvlan permite la comunicación entre contenedores, ipvlan aisla completamente a cada contenedor.
+* **Red Host**:  La pila de red de ese contenedor no está aislada del host, es decir, el contenedor no tiene asignada su propia dirección IP. Por ejemplo, si ejecutas un contenedor que ofrece su servicio en al puerto 80/tcp y utilizas el modo de red host, la aplicación del contenedor estará disponible en el puerto 80/tcp de la dirección IP del host.
+* **Redes macvlan o ipvlan**: Son configuraciones más avanzadas de red, donde se permite que el contenedor esté conectado directamente a la red donde está conectado el host. La diferencia entre las dos, es que mientras macvlan permite la comunicación entre contenedores, ipvlan aísla completamente a cada contenedor.
 * **Red slirp4netns**: Es una configuración de red con capacidades limitadas pero puede ser utilizada con los contenedores rootless. Crea un túnel desde el host al contenedor para reenviar el tráfico.
 
 ## Redes bridge
@@ -39,7 +40,7 @@ Existen dos tipos de redes bridge:
 ### Red bridge definida por el usuario
 
 * Nos permiten aislar los distintos contenedores que tengo en distintas redes privadas, de tal manera que desde cada una de las redes solo podamos acceder a los equipos de esa misma red.
-* Nos proporcionan **resolución DNS** entre los contenedores, por lo que los contenedores puedan conectar a otros contenedores usando su nombre.
+* Nos proporcionan **resolución DNS** entre los contenedores, por lo que los contenedores pueden conectar a otros contenedores usando su nombre.
 * Me permiten **gestionar de manera más segura el aislamiento de los contenedores**, ya que si no indico una red al arrancar un contenedor éste se incluye en la red por defecto donde pueden convivir servicios que no tengan nada que ver.
 * Nos proporcionan **más control sobre la configuración de las redes**. Los contenedores de la red por defecto comparten todos la misma configuración de red (MTU, reglas de cortafuegos, etc...).
 * Es importante que nuestros contenedores en producción se ejecuten conectados a una red bridge definida por el usuario.
