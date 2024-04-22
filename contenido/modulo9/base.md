@@ -11,7 +11,7 @@ Finalmente a partir de este contenedor de trabajo crearemos nuestra nueva imagen
 Para crea un contenedor de trabajo podemos ejecutar el siguiente comando, indicando la imagen base que vamos a usar:
 
 ```
-$ buildah from --name contenedor-work1 debian
+$ buildah from --name contenedor-work1 debian:12
 ```
 
 Podemos ver los contenedores de trabajo que tenemos creados, ejecutando:
@@ -19,7 +19,7 @@ Podemos ver los contenedores de trabajo que tenemos creados, ejecutando:
 ```
 $ buildah ps
 CONTAINER ID  BUILDER  IMAGE ID     IMAGE NAME                       CONTAINER NAME
-5730a5e9d8be     *     e15dbfac2d2b docker.io/library/debian:latest  contenedor-work1
+5730a5e9d8be     *     e15dbfac2d2b docker.io/library/debian:12      contenedor-work1
 ```
 
 Ahora podemos ejecutar comandos en el contenedor de trabajo, usando `buildah run`, por ejemplo:
