@@ -2,9 +2,9 @@
 
 Aunque en los apartados anteriores hemos estudiado cómo se almacenan las imágenes y contenedores de forma general, en este apartado veremos algunos aspectos específicos en el almacenamiento de imágenes y contenedores cuando trabajamos con usuarios sin privilegios.
 
-Para obtener el aislamiento del sistema de ficheros que evita conflictos vamos a utiliza un espacio de nombre de montaje (**mount namespace**) que aíslan los puntos del montaje del contenedor con los del host.
+Para obtener el aislamiento del sistema de ficheros que evita conflictos vamos a utiliza un espacio de nombre de montaje (**mount namespace**) que aísla los puntos del montaje del contenedor con los del host.
 
-Además con el uso de los espacios de nombre de montaje en combinación con el espacio de nombres del usuario vamos a conseguir los siguientes aspectos:
+Además con el uso de los espacios de nombre de montaje en combinación con el espacio de nombres del usuario vamos a conseguir las siguientes características:
 
 * Nos va a permitir **aislar los puntos de montaje del contenedor con los del host**. Cuando se ejecuta Podman en modo rootless, cada contenedor se ejecuta con su propio espacio de nombres de montaje. Esto significa que los puntos de montaje dentro del contenedor se aíslan del sistema de archivos del host, proporcionando un nivel de aislamiento adicional y seguridad.
 * Nos permite a **usuarios sin privilegios realizar puntos de montaje**. Los usuarios sin privilegios pueden realizar puntos de montaje dentro de sus propios espacios de nombres de montaje. Esto les permite montar sistemas de archivos dentro de los contenedores sin necesidad de privilegios de `root`.
@@ -13,6 +13,9 @@ Además con el uso de los espacios de nombre de montaje en combinación con el e
 Para comprobarlo, hemos creado dos contenedores rootless:
 
 ```
+$ podman run -d --rm --name contenedor1 alpine sleep 1000
+$ podman run -d --rm --name contenedor2 alpine sleep 1000
+
 $ podman ps
 CONTAINER ID  IMAGE                            COMMAND     CREATED        STATUS        PORTS       NAMES
 57a4a26bc9c2  docker.io/library/alpine:latest  sleep 1000  6 seconds ago  Up 6 seconds              contenedor1
@@ -50,7 +53,7 @@ MergedDir = /home/usuario/.local/share/containers/storage/overlay/203cac195f2554
 ...
 ```
 
-Y ahora podemos listar los ficheros de ese directorio, utilizando `podman unshare` para accedr al espacioo de nombres de usuario y el espacio de nombres de montaje:
+Y ahora podemos listar los ficheros de ese directorio, utilizando `podman unshare` para acceder al espacio de nombres de usuario y el espacio de nombres de montaje:
 
 ```
 $ podman unshare ls -l /home/usuario/.local/share/containers/storage/overlay/203cac195f25541ff30f4abc9b79ad972e6478f233499be6caf4a6a405d2cea9/merged
