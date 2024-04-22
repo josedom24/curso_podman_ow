@@ -88,7 +88,7 @@ quay.io/podman/hello  latest      9e0dd3d2c11c  17 hours ago  752 kB
 
 ## Contenedor rootless
 
-En este ejemplo vamos a ejecutar nuestro primer contenedor rootless, es decir en esta ocasión el usuario que va a crear el contenedor es un usuario sin privilegio (no usaremos la instrucción `sudo`):
+En este ejemplo vamos a ejecutar nuestro primer contenedor rootless, es decir en esta ocasión el usuario que va a crear el contenedor es un usuario sin privilegios (no usaremos la instrucción `sudo`):
 
 ```
 $ podman run quay.io/josedom24/hola-mundo:latest

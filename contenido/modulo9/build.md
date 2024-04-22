@@ -15,7 +15,7 @@ CMD ["python3", "app.py"]
 ```
 
 * La imagen `registry.access.redhat.com/ubi8/python-38:latest` es una imagen base de Python construida por Red Hat que permite la ejecución de la aplicación con un usuario no privilegiado.
-* Con el parámetro `USER` indicamos el usuario sin privilegio que va a ejecutar el servidor web.
+* Con el parámetro `USER` indicamos el usuario sin privilegios que va a ejecutar el servidor web.
 
 Para crear una nueva imagen usamos el comando `buildah build` indicando el nombre con el parámetro `-t`:
 

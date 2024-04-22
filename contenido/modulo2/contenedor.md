@@ -62,7 +62,7 @@ Writing manifest to image destination
 Hello world
 ```
 
-Como es de esperar el usuario sin privilegio que crea el contenedor rootless no tiene guardada en su registro local la imagen `docker.io/library/ubuntu:latest` por lo que se la baja de nuevo.
+Como es de esperar el usuario sin privilegios que crea el contenedor rootless no tiene guardada en su registro local la imagen `docker.io/library/ubuntu:latest` por lo que se la baja de nuevo.
 
 Es importante tener en cuenta que cada usuario tiene su propio conjunto de imágenes descargadas, es decir:
 

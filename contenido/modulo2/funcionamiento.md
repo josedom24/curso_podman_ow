@@ -96,7 +96,7 @@ HUSER       USER
 3. Comprobamos que en el host, el proceso lo ejecuta el usuario `usuario`.
 4. Por último, vemos que el usuario correspondiente al host (`HUSER`) es `usuario` (UID 1000), y el usuario dentro del contenedor (`USER`) es `root`. **Hay una correspondencia entre nuestro usuario sin privilegios en el host y el usuario `root` dentro del contenedor**.
 
-Podemos concluir: cuando ejecutamos un contenedor con un usuario sin privilegios, con el proceso del contenedor ejecutándose con `root`, el usuario real visible en el host que ejecuta el proceso es el usuario sin privilegio con su UID.
+Podemos concluir: cuando ejecutamos un contenedor con un usuario sin privilegios, con el proceso del contenedor ejecutándose con `root`, el usuario real visible en el host que ejecuta el proceso es el usuario sin privilegios con su UID.
 
 ### Ejecución de contenedores rootful, con procesos en el contenedor ejecutándose con usuarios no privilegiados
 
