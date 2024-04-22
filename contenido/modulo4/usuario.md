@@ -10,7 +10,7 @@ Para crear una red bridge definida por el usuario, ejecutamos la siguiente instr
 $ sudo podman network create -d bridge red1
 ```
 
-La opción `-d bridge` es optativa, si no se se indica el tipo,  por defecto se creará una red de tipo bridge. Podemos visualizar las redes que tenemos creadas ejecutando:
+La opción `-d bridge` es optativa, si no se se indica el tipo, por defecto se creará una red de tipo bridge. Podemos visualizar las redes que tenemos creadas ejecutando:
 
 ```
 $ sudo podman network ls
@@ -18,7 +18,6 @@ NETWORK ID    NAME        DRIVER
 2f259bab93aa  podman      bridge
 dd36a02e4956  red1        bridge
 ```
-
 Para obtener información de la red, podemos ejecutar:
 
 ```
@@ -32,8 +31,7 @@ $ sudo podman network inspect red1
           ],
 ...
 ```
-
-Al crear la red no hemos indicado el direccionamiento, por lo que se ha asignado uno por defecto. Además en el host se ha creará un nuevo bridge donde se conectarán los contenedores que estén conectados a esta red. El bridge se crea cuando le conectemos un contenedor.
+Al crear la red no hemos indicado el direccionamiento, por lo que se ha asignado uno por defecto. Además en el host se creará un nuevo bridge donde se conectarán los contenedores que estén conectados a esta red. El Linux Bridge se crea cuando le conectemos un contenedor.
 
 Por último, para borrar una red podemos ejecutar:
 
@@ -60,7 +58,6 @@ $ sudo podman network create --subnet 192.168.0.0/24 --gateway 192.168.0.100 red
 ```
 
 Podemos comprobar que el direccionamiento lo hemos configurado:
-
 
 ```
 $ sudo podman network red2
