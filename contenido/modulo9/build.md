@@ -39,7 +39,7 @@ REPOSITORY                                  TAG           IMAGE ID       CREATED
 localhost/josedom24/app-python              latest        a7951b30c32a   28 seconds ago      906 MB
 ```
 
-Y podemos crear un contenedor, en este caso creamos un contenedor rootless cuyo que nos ofrece un servidor web ejecutado con un usuario sin privilegios:
+Y podemos crear un contenedor, en este caso creamos un contenedor rootless que nos ofrece un servidor web ejecutado con un usuario sin privilegios:
 
 ```
 $ podman run -d -p 8000:5000 --name python1 josedom24/app-python:latest
