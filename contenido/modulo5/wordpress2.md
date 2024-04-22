@@ -8,7 +8,7 @@ En este ejemplo, vamos a volver a desplegar WordPress + MariaDB con las siguient
 * Utilizaremos Pod diferenciados para cada contenedor que ofrece el servicio. 
 * Será necesario utilizar una red definida por el usuario, ya que necesitamos resolución DNS a nivel de Pod para que un contenedor de un Pod se pueda conectar al otro contenedor del otro Pod usando su nombre del Pod. 
 * Tendremos que publicar el cada Pod el puerto que utiliza cada servicio que sirve.
-* En la configuración del contenedor de la aplicación web se indicará el nombre del Pod de la base de datos para acceder al servicio.
+* En la configuración del contenedor de la aplicación web (varibale de entorno `WORDPRESS_DB_HOST`) se indicará el nombre del Pod de la base de datos para acceder al servicio.
 * Utilizaremos volúmenes para hacer persistente la aplicación.
 
 Creamos la red definida por el usuario:
