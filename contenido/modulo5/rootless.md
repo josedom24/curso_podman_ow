@@ -10,13 +10,11 @@ En esta apartado, vamos a crear un Pod rootless que tendrán dos contenedores: u
 * Para que nginx y fpm-php funcionen de forma adecuada, ambos deben poder acceder al contenido de la aplicación.
 * Recordemos que ambos contenedores se van comunicar mediante la dirección 127.0.0.1.
 
-En primer lugar vamos a crear un directorio donde crearemos un fichero `index.php` que mostrará información del PHP que se está utilizando.
+Puedes encontrar los ficheros necesarios en el directorio `modulo5/pod_rootless/web` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
-```
-mkdir web
-echo "<?php phpinfo();?>"> web/index.php
-```
-En ese directorio tendremos también la configuración del servidor nginx para servir contenido PHP usando un servidor de aplicaciones fpm-php. Este fichero se montará en la creación del contenedor, tal cómo se nos explica en la documentación de la imagen [`docker.io/bitnami/nginx`](https://hub.docker.com/r/bitnami/nginx). El contenido del fichero `web/server_block.conf` será:
+En el directorio `web` tendremos un fichero `index.php` que mostrará información del PHP que se está utilizando.
+
+En ese directorio tendremos también la configuración del servidor nginx para servir contenido PHP usando un servidor de aplicaciones fpm-php. Este fichero se montará en la creación del contenedor, tal cómo se nos explica en la documentación de la imagen [`docker.io/bitnami/nginx`](https://hub.docker.com/r/bitnami/nginx). El contenido del fichero `server_block.conf` será:
 
 ```
 server {
