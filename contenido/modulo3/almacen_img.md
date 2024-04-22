@@ -4,14 +4,14 @@ Podman puede usar varios drivers para gestionar el sistema de archivos de unión
 
 El driver de almacenamiento que se usa por defecto para gestionar el conjunto de capas que forman parte de una imagen en la versión actual de Podman es **Overlay v2**. 
 
-En el fichero de configuración de Podman donde se indica la configuración del almacenamiento los parámetros más importantes de estos ficheros son `graphDriverName`, donde se indica el driver utilizado y `graphroot` donde se indica el directorio de almacenamiento de las imágenes.
+En el fichero de configuración de Podman donde se indica la configuración del almacenamiento, los parámetros más importantes son `graphDriverName`, donde se indica el driver utilizado y `graphroot` donde se indica el directorio de almacenamiento de las imágenes.
 
 Dependiendo del modo de funcionamiento:
 
 * **Modo rootful**. Fichero de configuración: `/usr/share/containers/storage.conf`.
   * `graphDriverName: overlay`
   * `graphRoot: /var/lib/containers/storage`
-* **Modo rootless**. ficher de configuración: `$HOME/.config/containers/storage.conf`
+* **Modo rootless**. fichero de configuración: `$HOME/.config/containers/storage.conf`
   * `graphDriverName: overlay`
   * `graphRoot: /home/usuario/.local/share/containers/storage/`
 
@@ -58,7 +58,7 @@ d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a  images.json  i
 
 Los ficheros y directorios que nos encontramos son los siguientes:
 
-* `images.json`: Es un índice de las imágenes que tenemos descargas. Para visualizarlo de manera correcta este fichero podemos usar la utilidad `jq`: `cat images.json | jq`.
+* `images.json`: Es un índice de las imágenes que tenemos descargadas. Para visualizarlo de manera correcta este fichero podemos usar la utilidad `jq`: `cat images.json | jq`.
 * Distintos directorios que corresponde a las imágenes que tenemos descargadas en nuestro registro local. El nombre de estos directorios corresponden a los identificados de las imágenes. En estos directorios encontramos:
   * Un fichero de manifiesto llamado `manifest`, que describe las capas que componen la imagen.
   * Y distintos ficheros con las configuración de la imagen.
@@ -114,7 +114,7 @@ $ ls
 8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0.tar-split.gz
 ```
 
-Como podemos ver, acabamos de encontrar todos los archivos de capas descargados de nuestra imagen. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas:
+Como hemos indicado, contiene los archivos comprimidos de todas las capas de las imágenes que tenemos descargadas. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas:
 
 ```
 $ sudo cat overlay-layers/layers.json | jq
@@ -158,8 +158,8 @@ diff  link  lower  merged  work
 
 Veamos que guardan cada uno de estos directorios y ficheros:
 
-* `link`: Este archivo contiene un **identificador de capa abreviado**. Cada capa se identificará, además de por su hash y de su identificador con un nuevo identificados abreviado que corresponde a una cadena de texto más pequeño que el hash y el identificados. Posteriormente explicaremos porqué vamos a usar el identificador abreviado.
-* `lower`: Este fichero contiene la lista de los identificados abreviados de las capas inferiores en orden. Es decir el fichero `lower` de la capa 3 contiene los identificados abreviados de la capa 2 y la capa 1. El de la capa 2 tendrá el identificador abreviador de la capa 1. Finalmente, la primera capa, no tendrá este fichero (ya que no tiene ninguna capa inferior) y si tendra un directorio vacio llamado `empty`.
+* `link`: Este archivo contiene un **identificador de capa abreviado**. Cada capa se identificará, además de por su hash y de su identificador con un nuevo identificados abreviado que corresponde a una cadena de texto más pequeño que el hash y el identificador. Posteriormente explicaremos porqué vamos a usar el identificador abreviado.
+* `lower`: Este fichero contiene la lista de los identificados abreviados de las capas inferiores en orden. Es decir el fichero `lower` de la capa 3 contiene los identificados abreviados de la capa 2 y la capa 1. El de la capa 2 tendrá el identificador abreviador de la capa 1. Finalmente, la primera capa, no tendrá este fichero (ya que no tiene ninguna capa inferior) y si tendrá un directorio vacío llamado `empty`.
     ```
     $ sudo cat overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/lower
     l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:l/LCIWXBIPSMIGB2RTQV36QKTCRH
@@ -186,7 +186,7 @@ lrwxrwxrwx. 1 root root  72 Mar 21 07:39 ZXSJGMR5T7VDVVGRWHG3E2I6DZ -> ../8853b2
 
 Nos podemos preguntar: ¿por qué usamos los identificados abreviados de capa y para qué sirven los enlaces simbólicos que encontramos en el directorio `l`?
 
-En el próximo capítulo cuando creemos un nuevo contenedores se montará el sistema de archivos de unión que utilizará el contenedor. en este montaje habrá que indicar el conjunto de capas inferiores con el parámetro `lowerdir`. Sin embargo, no se usarán los nombres de los directorios directamente, por ejemplo no se usará el nombre:
+En el próximo capítulo cuando creemos un nuevo contenedores se montará el sistema de archivos de unión que utilizará el contenedor. En este montaje habrá que indicar el conjunto de capas inferiores con el parámetro `lowerdir`. Sin embargo, no se usarán los nombres de los directorios directamente, por ejemplo no se usará el nombre:
 
 ```
 var/lib/containers/storage/overlay/overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff
@@ -206,7 +206,7 @@ De manera gráfica, tenemos el siguiente esquema:
 
 ## Ahorro de espacio de almacenamiento
 
-La estructura de almacenamiento que hemos explicado favorece el ahorra de espacio en disco ocupado por las imágenes. Si al descargar una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
+La estructura de almacenamiento que hemos explicado favorece el ahorro de espacio en disco ocupado por las imágenes. Si al descargar una imagen a nuestro registro local, esta formada por alguna capa que ya tenemos almacenada de otra imagen, esta capa no se descargará. Veamos un ejemplo:
 
 Si a continuación bajamos otra versión de la misma imagen:
 
@@ -293,7 +293,7 @@ quay.io/josedom24/servidorweb  latest       20dc5273de46  52 minutes ago  212 MB
 docker.io/library/debian       stable-slim  c3c8e6f4e51e  30 hours ago    77.8 MB
 ```
 
-Podemos pensar que se ha ocupado en el disco duro 212MB + 77.8MB, pero en realidad el tamaño de la capa que se compartes, sólo se guarda una vez en el disco duro. Podemos comprobarlo ejecutando el siguiente comando:
+Podemos pensar que se ha ocupado en el disco duro 212MB + 77.8MB, pero en realidad el tamaño de la capa que se comparte, sólo se guarda una vez en el disco duro. Podemos comprobarlo ejecutando el siguiente comando:
 
 ```
 $ podman system df -v
