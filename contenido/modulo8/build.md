@@ -1,12 +1,14 @@
 # Construcción de imágenes con podman build
 
-Veamos como podemos automatizar la creación de imágenes OCI, usando un fichero `Containerfile` y el comando `podman build`. Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
+Veamos como podemos automatizar la creación de imágenes OCI, usando un fichero `Containerfile` y el comando `podman build`. 
 
-En este ejemplo vamos a construir distintas versiones de una imagen cpara servir una página web estática.
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/estatica` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
+En este ejemplo vamos a construir distintas versiones de una imagen para servir una página web estática.
 
 ## Versión 1: Desde una imagen base
 
-Vamos a crear un directorio (a este directorio se le llama **contexto**) donde vamos a crear un fichero `Containerfile` y un directorio, llamado `public_html` con nuestra página web:
+En el directorio de  **contexto** tenemos un fichero `Containerfile` y un directorio, llamado `public_html` con nuestra página web:
 
 ```
 $ ls
@@ -16,7 +18,7 @@ Containerfile  public_html
 En este caso vamos a usar una imagen base de un sistema operativo sin ningún servicio. El fichero `Containerfile` será el siguiente:
 
 ```
-FROM debian:stable-slim
+FROM debian:12
 RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
 WORKDIR /var/www/html/
 COPY public_html .
@@ -24,7 +26,7 @@ EXPOSE 80
 CMD apache2ctl -D FOREGROUND
 ```
 
-* Al usar una imagen base `debian:stable-slim` tenemos que instalar los paquetes necesarios para tener el servidor web, en este caso Apache. 
+* Al usar una imagen base `debian:12` tenemos que instalar los paquetes necesarios para tener el servidor web, en este caso Apache. 
 * Además de la instalación del servicio hemos borrado todos los paquetes que nos hemos bajado, con esto conseguimos que la capa que va a crear la instrucción `RUN` sea lo más pequeña posible.
 * A continuación añadiremos el contenido del directorio `public_html` al directorio `/var/www/html/` del contenedor, donde nos hemos posicionado con la instrucción `WORKDIR`. 
 * Declaramos el puerto donde se va a ofrecer el servicio. Esta definición es sólo informativa.
@@ -44,7 +46,7 @@ Comprobamos que la imagen se ha creado:
 ```
 $ podman images
 REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
-localhost/josedom24/webserver  v1           0e1f90edc439  2 minutes ago   193 MB
+localhost/josedom24/webserver  v1           0e1f90edc439  2 minutes ago   242 MB
 ...
 ```
 
@@ -52,14 +54,14 @@ Podemos ver cómo se ha creado cualquier imagen, usando el comando `podman histo
 
 ```
 $ podman history josedom24/webserver:v1 
-ID            CREATED        CREATED BY                                     SIZE        COMMENT
-056b65848578  3 minutes ago  /bin/sh -c #(nop) CMD apache2ctl -D FOREGR...  0B          FROM f255ae9ed2e3
-<missing>     3 minutes ago  /bin/sh -c #(nop) EXPOSE 80                    0B          FROM 056b65848578
-<missing>     3 minutes ago  /bin/sh -c #(nop) COPY dir:3fceef1ec8e5fa7...  505kB       FROM d4242e321f5e
-185b5558aeb6  3 minutes ago  /bin/sh -c #(nop) WORKDIR /var/www/html/       0B          FROM 185b5558aeb6
-<missing>     3 minutes ago  /bin/sh -c apt-get update && apt-get insta...  115MB       FROM docker.io/library/debian:stable-slim
-c3c8e6f4e51e  6 days ago     /bin/sh -c #(nop)  CMD [""]                0B          
-<missing>     6 days ago     /bin/sh -c #(nop) ADD file:3a18b01a2f69e97...  77.8MB      
+ID            CREATED         CREATED BY                                     SIZE        COMMENT
+2f2f9e80b41d  24 seconds ago  /bin/sh -c #(nop) CMD apache2ctl -D FOREGR...  0B          FROM f9624b30a221
+<missing>     24 seconds ago  /bin/sh -c #(nop) EXPOSE 80                    0B          FROM 2f2f9e80b41d
+<missing>     25 seconds ago  /bin/sh -c #(nop) COPY dir:3fceef1ec8e5fa7...  505kB       FROM a2d2c0d8ffd4
+34982d620367  25 seconds ago  /bin/sh -c #(nop) WORKDIR /var/www/html/       0B          FROM 34982d620367
+<missing>     29 seconds ago  /bin/sh -c apt-get update && apt-get insta...  120MB       FROM docker.io/library/debian:12
+e15dbfac2d2b  12 days ago     /bin/sh -c #(nop)  CMD ["bash"]                0B          
+<missing>     12 days ago     /bin/sh -c #(nop) ADD file:ca6d1f0f80dd6c9...  121MB 
 ```
 
 Y podemos crear un contenedor:
@@ -92,7 +94,7 @@ $ podman images
 REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
 localhost/josedom24/webserver  v1           aa1a19a3a7b0  8 seconds ago   193 MB
 <none>                         <none>       a6582925a34d  31 seconds ago  193 MB
-docker.io/library/debian       stable-slim  c3c8e6f4e51e  6 days ago      77.8 MB
+docker.io/library/debian       12           e15dbfac2d2b  12 days ago     121 MB
 ```
 
 Para eliminar estas imágenes podemos ejecutar:
