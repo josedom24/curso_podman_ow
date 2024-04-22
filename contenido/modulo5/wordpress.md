@@ -1,8 +1,8 @@
 # Ejemplo: Despliegue de WordPress + MariaDB en un Pod
 
-Para la instalación de WordPress vamos a crear un Pod con dos contenedores: uno para ejecutar la base de datos MariaDB (imagen `docker.io/mariadb`) y el servidor web con la aplicación (imagen `docker.io/wordpress`). No es necesario conectar el Pod a un red definida por el usuario, ya que no necesitamos la característica de la resolución DNS, ya que la comunicación entre los contenedores de un Pod se hace a través de la interfaz loopback.
+Para la instalación de WordPress vamos a crear un Pod con dos contenedores: uno para ejecutar la base de datos MariaDB (imagen `docker.io/mariadb`) y otro para ejecutar el servidor web con la aplicación (imagen `docker.io/wordpress`). No es necesario conectar el Pod a un red definida por el usuario, en este caso no necesitamos la característica de la resolución DNS, ya que la comunicación entre los contenedores de un Pod se hace a través de la interfaz loopback.
 
-En primer lugar creamos el pod:
+En primer lugar creamos el Pod:
 
 ```
 $ sudo podman pod create --name wordpress-pod -p 8080:80
