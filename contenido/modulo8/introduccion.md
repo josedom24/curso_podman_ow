@@ -4,7 +4,7 @@
 
 Hasta ahora hemos creado contenedores a partir de las imágenes que encontramos en distintos registros de imágenes OCI. Estas imágenes las han creado otras personas.
 
-Para crear un contenedor que sirva nuestra aplicación, tendremos que crear una imagen personalizada, es lo que llamamos **"dockerizar"** una aplicación.
+Para crear un contenedor que sirva nuestra aplicación, tendremos que crear una imagen personalizada, que nos permita crear contenedores que sirven nuestra aplicación.
 
 Tenemos dos herramientas para realizar la construcción de una imagen OCI:
 
@@ -34,7 +34,7 @@ Hay que recordar que tenemos varios medios de almacenamiento de imágenes, que l
 
 Por lo tanto podremos usar cualquier **transporte de imagen** para enviar y distribuir una imagen OCI. Para realizar la distribución tenemos dos herramientas:
 
-* **Podman**: Podman nos ofrece varias instrucciones para usar los **transportes de imágenes OCI** para distribuir una imagen OCI:
+* **Podman**: Podman nos ofrece varias instrucciones para usar los **transportes de imágenes OCI** para distribuir una imagen:
     * Utilizando los comandos `podman save / podman load` podemos guardar y recuperar una imagen que tenemos en el registro local en un fichero comprimido (usando el medio de transporte `oci-archive`) o en un directorio con el contenido de la imagen (usando el medio de transporte `oci`).
-    * Utilizando los comando `podman push / podman pull` que aunque también permite trabajar con imágenes guarda en ficheros comprimidos o directorios, se suelen usar almacenar y recuperar imágenes en registros de imágenes remotos y locales.
+    * Utilizando los comandos `podman push / podman pull` que aunque también permiten trabajar con imágenes guardadas en ficheros comprimidos o directorios, se suelen usar para almacenar y recuperar imágenes en registros de imágenes remotos y locales.
 * **Skopeo**: Skopeo es una herramienta específica para la gestión de imágenes OCI, que entre otras cosas nos permite copiar imágenes usando los distintos medios de transportes de imágenes.
