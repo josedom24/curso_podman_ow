@@ -7,7 +7,7 @@ Podman nos ofrece varias instrucciones para usar los **transportes de imágenes 
 ### podman save
 
 * Podemos guardar una imagen en un fichero o en un directorio usando la instrucción `podman save`. 
-* `podman save` trabaja con distintos formatos:
+* `podman save` trabaja con distintos transportes:
     * **docker-archive**: Imagen con formato Docker comprimida en una archivo tar. Es el transporte por defecto, y es el que debemos usar si posteriormente queremos recuperar la imagen con `docker load`.
     * **oci-archive**: Imagen con formato OCI comprimida en una archivo tar.
     * **docker-dir**: Imagen con formato Docker, guardada en un directorio local.
@@ -24,7 +24,7 @@ En este caso el fichero `alpine.tar` guarda una imagen en formato Docker. Si que
 $ podman save docker.io/alpine:latest --format oci-archive > alpine2.tar
 ```
 
-Además `podman save` puede guardar una imagen en un directorio, con formato Docker, usando el formato `ddocker-dir`, o con formato OCI, usando el formato `oci-dir`.
+Además `podman save` puede guardar una imagen en un directorio, con formato Docker, usando el formato `docker-dir`, o con formato OCI, usando el formato `oci-dir`.
     
 ```
 $ podman save docker.io/alpine:latest --format docker-dir -o alpine-docker
@@ -33,14 +33,14 @@ $ podman save docker.io/alpine:latest --format oci-dir -o alpine-oci
 
 ### podman load
 
-Utilizamos `podman load` para cargar una nueva imagen en nuestro registro local a partiir de un fichero comprimido con la imagen.
+Utilizamos `podman load` para cargar una nueva imagen en nuestro registro local a partir de un fichero comprimido con la imagen.
 
 ```
 $ podman rmi docker.io/alpine
 $ podman load -i alpine.tar
 ```
 
-Hemos recuperado la imagen con formato Docker, pero también podríamos haber recuperado la iamgen con formato OCI.
+Hemos recuperado la imagen con formato Docker, pero también podríamos haber recuperado la imagen con formato OCI.
 
 ## Distribución de imágenes usando registros
 
@@ -89,7 +89,7 @@ $ podman login --get-login quiay.io
 $ podman pull quay.io/josedom24/webserver:v1
 ```
 
-Pero usando los distintos transportes de imágenes también podemos guardar una imagen a nuestro local a partir de un fichero o un directorio, de manera similar a `podman load`:
+Pero usando los distintos transportes de imágenes también podemos guardar una imagen a nuestro registro local a partir de un fichero o un directorio, de manera similar a `podman load`:
 
 ```
 $ podman pull oci-archive:alpine3.tar
