@@ -4,7 +4,7 @@ Skopeo nos permite realizar distintas operaciones sobre imágenes almacenadas en
 
 ## Inspeccionar imágenes
 
-Skopeo es capaz de inspeccionar un repositorio en un registro de contenedores y obtener información de las versiones de las imágenes que contiene. Por ejemplo, con el comando `list-tags` vemos la lista de etiquetas que tiene una imagen:
+Skopeo es capaz de inspeccionar un repositorio en un registro de imágenes y obtener información de las versiones de las imágenes que contiene. Por ejemplo, con el comando `list-tags` vemos la lista de etiquetas que tiene una imagen:
 
 ```
 $ skopeo list-tags docker://quay.io/josedom24/servidorweb
