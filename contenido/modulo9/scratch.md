@@ -69,7 +69,7 @@ Ya podemos desmontar el contenedor, y salimos del modo `unsahare`:
 # exit
 ```
 
-Podemos comprobar que efectivamente hemos instalado un sistema base ne el contenedor:
+Podemos comprobar que efectivamente hemos instalado un sistema base en el contenedor:
 
 ```
 $ buildah run contenedor-work2 bash
