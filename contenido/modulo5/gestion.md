@@ -4,7 +4,7 @@ La gestión de los Pods la realizaremos utilizando el comando `podman pod`. En e
 
 ## Creación de un Pod
 
-Para crear un pod, usamos el comando `podman pod create`, por ejemplo para crear un Pod llamado `pod1`, ejecutamos:
+Para crear un Pod, usamos el comando `podman pod create`, por ejemplo para crear un Pod llamado `pod1`, ejecutamos:
 
 ```
 $ sudo podman pod create --name pod1
@@ -17,7 +17,7 @@ $ sudo podman pod ps
 POD ID        NAME        STATUS      CREATED        INFRA ID      # OF CONTAINERS
 45d3c5f01747  pod1        Created     8 seconds ago  41f153d29f02  1
 ```
-Como vemos esta compuesto por un contenedor, que será el contenedor infra. Si queremos mostrar los nombres de los contenedores de los que está formado, usamos el parámetro `--ctr-names`:
+Como vemos esta compuesto por un contenedor, que será el contenedor **infra**. Si queremos mostrar los nombres de los contenedores de los que está formado, usamos el parámetro `--ctr-names`:
 
 ```
 $ sudo podman pod ps --ctr-names
@@ -74,7 +74,7 @@ $ sudo podman pod restart pod1
 
 ## Obteniendo información de un Pod
 
-Podemos obtener la información de tallada de un Pod ejecutando:
+Podemos obtener la información detallada de un Pod ejecutando:
 
 ```
 $ sudo podman pod inspect pod1
