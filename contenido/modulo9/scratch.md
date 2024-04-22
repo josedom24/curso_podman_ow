@@ -60,7 +60,7 @@ En este caso hemos instalado `bash` y `coreutils` de la distribución 39 de Fedo
 
 ## Configuración final para la construcción de la imagen desde cero
 
-Una vez que hemos copiado el sistema de fichero base en el contenedor de trabajo, continuamos con el proceso. en este ejemplo continuamos con el contenedor de trabajo al que hemos instalado una sistema base de Fedora.
+Una vez que hemos copiado el sistema de fichero base en el contenedor de trabajo, continuamos con el proceso. En este ejemplo continuamos con el contenedor de trabajo al que hemos instalado una sistema base de Fedora.
 
 Ya podemos desmontar el contenedor, y salimos del modo `unsahare`:
 
