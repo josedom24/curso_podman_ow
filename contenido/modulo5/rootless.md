@@ -1,6 +1,6 @@
 # Creación de Pods en modo rootless
 
-Podman nos ofrece la posibilidad de crear Pods que contengan contenedores ejecutados en modo rootless, es decir ejecutados con un usuarios sin privilegios.
+Podman nos ofrece la posibilidad de crear Pods que contengan contenedores ejecutados en modo rootless, es decir ejecutados con un usuario sin privilegios.
 
 ## Ejemplo: nginx + fpm-php
 
@@ -38,7 +38,7 @@ server {
 ```
 Hay que tener en cuenta:
 
-* Se crea un servidor web que utiliza el puerto 8080/tcp. Esta imagen utilizan un usuario sin privilegio por lo que no puede servir la aplicación usando el puerto 80/tcp.
+* Se crea un servidor web que utiliza el puerto 8080/tcp. Esta imagen utilizan un usuario sin privilegios por lo que no puede servir la aplicación usando el puerto 80/tcp.
 * nginx conectará con el servidor de aplicación fpm-php en el puerto 9000/tcp de `localhost`(127.0.0.1) como hemos indicado anteriormente.
 
 A continuación, creamos nuestro Pod, que realizará el mapeo de puerto y declarará el almacenamiento compartido para que los dos contenedores tengan acceso al código de la aplicación:
@@ -68,7 +68,7 @@ d43308bffcf8  localhost/podman-pause:4.9.4-1711445992                        5 m
 5af6eab919d2  docker.io/bitnami/nginx:latest           /opt/bitnami/scri...  3 minutes ago  Up 3 minutes  0.0.0.0:8090->8080/tcp  nginx               56dafee5d502  nginx_php
 ```
 
-Finalmente, podemos acceder ala dirección IP del host y el puerto que hemos mapeado y comprobamos que el código PHP se está sirviendo de manera adecuada:
+Finalmente, podemos acceder a la dirección IP del host y el puerto que hemos mapeado y comprobamos que el código PHP se está sirviendo de manera adecuada:
 
 ![nginx_php](img/nginx_php.png)
 
