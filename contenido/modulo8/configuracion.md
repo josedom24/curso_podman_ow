@@ -1,14 +1,15 @@
 # Construcción de imágenes configurables con variables de entorno
 
-En este ejemplo vamos a desplegar una aplicación PHP que accede a una base de datos. Por lo tanto vamos a generar dos imágnes: una para servir la aplicación PHP y otra para servir nuestra base  de datos.
-Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
+En este ejemplo vamos a desplegar una aplicación PHP que accede a una base de datos. Por lo tanto vamos a generar dos imágenes: una para servir la aplicación PHP y otra para servir nuestra base de datos.
+
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/php` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 Hay que tener en cuenta los siguientes aspectos:
 
 * Vamos a crear una imagen con una base de datos MariaDB inicializada con una base de datos.
 * Vamos a crear dos versiones de la imagen de la aplicación PHP:
-  * Versión 1: Desde una imagen base
-  * Versión 2: Desde una imagen con PHP instalado
+  * Versión 1: Desde una imagen base.
+  * Versión 2: Desde una imagen con PHP instalado.
 
 ## Imagen MariaDB
 
@@ -33,7 +34,7 @@ Cuando creemos un contenedor a partir de esta imagen se inicializará la base de
 
 ## Imagen aplicación PHP
 
-Cuando programamos una aplicación tenemos que tener en cuenta que va a ser implantada usando contenedores tenemos que hacer algunas modificaciones, por ejemplo en este caso, las credenciales para el acceso a la base de datos la leemos de variables de entorno (que posteriormente serán creadas en el contenedor):
+Cuando programamos una aplicación tenemos que tener en cuenta que va a ser implantada usando contenedores y puede que tengamos que hacer algunas modificaciones, por ejemplo en este caso, las credenciales para el acceso a la base de datos la leemos de variables de entorno (que posteriormente serán creadas en el contenedor):
 
 ```
 <?php
@@ -74,10 +75,10 @@ Como hemos indicado vamos a crear dos versiones de esta imagen:
 
 En el contexto vamos a tener el fichero `Conteinarfile` y un directorio, llamado `app`, con nuestra aplicación.
 
-En este caso vamos a usar una imagen base de un sistema operativo sin ningún servicio. El fichero `Conteinarfile` será el siguiente:
+En este caso vamos a usar una imagen base de un sistema operativo base. El fichero `Conteinarfile` será el siguiente:
 
 ```
-ROM debian:stable-slim
+FROM debian:12
 RUN apt-get update && apt-get install -y apache2 libapache2-mod-php php php-mysql && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN rm /var/www/html/index.html
 COPY app /var/www/html/
@@ -90,7 +91,7 @@ VOLUME /var/log/apache2
 CMD apache2ctl -D FOREGROUND
 ```
 
-* Al usar una imagen base `debian:stable-slim` tenemos que instalar los paquetes necesarios para tener el servidor web, PHP y las librerías necesarias. 
+* Al usar una imagen base `debian:12` tenemos que instalar los paquetes necesarios para tener el servidor web, PHP y las librerías necesarias. 
 * Hemos borrado el fichero `/var/www/html/index.html` para que no sea el fichero que se muestre por defecto.
 * A continuación añadiremos el contenido del directorio `app` al directorio `/var/www/html/` del contenedor. 
 * Finalmente indicamos el comando que se deberá ejecutar al crear un contenedor a partir de esta imagen: iniciamos el servidor web en segundo plano.
@@ -106,9 +107,8 @@ Comprobamos que la imagen se ha creado:
 
 ```
 $ sudo podman images
-[fedora@podman2 version1]$ sudo podman images
-REPOSITORY                          TAG          IMAGE ID      CREATED        SIZE
-localhost/josedom24/aplicacion_php  latest       e9aa6b121186  1 min ago   225 MB
+REPOSITORY                             TAG               IMAGE ID      CREATED        SIZE
+localhost/josedom24/aplicacion_php     latest            338c62a398cf  6 seconds ago  225 MB
 ```
 
 Y podemos crear el escenario utilizando el fichero `compose.yaml`:
@@ -201,4 +201,4 @@ De forma similar, crearíamos una imagen y un contenedor:
 $ sudo podman build -t josedom24/aplicacion_php .
 $ sudo podman-compose up -d
 ```
-Hemos utilizado el mismo nombre con la etiqueta `latest` para no cambiar el fichero `compose.yaml`. Ahora podríamos acceder a la aplicación y comporbar que sigue funcionando, además podríamos acceder al fichero `info.php` para comprobar la versión de PHP que estamos utilizando.
+Hemos utilizado el mismo nombre con la etiqueta `latest` para no cambiar el fichero `compose.yaml`. Ahora podríamos acceder a la aplicación y comprobar que sigue funcionando, además podríamos acceder al fichero `info.php` para comprobar la versión de PHP que estamos utilizando.
