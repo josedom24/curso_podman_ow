@@ -1,6 +1,6 @@
 # Construcción de imágenes desde un Containerfile con Buildah
 
-Buildah nos permite también crear imágenes a partir de fichero `Containerfile` o `Dockerfile` y un contexto de manera similar a como lo hacemos con `podman build`. Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
+Buildah nos permite también crear imágenes a partir de un fichero `Containerfile` o `Dockerfile` y un contexto de manera similar a como lo hacemos con `podman build`. Puedes encontrar los ficheros necesarios en el [Repositorio con el código de los ejemplos](xxx).
 
 En este ejemplo vamos a crear una imagen a partir del siguiente `Containerfile`:
 
