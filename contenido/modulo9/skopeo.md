@@ -41,7 +41,7 @@ $ skopeo inspect oci-archive:debian-apache.tar
 
 ## Copiar imágenes
 
-Skopeo puede copiar imágenes utilizando los distintos transportes de imágenes. Si vamos a copiar una imagen a un regiistro remoto, tendremos que loguearnos en el registro. Vemos algunos ejemplos:
+Skopeo puede copiar imágenes utilizando los distintos transportes de imágenes. Si vamos a copiar una imagen a un registro remoto, tendremos que loguearnos en el registro. Vemos algunos ejemplos:
 
 * Copiar una imagen desde un registro remoto a otro registro remoto:
 
