@@ -6,6 +6,8 @@ Una de las características más importantes de Podman es la capacidad de genera
 
 ## Generación de recursos YAML de Kubernetes a partir de contenedores
 
+Puedes encontrar los ficheros que vamos a generar en este apartado en el directorio `modulo5/kube` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
 Podman puede generar la definición en formato de varios recursos de Kubernetes: Pod, Service y PersistentVolumeClaim:
 
 * **Pod**: es un recurso de Kubernetes que nos permite la definición de un Pod.
@@ -85,7 +87,7 @@ service/kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP      
 service/webserver-pod   NodePort    10.108.230.189   <none>        8080:30208/TCP   52s
 ```
 
-## ## Generación de recursos YAML de Kubernetes a partir de contenedores con volúmenes
+## Generación de recursos YAML de Kubernetes a partir de contenedores con volúmenes
 
 Si tenemos un contenedor donde hemos montado un volumen:
 
@@ -93,7 +95,7 @@ Si tenemos un contenedor donde hemos montado un volumen:
 $ podman run -d --name webserver2 -p 8081:8080 -v volweb:/var/www/html quay.io/fedora/httpd-24:2.4
 ```
 
-Podemos generar, además el recurso PersistantVolumeClaim, para solicitar almacenamiento en el clúster de Kubernetes, para ello indicamos también el nombre del volumen:
+Podemos generar, además el recurso `PersistantVolumeClaim`, para solicitar almacenamiento en el clúster de Kubernetes, para ello indicamos también el nombre del volumen:
 
 ```
 $ podman kube generate -s -f web-pod2.yaml webserver2 volweb
@@ -142,7 +144,7 @@ En este caso se va a generar un Pod con dos contenedores y dos PersistentVolumeC
 $ sudo podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
 ```
 
-El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-pod.yaml).
+El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/kube/wp-mariadb-pod.yaml).
 
 Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
@@ -163,7 +165,6 @@ persistentvolumeclaim/dbvol   Bound    pvc-8de76765-48f2-46ab-ba91-f0b9e6b1a3a5 
 persistentvolumeclaim/wpvol   Bound    pvc-c15a471d-3029-467e-88fe-6ed987e65ea7   1Gi        RWO            standard       10s
 ```
 
-
 ### Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod
 
 
@@ -181,7 +182,7 @@ POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
 $ sudo podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-multipod.yaml 
 ```
 
-El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/wp-mariadb-multipod.yaml).
+El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/kube/wp-mariadb-multipod.yaml).
 
 Podemos desplegar el fichero en nuestro clúster de Kubernetes:
 
