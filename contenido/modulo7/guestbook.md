@@ -2,7 +2,7 @@
 
 En este ejemplo vamos a desplegar con Compose la aplicación Guestbook, que estudiamos en un módulo anterior.
 
-Puedes encontrar el fichero `compose.yaml` en el [Repositorio con el código de los ejemplos](xxx).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/guestbook` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 ## Despliegue con contenedores rootful
 
@@ -97,7 +97,7 @@ Veamos algunas observaciones:
 
 * En este ejemplo la dirección IP del host es `10.0.0.231`.
 * El valor de la variable de configuración `REDIS_SERVER` para configurar la aplicación Guestbook para indicarle donde tiene que conectar a la base de datos debe valer la dirección IP del host.
-* En los dos contenedor debemos mapear el puerto: en el contenedor `guestbook` porque vamos acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `redis` porque se va a acceder desde el otro contenedor.
+* En los dos contenedores debemos mapear el puerto: en el contenedor `guestbook` porque vamos a acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `redis` porque se va a acceder desde el otro contenedor.
 * Hemos indicado el modo de red con el parámetro `network_mode` y el valor `slirp4netns:port_handler=slirp4netns` para indicar que utilice la red de tipo slirp4netns para realizar la conexión.
 * También hemos creado una variable de entorno `NETWORK_INTERFACE` para indicar el nombre del dispositivo tap que se va a utilizar.
 
