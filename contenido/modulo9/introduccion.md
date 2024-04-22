@@ -26,7 +26,7 @@ Las características principales son:
 * **Inspección de imágenes**: Skopeo permite a los usuarios inspeccionar imágenes de contenedor almacenadas en registros remotos sin necesidad de bajarlas a un registro local.
 * **Copia de imágenes**: Con Skopeo, los usuarios pueden copiar imágenes de un registro a otro, lo que facilita la migración de imágenes entre diferentes entornos.
 * **Transporte de imágenes**: Skopeo utiliza los distintos transportes de imágenes para distribuirlas. 
-* **Compatibilidad con múltiples formatos: Skopeo es compatible con varios formatos de imágenes de contenedores, incluyendo Docker y OCI.
+* **Compatibilidad con múltiples formatos**: Skopeo es compatible con varios formatos de imágenes de contenedores, incluyendo Docker y OCI.
 * **Integración con sistemas de automatización**: Skopeo se puede integrar fácilmente en flujos de trabajo de sistema de integración y despliegue continúo.
 
 ## Instalación de Buildah y Skopeo
