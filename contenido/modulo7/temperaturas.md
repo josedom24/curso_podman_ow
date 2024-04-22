@@ -2,7 +2,7 @@
 
 En este ejemplo vamos a desplegar con Compose la aplicación Temperaturas, que estudiamos en un módulo anterior.
 
-Puedes encontrar el fichero `compose.yaml` en el [Repositorio con el código de los ejemplos](xxx).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/temperaturas` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 ## Despliegue con contenedores rootful
 
@@ -29,7 +29,7 @@ services:
 
 Veamos algunas observaciones:
 
-* Aunque ya sabemos que la variable de entorno `TEMP_SERVER` tiene el valor `temperaturas-backend:5000` por defecto, la hemos indicado para configurar el nombre del contenedor redis.
+* Aunque ya sabemos que la variable de entorno `TEMP_SERVER` tiene el valor `temperaturas-backend:5000` por defecto, la hemos indicado para configurar el nombre del contenedor `backend`.
 * Podríamos haber usado también el nombre del servicio, es decir, `TEMP_SERVER: backend:5000`, ya que, como hemos comentado, la resolución se puede hacer usando el nombre del contenedor o el nombre del servicio.
 
 Para crear el escenario:
@@ -89,7 +89,7 @@ Veamos algunas observaciones:
 
 * En este ejemplo la dirección IP del host es `10.0.0.231`.
 * El valor de la variable de configuración `TEMP_SERVER` para configurar el microservicio `frontend` para indicarle donde tiene que conectar al microservicio `backend` debe valer la dirección IP del host y el puerto 5000/tcp.
-* En los dos contenedor debemos mapear el puerto: en el contenedor `frontend` porque vamos acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `backend` porque se va a acceder desde el otro contenedor.
+* En los dos contenedores debemos mapear el puerto: en el contenedor `frontend` porque vamos a acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `backend` porque se va a acceder desde el otro contenedor.
 * Hemos indicado el modo de red con el parámetro `network_mode` y el valor `slirp4netns:port_handler=slirp4netns` para indicar que utilice la red de tipo slirp4netns para realizar la conexión.
 * También hemos creado una variable de entorno `NETWORK_INTERFACE` para indicar el nombre del dispositivo tap que se va a utilizar.
 
