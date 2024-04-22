@@ -27,6 +27,7 @@
     * [Introducción a las imágenes OCI](contenido/modulo3/imagenes.md) (P)
     * [Introducción al formato de imagen OCI](contenido/modulo3/formato.md) (P)
     * [Almacenamiento de imágenes](contenido/modulo3/almacen_img.md) (P)
+    * [Ahorro de espacio de almacenamiento](contenido/modulo3/ahorro_almacenamiento.md)
     * [Almacenamiento de contenedores](contenido/modulo3/almacen_cont.md) (P)
     * [Almacenamiento de contenedores rootless](contenido/modulo3/rootless.md) (P)
     * [Gestión de imágenes](contenido/modulo3/gestion.md)
