@@ -9,14 +9,9 @@ Además de definir los servicios (parámetro `services`) en el fichero `compose.
 * Podemos indicar el nombre de la red en la sección `networks`. Opcionalmente es posible configurar dicha red.
 * Hay que recordar que al ejecutar `podman-compose down` la red que se ha creado no se elimina.
 
-Veamos un ejemplo, puedes encontrar el fichero en el [Repositorio con el código de los ejemplos](...).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/almacenamiento_redes` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
-En el directorio donde tenemos el fichero compose, hemos creado un directorio `data` con un fichero `fichero.txt`, para montarlo como un bind mount:
-
-```
-$ mkdir data
-$ echo "Curso Podman" > fichero.txt
-```
+En el directorio donde tenemos el fichero compose, hemos creado un directorio `data` con un fichero `fichero.txt`, para montarlo como un bind mount.
 
 El contenido del fichero `compose.yaml` es:
 
@@ -43,7 +38,7 @@ services:
     restart: always
     networks:
       - red_externa
-    hostname: contenedor2
+    hostname: contenedor2 
     command: ash
 networks:
     red_externa:
@@ -59,8 +54,8 @@ volumes:
 Algunos parámetros interesantes que encontramos en la definición del escenario:
 
 * `tty: true`: Nos permiten abrir una terminal en el contenedor. Igual que la opción `-t` en la instrucción `podman run`.
-* `command: ash`: Hemos indicado el comando que queremos ejecutar, aunque no sería necesario, ya que la imagen `añpine` ejecuta `ash` por defecto.
-* `hostname: contenedor1`: HHemos indicado el hostname de la máquina.
+* `command: ash`: Hemos indicado el comando que queremos ejecutar, aunque no sería necesario, ya que la imagen `alpine` ejecuta `ash` por defecto.
+* `hostname: contenedor1`: Hemos indicado el hostname de la máquina.
 * En el parámetro `volumes` de la definición del servicio indicamos los puntos de montajes. En este caso el primero es con el volumen que hemos creado y el segundo es un bind mount.
 * Con el parámetro `networks` en la definición de los contenedores, hemos indicado la conexión del contenedor a las redes.
 * La sección `networks` a continuación de la definición de servicios nos permite configurar las redes que vamos a usar en el escenario:
@@ -77,7 +72,7 @@ CONTAINER ID  IMAGE                            COMMAND     CREATED         STATU
 5275641a7ceb  docker.io/library/alpine:latest  ash         28 seconds ago  Up 25 seconds              contenedor1
 ```
 
-## Comprobamos el alamcenamiento
+## Comprobamos el almacenamiento
 
 Podemos ver que se ha creado un volumen cuyo nombre será el nombre del proyecto (el indicado en el parámetro `name` o el nombre del directorio donde se guarda el fichero `compose.yaml`).
 
