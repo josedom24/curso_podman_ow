@@ -2,7 +2,7 @@
 
 Antes de estudiar el funcionamiento de los contenedores rootless, vamos a ver los modos de funcionamiento de los contenedores en Podman.
 
-## Ejecución de contenedores Rootful
+## Ejecución de contenedores rootful
 
 Como hemos indicado un contenedor rootful es un contenedor ejecutado por `root` en el host. Pero, ¿qué usuario ejecuta los procesos dentro del contenedor?. La respuesta a esta pregunta nos ofrece dos posibilidades:
 
