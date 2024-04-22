@@ -11,13 +11,12 @@ Podman nos proporciona varias soluciones para persistir los datos de los contene
 * Montaje de **imágenes**, montaje de una capa de imagen del contenedor.
 * Los **devpts mounts**, montaje de un sistema de archivos devpts, que proporciona acceso a pseudo-terminales, en el contenedor.
 
-
 ## Volúmenes Podman
 
 * Los volúmenes son creados y gestionados por Podman.
-* Un volumen corresponde a un directorio en el Host Podman, por tanto, la información se almacena en una parte del sistema de ficheros que es gestionada por Podman.
+* Un volumen corresponde a un directorio en el host, por tanto, la información se almacena en una parte del sistema de ficheros que es gestionada por Podman.
     * Si lo creamos con el usuario `root`: `/var/lib/containers/storage/volumes`.
-    * Si lo creamos con un usuario sin privilegios: `~/.local/share/containers/storage/volumes`.
+    * Si lo creamos con un usuario sin privilegios: `$HOME/.local/share/containers/storage/volumes`.
 * Cuando se usa un volumen en un contenedor, el directorio correspondiente se monta en el sistema de archivo del contenedor.
 * Los procesos ajenos a Podman no deben modificar esta parte del sistema de archivos.
 * Un volumen dado puede ser montado en múltiples contenedores simultáneamente. 
@@ -61,7 +60,7 @@ SELinux configura ciertos directorios de manera adecuada para que puedan ser acc
 
 Sin embargo, cuando se trata de otros directorios que no están configurados de forma predeterminada para ser accesibles por Podman y los contenedores, es posible que estos no puedan acceder a ellos debido a las políticas de seguridad de SELinux. SELinux puede aplicar restricciones sobre qué procesos pueden acceder a qué recursos, y si un directorio no está configurado adecuadamente o si está fuera del contexto permitido por SELinux, los contenedores pueden tener dificultades para acceder a él.
 
-Deberemos aplicar aplicar etiquetas de contexto adecuadas a los directorios para permitir el acceso de los contenedores según sea necesario. 
+Deberemos aplicar etiquetas de contexto adecuadas a los directorios para permitir el acceso de los contenedores según sea necesario. 
 
 ## Uso de almacenamiento en contenedores
 
@@ -83,7 +82,6 @@ En general, `--mount` es más explícito y detallado. La mayor diferencia es que
     * Clave `type`: Indica el tipo de montaje. Los valores pueden ser `bind`, `volume`, `tmpfs` `devpts`, `glob`, `image` o `ramfs`.
     * Clave `source` o `src`: La fuente del montaje. Se indica el volumen o el directorio que se va montar con bind mount.
     * Clave `dst` o `target`: Será la ruta donde está montado el fichero o directorio en el contenedor. 
-* en los dos casos podemos indicar 
     * Se pueden indicar opciones según el tipo de la fuente de montaje, en el caso de los volúmenes y los bind mount, las opciones más utilizadas son:
         * La opción `readonly` o `ro` es optativa, e indica que el montaje es de sólo lectura.
         * `relabel`, puede tener dos valores: `shared` funcionaría de forma similar a cómo lo hace la opción `:z` en el caso de utilizar la sintaxis `-v`, y `private` funcionaría de forma similar a utilizar la opción `:Z`.
