@@ -2,7 +2,7 @@
 
 En este ejemplo vamos a ver la configuración de Compose para construir la imagen que va a utilizar en la creación del servicio. En este caso no se indica la imagen desde la que se crea el contenedor, se indica el directorio de contexto donde encontramos el fichero `Containerfile` para la construcción de la imagen.
 
-Puedes encontrar los ficheros necesarios para realizar este ejemplo en el [Repositorio con el código de los ejemplos](xxx).
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/python` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 ## Construcción de imagen con una aplicación Python
 
