@@ -1,6 +1,6 @@
 # El fichero Containerfile
 
-* Podemos automatizar la creación de imágenes OCI, declarando las instrucciones para crear la nueva imagen en un fichero llamado **Containerfile** (por compatibilidad tambiés se puede llamar **Dockerfile**). A partir de este fichero y usando el comando **podman build** podemos construir una nueva imagen.
+* Podemos automatizar la creación de imágenes OCI, declarando las instrucciones para crear la nueva imagen en un fichero llamado **Containerfile** (por compatibilidad también se puede llamar **Dockerfile**). A partir de este fichero y usando el comando **podman build** podemos construir una nueva imagen.
 * En el fichero `Containerfile` tenemos un conjunto de instrucciones que serán ejecutadas de forma secuencial para construir una nueva imagen OCI. 
 * Las instrucciones que cambian el sistema de fichero crearán **una nueva capa**.
 
