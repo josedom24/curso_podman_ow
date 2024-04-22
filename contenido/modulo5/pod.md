@@ -12,13 +12,13 @@
 
 ![pod](img/podman-pod-architecture.png)
 
-* Cada Pod en Podman incluye un contenedor **"infra"**.   
+* Cada Pod en Podman incluye un contenedor llamado **"infra"**.   
     * Este contenedor no hace nada más que dormir. 
     * Su propósito es mantener los espacios de nombres asociados con el pod y permitir a Podman conectar otros contenedores al pod. 
-    * Esto le permite iniciar y detener contenedores dentro del Pop. y
+    * Esto le permite iniciar y detener contenedores dentro del Pop.
     * El contenedor infra por defecto está basado en la imagen `localhost/podman-pause`.
 * Como vemos en la imagen el Pod puede estar formada por varios contenedores:
-    * Si seguimos la filosofía de Kubernetes para Pod tendra un contenedor principal encargado de ofrecer el servicio.
+    * Si seguimos la filosofía de Kubernetes cada Pod tendrá un contenedor principal encargado de ofrecer el servicio.
     * Si necesitamos realizar procesos auxiliares fuertemente acoplados con el principal, podemos tener contenedores secundarios que llamamos contenedores sidecar. Por ejemplo: Un servidor web nginx con un servidor de aplicaciones PHP-FPM, que se implementaría mediante un solo Pod, pero ejecutando un proceso de nginx en un contenedor y otro proceso de php-fpm en otro contenedor.
     * Evidentemente también podemos utilizar Pods multicontenedores para desplegar aplicaciones que necesitan más de un servicio para su funcionamiento.
 * En el diagrama anterior, también observamos el proceso **conmon**, este es el monitor del contenedor.  Es un pequeño programa en C cuyo trabajo es monitorizar los contenedores y permitimos conectarnos a ellos. Cada contenedor tiene su propia instancia de conmon, independientemente se ejecute dentro de un Pod:
