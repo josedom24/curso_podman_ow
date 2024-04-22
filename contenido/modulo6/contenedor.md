@@ -1,6 +1,10 @@
 # Ejecución de contenedores con Systemd y Quadlet
 
-En este ejemplo vamos a gestionar un contenedor rootful que ofrece un servidor web nginx, por lo tanto vamos a escribir la siguiente plantilla de unidad Systemd, en el directorio `/etc/containers/systemd`. El nombre de la plantilla es `nginx.container` y tiene el siguiente contenido:
+En este ejemplo vamos a gestionar un contenedor rootful que ofrece un servidor web nginx, por lo tanto vamos a escribir la siguiente plantilla de unidad Systemd, en el directorio `/etc/containers/systemd`.
+
+Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/contenedor` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+
+El nombre de la plantilla es `nginx.container` y tiene el siguiente contenido:
 
 ```
 [Unit]
@@ -22,7 +26,7 @@ WantedBy=multi-user.target default.target
 Como vemos el formato de la plantilla es similar al formato de una unidad de Systemd estándar:
 
 * Las secciones y parámetros propias de la definición de una unidad Systemd, por ejemplo `[Unit]`, `[Service]` y `[Install]` se copiaran directamente en el fichero generado. Hemos puesto algunos parámetros comunes de ejemplo, pero podemos indicar los que nos interesen:
-    * `Restart=always`: Política de reinicio. en este caso, se intentará reiniciar el servicio siempre que se detenga.
+    * `Restart=always`: Política de reinicio. En este caso, se intentará reiniciar el servicio siempre que se detenga.
     * `TimeoutStartSec=900`: Tiempo máximo (en segundos) que Systemd esperará a que el servicio se inicie antes de considerarlo como un fallo.
     * `WantedBy=multi-user.target default.target`: El servicio será iniciado automáticamente durante el arranque del sistema.
 * En esta plantilla donde vamos a definir la ejecución de un contenedor tenemos una sección especial que se llama `[Container]`. Dentro de esta sección pondremos distintos parámetros para especificar las características que tendrá el contenedor que vamos a gestionar. Esta sección no aparecerá en la unidad Systemd generada, pero los parámetros indicados se utilizarán para generar la configuración adecuada. Los parámetros más importantes que podemos indicar dentro de la sección `[Container]` son:
@@ -31,7 +35,7 @@ Como vemos el formato de la plantilla es similar al formato de una unidad de Sys
     * `ContainerName`: Nos permite indicar el nombre del contenedor.
     * `Environment`: Nos permite definir variables de entorno. Igual que la opción `-e` de `podman run`.
     * `Exec`: Nos permite indicar el comando que queremos que se ejecute en el contenedor. 
-    * `Network`: Nos permite indicar la red donde se conecta el contenedor. Igual que la opción `--netowrk` de `podman run`.
+    * `Network`: Nos permite indicar la red donde se conecta el contenedor. Igual que la opción `--network` de `podman run`.
     * `Pod`: Nos permite añadir el contenedor en un Pod. Igual que la opción `--pod` de `podman run`.
     * `Volume`: Nos permite añadir almacenamiento al contenedor. Igual que la opción `--volume` de `podman run`.
     * `PodmanArgs`: nos permite añadir parámetros extras a la comando `podman run`.
