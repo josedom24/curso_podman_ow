@@ -96,8 +96,9 @@
     
 10. Podman Desktop
     * [Introducción a Podman Desktop](contenido/modulo10/introduccion.md)
-    * Gestión de imágenes en Podman Desktop
-    * Gestión de contenedores y Pods en Podman Desktop
+    * [Gestión de imágenes en Podman Desktop](contenido/modulo10/imagenes.md)
+    * Gestión de contenedores en Podman Desktop
+    * Gestión de Pods en Podman Desktop
     * Gestión de volúmenes en Podman Desktop
     * Compose con Podman Desktop
     * Construcción de imágenes en Podman Desktop
