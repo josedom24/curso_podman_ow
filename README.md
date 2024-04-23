@@ -100,5 +100,5 @@
     * [Gestión de contenedores en Podman Desktop](contenido/modulo10/contenedor.md)
     * [Gestión de Pods en Podman Desktop](contenido/modulo10/pod.md)
     * [Gestión de volúmenes en Podman Desktop](contenido/modulo10/volumenes.md)
-    *[ Construcción de imágenes en Podman Desktop](contenido/modulo10/build.md)
+    * [Construcción de imágenes en Podman Desktop](contenido/modulo10/build.md)
     
