@@ -45,3 +45,36 @@ Descargamos el instalador de Windows desde la [página oficial](https://podman-d
 
 Las instrucciones para la instalación en macOS la puedes encontrar en la [página de instalación en macOS](https://podman-desktop.io/docs/installation/macos-install).
 
+## Instalación de las extensiones necesarias
+
+Cuando iniciamos por primera vez Podman Desktop se ejecuta un asistente que instalará las externciones más comunes que podemos utilizar:
+
+* **Compose**: Las herramientas necesarias para trabajar con Compose desde Podman Desktop.
+* **kubectl CLI**: Si vas a trabajar con Kubernetes desde Podman Desktop es necesario la instalación del cliente de Kubernetes `kubectl`.
+* **Podman**: Si no has instalado previamente Podman se realizará la instalación.
+
+![desktop](img/desktop.png)
+
+## Dashboard de Podman Desktop
+
+![desktop](img/desktop1.png)
+
+* Te indica el estado y la versión de Podman con la que estamos trabajando.
+* **Learning Center**: Tenemos acceso a numerosos artículos donde nos enseñan a trabajar con distintos aspectos sobre los contenedores.
+* **Featured Extensions**: Nos da información de las extensiones más interesantes y si la tenemos instaladas o no.
+
+En el menú lateral encontramos las siguientes secciones:
+
+* **Contenedores**: Nos permite la gestión de contenedores.
+* **Pods**: Nos permite la gestión de Pods.
+* **Imágenes**: Nos permite la gestión de Imágenes.
+* **Volúmenes**: Nos permite la gestión de volúmenes.
+* **Kubernetes**: Nos permite gestionar un clúster de Kubernetes. Tenemos varios apartados: Deployments, Services e Ingress.
+* **Configuración**:
+    * Recursos: Aplicaciones con las que podemos trabajar desde Podman Desktop.
+    * Configuración del proxy.
+    * Configuración de los registros de imágenes.
+    * Clientes instalados.
+    * Configuración de acceso a clúster de Kubernetes.
+    * Gestión de extensiones.
+    * Preferencias.
