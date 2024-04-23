@@ -11,3 +11,9 @@ Y podremos ver los volúmenes que hemos creado:
 ![desktop](img/desktop14.png)
 
 Con la opción **Collect usage data** se calcula el tamaño del almacenamiento de cada volumen. Además podemos inspeccionar un volumen y borrarlo.
+
+## Uso de volúmenes en contenedores
+
+Al crear un contenedor podemos indicar el volumen que vamos a usar o el bind mount:
+
+![desktop](img/desktop15.png)
