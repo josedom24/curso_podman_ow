@@ -4,7 +4,7 @@
 
 ## Funciones principales
 
-* Trabajar con imágenes y contenedores OCI.
+* Trabajar con imágenes y contenedores rootless OCI.
 * Construir imágenes OCI y gestionar los registros de imágenes.
 * Trabajar con Pods.
 * Trabajar con escenarios multicontenedor con Compose.
