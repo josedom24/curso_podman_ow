@@ -95,7 +95,7 @@
     * [Gestión de imágenes con Skopeo](contenido/modulo9/skopeo.md)
     
 10. Podman Desktop
-    * Instalación de Podman Desketop
+    * [Introducción a Podman Desktop](contenido/modulo10/introduccion.md)
     * Introducción a la interfaz de Podman Desktop
     * Gestión de imágenes en Podman Desktop
     * Gestión de contenedores y Pods en Podman Desktop
