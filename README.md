@@ -96,7 +96,6 @@
     
 10. Podman Desktop
     * [Introducción a Podman Desktop](contenido/modulo10/introduccion.md)
-    * Introducción a la interfaz de Podman Desktop
     * Gestión de imágenes en Podman Desktop
     * Gestión de contenedores y Pods en Podman Desktop
     * Gestión de volúmenes en Podman Desktop
