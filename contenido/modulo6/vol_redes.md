@@ -2,7 +2,7 @@
 
 En este ejemplo, vamos a gestionar un contenedor rootless ofreciendo un servidor de base de datos MariaDB. el contenedor será persistente usando un volumen y estará conectado a una red bridge definida por el usuario.
 
-Para ello vamos a crear tres plantillas de unidad de Systemd, en el directorio ``$HOME/.config/containers/systemd`.
+Para ello vamos a crear tres plantillas de unidad de Systemd, en el directorio `$HOME/.config/containers/systemd`.
 
 Es posible que ese directorio lo tengamos que crear:
 
