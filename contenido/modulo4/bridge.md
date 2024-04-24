@@ -1,11 +1,14 @@
 # Uso de la red bridge por defecto
 
-Hasta ahora todos los contenedores rootful lo hemos conectado a la red **bridge** por defecto. Como ya hemos dicho las características más importantes de este tipo de red son las siguientes:
+Las características más importantes de la **red bridge por defecto** son las siguientes:
     
 * Se crea en el host un *Linux Bridge* llamado **podman0**.
 * El direccionamiento de esta red es 10.88.0.0/16.
 * Usamos el parámetro `--publish` o `-p` en `podman run` para exponer algún puerto. Se crea una regla DNAT para tener acceso al puerto.
 * Los contenedores conectados a un red **bridge** tiene acceso a internet por medio de una regla SNAT.
+* Es la red por defecto donde se conectan los contenedores rootful.
+* Un contenedor rootless se puede conectar a esta red indicándolo con el parámetro `--network=podman` del comando `podman run`.
+
 
 ## Ejemplo de uso de la red bridge por defecto
 
@@ -84,24 +87,27 @@ Vamos a ver distintas opciones para mapear los puertos en las creación de un co
 * `-p 8080:80/udp`: Asigna el puerto 8080/tcp del host al puerto 80/udp del contenedor.
 * `-p 8080:80/tcp -p 8080:80/udp`: Mapea el puerto 8080/tcp en el host al puerto 80/tcp en el contenedor, y mapea el puerto 8080/udp en el host al puerto 80/udp en el contenedor.
 
-Por ejemplo este contenedor sólo sería accesible desde el host:
+
+## Conexión de un contenedor rootless a la red bridge por defecto
+
+Para crear un contenedor rootless a esta red, ejecutamos la siguiente instrucción:
 
 ```
-$ sudo podman run -d -p 127.0.0.1:8081:80 --name contenedor2 nginx
+$ podman run -d -p 8081:80 --network=podman --name contenedor2 docker.io/nginx
+```
+
+Y podemos averiguar la dirección IP que ha tomado este contenedor:
+
+```
+$ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor2
+10.88.0.56
 ```
 
 ## Conectividad entre los contenedores conectados a la red por defecto
 
 Evidentemente los contenedores conectados a la red por defecto podrán comunicarse usando su dirección IP, sin embargo esta red no ofrece ningún mecanismo de DNS para que podamos conectarnos a otro contenedor usando su nombre. Veamos un ejemplo con los contenedores creados en este apartado:
 
-En primer lugar vamos a averiguar que dirección IP ha tomado el `contenedor2`:
-
-```
-$ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor2
-10.88.0.56
-```
-
-A continuación desde el `contenedor1` intentamos conectamos al segundo contenedor:
+Desde el `contenedor1` intentamos conectamos al segundo contenedor:
 
 ```
 $ sudo podman start contenedor1
