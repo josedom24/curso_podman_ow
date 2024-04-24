@@ -64,7 +64,6 @@
     * [Gestionando volúmenes y redes con Systemd y Quadlet](contenido/modulo6/vol_redes.md)
     * [Ejecución de Pods con Systemd y Quadlet](contenido/modulo6/pod.md)
     * [Ejemplo: Despliegue de WordPress + MariaDB con Systemd y Quadlet](contenido/modulo6/wordpress.md)
-    * [Ejecución de contenedores rootless con Systemd y Quadlet](contenido/modulo6/rootless.md)
 
 7. Gestionando escenarios multicontenedor con podman-compose
     * [Creando escenarios multicontenedor con Compose](contenido/modulo7/compose.md) (P)

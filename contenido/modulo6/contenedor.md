@@ -1,6 +1,6 @@
 # Ejecución de contenedores con Systemd y Quadlet
 
-En este ejemplo vamos a gestionar un contenedor rootful que ofrece un servidor web nginx, por lo tanto vamos a escribir la siguiente plantilla de unidad Systemd, en el directorio `/etc/containers/systemd`.
+En este ejemplo vamos a gestionar un contenedor  que ofrece un servidor web nginx, por lo tanto vamos a escribir la siguiente plantilla de unidad Systemd, en el directorio `/etc/containers/systemd`.
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/contenedor` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 

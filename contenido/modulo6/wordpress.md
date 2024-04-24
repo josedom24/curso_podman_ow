@@ -1,6 +1,6 @@
 # Ejemplo: Despliegue de WordPress + MariaDB con Systemd y Quadlet
 
-Para poder desplegar WordPress + MariaDB necesitamos guardar las siguientes plantillas de unidades de sistemas en el directorio `/etc/containers/systemd`:
+Para poder desplegar WordPress + MariaDB necesitamos guardar las siguientes plantillas de unidades de sistemas en el directorio `$HOME/.config/containers/systemd/`:
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/wordpress` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
@@ -77,24 +77,24 @@ WantedBy=multi-user.target default.target
 Ya podemos iniciar los servicios:
 
 ```
-$ sudo systemctl daemon-reload
-$ sudo systemctl start wordpress_mariadb
-$ sudo systemctl start wordpress
+$ systemctl --user daemon-reload
+$ systemctl --user start wordpress_mariadb
+$ systemctl --user start wordpress
 ```
 
 Podemos comprobar los recursos que hemos creado:
 
 ```
-$ sudo podman ps
+$ podman ps
 CONTAINER ID  IMAGE                               COMMAND               CREATED             STATUS             PORTS                 NAMES
 9800047ac022  docker.io/library/mariadb:10.5      mysqld                About a minute ago  Up About a minute                        db
 eac1c9c70f7d  docker.io/library/wordpress:latest  apache2-foregroun...  11 seconds ago      Up 11 seconds      0.0.0.0:8081->80/tcp  wordpress
 
-$ sudo podman network ls
+$ podman network ls
 NETWORK ID    NAME           DRIVER
 b53cd35e30fd  red-wordpress  bridge
 
-$ sudo podman volume ls
+$ podman volume ls
 DRIVER      VOLUME NAME
 local       dbvol
 local       wpvol

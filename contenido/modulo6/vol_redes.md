@@ -1,8 +1,14 @@
 # Gestionando volúmenes y redes con Systemd y Quadlet
 
-En este ejemplo, vamos a gestionar un contenedor rootful ofreciendo un servidor de base de datos MariaDB. el contenedor será persistente usando un volumen y estará conectado a una red bridge definida por el usuario.
+En este ejemplo, vamos a gestionar un contenedor rootless ofreciendo un servidor de base de datos MariaDB. el contenedor será persistente usando un volumen y estará conectado a una red bridge definida por el usuario.
 
-Para ello vamos a crear tres plantillas de unidad de Systemd, en el directorio `/etc/containers/systemd`.
+Para ello vamos a crear tres plantillas de unidad de Systemd, en el directorio ``$HOME/.config/containers/systemd`.
+
+Es posible que ese directorio lo tengamos que crear:
+
+```
+$ mkdir -p ~/.config/containers/systemd
+```
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/vol_redes` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
@@ -49,26 +55,26 @@ Como vemos indicamos la imagen. el nombre, el punto de montaje referenciando al 
 A continuación, podemos iniciar el contenedor y comprobar los recursos que se han creado:
 
 ```
-# systemctl daemon-reload
+$ systemctl --user daemon-reload
 
-# systemctl start mariadb
+$ systemctl --user start mariadb
 
-# podman volume ls
+$ podman volume ls
 DRIVER      VOLUME NAME
 local       vol-mariadb
 
-# podman network ls
+$ podman network ls
 NETWORK ID    NAME                         DRIVER
 e913e24830f4  red-mariadb                  bridge
 
-# podman ps
+$ podman ps
 CONTAINER ID  IMAGE                           COMMAND               CREATED         STATUS         PORTS                 NAMES
 bb535bd81493  docker.io/library/mariadb:10.5  mysqld                16 minutes ago  Up 16 minutes                        contenedor_mariadb
 
-# podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor_mariadb
+$ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor_mariadb
 192.168.100.2
 
-# podman exec -it contenedor_mariadb bash -c "mariadb -u root -p -h 127.0.0.1"
+$ podman exec -it contenedor_mariadb bash -c "mariadb -u root -p -h 127.0.0.1"
 Enter password: 
 ...
 ```

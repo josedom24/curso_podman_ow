@@ -8,9 +8,9 @@ Systemd utiliza las **Unidades de Servicios**: Cada servicio o recurso que Syste
 
 ## Política de reinicio de los contenedores Podman
 
-Un incoveniente de que Podman no utilice un demonioo que controla la ejecución de los contenedores, es que si reinciamos el host, los contenedores no se inician.
+Un inconveniente de que Podman no utilice un demonio que controla la ejecución de los contenedores, es que si reiniciamos el host, los contenedores no se inician.
 
-Una posible solución es activar el servicio `podman-restart` que reinicia los contenedores cuya politica de reinicio esté activa, con el parámetro `--restart=always` de `podman run`. Por ejemplo:
+Una posible solución es activar el servicio `podman-restart` que reinicia los contenedores cuya política de reinicio esté activa, con el parámetro `--restart=always` de `podman run`. Por ejemplo:
 
 ```
 $ sudo podman run -d --name c1 --restart=always quay.io/libpod/banner
@@ -29,9 +29,9 @@ Para activar el servicio:
   $ systemctl --user enable podman-restart
   $ systemctl --user start podman-restart
   ```
-Ahora puedes comprobar que los contenedores se inician de forma automática trás el reinicio del host.
+Ahora puedes comprobar que los contenedores se inician de forma automática tras el reinicio del host.
 
-Otra solución al inicio automático de los contenedores después de un reinicio sería integrar la ejecución de contendores con Systemd. Para conseguir este objetivo vamos a usar Quadlet.
+Otra solución al inicio automático de los contenedores después de un reinicio sería integrar la ejecución de contenedores con Systemd. Para conseguir este objetivo vamos a usar Quadlet.
 
 ## Quadlet
 
