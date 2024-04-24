@@ -7,19 +7,17 @@ Vamos a hacer un despliegue completo de una aplicación llamada Temperaturas. Es
 
 El microservicio `frontend` utiliza la variable `TEMP_SERVER` para configurar el nombre del servidor y el puerto de acceso que utiliza el microservicio `frontend` para acceder al microservicio `backend`. Su valor por defecto es `temperaturas-backend:5000`, si nombramos el contenedor `backend` con ese nombre no hará falta indicar la variable de entorno. 
 
-## Despliegue con contenedores rootful
-
 Los dos contenedores tienen que estar conectados en la misma red bridge definida por el usuario y deben tener acceso por nombres (resolución DNS) ya que de principio no sabemos que dirección IP va a tomar cada contenedor. Por lo tanto vamos a crear los contenedores en la misma red:
 
 ```
-$ sudo podman network create red_temperaturas
+$ podman network create red_temperaturas
 ```
 
 Para crear los contenedores, ejecutamos:
 
 ```
-$ sudo podman run -d --name backend --network red_temperaturas docker.io/iesgn/temperaturas_backend
-$ sudo podman run -d -p 80:3000 -e TEMP_SERVER=backend:5000 --name frontend --network red_temperaturas docker.io/iesgn/temperaturas_frontend
+$ podman run -d --name backend --network red_temperaturas docker.io/iesgn/temperaturas_backend
+$ podman run -d -p 80:3000 -e TEMP_SERVER=backend:5000 --name frontend --network red_temperaturas docker.io/iesgn/temperaturas_frontend
 ```
 
 Algunas observaciones:
@@ -30,22 +28,3 @@ Algunas observaciones:
 
 ![temperaturas](img/temperaturas.png)
 
-## Despliegue con contenedores rootless
-
-En este caso el contenedor `frontend` conectará al contenedor `backend` usando la dirección IP del host. Por lo tanto tenemos que tener en cuenta los siguiente:
-
-* En este ejemplo la dirección IP del host es `10.0.0.231`.
-* El valor de la variable de configuración `TEMP_SERVER` para configurar el microservicio `frontend` para indicarle donde tiene que conectar al microservicio `backend` debe valer la dirección IP del host y el puerto 5000/tcp.
-* En los dos contenedor debemos mapear el puerto: en el contenedor `frontend` porque vamos acceder desde el exterior (recordando que no podemos usar puertos privilegiados), y en el contenedor `backend` porque se va a acceder desde el otro contenedor.
-
-Por lo tanto los comandos que debemos ejecutar son:
-
-```
-$ podman run -d -p 5000:5000 --name backend  docker.io/iesgn/temperaturas_backend
-$ podman run -d -p 8080:3000 -e TEMP_SERVER=10.0.0.231:5000 --name frontend  docker.io/iesgn/temperaturas_frontend
-```
-
-Y podemos acceder a la aplicación para comprobar su funcionamiento:
-
-![ ](img/temperaturas2.png)
-```
