@@ -22,7 +22,7 @@ Para crear los parámetros usamos la instrucción `ARG` en el fichero `Container
 
 Si construimos la imagen sin sobrescribir los valores de los parámetros se tomarán los valores por defecto:
 
-```bash
+```
 $ podman build  -t josedom24/app_php:v1 .
 $ podman run -d -p 8081:80 --name app1 josedom24/app_php:v1
 $ podman exec -it app1 env
@@ -37,7 +37,7 @@ Como vemos se ha creado una imagen a partir de la imagen `php:8.2-apache` y se h
 
 Podemos crear otra versión de la imagen sobreescribiendo los parámetros de construcción, para ello usamos el parámetro `--build-arg` en el comando `podman build`:
 
-```bash
+```
 $ podman build --build-arg PHP_VERSION=7.4-apache --build-arg APP_VERSION=produccion -t josedom24/app_php:v2 .
 $ podman run -d -p 8082:80 --name app2 josedom24/app_php:v2
 $ podman exec -it app2 env

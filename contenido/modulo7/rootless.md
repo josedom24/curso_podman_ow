@@ -1,6 +1,6 @@
-# Creación de contenedores rootless con podman-compose
+# Creación de contenedores rootless conectados a la red slirp4netns
 
-Podemos crear contenedor rootless con `podman-compose`. Pero en este caso hay que indicar el tipo de red al que se conecta el contenedor, ya que por defecto `podman-compose` crea una red bridge definida por el usuario.
+Podemos crear contenedor rootless conectados a la red slirp4netns con `podman-compose`. Pero en este caso hay que indicar el tipo de red al que se conecta el contenedor, ya que por defecto `podman-compose` crea una red bridge definida por el usuario.
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/rootless` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 

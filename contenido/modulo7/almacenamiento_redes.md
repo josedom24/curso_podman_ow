@@ -64,10 +64,10 @@ Algunos parámetros interesantes que encontramos en la definición del escenario
 
 Y podemos iniciar el escenario:
 
-```bash
-$ sudo podman-compose up -d
+```
+$ podman-compose up -d
 
-$ sudo podman-compose ps
+$ podman-compose ps
 CONTAINER ID  IMAGE                            COMMAND     CREATED         STATUS         PORTS       NAMES
 5275641a7ceb  docker.io/library/alpine:latest  ash         28 seconds ago  Up 25 seconds              contenedor1
 ```
@@ -76,24 +76,24 @@ CONTAINER ID  IMAGE                            COMMAND     CREATED         STATU
 
 Podemos ver que se ha creado un volumen cuyo nombre será el nombre del proyecto (el indicado en el parámetro `name` o el nombre del directorio donde se guarda el fichero `compose.yaml`).
 
-```bash
-$ sudo podman volume ls
+```
+$ podman volume ls
 ...
 local       redes_volumen1
 ```
 
 Podemos ver los puntos de montajes que hemos creado:
 
-```bash
-$ sudo podman inspect -f '{{json .Mounts}}' contenedor1
+```
+$ podman inspect -f '{{json .Mounts}}' contenedor1
 [{"Type":"volume","Name":"redes_volumen1","Source":"/var/lib/containers/storage/volumes/redes_volumen1/_data","Destination":"/data/volumen","Driver":"local","Mode":"","Options":["nosuid","nodev","rbind"],"RW":true,"Propagation":"rprivate"},{"Type":"bind","Source":"/home/fedora/compose/redes/.data","Destination":"/data/directorio","Driver":"","Mode":"","Options":["rbind"],"RW":true,"Propagation":"rprivate"}]
 ```
 
 Y comprobamos que podemos escribir en el volumen y listar los ficheros del bind mount:
 
 ```
-$ sudo podman-compose exec c1 touch /data/volumen/fichero2.txt
-$ sudo podman-compose exec c1 cat /data/directorio/fichero.txt
+$ podman-compose exec c1 touch /data/volumen/fichero2.txt
+$ podman-compose exec c1 cat /data/directorio/fichero.txt
 Curso Podman
 ```
 
@@ -102,7 +102,7 @@ Curso Podman
 Podemos ver las redes que se han creado:
 
 ```
-$ sudo podman network ls
+$ podman network ls
 NETWORK ID    NAME                        DRIVER
 2f259bab93aa  podman                      bridge
 accbf91a04cc  redes_red_externa           bridge
@@ -114,7 +114,7 @@ Podemos ver que el nombre de la red está formado por el nombre del proyecto y e
 Finalmente podemos comprobar la configuración de red del contenedor:
 
 ```
-$ sudo podman-compose exec c1 ip a
+$ podman-compose exec c1 ip a
 ...
 2: eth0@if280: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
     link/ether f2:fa:ef:ea:41:42 brd ff:ff:ff:ff:ff:ff
@@ -128,14 +128,14 @@ $ sudo podman-compose exec c1 ip a
 
 Comprobamos que tenemos resolución DNS tanto con el nombre del servicio como con el nombre del contenedor:
 
-```bash
-$ sudo podman-compose exec c1 nslookup contenedor2
+```
+$ podman-compose exec c1 nslookup contenedor2
 ...
 Non-authoritative answer:
 Name:	contenedor2.dns.podman
 Address: 192.168.10.11
 
-$ sudo podman-compose exec c1 nslookup c2
+$ podman-compose exec c1 nslookup c2
 ...
 Non-authoritative answer:
 Name:	contenedor2.dns.podman
@@ -144,8 +144,8 @@ Address: 192.168.10.11
 
 Y por último, comprobamos que hay conectividad:
 
-```bash
-sudo podman-compose exec c1 ping contenedor2
+```
+podman-compose exec c1 ping contenedor2
 PING contenedor2 (192.168.10.11): 56 data bytes
 64 bytes from 192.168.20.20: seq=0 ttl=64 time=0.072 ms
 ...
@@ -153,7 +153,7 @@ PING contenedor2 (192.168.10.11): 56 data bytes
 
 Recuerda que si necesitas iniciar el escenario desde 0, debes eliminar el volumen:
 
-```bash
-$ sudo podman-compose down -v
+```
+$ podman-compose down -v
 ```
 

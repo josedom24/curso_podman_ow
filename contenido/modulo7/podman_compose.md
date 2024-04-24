@@ -2,8 +2,6 @@
 
 Vamos a usar la instrucción `podman-compose` para gestionar el ciclo de vida del escenario que tenemos definido en el fichero `compose.yaml`. 
 
-Vamos a ejecutar este fichero con el comando `sudo` por lo que vamos a crear contenedores rootful.
-
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/letschat` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 **Es importante destacar que debemos ejecutar `podman-compose` en el directorio en el que se encuentra el fichero `compose.yaml`**.
@@ -14,8 +12,8 @@ Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/let
 
 Accedemos al directorio donde se encuentra el fichero `compose.yaml` donde hemos definido el escenario para ejecutar la aplicación Let's Chat y  ejecutamos la siguiente instrucción para crear los contenedores:
 
-```bash
-$ sudo podman-compose up -d
+```
+$ podman-compose up -d
 ```
 
 El parámetro `-d` de la instrucción `podman-compose up` nos permite ejecutar los contenedores de forma desatendida (similar al parámetro `-d` en `podman run`). 
@@ -24,8 +22,8 @@ Tenemos que tener en cuenta que si no tenemos las imágenes en nuestro registro 
 
 Podemos ver los contenedores que se están ejecutando:
 
-```bash
-$ sudo podman-compose ps
+```
+$ podman-compose ps
 CONTAINER ID  IMAGE                                  COMMAND     CREATED             STATUS             PORTS                 NAMES
 2a98942af0c7  docker.io/library/mongo:4              mongod      About a minute ago  Up About a minute                        mongo
 6416c812be81  docker.io/sdelements/lets-chat:latest  npm start   41 seconds ago      Up 39 seconds      0.0.0.0:80->8080/tcp  letschat
@@ -53,14 +51,14 @@ Veamos más comandos que podemos ejecutar con podman-compose:
 
 Para destruir los contenedores creados en el escenario podemos ejecutar la siguientes instrucción. Hay que indicar que `podman-compose` no borra la red que ha creado a diferencia de `docker-compose`:S
 
-```bash
-$ sudo podman-compose down
+```
+$ podman-compose down
 ```
 
 Si además queremos eliminar el volumen que se ha creado, usaremos el parámetro `-v`:
 
-```bash
-$ sudo podman-compose down -v
+```
+$ podman-compose down -v
 ```
 
 

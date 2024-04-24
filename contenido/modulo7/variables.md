@@ -62,14 +62,14 @@ BASEDEDATOS="wordpress"
 
 Desplegamos el escenario:
 
-```bash
-$ sudo podman-compose up -d
+```
+$ podman-compose up -d
 ```
 
 Y podemos comprobar la configuración que hemos desplegado:
 
-```bash
-$ sudo podman-compose ps
+```
+$ podman-compose ps
 CONTAINER ID  IMAGE                               COMMAND               CREATED         STATUS         PORTS                 NAMES
 13eb418d6b92  docker.io/library/wordpress:latest  apache2-foregroun...  28 seconds ago  Up 26 seconds  0.0.0.0:8080->80/tcp  servidor_wp
 378c4e69e12a  docker.io/library/mariadb:latest    mariadbd              23 seconds ago  Up 21 seconds                        servidor_mysql
@@ -77,8 +77,8 @@ CONTAINER ID  IMAGE                               COMMAND               CREATED 
 
 Vemos las versiones de las imágenes que hemos desplegado (`latest`), el puerto que hemos mapeado (el 8080/tcp) y podemos ver las variables de entorno que se han creado, por ejemplo, en el contenedor de la base de datos:
 
-```bash
-$ sudo podman-compose exec db env
+```
+$ podman-compose exec db env
 MARIADB_USER=prueba
 MARIADB_PASSWORD=asdasd
 MARIADB_ROOT_PASSWORD=asdasd
@@ -102,14 +102,14 @@ BASEDEDATOS="wp_server_bd"
 
 Realizamos el despliegue:
 
-```bash
-$ sudo podman-compose up -d
+```
+$ podman-compose up -d
 ```
 
 Y podemos comprobar la configuración que hemos desplegado:
 
-```bash
-$ sudo podman-compose ps
+```
+$ podman-compose ps
 CONTAINER ID  IMAGE                                      COMMAND               CREATED         STATUS         PORTS               NAMES
 cd1a229b336e  docker.io/library/wordpress:php8.3-apache  apache2-foregroun...  18 seconds ago  Up 15 seconds  0.0.0.0:80->80/tcp  servidor_wp
 4ce872c294a2  docker.io/library/mariadb:10.5             mysqld                10 seconds ago  Up 8 seconds                       servidor_mysql
@@ -117,8 +117,8 @@ cd1a229b336e  docker.io/library/wordpress:php8.3-apache  apache2-foregroun...  1
 
 Vemos las versiones de las imágenes que hemos desplegado (`mariadb:10.5` y `wordpress:php8.3-apache`), el puerto que hemos mapeado (el 80/tcp) y podemos ver las variables de entorno que se han creado, por ejemplo, en el contenedor de la base de datos:
 
-```bash
-$ sudo podman-compose exec db env
+```
+$ podman-compose exec db env
 MARIADB_USER=user_server_1345
 MARIADB_PASSWORD=0sFPBmHeDvgu5DOpACFsQ5MhH1J
 MARIADB_ROOT_PASSWORD=4KUHGOa1CWciYopkAw9eBZdBtbu

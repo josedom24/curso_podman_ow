@@ -71,7 +71,7 @@
     * [El comando podman-compose](contenido/modulo7/podman_compose.md)
     * [Almacenamiento y redes con Compose](contenido/modulo7/almacenamiento_redes.md)
     * [Uso de parámetros con Compose](contenido/modulo7/variables.md)
-    * [Creación de contenedores rootless con podman-compose](contenido/modulo7/rootless.md)
+    * [Creación de contenedores rootless conectados a la red slirp4netns](contenido/modulo7/rootless.md)
     * [Despliegue de la aplicación Guestbook](contenido/modulo7/guestbook.md)
     * [Despliegue de la aplicación Temperaturas](contenido/modulo7/temperaturas.md)
     
