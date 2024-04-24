@@ -42,8 +42,8 @@
     * [Uso de la red bridge por defecto](contenido/modulo4/bridge.md)
     * [Gestión de redes definidas por el usuario](contenido/modulo4/usuario.md)
     * [Uso de la red bridge definidas por el usuario](contenido/modulo4/usuario2.md)
-    * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
     * [Uso de la red host en Podman](contenido/modulo4/host.md)
+    * [Redes en contenedores rootless](contenido/modulo4/red_rootless.md)
     * [Despliegue de la aplicación Guestbook](contenido/modulo4/guestbook.md)
     * [Despliegue de la aplicación Temperaturas](contenido/modulo4/temperaturas.md)
 

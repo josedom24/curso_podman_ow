@@ -1,14 +1,14 @@
 # Redes en contenedores rootless
 
-Cuando trabajamos con contenedores rootless, tenemos una limitación ya que los usuarios sin privilegios no pueden crear interfaces de red.
+Cuando trabajamos con contenedores rootless tenemos varios mecanismos para ofrecer conectividad al contenedor:
 
-Por lo tanto tenemos que usar un mecanismo que se ejecute en el espacio de usuario que nos permite ofrecer conectividad a los contenedores rootless. 
+## Red slirp4netns
 
-En nuestro caso vamos a usar el proyecto [**slirp4netns**](https://github.com/rootless-containers/slirp4netns) que crea un entorno de red aislado para el contenedor y utilizando el módulo `slirp` del kernel para realizar la traducción de direcciones de red (NAT), lo que permite que el contenedor acceda a internet a través de la conexión de red del host.
+Es el mecanismo de red que se utiliza por defecto. 
 
-## Ejemplo de uso de red en contenedores rootless
+El proyecto [**slirp4netns**](https://github.com/rootless-containers/slirp4netns) crea un entorno de red aislado para el contenedor y utilizando el módulo `slirp` del kernel para realizar la traducción de direcciones de red (NAT), lo que permite que el contenedor acceda a internet a través de la conexión de red del host.
 
-La primera limitación que tenemos a la hora de trabajar con contenedores rootless desde el punto de vista de la red, es que los usuarios no privilegiados no pueden usar puertos privilegiados (menores que 1024). 
+Tenemos algunas limitaciones, la más importante es que los usuarios no privilegiados no pueden usar puertos privilegiados (menores que 1024). 
 
 ```
 $ podman run -dt --name webserver -p 80:80 quay.io/libpod/banner
@@ -67,7 +67,7 @@ Como podemos comprobar dicho contenedor tiene la misma configuración de red que
 /_/   \___/\_,_/_/_/_/\_,_/_//_/
 ```
 
-## Redes en contenedores rootless con Podman 5.0
+### Red por defecto en contenedores rootless con Podman 5.0
 
 En la nueva versión de Podman, se ha cambiado el mecanismo de red de slirp4netns a [pasta](https://passt.top/passt/about/#pasta-pack-a-subtle-tap-abstraction). Este nuevo mecanismo ofrece mejor rendimiento y más funciones.
 
@@ -85,4 +85,70 @@ default via 10.0.0.1 dev eth0  metric 100
 ...
 ```
 
+## Red bridge por defecto
 
+Como hemos visto anteriormente podemos conectar nuestros contenedores rootless a la red bridge por defecto:
+
+```
+$ podman run -d -p 8080:80 --network=podman --name contenedor1 quay.io/libpod/banner
+
+$ $ podman exec -it contenedor1 ip a
+...
+2: eth0@if5: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
+    link/ether ee:93:61:6b:47:ca brd ff:ff:ff:ff:ff:ff
+    inet 10.88.0.3/16 brd 10.88.255.255 scope global eth0
+...
+```
+
+Y comprobamos el acceso al servidor web:
+
+```
+$ curl http://localhost:8080
+```
+
+## Red bridge definida por el usuario
+
+Un usuario sin privilegios también puede definir sus propias redes bridge. Estas redes se crearán en el espacio de nombres de red del usuario:
+
+```
+$ podman network create mi_red
+
+$ podman run -d -p 8081:80 --name servidorweb --network mi_red docker.io/nginx
+$ podman run -it --name cliente --network mi_red alpine
+```
+
+Y comprobamos la conectividad entre contenedores usando su nombre:
+
+```
+# ping servidorweb
+PING servidorweb (10.89.2.3): 56 data bytes
+64 bytes from 10.89.2.3: seq=0 ttl=42 time=0.370 ms
+...
+```
+
+En este caso el *Linux Bridge* que se ha creado en la creación de la red, no se ha creado en el espacio de red del host. Podemos comprobar que el bridge `podman3` no se ha creado en el host ejecutando `sudo ip a`.
+
+Sin embargo, podemos acceder al espacio de nombres de red del usuario ejecutando la siguiente instrucción:
+
+```
+$ podman unshare --rootless-netns ip a
+...
+2: tap0: <BROADCAST,UP,LOWER_UP> mtu 65520 qdisc fq_codel state UNKNOWN group default qlen 1000
+    link/ether 76:eb:49:a9:64:2a brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.100/24 brd 10.0.2.255 scope global tap0
+   ...
+3: podman3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 1a:3a:83:8d:1e:b9 brd ff:ff:ff:ff:ff:ff
+    inet 10.89.2.1/24 brd 10.89.2.255 scope global podman3
+    ...
+```
+
+Con el parámetro `--rootless-netns` de `podman unshare` accedemos al espacio de nombres de red del usuario, donde comprobamos la interfaz de red de tipo tap usada por slirp4netns, y los Linux Bridge que se van creando con cada una de las redes bridge definidas por el usuario sin privilegios.
+
+## Red host
+
+Como vimos en el apartado anterior, también podemos conectar nuestros contenedores rootless a la red de tipo host:
+
+```
+$ podman run -d --network host --name my_nginx docker.io/bitnami/nginx
+```

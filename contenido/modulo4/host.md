@@ -48,7 +48,7 @@ Este tipo conexión a red también lo podemos usar con contenedor rootless. Sin 
 Vamos a usar la imagen de nginx ofrecida por la empresa Bitnami, esta imagen tienen como característica que los procesos que se ejecutan al crear el contenedor son ejecutados por usuarios no privilegiados.
 
 ```
-$ podman run --rm -d --network host --name my_nginx docker.io/bitnami/nginx
+$ podman run -d --network host --name my_nginx docker.io/bitnami/nginx
 ```
 
 Y podemos acceder al puerto 8080/tcp para comprobar que podemos acceder al servicio web.
