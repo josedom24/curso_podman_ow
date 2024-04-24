@@ -158,6 +158,16 @@ $ podman unshare --rootless-netns ip a
 
 Con el parámetro `--rootless-netns` de `podman unshare` accedemos al espacio de nombres de red del usuario, donde comprobamos la interfaz de red de tipo tap usada por slirp4netns, y los Linux Bridge que se van creando con cada una de las redes bridge definidas por el usuario sin privilegios.
 
+Por ejemplo, accediendo al espacio de nombres de red del usuario, comprobamos que si tenemos conectividad con el contenedor:
+
+```
+$ podman unshare --rootless-netns ping 10.89.2.3
+PING 10.89.2.3 (10.89.2.3) 56(84) bytes of data.
+64 bytes from 10.89.2.3: icmp_seq=1 ttl=64 time=0.135 ms
+...
+```
+
+
 ## Red host
 
 Como vimos en el apartado anterior, también podemos conectar nuestros contenedores rootless a la red de tipo host:
