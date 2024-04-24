@@ -125,8 +125,21 @@ PING servidorweb (10.89.2.3): 56 data bytes
 64 bytes from 10.89.2.3: seq=0 ttl=42 time=0.370 ms
 ...
 ```
+Una característica que tenemos que tener en cuenta, es que esta nueva red se ha creado en el espacio de nombres de red del usuario, por lo tanto desde host no tenemos conectividad con el contenedor:
 
-En este caso el *Linux Bridge* que se ha creado en la creación de la red, no se ha creado en el espacio de red del host. Podemos comprobar que el bridge `podman3` no se ha creado en el host ejecutando `sudo ip a`.
+```
+$ ping 10.89.2.3
+PING 10.89.2.3 (10.89.2.3) 56(84) bytes of data.
+...
+```
+
+Sin embargo, si podemos acceder a la IP del host y al puerto que hemos mapeado para acceder a la aplicación:
+
+```
+$ curl http://localhost:8081
+```
+
+En este caso el *Linux Bridge* que se ha creado con la nueva red, no se ha creado en el espacio de red del host. Podemos comprobar que el bridge `podman3` no se ha creado en el host ejecutando `sudo ip a`.
 
 Sin embargo, podemos acceder al espacio de nombres de red del usuario ejecutando la siguiente instrucción:
 
