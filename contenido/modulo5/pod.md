@@ -29,3 +29,4 @@
     systemd─┬─...
             ├─conmon───nginx───2*[nginx]
     ```
+* En Podman podemos trabajar con Pods en entornos rootful y rootless.

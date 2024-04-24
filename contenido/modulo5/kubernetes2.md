@@ -7,7 +7,7 @@ Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo5/kub
 En primer lugar vamos a ejecutar recursos en Podman a partir del fichero `wp-mariadb-pod.yaml` que hemos generado en el apartado anterior a partir del escenario que construimos en el **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
 
 ```
-$ sudo podman kube play wp-mariadb-pod.yaml
+$ podman kube play wp-mariadb-pod.yaml
 ...
 Volumes:
 dbvol
@@ -22,11 +22,11 @@ Containers:
 Podemos comprobar que hemos creado un Pod con dos contenedores y dos volúmenes:
 
 ```
-$ sudo podman pod ps --ctr-names
+$ podman pod ps --ctr-names
 POD ID        NAME           STATUS      CREATED        INFRA ID      NAMES
 cd2d6fc0916b  wordpress-pod  Running     2 minutes ago  bee585832127  cd2d6fc0916b-infra,wordpress-pod-db,wordpress-pod-wordpress
 
-$ sudo podman volume ls
+$ podman volume ls
 DRIVER      VOLUME NAME
 local       dbvol
 local       wpvol
@@ -36,7 +36,7 @@ Ahora crearemos recursos en Podman a partir del fichero `wp-mariadb-multipod.yam
 
 
 ```
-$ sudo podman kube play wp-mariadb-multipod.yaml
+$ podman kube play wp-mariadb-multipod.yaml
 Volumes:
 dbvol
 wpvol
@@ -53,12 +53,12 @@ Container:
 Ahora comprobamos que hemos creados dos Pods, cada uno con un contenedor y los dos volúmenes:
 
 ```
-$ sudo podman pod ps --ctr-names
+$ podman pod ps --ctr-names
 POD ID        NAME           STATUS      CREATED         INFRA ID      NAMES
 b1dd4010698a  mariadb-pod    Running     34 seconds ago  5cf7cb140f7a  b1dd4010698a-infra,mariadb-pod-db
 0e07102382de  wordpress-pod  Running     40 seconds ago  9ce1886ab6cc  0e07102382de-infra,wordpress-pod-wordpress
 
-$ sudo podman volume ls
+$ podman volume ls
 DRIVER      VOLUME NAME
 local       dbvol
 local       wpvol

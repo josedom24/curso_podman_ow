@@ -1,16 +1,17 @@
-# Creación de Pods en modo rootless
+# Ejemplo: nginx + fpm-php
 
-Podman nos ofrece la posibilidad de crear Pods que contengan contenedores ejecutados en modo rootless, es decir ejecutados con un usuario sin privilegios.
+En esta apartado, vamos a crear un Pod que tendrán dos contenedores: 
 
-## Ejemplo: nginx + fpm-php
+* Un servidor web nginx configurado de para servir contenido PHP.
+* El código PHP será interpretado  por un servidor de aplicación fpm-php que se ejecutará en el otro contenedor. 
 
-En esta apartado, vamos a crear un Pod rootless que tendrán dos contenedores: un servidor web nginx configurado de para servir contenido PHP que será interpretado por un servidor de aplicación fpm-php que se ejecutará en el otro contenedor. En este ejemplo hay que tener en cuenta varios aspectos:
+En este ejemplo hay que tener en cuenta varios aspectos:
 
 * Vamos a usar imágenes ofrecidas por la empresa Bitnami, estás imágenes tienen como características que los procesos que se ejecutan al crear el contenedor son ejecutados por usuarios no privilegiados. Es decir, vamos a trabajar con contenedores rootless cuyos procesos son ejecutados por usuarios sin privilegios.
-* Para que nginx y fpm-php funcionen de forma adecuada, ambos deben poder acceder al contenido de la aplicación.
+* Para que nginx y fpm-php funcionen de forma adecuada, ambos deben poder acceder al contenido de la aplicación, es decir deben tener almacenamiento compartido.
 * Recordemos que ambos contenedores se van comunicar mediante la dirección 127.0.0.1.
 
-Puedes encontrar los ficheros necesarios en el directorio `modulo5/pod_rootless/web` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
+Puedes encontrar los ficheros necesarios en el directorio `modulo5/nginx/web` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 En el directorio `web` tendremos un fichero `index.php` que mostrará información del PHP que se está utilizando.
 

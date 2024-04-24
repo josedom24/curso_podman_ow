@@ -1,6 +1,6 @@
 # Almacenamiento compartido entre los contenedores de un Pod
 
-Aunque, como veremos en el próximo ejemplo, cada contenedor puede tener su medio de almacenamiento independiente. Al crear un Pod podemos indicar un punto de montaje, que será que será compartido entre todos los contenedores del Pod. 
+Aunque, como veremos en el próximo ejemplo, cada contenedor puede tener su medio de almacenamiento independiente. Al crear un Pod podemos indicar un punto de montaje, que será compartido entre todos los contenedores del Pod. 
 
 El punto de montaje se puede indicar usando volúmenes o usando bind mount.
 
@@ -15,29 +15,29 @@ En este ejemplo vamos a tener el siguiente escenario:
 Para ello primero creamos el Pod, en el este caso usando un volumen:
 
 ```
-$ sudo podman pod create --name pod5 -p 8082:80 -v vol1:/usr/share/nginx/html
+$ podman pod create --name pod5 -p 8082:80 -v vol1:/usr/share/nginx/html
 ```
 
 Utilizando bind mount, quedaría de la siguiente forma. Utilizaremos la opción `:z` si estamos usando SELinux:
 
 ```
-$ sudo podman pod create --name pod5 -p 8082:80 -v ${PWD}/directorio_compartido:/usr/share/nginx/html:z
+$ podman pod create --name pod5 -p 8082:80 -v ${PWD}/directorio_compartido:/usr/share/nginx/html:z
 ```
 
 A continuación añadimos los contenedores:
 
 ```
-$ sudo podman run --pod pod5 -d --name web docker.io/nginx
-$ sudo podman run --pod pod5 -d --name sidecar docker.io/debian bash -c "while true; do date >> /usr/share/nginx/html/index.html;sleep 1;done"
+$ podman run --pod pod5 -d --name web docker.io/nginx
+$ podman run --pod pod5 -d --name sidecar docker.io/debian bash -c "while true; do date >> /usr/share/nginx/html/index.html;sleep 1;done"
 ```
 
 Podemos comprobar que los dos contenedores tienen el volumen montado en el directorio indicado:
 
 ```
-$ sudo podman inspect --format='{{json .Mounts}}' web
+$ podman inspect --format='{{json .Mounts}}' web
 [{"Type":"volume","Name":"vol1","Source":"/var/lib/containers/storage/volumes/vol1/_data","Destination":"/usr/share/nginx/html","Driver":"local","Mode":"","Options":["nosuid","nodev","rbind"],"RW":true,"Propagation":"rprivate"}]
 
-$ sudo podman inspect --format='{{json .Mounts}}' sidecar
+$ podman inspect --format='{{json .Mounts}}' sidecar
 [{"Type":"volume","Name":"vol1","Source":"/var/lib/containers/storage/volumes/vol1/_data","Destination":"/usr/share/nginx/html","Driver":"local","Mode":"","Options":["nosuid","nodev","rbind"],"RW":true,"Propagation":"rprivate"}]
 ```
 

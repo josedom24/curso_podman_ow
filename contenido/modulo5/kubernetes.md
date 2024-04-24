@@ -133,7 +133,7 @@ status: {}
 Para el primer ejemplo partimos del escenario que creamos en el apartado **Ejemplo: Desplegado WordPress + MariaDB en un Pod**:
 
 ```
-$ sudo podman pod ps --ctr-names
+$ podman pod ps --ctr-names
 POD ID        NAME               STATUS      CREATED         INFRA ID      NAMES
 d1d937d15358  wordpress-pod      Running     3 minutes ago   27326c5e4a67  d1d937d15358-infra,db,wordpress
 ```
@@ -141,7 +141,7 @@ d1d937d15358  wordpress-pod      Running     3 minutes ago   27326c5e4a67  d1d93
 En este caso se va a generar un Pod con dos contenedores y dos PersistentVolumeClaim correspondientes a los volúmenes:
 
 ```
-$ sudo podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
+$ podman kube generate wordpress-pod wpvol dbvol -f wp-mariadb-pod.yaml
 ```
 
 El fichero `wp-mariadb-pod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/kube/wp-mariadb-pod.yaml).
@@ -171,7 +171,7 @@ persistentvolumeclaim/wpvol   Bound    pvc-c15a471d-3029-467e-88fe-6ed987e65ea7 
 Para el segundo ejemplo partimos del escenario que creamos en el apartado **Ejemplo: Despliegue de WordPress + MariaDB en un escenario multipod**: 
 
 ```
-$ sudo podman pod ps --ctr-names
+$ podman pod ps --ctr-names
 POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
 4539e047ef62  mariadb-pod        Running     2 minutes ago  7ee82573c019  4539e047ef62-infra,db
 9646085b179e  wordpress-pod      Running     8 minutes ago  4274fc776781  9646085b179e-infra,wordpress
@@ -179,7 +179,7 @@ POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
 
 
 ```
-$ sudo podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-multipod.yaml 
+$ podman kube generate wordpress-pod mariadb-pod wpvol dbvol -f wp-mariadb-multipod.yaml 
 ```
 
 El fichero `wp-mariadb-multipod.yaml` que hemos generado lo puedes visualizar en este [enlace](https://raw.githubusercontent.com/josedom24/ejemplos_curso_podman_ow/main/modulo5/kube/wp-mariadb-multipod.yaml).

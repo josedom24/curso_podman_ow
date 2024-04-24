@@ -8,26 +8,26 @@ En este ejemplo, vamos a volver a desplegar WordPress + MariaDB con las siguient
 * Utilizaremos Pod diferenciados para cada contenedor que ofrece el servicio. 
 * Será necesario utilizar una red definida por el usuario, ya que necesitamos resolución DNS a nivel de Pod para que un contenedor de un Pod se pueda conectar al otro contenedor del otro Pod usando su nombre del Pod. 
 * Tendremos que publicar el cada Pod el puerto que utiliza cada servicio que sirve.
-* En la configuración del contenedor de la aplicación web (varibale de entorno `WORDPRESS_DB_HOST`) se indicará el nombre del Pod de la base de datos para acceder al servicio.
+* En la configuración del contenedor de la aplicación web (variable de entorno `WORDPRESS_DB_HOST`) se indicará el nombre del Pod de la base de datos para acceder al servicio.
 * Utilizaremos volúmenes para hacer persistente la aplicación.
 
 Creamos la red definida por el usuario:
 
 ```
-$ sudo podman network create red_wp
+$ podman network create red_wp
 ```
 
 A continuación vamos a crear los dos Pods:
 
 ```
-$ sudo podman pod create --name mariadb-pod -p 3306:3306 --network red_wp
-$ sudo podman pod create --name wordpress-pod -p 8080:80 --network red_wp
+$ podman pod create --name mariadb-pod -p 3306:3306 --network red_wp
+$ podman pod create --name wordpress-pod -p 8080:80 --network red_wp
 ```
 
 A continuación añadimos el contenedor a cada Pod:
 
 ```
-$ sudo podman run --pod mariadb-pod -d --name db \
+$ podman run --pod mariadb-pod -d --name db \
                 -v dbvol:/var/lib/mysql \
                 -e MARIADB_DATABASE=wordpress \
                 -e MARIADB_USER=wordpress \
@@ -35,7 +35,7 @@ $ sudo podman run --pod mariadb-pod -d --name db \
                 -e MARIADB_ROOT_PASSWORD=myrootpasswd \
                 docker.io/mariadb
 
-$ sudo podman  run --pod wordpress-pod -d --name wordpress \
+$ podman  run --pod wordpress-pod -d --name wordpress \
                 -v wpvol:/var/www/html \
                 -e WORDPRESS_DB_HOST=mariadb-pod \
                 -e WORDPRESS_DB_USER=wordpress \
@@ -47,12 +47,12 @@ $ sudo podman  run --pod wordpress-pod -d --name wordpress \
 Vemos los Pods y contenedores que hemos creado:
 
 ```
-$ sudo podman pod ps --ctr-names
+$ podman pod ps --ctr-names
 POD ID        NAME               STATUS      CREATED        INFRA ID      NAMES
 4539e047ef62  mariadb-pod        Running     2 minutes ago  7ee82573c019  4539e047ef62-infra,db
 9646085b179e  wordpress-pod      Running     8 minutes ago  4274fc776781  9646085b179e-infra,wordpress
 
-$ sudo podman ps --pod
+$ podman ps --pod
 CONTAINER ID  IMAGE                                    COMMAND               CREATED             STATUS             PORTS                   NAMES               POD ID        PODNAME
 4274fc776781  localhost/podman-pause:4.9.4-1711445992                        9 minutes ago       Up 6 minutes       0.0.0.0:8080->80/tcp    9646085b179e-infra  9646085b179e  wordpress-pod
 7ee82573c019  localhost/podman-pause:4.9.4-1711445992                        2 minutes ago       Up About a minute  0.0.0.0:3306->3306/tcp  4539e047ef62-infra  4539e047ef62  mariadb-pod
