@@ -2,6 +2,13 @@
 
 Además de poder usar la red **bridge** por defecto, podemos crear nuevas redes de este tipo, a las que llamamos **redes bridge definidas por el usuario**. Como hemos visto en la introducción este tipo de redes nos proporcionan un mecanismo **DNS** que nos permite el acceso entre contenedores usando su nombre. Este tipo de redes serán las deseadas en entornos de producción.
 
+Tenemos dos posibilidades:
+
+* Crear redes definidas por el usuario `root`, en este caso la red se crea en el espacio de nombres de red del host y el Linux Bridge se crea en host. A este tipo de redes podremos conectar los contenedores rootful.
+* Crear redes definidas por un usuario sin privilegios, en este caso la red se crea en el espacio de nombres de red del usuario y el Linux Bridge se crea en este espacio de nombres. A este tipo de redes podremos conectar los contenedores rootless.
+
+En este apartado vamos a trabajar en un entorno rootful, aunque el procesamiento es exactamente igual cuando trabajemos con usuarios no privilegiados.
+
 ## Gestión de redes bridge definidas por el usuario
 
 Para crear una red bridge definida por el usuario, ejecutamos la siguiente instrucción: 
