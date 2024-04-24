@@ -20,7 +20,7 @@ Hay que tener en cuenta que en este curso se va trabajar con la versión 4.X de 
 * Debian 12 Bookworm, que nos ofrece Podman 4.3.1.
 * Ubuntu 23.04 y 23.10, que nos ofrece Podman 4.3.1.
 * Ubuntu 24.04, que nos ofrece Podman 4.9.3.
-* Fedora 40 Beta, nos ofrece Podman 5.0.0 .
+* Fedora 40, nos ofrece Podman 5.0.1.
 
 Una vez terminada la instalación, podemos comprobar la información de la versión instalada, ejecutando:
 
