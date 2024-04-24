@@ -117,7 +117,7 @@ $ ip a
 ```
 Vemos que la puerta de enlace que han recibidos los contenedores conectados a estas redes corresponden con la dirección IP del host en el bridge correspondiente.
 
-## Más opciones al trabajar con redes en docker
+## Más opciones al trabajar con redes en Podman
 
 Tanto al crear un contenedor con el parámetro `--network` para conectarlo a una red, como con la instrucción `podman network connect`, podemos usar algunos otros parámetros.
 
