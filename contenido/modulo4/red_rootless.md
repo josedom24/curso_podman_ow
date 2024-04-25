@@ -125,7 +125,7 @@ PING servidorweb (10.89.2.3): 56 data bytes
 64 bytes from 10.89.2.3: seq=0 ttl=42 time=0.370 ms
 ...
 ```
-Una característica que tenemos que tener en cuenta, es que esta nueva red se ha creado en el espacio de nombres de red del usuario, por lo tanto desde host no tenemos conectividad con el contenedor:
+Una característica que tenemos que tener en cuenta, es que esta nueva red se ha creado en el espacio de nombres de red del usuario, por lo tanto desde el host no tenemos conectividad con el contenedor:
 
 ```
 $ ping 10.89.2.3
