@@ -8,6 +8,7 @@ Las características más importantes de la **red bridge por defecto** son las s
 * Los contenedores conectados a un red **bridge** tiene acceso a internet por medio de una regla SNAT.
 * Es la red por defecto donde se conectan los contenedores rootful.
 * Un contenedor rootless se puede conectar a esta red indicándolo con el parámetro `--network=podman` del comando `podman run`.
+* Por compatibilidad con las red por defecto que crea Docker, esta red no tiene un servidor DNS activo.
 
 
 ## Ejemplo de uso de la red bridge por defecto
