@@ -108,7 +108,7 @@ $ curl http://localhost:8080
 
 ## Red bridge definida por el usuario
 
-Un usuario sin privilegios también puede definir sus propias redes bridge. Estas redes se crearán en el espacio de nombres de red del usuario:
+Un usuario sin privilegios también pueden definir sus propias redes bridge. Estas redes se crearán en el espacio de nombres de red del usuario:
 
 ```
 $ podman network create mi_red
