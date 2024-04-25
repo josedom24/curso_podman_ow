@@ -68,7 +68,7 @@ Cuando configuramos un directorio para ser montado en un contenedor con la opci�
 $ sudo restorecon -F -R /home/usuario/web
 ```
 
-Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahora usando la opción `--mount`. en este caso para montar un directorio compartido (similar a usar la opción `:z`), utilizaríamos la opción `relabel=shared`. Si queremos hacer un montaje privado, sólo para el contenedor (similar a la opción `:Z`) usaremos la opción `relabel=private`
+Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahora usando la opción `--mount`. En este caso, para montar un directorio compartido (similar a usar la opción `:z`), utilizaríamos la opción `relabel=shared`. Si queremos hacer un montaje privado, sólo para el contenedor (similar a la opción `:Z`) usaremos la opción `relabel=private`
 
 ```
 $ sudo podman rm -f my-apache-app 
