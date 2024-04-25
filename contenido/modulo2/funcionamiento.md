@@ -125,7 +125,7 @@ En este caso:
 1. En primer lugar vemos que el usuario que va a crear el contenedor es `usuario`.
 2. Comprobamos que el usuario que está ejecutando los procesos dentro del contenedor es `sync`.
 3. Comprobamos que en el host, el proceso lo ejecuta un usuario con UID 524292.
-4. Por último, vemos que el usuario correspondiente al host (`HUSER`)es un usuario con UID 524292, y el usuario dentro del contenedor (`USER`) es `sync`. **Hay una correspondencia entre un usuario sin privelegios en el host y el usuario `sync` dentro del contenedor**.
+4. Por último, vemos que el usuario correspondiente al host (`HUSER`)es un usuario con UID 524292, y el usuario dentro del contenedor (`USER`) es `sync`. **Hay una correspondencia entre un usuario sin privilegios en el host y el usuario `sync` dentro del contenedor**.
 
 Podemos concluir: cuando ejecutamos un contenedor con un usuario sin privilegios, con el proceso del contenedor ejecutándose con un usuario sin privilegios, el usuario real visible en el host que ejecuta el proceso es otro usuario sin privilegios con un UID propio.
 
