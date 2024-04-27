@@ -28,7 +28,7 @@ $ podman  run --pod wordpress-pod -d --name wordpress \
                 docker.io/wordpress
 ```
 
-Podemos observar como al configurar en el contenedor de WordPress la dirección de la base de datos, con el parámetro `WORDPRESS_DB_HOST` hemos indicado `127.0.0.1`. Es decir, los dos servicios, dentro del Pod, son accesibles en la interfaz loopbak.
+Podemos observar como al configurar en el contenedor de WordPress la dirección de la base de datos, con el parámetro `WORDPRESS_DB_HOST` hemos indicado `127.0.0.1`. Es decir, los dos servicios, dentro del Pod, son accesibles en la interfaz loopback.
 
 Vemos los Pods y contenedores que hemos creado:
 

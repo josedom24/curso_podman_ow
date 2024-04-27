@@ -43,6 +43,6 @@ Las operaciones que podemos realizar sobre un contenedor son:
 
 ## Compose en Podman Desktop
 
-Podman Desktop nos permite visualizar los contenedores creados con un Compose. Por ejemplo, si ejecutamos el fichero `compose.yaml` de la aplicación Gusetbook, podremos visualizar y gestionar los contenedores en Podman Desktop:
+Podman Desktop nos permite visualizar los contenedores creados con un Compose. Por ejemplo, si ejecutamos el fichero `compose.yaml` de la aplicación Guestbook, podremos visualizar y gestionar los contenedores en Podman Desktop:
 
 ![desktop](img/desktop7.png)

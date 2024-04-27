@@ -12,7 +12,7 @@ Las imágenes de contenedor se construyen a partir de de dos elementos:
 * Por ejemplo, el sistema **OverlayFS**, nos permite superponer arboles de directorios, almacenando sólo las diferencias, pero mostrando el último árbol de directorios actualizado cómo si fuera un sólo conjunto de directorios. Este sistema de archivo está incluido en el kernel de Linux y se activa de forma dinámica una vez que se inicia un montaje con este sistema de archivos.
 * Cada árbol de directorio forma lo que denominamos una **capa**. 
 
-### Ejemplo se sistema de archivo OvertlayFS
+### Ejemplo se sistema de archivo OverlayFS
 
 En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llama do `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión, que estará guardado en el directorio **merge**.
 
@@ -21,7 +21,7 @@ En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la uni�
 1. Partimos de la unión de la capa **lower** con la capa **upper** obteniendo un sistema de archivos de unión **merged**. Como vemos en el sistema de archivos de unión encontramos el fichero **F3** que era diferente en la capa **upper**.
 2. Si en sistema de archivos de unión **merged** creamos un nuevo fichero **F5** se guardará en la capa superior **upper**.
 3. Si eliminamos el fichero **F2** del sistema de archivos de unión **merged**, esa diferencia se guardaría en la capa superior **upper**.
-4. Si modificamos el fichero **F1** del sistema de archivos de unión **merged**, esa diferencia se guardará en la cpa **upper** pero evidentemente no se modificará la capa **lower**.
+4. Si modificamos el fichero **F1** del sistema de archivos de unión **merged**, esa diferencia se guardará en la capa **upper** pero evidentemente no se modificará la capa **lower**.
 
 
 Veamos un ejemplo. Vamos a crear la estructura de directorios y vamos a crear los ficheros dentro de cada capa:

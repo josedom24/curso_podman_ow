@@ -41,7 +41,7 @@ $ podman inspect --format='{{json .Mounts}}' sidecar
 [{"Type":"volume","Name":"vol1","Source":"/var/lib/containers/storage/volumes/vol1/_data","Destination":"/usr/share/nginx/html","Driver":"local","Mode":"","Options":["nosuid","nodev","rbind"],"RW":true,"Propagation":"rprivate"}]
 ```
 
-Por último, podemos acceder al puerto 8082 de la dirección IP del host, para accederal servicio web:
+Por último, podemos acceder al puerto 8082 de la dirección IP del host, para acceder al servicio web:
 
 ```
 $ curl http://localhost:8082

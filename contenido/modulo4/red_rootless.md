@@ -156,7 +156,7 @@ $ podman unshare --rootless-netns ip a
     ...
 ```
 
-Con el parámetro `--rootless-netns` de `podman unshare` accedemos al espacio de nombres de red del usuario, donde comprobamos la interfaz de red de tipo tap usada por slirp4netns, y los Linux Bridge que se van creando con cada una de las redes bridge definidas por el usuario sin privilegios.
+Con el parámetro `--rootless-netns` de `podman unshare` accedemos al espacio de nombres de red del usuario, donde comprobamos la interfaz de red de tipo TAP usada por slirp4netns, y los Linux Bridge que se van creando con cada una de las redes bridge definidas por el usuario sin privilegios.
 
 Por ejemplo, accediendo al espacio de nombres de red del usuario, comprobamos que si tenemos conectividad con el contenedor:
 

@@ -11,7 +11,7 @@ Además de definir los servicios (parámetro `services`) en el fichero `compose.
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo7/almacenamiento_redes` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
-En el directorio donde tenemos el fichero compose, hemos creado un directorio `data` con un fichero `fichero.txt`, para montarlo como un bind mount.
+En el directorio donde tenemos el fichero `compose.yaml`, hemos creado un directorio `data` con un fichero `fichero.txt`, para montarlo como un bind mount.
 
 El contenido del fichero `compose.yaml` es:
 

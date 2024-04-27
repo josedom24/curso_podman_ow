@@ -45,7 +45,7 @@ Los requisitos para realizar la instalación son los siguientes:
     ```
     ![win](img/win3.png)
 
-5. Ya podemos utilzar Podman:
+5. Ya podemos utilizar Podman:
 
     ![win](img/win4.png)
 

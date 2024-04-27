@@ -8,7 +8,7 @@ Si elegimos unos o varios contenedores en ejecución, nos aparece la opción **C
 
 ![desktop](img/desktop8.png)
 
-Al crear unPod indicamos el nombre y el puerto que se va a mapear. Poedmos observar que el contenedor de origen se ha detenido, y se ha creado un Pod con dos contenedores: el infra y el seleccionado anteriormente.
+Al crear un Pod indicamos el nombre y el puerto que se va a mapear. Podemos observar que el contenedor de origen se ha detenido, y se ha creado un Pod con dos contenedores: el infra y el seleccionado anteriormente.
 
 ![desktop](img/desktop9.png)
 
@@ -28,7 +28,7 @@ Las operaciones que se pueden realizar sobre los Pods son las siguientes:
 
 ## Creación de Pods desde ficheros YAML
 
-Otra forma de crear Pods en Podman DEsktop es desde un fichero YAML con recursos de Kubernetes.
+Otra forma de crear Pods en Podman Desktop es desde un fichero YAML con recursos de Kubernetes.
 Para ello elegimos la opción **Play Kubernetes YAML**, que nos permitirá elegir un fichero YAML con los recursos que queremos crear.
 
 Por ejemplo, podemos ejecutar el fichero `wp-mariadb-pod.yaml` que utilizamos en el apartado [Ejecutando recursos de Kubernetes en Podman](contenido/modulo5/kubernetes2.md). Y comprobamos los contenedores que se han creado:

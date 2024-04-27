@@ -47,7 +47,7 @@ Las instrucciones para la instalación en macOS la puedes encontrar en la [pági
 
 ## Instalación de las extensiones necesarias
 
-Cuando iniciamos por primera vez Podman Desktop se ejecuta un asistente que instalará las externciones más comunes que podemos utilizar:
+Cuando iniciamos por primera vez Podman Desktop se ejecuta un asistente que instalará las extensiones más comunes que podemos utilizar:
 
 * **Compose**: Las herramientas necesarias para trabajar con Compose desde Podman Desktop.
 * **kubectl CLI**: Si vas a trabajar con Kubernetes desde Podman Desktop es necesario la instalación del cliente de Kubernetes `kubectl`.

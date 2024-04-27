@@ -28,7 +28,7 @@ Para probarlo accedemos desde un navegador web:
 
 ![web](img/web.png)
 
-Para acceder al log del contenedor podemos ejecutar:
+Para acceder a los logs del contenedor podemos ejecutar:
 
 ```
 $ podman logs my-apache-app

@@ -18,7 +18,7 @@ $ skopeo list-tags docker://quay.io/josedom24/servidorweb
 }
 ```
 
-Hemos indicado la imagen indicando el transporte de imagen, es este caso `docker` que hace referencia a un registro remoro de imágenes.
+Hemos indicado la imagen indicando el transporte de imagen, es este caso `docker` que hace referencia a un registro remoto de imágenes.
 
 Ahora podemos inspeccionar la imagen, ejecutando:
 
@@ -33,7 +33,7 @@ $ skopeo inspect --config docker://quay.io/josedom24/servidorweb:latest
 ```
 
 
-Podemos inspeccionar una imagen que estará guardada usando otro tranasporte de imagen, por ejemplo para inspeccionar una imagen guardada en un fichero, podríamos ejecutar:
+Podemos inspeccionar una imagen que estará guardada usando otro transporte de imagen, por ejemplo para inspeccionar una imagen guardada en un fichero, podríamos ejecutar:
 
 ```
 $ skopeo inspect oci-archive:debian-apache.tar
@@ -106,7 +106,7 @@ Podemos sincronizar todas las versiones de una imagen indicando el transporte de
 ```
 $ skopeo sync --src docker --dest docker docker.io/josedom24/2048 quay.io/josedom24
 ```
-Indicamos el transporte de origen en el parámetro `--src`, el transporte de destino en el parémetro `--dest`. En este caso se han copiado dos imágenes con dos etiquetas:
+Indicamos el transporte de origen en el parámetro `--src`, el transporte de destino en el parámetro `--dest`. En este caso se han copiado dos imágenes con dos etiquetas:
 ```
 $ skopeo list-tags docker://quay.io/josedom24/2048
 {

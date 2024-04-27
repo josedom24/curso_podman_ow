@@ -72,7 +72,7 @@ CONTAINER ID  IMAGE                           COMMAND     CREATED        STATUS 
 ee15342ca308  docker.io/library/mariadb:10.5  mysqld      3 seconds ago  Up 3 seconds  0.0.0.0:3306->3306/tcp  mimariadb
 ```
 
-Ahora desde nuestro equipo, donde hemos instalado un cliente de MariaDB (`sudo apt install mariadb-client` en Debian/ubuntu o `sudo dnf install community-mysql.x86_64` en Fedora), nos conectamos al host:
+Ahora desde nuestro equipo, donde hemos instalado un cliente de MariaDB (`sudo apt install mariadb-client` en Debian/Ubuntu o `sudo dnf install community-mysql.x86_64` en Fedora), nos conectamos al host:
 
 ```
 $ mysql -u root -p -h 127.0.0.1

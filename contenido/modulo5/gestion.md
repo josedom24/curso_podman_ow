@@ -80,7 +80,7 @@ Podemos obtener la información detallada de un Pod ejecutando:
 $ podman pod inspect pod1
 ```
 
-Si tenemos un sólo contenedor princiapl en el Pod podemos ver los logs de salida, ejecutando:
+Si tenemos un sólo contenedor principal en el Pod podemos ver los logs de salida, ejecutando:
 
 ```
 $ podman pod logs pod1

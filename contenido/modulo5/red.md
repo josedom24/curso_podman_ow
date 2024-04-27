@@ -10,7 +10,7 @@ Cuando creamos un Pod, este recibe una dirección IP, que será compartida con t
 A la hora de trabajar con Pods tenemos que tener en cuenta las siguientes características.
 
 * Si queremos ofrecer algún servicio en un puerto, el mapeo del puerto se indicará en la creación del Pod.
-* Los contenedores se pueden comunicar entre ellos usando la dirección loopback `127.0.0.1` o `localhost`.
+* Los contenedores se pueden comunicar entre ellos usando la interfaz loopback: la dirección IP `127.0.0.1` o el nombre `localhost`.
 
 Podemos crear un Pod conectado a cualquier otra red:
 

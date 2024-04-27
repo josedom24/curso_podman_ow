@@ -16,7 +16,7 @@ Writing manifest to image destination
 ca2b0f26964cf2e80ba3e084d5983dab293fdb87485dc6445f3f7bbfc89d7459
 ```
 
-Podemos utilizar el nombre dorto de la imagen `ubuntu` porque tenemos creado un alias en el fichero `/etc/containers/registries.conf.d/000-shortnames.conf`. A continuación, creamos y ejecutamos un nuevo contenedor indicando el comando que va a ejecutar:
+Podemos utilizar el nombre corto de la imagen `ubuntu` porque tenemos creado un alias en el fichero `/etc/containers/registries.conf.d/000-shortnames.conf`. A continuación, creamos y ejecutamos un nuevo contenedor indicando el comando que va a ejecutar:
 
 ```
 $ sudo podman run ubuntu echo 'Hello world'

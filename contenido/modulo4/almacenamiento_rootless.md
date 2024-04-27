@@ -111,7 +111,7 @@ $ touch .local/share/containers/storage/volumes/vol2/_data/fichero2
 touch: cannot touch '.local/share/containers/storage/volumes/vol2/_data/fichero2': Permission denied
 ```
 
-Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp` que tiene UID y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario cou UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
+Podemos ver el propietario del directorio: dentro del contenedor pertenece al usuario que hemos indicado, en este caso es `ntp` que tiene UID y GID igual a 123; fuera del contenedor el directorio donde se guarda la información del volumen pertenece al usuario con UID 524410, que corresponde al UID que se ha mapeado fuera del contenedor.
 
 ```
 $ podman exec -it alpine3 ls -ld destino
@@ -126,7 +126,7 @@ drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
 
 ##  Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
-Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, ne nuestro caso `usuario`:
+Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, en nuestro caso `usuario`:
 
 ```
 $ mkdir origen

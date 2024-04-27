@@ -58,7 +58,7 @@ $ cat /proc/self/uid_map
          0          0 4294967295
 ```
 
-Se nos muestra el mapeo en los contenedores roorful, el ID 0 se mapea con el 0, y así sucesivamente con todos el rango de identificadores.
+Se nos muestra el mapeo en los contenedores rootful, el ID 0 se mapea con el 0, y así sucesivamente con todos el rango de identificadores.
 
 Sin embargo, podemos entrar en el espacio de nombre de usuario y ejecutar esa misma instrucción:
 

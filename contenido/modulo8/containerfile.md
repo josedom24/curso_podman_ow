@@ -14,7 +14,7 @@ COPY index.html .
 CMD apache2ctl -D FOREGROUND
 ```
 
-## Instrucciones en el dockerfile
+## Instrucciones en el Containerfile
 
 Las principales instrucciones que podemos usar:
 

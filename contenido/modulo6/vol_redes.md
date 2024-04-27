@@ -50,7 +50,7 @@ TimeoutStartSec=900
 WantedBy=multi-user.target default.target
 ```
 
-Como vemos indicamos la imagen. el nombre, el punto de montaje referenciando al volumen (indicando el nombre de la plantilla donde está definido el volumen), la red a la que está conectada (indicando el nombre de la plantilla donde está definida la red) y la variable de entorno para indicar la contraseña del usuario `root`.
+Como vemos, indicamos la imagen, el nombre del contenedor, el punto de montaje, indicando el nombre de la plantilla donde está definido el volumen, la red a la que está conectada, indicando el nombre de la plantilla donde está definida la red y la variable de entorno para indicar la contraseña del usuario `root`.
 
 A continuación, podemos iniciar el contenedor y comprobar los recursos que se han creado:
 

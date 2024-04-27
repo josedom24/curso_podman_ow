@@ -6,7 +6,7 @@ Vamos a crear un contenedor a partir de una imagen base. Sobre este contenedor l
 
 Finalmente a partir de este contenedor de trabajo crearemos nuestra nueva imagen.
 
-## Construcción de imágenes desde una image base
+## Construcción de imágenes desde una imagen base
 
 Para crea un contenedor de trabajo podemos ejecutar el siguiente comando, indicando la imagen base que vamos a usar:
 

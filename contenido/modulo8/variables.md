@@ -35,7 +35,7 @@ Como vemos se ha creado una imagen a partir de la imagen `php:8.2-apache` y se h
 
 ![php](img/variables1.png)
 
-Podemos crear otra versión de la imagen sobreescribiendo los parámetros de construcción, para ello usamos el parámetro `--build-arg` en el comando `podman build`:
+Podemos crear otra versión de la imagen sobrescribiendo los parámetros de construcción, para ello usamos el parámetro `--build-arg` en el comando `podman build`:
 
 ```
 $ podman build --build-arg PHP_VERSION=7.4-apache --build-arg APP_VERSION=produccion -t josedom24/app_php:v2 .

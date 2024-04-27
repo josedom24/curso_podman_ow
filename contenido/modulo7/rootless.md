@@ -21,7 +21,7 @@ services:
 ```
 
 * Hemos indicado el modo de red con el parámetro `network_mode` y el valor `slirp4netns:port_handler=slirp4netns` para indicar que utilice la red de tipo slirp4netns para realizar la conexión.
-* También hemos creado una variable de entorno `NETWORK_INTERFACE` para indicar el nombre del dispositivo tap que se va a utilizar.
+* También hemos creado una variable de entorno `NETWORK_INTERFACE` para indicar el nombre del dispositivo TAP que se va a utilizar.
 
 
 A continuación podemos levantar el escenario, sin utilizar `sudo` ya que vamos a ejecutar `podman-compose` con un usuario sin privilegios:
