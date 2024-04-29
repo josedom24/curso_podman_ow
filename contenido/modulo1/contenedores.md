@@ -37,5 +37,5 @@ Se funda en 2015, y actualmente son muchas las empresas que forman parte de esta
 
 * Una especificación de **entorno de ejecución de contenedores** (**Open Container Initiative Runtime Specification** normalmente abreviado en OCI Runtime Specification). Describe cómo debe proceder un OCI Runtime para crear un contenedor a partir de una imagen. Los OCI runtime más utilizados son **runC** y **crun**.
 * Una especificación de **formato de imagen** (**Open Container Initiative Image Format** normalmente abreviado en OCI Image Format). Determina el formato para empaquetar la imagen del contenedor de software.
-* Una especificación de **distribución de imágenes**(**Open Container Initiative Distribution Specification** normalmente abreviado en OCI Distribution Specification). Su objetivo es estandarizar la distribución de imágenes de contenedores.
+* Una especificación de **distribución de imágenes** (**Open Container Initiative Distribution Specification** normalmente abreviado en OCI Distribution Specification). Su objetivo es estandarizar la distribución de imágenes de contenedores.
 
