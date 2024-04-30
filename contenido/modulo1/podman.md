@@ -76,7 +76,7 @@ Además, Podman es capaz de generar archivos YAML de Kubernetes a partir de cont
 
 ### Registros de imágenes personalizables
 
-En Podman podemos trabajar con múltiples registros. Al hacer refencia de una imagen podemos indicar el nombre del registro y el nombre de la imagen, o simplemente indicar el nombre de la imagen y Podman nos dará a elegir entre los registros que tiene configurado.
+En Podman podemos trabajar con múltiples registros. Al hacer referencia de una imagen podemos indicar el nombre del registro y el nombre de la imagen, o simplemente indicar el nombre de la imagen y Podman nos dará a elegir entre los registros que tiene configurado.
 
 Por lo tanto, con Podman podemos gestionar imágenes OCI usando su nombre corto, sin necesidad de indicar el nombre del registro. 
 
