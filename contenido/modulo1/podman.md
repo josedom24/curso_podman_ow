@@ -72,7 +72,7 @@ Una de las ventajas de Podman se el trabajo con Pods. Un Pod es una envoltura ("
 
 Podman puede trabajar con un solo contenedor a la vez, o puede gestionar grupos de contenedores juntos en un Pod. Los Pods permiten agrupar varios servicios para formar un servicio mayor gestionado como una entidad única. 
 
-Además, Podman es capaz de generar archivos YAML de de Kubernetes a partir de contenedores y Pods en ejecución.
+Además, Podman es capaz de generar archivos YAML de Kubernetes a partir de contenedores y Pods en ejecución.
 
 ### Registros de contenedores personalizables
 
