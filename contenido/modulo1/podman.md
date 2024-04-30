@@ -2,7 +2,7 @@
 
 ## Podman
 
-* **Podman (the POD MANager)** es un **motor de contenedores, herramienta que nos permite gestionar contenedores e imágenes OCI y Pods (grupos de contenedores). 
+* **Podman (the POD MANager)** es un **motor de contenedores**, herramienta que nos permite gestionar contenedores e imágenes OCI y Pods (grupos de contenedores). 
 * Podman ejecuta contenedores en **Linux**, pero también puede utilizarse en sistemas **Mac y Windows** utilizando una **máquina virtual** gestionada por Podman. 
 * Podman se basa en **libpod**, una biblioteca para la gestión del ciclo de vida de los contenedores. La librería libpod proporciona APIs para la gestión de contenedores, Pods, imágenes de contenedores y volúmenes.
 * Podman es una herramienta nativa de Linux, de **código abierto** y **sin demonio**, diseñada para facilitar la búsqueda, ejecución, creación, uso compartido y despliegue de aplicaciones mediante contenedores e imágenes OCI.
