@@ -74,7 +74,7 @@ Podman puede trabajar con un solo contenedor a la vez, o puede gestionar grupos 
 
 Además, Podman es capaz de generar archivos YAML de Kubernetes a partir de contenedores y Pods en ejecución.
 
-### Registros de contenedores personalizables
+### Registros de imágenes personalizables
 
 Con Podman podemos gestionar imágenes OCI usando su nombre corto, sin necesidad de indicar el nombre del registro. 
 
