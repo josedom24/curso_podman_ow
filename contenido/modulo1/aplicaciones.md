@@ -4,7 +4,7 @@ Antes de definir las distintas aplicaciones que nos proporciona Red Hat para tra
 
 ## Terminología sobre contenedores
 
-* **Orquestador de contenedores**: es un programa que gestiona los contenedores que se ejecutan en un clúster de servidores. Nos ofrece muchas características: actualizaciones automáticas, balanceo de carga, tolerancia a fallos, escalabilidad,...
+* **Orquestador de contenedores**: Programa que gestiona los contenedores que se ejecutan en un clúster de servidores. Nos ofrece muchas características: actualizaciones automáticas, balanceo de carga, tolerancia a fallos, escalabilidad,...
 
 ![orquestadores](img/orquestador.png)
 
