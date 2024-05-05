@@ -2,7 +2,7 @@
 
 ## Podman
 
-* **Podman (the POD MANager)** es un **motor de contenedores, herramienta que nos permite gestionar contenedores e imágenes OCI y Pods (grupos de contenedores). 
+* **Podman (the POD MANager)** es un **motor de contenedores**, herramienta que nos permite gestionar contenedores e imágenes OCI y Pods (grupos de contenedores). 
 * Podman ejecuta contenedores en **Linux**, pero también puede utilizarse en sistemas **Mac y Windows** utilizando una **máquina virtual** gestionada por Podman. 
 * Podman se basa en **libpod**, una biblioteca para la gestión del ciclo de vida de los contenedores. La librería libpod proporciona APIs para la gestión de contenedores, Pods, imágenes de contenedores y volúmenes.
 * Podman es una herramienta nativa de Linux, de **código abierto** y **sin demonio**, diseñada para facilitar la búsqueda, ejecución, creación, uso compartido y despliegue de aplicaciones mediante contenedores e imágenes OCI.
@@ -24,7 +24,7 @@ Los contenedores Podman tienen dos modos de ejecución:
     * Este modo de funcionamiento puede tener problemas de seguridad, ya que si hay una vulnerabilidad en la funcionalidad, el usuario del contenedor será `root` con los posibles riesgos de seguridad que esto conlleva.
     * De todas maneras, es posible que algunos procesos ejecutados en el contenedor no se ejecuten como `root`. 
 * **Contenedor rootless**: es un contenedor que puede ejecutarse sin privilegios de `root` en el host. 
-    * Podman no utiliza ningún demonio y no necesita `root` para ejecutar contenedores.
+    * Podman no utiliza ningún demonio y no necesita el usuario `root` para ejecutar contenedores.
     * Esto no significa que el usuario dentro del contenedor no sea `root`, aunque sea el usuario por defecto.
     * Si tenemos una vulnerabilidad en la ejecución del contenedor, el atacante no obtendrá privilegios de `root` en el host.
     * Estos contenedores tienen algunas limitaciones:
@@ -72,13 +72,15 @@ Una de las ventajas de Podman se el trabajo con Pods. Un Pod es una envoltura ("
 
 Podman puede trabajar con un solo contenedor a la vez, o puede gestionar grupos de contenedores juntos en un Pod. Los Pods permiten agrupar varios servicios para formar un servicio mayor gestionado como una entidad única. 
 
-Además, Podman es capaz de generar archivos YAML de de Kubernetes a partir de contenedores y Pods en ejecución.
+Además, Podman es capaz de generar archivos YAML de Kubernetes a partir de contenedores y Pods en ejecución.
 
-### Registros de contenedores personalizables
+### Registros de imágenes personalizables
 
-Con Podman podemos gestionar imágenes OCI usando su nombre corto, sin necesidad de indicar el nombre del registro. 
+En Podman podemos trabajar con múltiples registros. Al hacer referencia de una imagen podemos indicar el nombre del registro y el nombre de la imagen, o simplemente indicar el nombre de la imagen y Podman nos dará a elegir entre los registros que tiene configurado.
+
+Por lo tanto, con Podman podemos gestionar imágenes OCI usando su nombre corto, sin necesidad de indicar el nombre del registro. 
 
 Por ejemplo, el nombre de imagen `ubi8` corresponde al nombre completo `registry.access.redhat.com/library/ubi8:latest`, donde se indica los nombres del registro, del repositorio, de la imagen y de la etiqueta.
 
-En Podman podemos especificar múltiples registros, de tal forma que cuando indicamos el nombre de una imagen, se nos da a elegir entre los distintos registros que tenemos configurados.
+
 
