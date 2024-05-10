@@ -96,7 +96,7 @@ total 4
 
 En resumen, el uso de volúmenes o bind mount en contenedores rootless cuando se ejecutan los procesos como `root` es muy similar a hacerlo con contenedores rootful. Simplemente tenemos que tener en cuenta que el directorio donde se crean los volúmenes se encuentra en el home del usuario: `$HOME/.local/share/containers/storage/volumes/`.
 
-##  Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
+## Uso de volúmenes con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
 El volumen lo crea el usuario del host, pero dentro del contenedor es propiedad del usuario del contenedor. Por lo tanto desde contenedor se puede escribir, pero desde fuera no se pueda escribir.
 
@@ -124,7 +124,7 @@ drwxr-xr-x. 1 524410 524410 16 Apr  2 11:30 _data
 
 ```
 
-##  Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
+## Uso de bind mount con contenedores rootless con procesos en el contenedor ejecutándose con usuario sin privilegios
 
 Creamos un directorio con un fichero que pertenecen al usuario sin privilegios, en nuestro caso `usuario`:
 
