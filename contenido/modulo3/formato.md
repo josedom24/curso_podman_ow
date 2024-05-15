@@ -14,7 +14,7 @@ Las imágenes de contenedor se construyen a partir de de dos elementos:
 
 ### Ejemplo se sistema de archivo OverlayFS
 
-En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llamado `lower`) que puede ser lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión, que estará guardado en el directorio **merge**.
+En el siguiente ejemplo vamos a crear un sistema de archivos a partir de la unión de dos capas: la capa **lower** (guardada en un directorio llamado `lower`) que puede ser de lectura y escritura, pero que en nuestro ejemplo la vamos a tratar cómo de **sólo lectura** y una capa superior llamada **upper**, de **lectura y escritura** y que contiene las diferencias necesarias para crear el sistema de archivo de unión, que estará guardado en el directorio **merge**.
 
 ![overlay](img/overlay.png)
 
