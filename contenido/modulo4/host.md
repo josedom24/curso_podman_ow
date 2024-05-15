@@ -41,14 +41,5 @@ Por último, desde un navegador podemos acceder al puerto 80/tcp del host para c
 $ curl http://localhost
 ```
 
-## Ejemplo de uso en contenedores rootless
 
-Este tipo conexión a red también lo podemos usar con contenedor rootless. Sin embargo, tenemos que tener en cuenta las limitaciones que tenemos al crear contenedores rootless, en este caso un usuario sin privilegios no puede usar puertos no privilegiados, por debajo del 1024. Por lo tanto vamos a usar una imagen de nginx que ejecuta el servidor nginx con un usuario sin privilegios y por lo tanto lo levanta en el puerto 8080/tcp.
 
-Vamos a usar la imagen de nginx ofrecida por la empresa Bitnami, esta imagen tienen como característica que los procesos que se ejecutan al crear el contenedor son ejecutados por usuarios no privilegiados.
-
-```
-$ podman run -d --network host --name my_nginx docker.io/bitnami/nginx
-```
-
-Y podemos acceder al puerto 8080/tcp para comprobar que podemos acceder al servicio web.

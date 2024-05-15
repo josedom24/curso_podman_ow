@@ -166,12 +166,14 @@ PING 10.89.2.3 (10.89.2.3) 56(84) bytes of data.
 64 bytes from 10.89.2.3: icmp_seq=1 ttl=64 time=0.135 ms
 ...
 ```
-
-
 ## Red host
 
-Como vimos en el apartado anterior, también podemos conectar nuestros contenedores rootless a la red de tipo host:
+Este tipo conexión a red también lo podemos usar con contenedor rootless. Sin embargo, tenemos que tener en cuenta las limitaciones que tenemos al crear contenedores rootless, en este caso un usuario sin privilegios no puede usar puertos no privilegiados, por debajo del 1024. Por lo tanto vamos a usar una imagen de nginx que ejecuta el servidor nginx con un usuario sin privilegios y por lo tanto lo levanta en el puerto 8080/tcp.
+
+Vamos a usar la imagen de nginx ofrecida por la empresa Bitnami, esta imagen tienen como característica que los procesos que se ejecutan al crear el contenedor son ejecutados por usuarios no privilegiados.
 
 ```
 $ podman run -d --network host --name my_nginx docker.io/bitnami/nginx
 ```
+
+Y podemos acceder al puerto 8080/tcp para comprobar que podemos acceder al servicio web.
