@@ -11,7 +11,7 @@ Dependiendo del modo de funcionamiento:
 * **Modo rootful**. Fichero de configuración: `/usr/share/containers/storage.conf`.
   * `graphDriverName: overlay`
   * `graphRoot: /var/lib/containers/storage`
-* **Modo rootless**. fichero de configuración: `$HOME/.config/containers/storage.conf`
+* **Modo rootless**. Fichero de configuración: `$HOME/.config/containers/storage.conf`
   * `graphDriverName: overlay`
   * `graphRoot: /home/usuario/.local/share/containers/storage/`
 
