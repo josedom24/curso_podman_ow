@@ -9,7 +9,7 @@ Las imágenes de contenedor se construyen a partir de de dos elementos:
 
 * Un **Sistema de Archivos Unión (UnionFS)** en Linux nos permite fusionar el contenido de uno o varios sistemas de archivos (directorios) mientras se mantiene el contenido físicamente separado. 
 * Existen varios sistemas de archivos que me permiten crear un sistema de archivos de unión, por ejemplo OverlayFS, AUFS, btrfs, UnionFS, ...
-* Por ejemplo, el sistema **OverlayFS**, nos permite superponer arboles de directorios, almacenando sólo las diferencias, pero mostrando el último árbol de directorios actualizado cómo si fuera un sólo conjunto de directorios. Este sistema de archivo está incluido en el kernel de Linux y se activa de forma dinámica una vez que se inicia un montaje con este sistema de archivos.
+* Por ejemplo, el sistema **OverlayFS**, nos permite superponer árboles de directorios, almacenando sólo las diferencias, pero mostrando el último árbol de directorios actualizado cómo si fuera un sólo conjunto de directorios. Este sistema de archivo está incluido en el kernel de Linux y se activa de forma dinámica una vez que se inicia un montaje con este sistema de archivos.
 * Cada árbol de directorio forma lo que denominamos una **capa**. 
 
 ### Ejemplo se sistema de archivo OverlayFS
