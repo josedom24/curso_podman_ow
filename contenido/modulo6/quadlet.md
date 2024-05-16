@@ -39,7 +39,7 @@ Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la ge
 
 Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso de Quadlet (que ha sido integrado en Podman) para gestionar la ejecución de contenedores Podman con Systemd.
 
-[Quadlet](https://github.com/containers/quadlet) permite la generación automática de unidades de servicio de Systemd, a partir de unas plantillas que nos permiten definir de manera sencilla el recurso de Podman que queremos controlar con Systemd. Los recursos que actualmente podemos controlar con Quadlet y Systemd son los siguientes:
+**Quadlet** permite la generación automática de unidades de servicio de Systemd, a partir de unas plantillas que nos permiten definir de manera sencilla el recurso de Podman que queremos controlar con Systemd. Los recursos que actualmente podemos controlar con Quadlet y Systemd son los siguientes:
 
 * Contenedores
 * Volúmenes
