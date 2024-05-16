@@ -74,9 +74,9 @@ artifacts  attach  config.json  ctl  secrets  shm  winsz
 Este directorio contiene varios archivos que se montan directamente en el contenedor para personalizarlo.
 
 
-## Creación del sistema de ficheros superpuesto
+## Creación del sistema de ficheros de unión
 
-Cuando se crea un nuevo contenedor se crea un nuevos sistema de archivo de unión que es el utiliza el contenedor. Podemos verlo ejecutando la siguiente instrucción:
+Cuando se crea un nuevo contenedor se crea un nuevos sistema de archivo de unión que es el que utiliza el contenedor. Podemos verlo ejecutando la siguiente instrucción:
 
 ```
 $ mount | grep overlay
