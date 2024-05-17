@@ -15,7 +15,7 @@ Tenemos dos herramientas para realizar la construcción de una imagen OCI:
         * De manera sencilla podemos **cambiar la imagen base** usando un fichero `Containerfile`, únicamente tendremos que modificar la primera línea de ese fichero como explicaremos posteriormente.
 * **Buildah**: Es una herramienta específica para la **construcción de imágenes de contenedores** sin necesidad de ejecutar un demonio. Permite a los usuarios construir imágenes OCI usando varios mecanismos:
     * **A partir de una imagen base**.
-    * **A parir de un fichero `Containerfile`**.
+    * **A partir de un fichero `Containerfile`**.
     * **Desde 0**: Instalando los paquetes que necesitemos de la distribución deseada.
 
 ## Distribución de imágenes OCI
