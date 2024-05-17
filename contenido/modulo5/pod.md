@@ -15,7 +15,7 @@
 * Cada Pod en Podman incluye un contenedor llamado **"infra"**.   
     * Este contenedor no hace nada más que dormir. 
     * Su propósito es mantener los espacios de nombres asociados con el pod y permitir a Podman conectar otros contenedores al pod. 
-    * Esto le permite iniciar y detener contenedores dentro del Pop.
+    * Esto le permite iniciar y detener contenedores dentro del Pod.
     * El contenedor infra por defecto está basado en la imagen `localhost/podman-pause`.
 * Como vemos en la imagen el Pod puede estar formada por varios contenedores:
     * Si seguimos la filosofía de Kubernetes cada Pod tendrá un contenedor principal encargado de ofrecer el servicio.
