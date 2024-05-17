@@ -35,7 +35,7 @@ Otra solución al inicio automático de los contenedores después de un reinicio
 
 ## Quadlet
 
-Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades se servicios. En un principio se creaban una unidad Systemd que llamaba a Podman con el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
+Desde su inicio Podman se ha integrado muy bien con Systemd, posibilitando la gestión de contenedores con unidades de servicios. En un principio se creaban una unidad Systemd que llamaba a Podman con el subcomando `run`. Podman también proporcionaba `podman generate systemd` para crear fácilmente dicho archivo Systemd.
 
 Sin embargo, esta opción no es la recomendada, y actualmente se prefiere el uso de Quadlet (que ha sido integrado en Podman) para gestionar la ejecución de contenedores Podman con Systemd.
 
