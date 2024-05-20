@@ -18,10 +18,6 @@ Los requisitos para instalar Podman Desktop en Linux son los siguientes:
 * Tener instalado Podman.
 * Tener instalado [Flatpak](https://flatpak.org/setup/) (aplicación que nos permite instalar aplicaciones empaquetadas).
 
-Desde la [página de descargas](https://podman-desktop.io/downloads) nos podemos descargar el paquete flatpak o la aplicación comprimida en un tar.
-
-Desde la [página de instalación en Linux](https://podman-desktop.io/docs/installation/linux-install) también nos muestran como realizar la instalación desde el terminal:
-
 Nos aseguramos de tener el repositorio de Flatpak activo:
 
 ```
@@ -33,6 +29,8 @@ Y realizamos la instalación:
 ```
 $ flatpak install --user flathub io.podman_desktop.PodmanDesktop
 ```
+Desde la [página de descargas](https://podman-desktop.io/downloads) nos podemos descargar el paquete flatpak o la aplicación comprimida en un tar. Y desde la [página de instalación en Linux](https://podman-desktop.io/docs/installation/linux-install) también nos muestran como realizar la instalación desde el terminal.
+
 
 ## Instalación de Podman Desktop en Windows/macOS
 
