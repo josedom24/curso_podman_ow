@@ -21,7 +21,7 @@ CONTAINER ID  IMAGE                            COMMAND               CREATED    
 Podemos visualizar los logs del contenedor, ejecutando el siguiente comando:
 
 ```
-$ sudo podman logs contenedor1
+$ podman logs contenedor1
 ```
 
 Con la opción `logs -f` seguimos visualizando los logs en tiempo real.
