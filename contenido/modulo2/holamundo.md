@@ -35,7 +35,7 @@ X/Twitter: @Podman_io
 Mastodon:  @Podman_io@fosstodon.org
 ```
 
-Pero, ¿qué es lo que está sucediendo al ejecutar esa orden?:
+Pero, ¿qué es lo que ha sucedido al ejecutar esta instrucción?:
 
 1. Indicamos que queremos ejecutar un contenedor (`podman run`).
 2. Indicamos el nombre de la imagen. Hemos usado el nombre corto sin indicar el nombre del registro, ya que la imagen `hello-world` esta definida en el fichero `/etc/containers/registries.conf.d/000-shortnames.conf` donde indicamos alias a los nombres de las imágenes para que sea más fácil su gestión.
