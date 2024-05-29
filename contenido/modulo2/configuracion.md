@@ -125,7 +125,7 @@ Para limitar la cantidad de memoria que puede utilizar un contenedor, puedes uti
 Con el comando `podman stats` podemos ver los recursos que está consumiendo un contenedor, y además vemos el límite de RAM que le hemos configurado:
 
 ```
-$ sudo podman stats servidor_web
+$ podman stats servidor_web
 ID            NAME          CPU %       MEM USAGE / LIMIT  MEM %       NET IO         BLOCK IO    PIDS        CPU TIME    AVG CPU %
 3cab2d116e9f  servidor_web  0.01%       2.716MB / 536.9MB  0.51%       2.04kB / 768B  0B / 0B     82          90.108ms    0.17%
 ```
@@ -133,5 +133,5 @@ ID            NAME          CPU %       MEM USAGE / LIMIT  MEM %       NET IO   
 También podemos usar `podman inspect` para ver el límite de memoria (en bytes) que hemos configurado en un contenedor:
 
 ```
-$ sudo podman inspect --format '{{.HostConfig.Memory}}' servidor_web
+$ podman inspect --format '{{.HostConfig.Memory}}' servidor_web
 ```
