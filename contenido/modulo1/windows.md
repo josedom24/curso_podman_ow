@@ -14,7 +14,7 @@ Los requisitos para realizar la instalación son los siguientes:
 * Necesitamos una versión reciente de Windows 10 o Windows 11. Se requiere la compilación 18362 o superior.
 * Su sistema debe soportar y tener habilitada la virtualización de hardware. 
 
-1. Descargamos el cliente de Podman desde la página de descargas [GitHub release page](https://github.com/containers/podman/releases). En este ejemplo vamos a bajar la versión 5.0.2, el fichero `podman-5.0.2-setup.exe`.
+1. Descargamos la última versión disponible del cliente de Podman desde la página de descargas [GitHub release page](https://github.com/containers/podman/releases). En este ejemplo trabajamos con la versión 5.0.2, el fichero `podman-5.0.2-setup.exe`.
 2. Lo ejecutamos y realizamos la instalación.
    
     ![win](img/win1.png)
