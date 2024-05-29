@@ -22,7 +22,7 @@
     * [Configuración de contenedores](contenido/modulo2/configuracion.md)    
     * [Ejecución de un contenedor con un servidor de base de datos](contenido/modulo2/mariadb.md)    
     * [Modos de funcionamiento de los contenedores](contenido/modulo2/funcionamiento.md)
-    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md)
+    * [¿Cómo funcionan los contenedores rootless?](contenido/modulo2/rootless.md) (P)
 3. Gestión de imágenes OCI en Podman
     * [Introducción a las imágenes OCI](contenido/modulo3/imagenes.md) (P)
     * [Introducción al formato de imagen OCI](contenido/modulo3/formato.md) (P)
