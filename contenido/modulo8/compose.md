@@ -1,6 +1,6 @@
 # Construcción de imágenes con Compose
 
-En este ejemplo vamos a ver la configuración de Compose para construir la imagen que va a utilizar en la creación del servicio. En este caso no se indica la imagen desde la que se crea el contenedor, se indica el directorio de contexto donde encontramos el fichero `Containerfile` para la construcción de la imagen.
+En este ejemplo vamos a ver la configuración de Compose para construir la imagen que va a utilizar en la creación del servicio. En este caso no se indica la imagen desde la que se crea el contenedor, se indica el directorio de contexto donde encontramos el fichero `Containerfile` (**con `podman-compose` el fichero se debe llamar `Dockerfile`**) para la construcción de la imagen.
 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/python` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
@@ -8,7 +8,7 @@ Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo8/pyt
 
 En este ejemplo vamos a crear una imagen a a partir de una aplicación Python construida con el framework Flask. El código de la aplicación lo encontramos en la carpeta `app`.
 
-El fichero `Containerfile` que vamos a usar para la construcción de la imagen tiene el siguiente contenido:
+El fichero `Dockerfile` que vamos a usar para la construcción de la imagen tiene el siguiente contenido:
 
 ```Dockerfile
 FROM docker.io/python:3.12.1-bookworm
@@ -50,11 +50,11 @@ Vamos a construir la aplicación:
 $ podman-compose up -d
 ```
 
-Como vemos para crear el servicio `app` se realiza el proceso de construcción de la imagen a a partir del fichero `Containerfile`. Podemos acceder a la aplicación:
+Como vemos para crear el servicio `app` se realiza el proceso de construcción de la imagen a a partir del fichero `Dockerfile`. Podemos acceder a la aplicación:
 
 ![python](img/python.png)
 
-Evidentemente si borramos el escenario y volvemos a acceder no será necesario de nuevo la construcción de la imagen. Si se produce un cambio en la aplicación o en el fichero `Containerfile`, la próxima vez que levantemos el escenario tendremos que indicar que queremos volver a construir la imagen con el parámetro `--build`. Por ejemplo, hemos cambiado el mensaje que muestra la aplicación en la función principal de la aplicación, borramos el escenario y lo volvemos a crear indicando que queremos volver a construir la imagen del servicio `app`:
+Evidentemente si borramos el escenario y volvemos a acceder no será necesario de nuevo la construcción de la imagen. Si se produce un cambio en la aplicación o en el fichero `Dockerfile`, la próxima vez que levantemos el escenario tendremos que indicar que queremos volver a construir la imagen con el parámetro `--build`. Por ejemplo, hemos cambiado el mensaje que muestra la aplicación en la función principal de la aplicación, borramos el escenario y lo volvemos a crear indicando que queremos volver a construir la imagen del servicio `app`:
 
 ```
 $ podman-compose down
