@@ -7,7 +7,7 @@ En este ejemplo vamos a crear una unidad de Systemd que cree un Pod a partir de 
 Puedes encontrar los ficheros que vamos a utilizar en el directorio `modulo6/pod` del [Repositorio con el código de los ejemplos](https://github.com/josedom24/ejemplos_curso_podman_ow).
 
 
-El contenido del fichero `web-pod.yaml` es el siguiente:
+El contenido del fichero `opt/web-pod.yaml` es el siguiente:
 
 ```yaml
 apiVersion: v1
