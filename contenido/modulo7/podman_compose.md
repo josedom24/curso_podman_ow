@@ -24,9 +24,9 @@ Podemos ver los contenedores que se están ejecutando:
 
 ```
 $ podman-compose ps
-CONTAINER ID  IMAGE                                  COMMAND     CREATED             STATUS             PORTS                 NAMES
-2a98942af0c7  docker.io/library/mongo:4              mongod      About a minute ago  Up About a minute                        mongo
-6416c812be81  docker.io/sdelements/lets-chat:latest  npm start   41 seconds ago      Up 39 seconds      0.0.0.0:80->8080/tcp  letschat
+CONTAINER ID  IMAGE                                  COMMAND     CREATED             STATUS             PORTS                   NAMES
+2a98942af0c7  docker.io/library/mongo:4              mongod      About a minute ago  Up About a minute                          mongo
+6416c812be81  docker.io/sdelements/lets-chat:latest  npm start   41 seconds ago      Up 39 seconds      0.0.0.0:8080->8080/tcp  letschat
 
 ```
 
