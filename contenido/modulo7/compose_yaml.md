@@ -48,7 +48,7 @@ Como hemos comentado con el parámetro `services` se define la lista de contened
 * `depend on`: Indica la dependencia entre contenedores. No se va a iniciar un contenedor hasta que otro este funcionando. [Más información](https://github.com/compose-spec/compose-spec/blob/master/05-services.md#depends_on).
 * Puedes encontrar todos los parámetros que podemos definir en la [documentación oficial](https://github.com/compose-spec/compose-spec/blob/master/spec.md).
 
-## Introducción a las redes con Docker Compose
+## Introducción a las redes con Compose
 
 Cuando creamos un escenario con `podman-compose` se crea una **nueva red bridge definida por el usuario** donde se conectan los contenedores, por lo tanto, obtenemos resolución por DNS que resuelve tanto el nombre del contenedor (por ejemplo, `mongo`) como el nombre del servicio (por ejemplo, `db`).
 
