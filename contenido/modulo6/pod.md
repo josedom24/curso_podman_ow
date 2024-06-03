@@ -30,7 +30,7 @@ spec:
       runAsNonRoot: true
 ```
 
-A continuación, creamos una plantilla de unidad de Systemd, en el directorio `$HOME/.config/containers/systemd`, llamada `web.kube`:
+A continuación, creamos una plantilla de unidad de Systemd, en el directorio `$HOME/.config/containers/systemd`, llamada `web.kube` y el fichero `opt/web-pòd.yaml` en el directorio `/opt` del sistema:
 
 ```
 [Unit]
