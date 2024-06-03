@@ -103,10 +103,10 @@ Podemos ver las redes que se han creado:
 
 ```
 $ podman network ls
-NETWORK ID    NAME                        DRIVER
-2f259bab93aa  podman                      bridge
-accbf91a04cc  redes_red_externa           bridge
-ba76cb63cc8e  redes_red_interna           bridge
+NETWORK ID    NAME                                       DRIVER
+2f259bab93aa  podman                                     bridge
+accbf91a04cc  almacenamiento_redes_red_externa           bridge
+ba76cb63cc8e  almacenamiento_redes_red_interna           bridge
 ```
 
 Podemos ver que el nombre de la red está formado por el nombre del proyecto y el nombre que hemos indicado en la definición.
