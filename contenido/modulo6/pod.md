@@ -46,15 +46,15 @@ WantedBy=multi-user.target default.target
 Podemos iniciar la unidad de Systemd y comprobar los recursos creados:
 
 ```
-# systemctl --user daemon-reload
+$ systemctl --user daemon-reload
 
-# systemctl --user start web
+$ systemctl --user start web
 
-# podman pod ps
+$ podman pod ps
 POD ID        NAME           STATUS      CREATED        INFRA ID      # OF CONTAINERS
 26d86d7df4ab  webserver-pod  Running     8 seconds ago  4511359a3f29  2
 
-# podman ps --pod
+$ podman ps --pod
 CONTAINER ID  IMAGE                                    COMMAND               CREATED         STATUS         PORTS                 NAMES                    POD ID        PODNAME
 6dacfe911f42  quay.io/fedora/httpd-24:2.4              /usr/bin/run-http...  17 seconds ago  Up 15 seconds  0.0.0.0:8090->8080/tcp  webserver-pod-webserver  1f94f1bf3daf  webserver-pod
 ```
