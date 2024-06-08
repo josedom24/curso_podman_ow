@@ -20,8 +20,8 @@ Dependiendo del modo de funcionamiento:
 Para ver este ejemplo, vamos a descargar una imagen para crear un contenedor rootful y veremos la estructura de los directorios donde se almacena. En primer lugar descargamos una imagen:
 
 ```
-$ sudo podman pull quay.io/centos7/httpd-24-centos7:latest
-Trying to pull quay.io/centos7/httpd-24-centos7:latest...
+$ sudo podman pull quay.io/centos7/httpd-24-centos7:centos7
+Trying to pull quay.io/centos7/httpd-24-centos7:centos7...
 Getting image source signatures
 Copying blob 8f001c8d7e00 done   | 
 Copying blob c61d16cfe03e done   | 

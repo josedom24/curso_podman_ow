@@ -43,7 +43,7 @@ $ cat overlay-containers/containers.json | jq
     ],
     "image": "d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a",
     "layer": "67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000",
-    "metadata": "{\"image-name\":\"quay.io/centos7/httpd-24-centos7:latest\",\"image-id\":\"d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a\",\"name\":\"contenedor1\",\"created-at\":1711141194}",
+    "metadata": "{\"image-name\":\"quay.io/centos7/httpd-24-centos7:centos7\",\"image-id\":\"d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a\",\"name\":\"contenedor1\",\"created-at\":1711141194}",
     "created": "2024-03-22T20:59:54.545266929Z",
     "flags": {
       "MountLabel": "system_u:object_r:container_file_t:s0:c14,c100",

@@ -56,14 +56,14 @@ Vemos que las dos primeras capas coinciden con las de la imagen anterior y por t
 Veamos con más detalle las capas que forman cada una de las imágenes, cuáles se comparten entre las dos imágenes y qué espacio ocupan en el disco duro:
 
 ```
-$ sudo podman image tree quay.io/centos7/httpd-24-centos7:latest
+$ sudo podman image tree quay.io/centos7/httpd-24-centos7:centos7
 Image ID: d7af31210b28
-Tags:     [quay.io/centos7/httpd-24-centos7:latest]
+Tags:     [quay.io/centos7/httpd-24-centos7:centos7]
 Size:     356.5MB
 Image Layers
 ├── ID: c61d16cfe03e Size: 211.8MB
 ├── ID: 06c7e4737942 Size:  34.3MB
-└── ID: 8f001c8d7e00 Size: 110.3MB Top Layer of: [quay.io/centos7/httpd-24-centos7:latest]
+└── ID: 8f001c8d7e00 Size: 110.3MB Top Layer of: [quay.io/centos7/httpd-24-centos7:centos7]
 
 $ sudo podman image tree quay.io/centos7/httpd-24-centos7:20230712 
 Image ID: 6211883c1ed7
