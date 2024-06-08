@@ -14,7 +14,7 @@ Cuando creamos un contenedor a partir de una imagen ocurren la siguientes cosas:
 Vamos a crear un contenedor, y veremos que se crea la **capa del contenedor** de lectura y escritura, que será la capa superior en el sistema de archivo de unión. Esta nueva capa contendrá sólo las diferencias entre las inferiores. Para ello, ejecutamos:
  
 ```
-$ sudo podman run -d --name contenedor1 quay.io/centos7/httpd-24-centos7
+$ sudo podman run -d --name contenedor1 quay.io/centos7/httpd-24-centos7:centos7
 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775
 ```
 
@@ -116,7 +116,7 @@ En nuestro caso la imagen tiene un tamaño de 356 MB. Hemos creado un contenedor
 ```
 $ sudo podman ps -s
 CONTAINER ID  IMAGE                                    COMMAND               CREATED     STATUS      PORTS       NAMES        SIZE
-579635db3532  quay.io/centos7/httpd-24-centos7:latest  /usr/bin/run-http...  ... ago     Up ...                 contenedor1  38.7kB (virtual 357MB)
+579635db3532  quay.io/centos7/httpd-24-centos7:centos7  /usr/bin/run-http...  ... ago     Up ...                 contenedor1  38.7kB (virtual 357MB)
 ```
 
 Vemos que el tamaño real del contenedor es 38.7 kB, aunque el sistema de archivos del contenedor (tamaño virtual) es de 357 MB. Este tamaño es el de la imagen, cuyo sistema de ficheros se comparte con el contenedor.
@@ -126,7 +126,7 @@ Si creamos un nuevo fichero en el contenedor, aumenta el tamaño del contenedor,
 Por todo lo que hemos explicado, ahora se entiende  que **no podemos eliminar una imagen cuando tenemos contenedores creados a a partir de ella**.
 
 ```
-$ sudo podman rmi quay.io/centos7/httpd-24-centos7:latest
+$ sudo podman rmi quay.io/centos7/httpd-24-centos7:centos7
 Error: image used by 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775: image is in use by a container: consider listing external containers and force-removing image
 ```
 
