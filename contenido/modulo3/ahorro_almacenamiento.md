@@ -53,53 +53,30 @@ Vemos que las dos primeras capas coinciden con las de la imagen anterior y por t
 
 ## Calcular el espacio que ocupan las imágenes
 
-Tenemos una imagen llamada `quay.io/josedom24/servidorweb:latest` que está construida a partir de la imagen `docker.io/debian:stable-slim`. Por lo tanto la capa que forma está última imagen es compartida con la primera imagen.
-
-Vamos a descargas las dos imágenes y comprobamos cuando ocupan realmente en disco:
+Veamos con más detalle las capas que forman cada una de las imágenes, cuáles se comparten entre las dos imágenes y qué espacio ocupan en el disco duro:
 
 ```
-$ podman pull docker.io/debian:stable-slim
-Trying to pull docker.io/library/debian:stable-slim...
-Getting image source signatures
-Copying blob 8bd61dcf2ae5 done   | 
-Copying config c3c8e6f4e5 done   | 
-Writing manifest to image destination
-c3c8e6f4e51e5b4fb4f159dc88b8251f3c83f932f7700cc048d08c0e6820b279
+$ sudo podman image tree quay.io/centos7/httpd-24-centos7:centos7
+Image ID: d7af31210b28
+Tags:     [quay.io/centos7/httpd-24-centos7:centos7]
+Size:     356.5MB
+Image Layers
+├── ID: c61d16cfe03e Size: 211.8MB
+├── ID: 06c7e4737942 Size:  34.3MB
+└── ID: 8f001c8d7e00 Size: 110.3MB Top Layer of: [quay.io/centos7/httpd-24-centos7:centos7]
 
-$ podman pull quay.io/josedom24/servidorweb:latest
-Trying to pull quay.io/josedom24/servidorweb:latest...
-Getting image source signatures
-Copying blob ac25718b410c skipped: already exists  
-Copying blob 82c502a57ff6 done   | 
-Copying config 20dc5273de done   | 
-Writing manifest to image destination
-20dc5273de46e942048e158d148806432ae515d63c6e9dcbcb66a6a72dd8b347
+$ sudo podman image tree quay.io/centos7/httpd-24-centos7:20230712 
+Image ID: 6211883c1ed7
+Tags:     [quay.io/centos7/httpd-24-centos7:20230712]
+Size:     356.5MB
+Image Layers
+├── ID: c61d16cfe03e Size: 211.8MB
+├── ID: 06c7e4737942 Size:  34.3MB
+└── ID: cad88c5d6507 Size: 110.3MB Top Layer of: [quay.io/centos7/httpd-24-centos7:20230712]
 ```
 
-Como hemos comentado la capa que forma parte de la imagen `docker.io/debian:stable-slim`, es la misma que una de las tres que forman la imagen `quay.io/josedom24/servidorweb:latest`.
+Comprobamos que cada una de las imágenes ocupan 356.5MB, por lo tanto podríamos pensar que el total de espacio ocupado sería 356.5MB + 356.5MB. Sin embargo, vemos que las dos primeras capas están compartidas por ambas imágenes. Por lo tanto, al descargar la segunda imagen esas dos capas no se han descargado en disco.
 
-Si visualizamos las imágenes:
+Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 356.5MB de la primera imagen + 110.3MB de la tercera capa de la segunda imagen que es única. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
 
-```
-$ podman images 
-REPOSITORY                     TAG          IMAGE ID      CREATED         SIZE
-quay.io/josedom24/servidorweb  latest       20dc5273de46  52 minutes ago  212 MB
-docker.io/library/debian       stable-slim  c3c8e6f4e51e  30 hours ago    77.8 MB
-```
-
-Podemos pensar que se ha ocupado en el disco duro 212MB + 77.8MB, pero en realidad el tamaño de la capa que se comparte, sólo se guarda una vez en el disco duro. Podemos comprobarlo ejecutando el siguiente comando:
-
-```
-$ podman system df -v
-Images space usage:
-
-REPOSITORY                     TAG          IMAGE ID      CREATED     SIZE        SHARED SIZE  UNIQUE SIZE  CONTAINERS
-docker.io/library/debian       stable-slim  c3c8e6f4e51e  30 hours    77.84MB     77.84MB      0B           0
-quay.io/josedom24/servidorweb  latest       20dc5273de46  55 minutes  212MB       77.84MB      134.1MB      0
-
-...
-```
-Vemos claramente que los 77.8 Mb que ocupa la capa compartida entre las dos imágenes aparece como tamaño compartido (`SHARED SIZED`).
-
-Por lo tanto, ¿cuánto han ocupado en total estas dos imágenes en el disco duro? Pues sería 77.8MB + 124.1MB. El mecanismo de compartir capas entre imágenes hace que se ocupe el menor espacio posible en disco duro, el almacenamiento es muy eficiente.
 
