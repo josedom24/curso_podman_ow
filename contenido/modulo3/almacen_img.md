@@ -11,16 +11,17 @@ Dependiendo del modo de funcionamiento:
 * **Modo rootful**. Fichero de configuración: `/usr/share/containers/storage.conf`.
   * `graphDriverName: overlay`
   * `graphRoot: /var/lib/containers/storage`
-* **Modo rootless**. Fichero de configuración: `$HOME/.config/containers/storage.conf`
+* **Modo rootless**. Fichero de configuración: `#HOME/.config/containers/storage.conf`
   * `graphDriverName: overlay`
   * `graphRoot: /home/usuario/.local/share/containers/storage/`
 
 ## Ejemplo de almacenamiento imagen
 
-Para ver este ejemplo, vamos a descargar una imagen para crear un contenedor rootful y veremos la estructura de los directorios donde se almacena. En primer lugar descargamos una imagen:
+Para ver este ejemplo, vamos a descargar una imagen para crear un contenedor rootful y veremos la estructura de los directorios donde se almacena. Vamos a trabajar con el usuario `root`. En primer lugar descargamos una imagen:
 
 ```
-$ sudo podman pull quay.io/centos7/httpd-24-centos7:centos7
+$ sudo su -
+# podman pull quay.io/centos7/httpd-24-centos7:centos7
 Trying to pull quay.io/centos7/httpd-24-centos7:centos7...
 Getting image source signatures
 Copying blob 8f001c8d7e00 done   | 
@@ -36,8 +37,8 @@ Como observamos esta imagen está formado por 3 capas (`Copying blob...`) y su c
 Veamos la estructura de directorio que tenemos en el directorio de almacenamiento, como `root` ejecutamos las siguientes instrucciones:
 
 ```
-$ cd /var/lib/containers/storage/
-$ ls
+# cd /var/lib/containers/storage/
+# ls
 db.sql  defaultNetworkBackend  libpod  overlay  overlay-containers  overlay-images  overlay-layers  secrets  storage.lock  tmp  userns.lock  volumes
 ```
 Los directorios que nos interesan son los siguientes:
@@ -51,8 +52,8 @@ Los directorios que nos interesan son los siguientes:
 Veamos el directorio `overlay-images`:
 
 ```
-$ cd overlay-images/
-$ ls
+# cd overlay-images/
+# ls
 d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a  images.json  images.lock
 ```
 
@@ -66,7 +67,7 @@ Los ficheros y directorios que nos encontramos son los siguientes:
 Podemos ver las capas que forman parte de la imagen que hemos descargado, ejecutando:
 
 ```
-$ sudo cat overlay-images/d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/manifest | jq
+# cat overlay-images/d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/manifest | jq
 {
   "schemaVersion": 2,
   "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
@@ -107,8 +108,8 @@ Podemos verlo de manera gráfica:
 Veamos el directorio `overlay-layers`:
 
 ```
-$ cd overlay-layers/
-$ ls
+# cd overlay-layers/
+# ls
 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c.tar-split.gz  layers.json
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee.tar-split.gz  layers.lock
 8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0.tar-split.gz
@@ -117,7 +118,7 @@ $ ls
 Como hemos indicado, contiene los archivos comprimidos de todas las capas de las imágenes que tenemos descargadas. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas:
 
 ```
-$ sudo cat overlay-layers/layers.json | jq
+# cat overlay-layers/layers.json | jq
 [
     ...
     "id": "141d44a9baf68743b5ce89308008653d57296b999a10350ca42639b33cc7e8b5",
@@ -142,8 +143,8 @@ De manera gráfica:
 Las capas que hemos visto anteriormente están descomprimidas en el directorio `overlay`:
 
 ```
-$ cd overlay
-$ ls
+# cd overlay
+# ls
 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c  8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0
 53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee  l
 ```
@@ -151,8 +152,8 @@ $ ls
 En primer lugar tenemos un directorio por cada una de las capas descargadas. La estructura de estos directorios depende del orden de la capa, si vemos el contenido de una capa que no es la primera, tenemos la siguiente estructura:
 
 ```
-$ cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
-$ ls
+# cd 007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/
+# ls
 diff  link  lower  merged  work
 ```
 
@@ -161,11 +162,11 @@ Veamos que guardan cada uno de estos directorios y ficheros:
 * `link`: Este archivo contiene un **identificador de capa abreviado**. Cada capa se identificará, además de por su hash y de su identificador con un nuevo identificados abreviado que corresponde a una cadena de texto más pequeño que el hash y el identificador. Posteriormente explicaremos porqué vamos a usar el identificador abreviado.
 * `lower`: Este fichero contiene la lista de los identificados abreviados de las capas inferiores en orden. Es decir el fichero `lower` de la capa 3 contiene los identificados abreviados de la capa 2 y la capa 1. El de la capa 2 tendrá el identificador abreviador de la capa 1. Finalmente, la primera capa, no tendrá este fichero (ya que no tiene ninguna capa inferior) y si tendrá un directorio vacío llamado `empty`.
     ```
-    $ sudo cat overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/lower
+    # cat overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/lower
     l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:l/LCIWXBIPSMIGB2RTQV36QKTCRH
-    $ sudo cat overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/lower
+    # cat overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/lower
     l/LCIWXBIPSMIGB2RTQV36QKTCRH
-    $ ls overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/
+    # ls overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/
     diff  empty  link  merged  work
 
 * `diff`: Este directorio representa la capa superior de la superposición, y se utiliza para almacenar los cambios en la capa. Estos directorios serán los que unamos para crear un sistema de archivos de unión al crear un contenedor (pero ya veremos cómo se hace).
@@ -175,7 +176,7 @@ Veamos que guardan cada uno de estos directorios y ficheros:
 En el directorio `overlay` también encontramos un directorio `l`. En este directorio hay enlaces simbólicos, cuyos nombres son los identificadores de capa abreviados, que apuntan al directorio `diff` para cada capa. 
 
 ```
-$ ls overlay/l
+# ls overlay/l
 total 12
 drwxr-xr-x. 1 root root 156 Mar 21 07:45 .
 drwx------. 1 root root 422 Mar 21 07:45 ..

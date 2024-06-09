@@ -5,7 +5,7 @@ La estructura de almacenamiento que hemos explicado favorece el ahorro de espaci
 Si a continuación bajamos otra versión de la misma imagen:
 
 ```
-$ sudo podman pull quay.io/centos7/httpd-24-centos7:20230712
+# podman pull quay.io/centos7/httpd-24-centos7:20230712
 Trying to pull quay.io/centos7/httpd-24-centos7:20230712...
 Getting image source signatures
 Copying blob c61d16cfe03e skipped: already exists  
@@ -19,7 +19,7 @@ Writing manifest to image destination
 Vemos cómo dos de las tres capas no se han descargados, porque son las mismas que teníamos ya descargadas. Si vemos el fichero de manifiesto donde se indican las capas de esta nueva imagen:
 
 ```
-$ sudo cat overlay-images/6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b/manifest | jq
+# cat overlay-images/6211883c1ed7ec96a12bbc9b214e70e5af406361db435905e85ba88b1483645b/manifest | jq
 {
   "schemaVersion": 2,
   "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
@@ -56,7 +56,7 @@ Vemos que las dos primeras capas coinciden con las de la imagen anterior y por t
 Veamos con más detalle las capas que forman cada una de las imágenes, cuáles se comparten entre las dos imágenes y qué espacio ocupan en el disco duro:
 
 ```
-$ sudo podman image tree quay.io/centos7/httpd-24-centos7:centos7
+# podman image tree quay.io/centos7/httpd-24-centos7:centos7
 Image ID: d7af31210b28
 Tags:     [quay.io/centos7/httpd-24-centos7:centos7]
 Size:     356.5MB
@@ -65,7 +65,7 @@ Image Layers
 ├── ID: 06c7e4737942 Size:  34.3MB
 └── ID: 8f001c8d7e00 Size: 110.3MB Top Layer of: [quay.io/centos7/httpd-24-centos7:centos7]
 
-$ sudo podman image tree quay.io/centos7/httpd-24-centos7:20230712 
+# podman image tree quay.io/centos7/httpd-24-centos7:20230712 
 Image ID: 6211883c1ed7
 Tags:     [quay.io/centos7/httpd-24-centos7:20230712]
 Size:     356.5MB
