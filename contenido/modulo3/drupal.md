@@ -12,7 +12,7 @@ En primer lugar vamos a instalar la última versión:
 podman run -d -p 8080:80 --name drupal1 docker.io/drupal
 ```
 
-Si accedemos a la dirección IP de nuestro ordenador, al puerto 8080/tcp, podemos observar que hemos instalado la versión 10.2.4:
+Si accedemos a la dirección IP de nuestro ordenador, al puerto 8080/tcp, podemos observar que hemos instalado la versión:
 
 ![drupal](img/drupal1.png)
 
