@@ -67,7 +67,7 @@ Los ficheros y directorios que nos encontramos son los siguientes:
 Podemos ver las capas que forman parte de la imagen que hemos descargado, ejecutando:
 
 ```
-# cat overlay-images/d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/manifest | jq
+# cat d7af31210b288164c319bae740ca1281528390a3c5cee657e95f243670b49e6a/manifest | jq
 {
   "schemaVersion": 2,
   "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
@@ -118,7 +118,7 @@ Veamos el directorio `overlay-layers`:
 Como hemos indicado, contiene los archivos comprimidos de todas las capas de las imágenes que tenemos descargadas. Además el fichero `layers.json` es un índice de todas las capas que tenemos descargadas:
 
 ```
-# cat overlay-layers/layers.json | jq
+# cat layers.json | jq
 [
     ...
     "id": "141d44a9baf68743b5ce89308008653d57296b999a10350ca42639b33cc7e8b5",
