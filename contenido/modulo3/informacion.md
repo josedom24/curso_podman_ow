@@ -92,6 +92,8 @@ Podman nos permite montar el sistema de archivos raíz de una imagen en modo só
 Por ejemplo, podemos montar una imagen descargada por el usuario `root`:
 
 ```
+$ sudo podman pull docker.io/library/nginx
+
 $ sudo podman image mount docker.io/library/nginx
 /var/lib/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
 
@@ -102,7 +104,7 @@ $ sudo podman image unmount docker.io/library/nginx
 Si queremos montar una imagen descargada por un usuario sin privilegios:
 
 ```
- podman image mount docker.io/library/nginx
+$ podman image mount docker.io/library/nginx
 Error: cannot run command "podman image mount" in rootless mode, must execute `podman unshare` first
 ```
 
@@ -111,8 +113,8 @@ La razón de este error es que el modo rootless no permite montar imágenes. Nec
 ```
 $ podman unshare
 # podman image mount docker.io/library/nginx
-/home/fedora/.local/share/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
-# ls /home/fedora/.local/share/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
+/home/usuario/.local/share/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
+# ls /home/usuario/.local/share/containers/storage/overlay/dd6407eb3a3a9b1d1a18c5d41244b1f989d5cd69a92cc39cd5bab1149d5d8f31/merged
 bin  boot  dev  docker-entrypoint.d  docker-entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 # podman image unmount docker.io/library/nginx
 92b11f67642b62bbb98e7e49169c346b30e20cd3c1c034d31087e46924b9312e
