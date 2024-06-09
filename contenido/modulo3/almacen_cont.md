@@ -27,14 +27,14 @@ Y vamos a crear un fichero en el nuevo contenedor:
 En el directorio de almacenamiento (`/var/lib/containers/storage/` en los contenedores rootful) tenemos un directorio llamado `overlay-containers` donde encontramos la información de almacenamiento de los contenedores que hemos creado:
 
 ```
-$ ls overlay-containers
+# ls overlay-containers
 579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775  containers.json  containers.lock
 ```
 
 El directorio que tiene como nombre el identificador del contenedor que hemos creado tiene información del contenedor, y en el fichero `containers.json` tenemos un índice de los contenedores que hemos creado:
 
 ```
-$ cat overlay-containers/containers.json | jq
+# cat overlay-containers/containers.json | jq
 [
   {
     "id": "579635db3532e954d07927bdc32bd435bd082f03a0696ded072f04d762a18775",
@@ -59,7 +59,7 @@ En el campo `layer` tenemos el identificador de la **capa del contenedor**, dond
 Por lo tanto podemos ver los ficheros que hemos escrito en esta capa:
 
 ```
-$ ls overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff/tmp
+# ls overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff/tmp
 tmpfile.txt
 ```
 
@@ -79,7 +79,7 @@ Este directorio contiene varios archivos que se montan directamente en el conten
 Cuando se crea un nuevo contenedor se crea un nuevos sistema de archivo de unión que es el que utiliza el contenedor. Podemos verlo ejecutando la siguiente instrucción:
 
 ```
-$ mount | grep overlay
+# mount | grep overlay
 ...
 overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged type overlay (rw,nodev,relatime,context="system_u:object_r:container_file_t:s0:c14,c100",lowerdir=/var/lib/containers/storage/overlay/l/ZXSJGMR5T7VDVVGRWHG3E2I6DZ:/var/lib/containers/storage/overlay/l/IVBKXQVXCMS3S4MYZYTY4NQ3W5:/var/lib/containers/storage/overlay/l/LCIWXBIPSMIGB2RTQV36QKTCRH,upperdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff,workdir=/var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/work,redirect_dir=on,uuid=on,metacopy=on)
 ...
@@ -87,7 +87,7 @@ overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7
 
 * El directorio donde se han unido todo los directorios es el directorio `merged` de la capa del contenedor:
   ```
-  $  ls /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
+  #  ls /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
   anaconda-post.log  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
   ```
 * Las capas inferiores indicadas con el parámetro `lowedir` referencian a los enlaces simbólicos que tenemos guardados el directorio `overlay/l`. Estas capas serán de sólo lectura.
@@ -96,7 +96,7 @@ overlay on /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7
 También podemos ver los directorios que se usan para construir el sistema de archivo de unión examinando la configuración del contenedor:
 
 ```
-$ podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  contenedor1
+# podman inspect --format='{{range $key,$dir := .GraphDriver.Data}}{{$key}} = {{$dir}}\n{{end}}'  contenedor1
 LowerDir = /var/lib/containers/storage/overlay/8853b21ed9ab4ab7fd6c118f5b1c11e974caa7e133a99981573434d3b6018cf0/diff:/var/lib/containers/storage/overlay/007d2037805f6ca87f969f06c81286a47d98664e3f62e5fd393ec3da08a55b3c/diff:/var/lib/containers/storage/overlay/53498d66ad83a29fcd7c7bcf4abbcc0def4fc912772aa8a4483b51e232309aee/diff
 MergedDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/merged
 UpperDir = /var/lib/containers/storage/overlay/67b0c66296f7957a0d82c8e48442ee0d7e3b3386dadde46cd8dadf3c90d40000/diff
