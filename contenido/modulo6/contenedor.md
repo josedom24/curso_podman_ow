@@ -41,7 +41,7 @@ Como vemos el formato de la plantilla es similar al formato de una unidad de Sys
     * `PodmanArgs`: nos permite añadir parámetros extras a la comando `podman run`.
     * Podemos indicar más parámetros que puedes consultar en la [documentación](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html).
 
-Una vez que tenemos definida la plantilla y siempre que la modifiquemos tendremos que reiniciar Systemd:
+Una vez que tenemos definida la plantilla, es decir, la hemos copiado al directorio `/etc/containers/systemd` y siempre que la modifiquemos, tendremos que reiniciar Systemd:
 
 ```
 # systemctl daemon-reload
