@@ -50,14 +50,14 @@ $ podman pod create --name nginx_php -v ${PWD}/web:/app:z -p 8090:8080
 Añadimos los dos contenedores, teniendo en cuenta montar el fichero de configuración de nginx cómo se explica en la documentación de la imagen:
 
 ```
-podman run --pod nginx_php --name nginx -d -v ${PWD}/web/server_block.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf:Z docker.io/bitnami/nginx
-podman run --pod nginx_php --name fpm_php -d docker.io/bitnami/php-fpm
+$ podman run --pod nginx_php --name nginx -d -v ${PWD}/web/server_block.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf:Z docker.io/bitnami/nginx
+$ podman run --pod nginx_php --name fpm_php -d docker.io/bitnami/php-fpm
 ```
 
 Comprobamos el Pod y los contenedores que hemos creado:
 
 ```
-podman pod ps
+$ podman pod ps
 POD ID        NAME        STATUS      CREATED        INFRA ID      # OF CONTAINERS
 56dafee5d502  nginx_php   Running     5 minutes ago  d43308bffcf8  3
 
