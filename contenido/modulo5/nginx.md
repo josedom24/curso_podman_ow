@@ -43,7 +43,8 @@ Hay que tener en cuenta:
 A continuación, creamos nuestro Pod, que realizará el mapeo de puerto y declarará el almacenamiento compartido para que los dos contenedores tengan acceso al código de la aplicación:
 
 ```
-podman pod create --name nginx_php -v ${PWD}/web:/app:z -p 8090:8080
+$ cd ngingx
+$ podman pod create --name nginx_php -v ${PWD}/web:/app:z -p 8090:8080
 ```
 
 Añadimos los dos contenedores, teniendo en cuenta montar el fichero de configuración de nginx cómo se explica en la documentación de la imagen:
