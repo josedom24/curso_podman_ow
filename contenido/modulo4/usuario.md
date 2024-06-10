@@ -67,7 +67,7 @@ $ sudo podman network create --subnet 192.168.0.0/24 --gateway 192.168.0.100 red
 Podemos comprobar que el direccionamiento lo hemos configurado:
 
 ```
-$ sudo podman network red2
+$ sudo podman network inspect red2
 ...
 "subnets": [
                {
