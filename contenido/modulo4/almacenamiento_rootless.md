@@ -164,7 +164,7 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
      $ podman unshare chown -R 123:123 origen
      ```
 
-     Comprobamos que en fuera del contenedor el UID que se asigna es el correspondiente al mapeo de UID realizado:
+     Comprobamos que fuera del contenedor el UID que se asigna es el correspondiente al mapeo de UID realizado:
 
      ```
      $ ls -ld origen
