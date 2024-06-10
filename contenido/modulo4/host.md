@@ -18,7 +18,7 @@ $ sudo podman run -d --network host --name my_nginx docker.io/nginx
 Al listar el contenedor, comprobamos que efectivamente no hemos creado ninguna redirección de puertos:
 
 ```
- sudo podman ps
+$ sudo podman ps
 CONTAINER ID  IMAGE                           COMMAND               CREATED        STATUS        PORTS       NAMES
 4ebf4a24b7ab  docker.io/library/nginx:latest  nginx -g daemon o...  6 seconds ago  Up 5 seconds              my_nginx
 ```
