@@ -106,20 +106,28 @@ $ podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{en
 
 ## Conectividad entre los contenedores conectados a la red por defecto
 
-Evidentemente los contenedores conectados a la red por defecto podrán comunicarse usando su dirección IP, sin embargo esta red no ofrece ningún mecanismo de DNS para que podamos conectarnos a otro contenedor usando su nombre. Veamos un ejemplo con los contenedores creados en este apartado:
+Evidentemente los contenedores conectados a la red por defecto podrán comunicarse usando su dirección IP, sin embargo esta red no ofrece ningún mecanismo de DNS para que podamos conectarnos a otro contenedor usando su nombre. Veamos un ejemplo:
 
-Desde el `contenedor1` intentamos conectamos al segundo contenedor:
+Iniciamos el `contenedor1` y obtenemos su dirección IP:
 
 ```
 $ sudo podman start contenedor1
-$ sudo podman attach contenedor1
-/ # ping 10.88.0.56
-PING 10.88.0.56 (10.88.0.56): 56 data bytes
-64 bytes from 10.88.0.56: seq=0 ttl=42 time=0.587 ms
+contenedor1
+$ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor1
+10.88.0.10
+```
+
+Creamos el `contenedor3` conectado a la red por defecto e intentamos conectarnos al `contenedor1` mediante su dirección IP y su nombre:
+
+
+$ sudo podman run -it -p 8082:80 --name contenedor3 alpine ash
+/ # ping 10.88.0.10
+PING 10.88.0.10 (10.88.0.10): 56 data bytes
+64 bytes from 10.88.0.10: seq=0 ttl=42 time=0.156 ms
 ...
 
-/ # ping contenedor2
-ping: bad address 'contenedor2'
+/ # ping contenedor1
+ping: bad address 'contenedor1'
 ```
 
 Como podemos observar tenemos conectividad desde el primer contenedor al segundo, pero sólo usando la dirección IP, no tengo un DNS que me permita conectarme al segundo contenedor utilizando su nombre.
