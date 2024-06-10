@@ -18,7 +18,7 @@ Error: rootlessport cannot expose privileged port 80, you can add 'net.ipv4.ip_u
 Podríamos cambiar ese comportamiento cambiando con `sysctl` el valor de `net.ipv4.ip_unprivileged_port_start` que por defecto tiene el valor de 1024.
 
 ```
-sysctl net.ipv4.ip_unprivileged_port_start
+$ sysctl net.ipv4.ip_unprivileged_port_start
 net.ipv4.ip_unprivileged_port_start = 1024
 ```
 
