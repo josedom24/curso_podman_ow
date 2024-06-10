@@ -152,7 +152,7 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
      ```
      $ podman run -dit -u 123:123 -v ./origen:/destino:Z,U --name alpine4 alpine
 
-     $ podman exec -it alpine2 ls -ld destino
+     $ podman exec -it alpine4 ls -ld destino
      drwxr-xr-x    1 ntp      ntp             16 Apr  2 14:28 destino
      
      $ podman exec alpine4 touch /destino/fichero2
@@ -164,7 +164,7 @@ Para que el usuario con UID 123 pueda acceder al directorio tenemos que asegurar
      $ podman unshare chown -R 123:123 origen
      ```
 
-     Comprobamos que en fuera del contenedor el UID que se asigna es el correspondiente al mapeo de UID realizado:
+     Comprobamos que fuera del contenedor el UID que se asigna es el correspondiente al mapeo de UID realizado:
 
      ```
      $ ls -ld origen
