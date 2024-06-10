@@ -73,7 +73,7 @@ Eliminamos el contenedor y volvemos a crear otro con el directorio montado, ahor
 ```
 $ sudo podman rm -f my-apache-app 
 
-$ sudo podman run -d --name my-apache-app --mount type=bind,src=/home/fedora/web,dst=/usr/local/apache2/htdocs,relabel=private -p 8080:80 httpd:2.4
+$ sudo podman run -d --name my-apache-app --mount type=bind,src=/home/usuario/web,dst=/usr/local/apache2/htdocs,relabel=private -p 8080:80 httpd:2.4
 
 
 $ curl http://localhost:8080

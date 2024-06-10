@@ -51,7 +51,7 @@ Al ejecutar `debootstrap` indicamos la distribución (`bookworm` si queremos Deb
 En Fedora, podríamos ejecutar la siguiente instrucción:
 
 ```
-# dnf install --installroot /home/fedora/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged \
+# dnf install --installroot /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged \
   --releasever 39 bash coreutils \
   --setopt install_weak_deps=false -y
 ```
