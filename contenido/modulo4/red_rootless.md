@@ -92,7 +92,7 @@ Como hemos visto anteriormente podemos conectar nuestros contenedores rootless a
 ```
 $ podman run -d -p 8080:80 --network=podman --name contenedor1 quay.io/libpod/banner
 
-$ $ podman exec -it contenedor1 ip a
+$ podman exec -it contenedor1 ip a
 ...
 2: eth0@if5: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
     link/ether ee:93:61:6b:47:ca brd ff:ff:ff:ff:ff:ff
