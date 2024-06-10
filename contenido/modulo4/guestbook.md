@@ -18,7 +18,7 @@ Para ejecutar los contenedores:
 ```
 $ mkdir redis
 $ podman run -d --name contenedor_redis --network red_guestbook -v ./redis:/data:Z docker.io/redis redis-server --appendonly yes
-$ podman run -d -p 80:5000 -e REDIS_SERVER=contenedor_redis --name guestbook --network red_guestbook docker.io/iesgn/guestbook
+$ podman run -d -p 8080:5000 -e REDIS_SERVER=contenedor_redis --name guestbook --network red_guestbook docker.io/iesgn/guestbook
 ```
 
 Algunas observaciones:
@@ -27,7 +27,5 @@ Algunas observaciones:
 * Al nombrar el contenedor de la base de datos con `contenedor-redis` se crea una entrada en el DNS que resuelve ese nombre con la dirección IP del contenedor. Como hemos indicado, con la variable `REDIS_SERVER` indicamos a la aplicación Guestbook que use ese nombre para acceder.
 * Para conseguir la persistencia de datos en el contenedor de la base de datos redis, montamos un bind mount (también podríamos haber usado un volumen) en el directorio `/data` del contenedor, con la opción `:Z` para configurar de manera adecuada SELinux. Además, ejecutamos el comando `redis-server --appendonly yes` para que se guarden los datos de la base de datos en ese directorio.
 
-Podemos acceder a la aplicación para comprobar su funcionamiento:
-
-![ ](img/guestbook.png)
+Podemos acceder a la aplicación para comprobar su funcionamiento, accediendo a la dirección IP del host y al puerto que hemos mapeado.
 

@@ -17,7 +17,7 @@ Para crear los contenedores, ejecutamos:
 
 ```
 $ podman run -d --name backend --network red_temperaturas docker.io/iesgn/temperaturas_backend
-$ podman run -d -p 80:3000 -e TEMP_SERVER=backend:5000 --name frontend --network red_temperaturas docker.io/iesgn/temperaturas_frontend
+$ podman run -d -p 8081:3000 -e TEMP_SERVER=backend:5000 --name frontend --network red_temperaturas docker.io/iesgn/temperaturas_frontend
 ```
 
 Algunas observaciones:
@@ -26,5 +26,5 @@ Algunas observaciones:
 * No es necesario mapear el puerto de `backend`, ya que no vamos a acceder desde el exterior. Sin embargo el microservicio `frontend` va a poder acceder a `backend` al puerto 5000/tcp porque están conectado a la misma red.
 * Como hemos indicado con la variable de entorno `TEMP_SERVER` configuramos el `frontend` para que conecte con el `backend`. Su valor es el nombre del contenedor `backend`.
 
-![temperaturas](img/temperaturas.png)
+Podemos acceder a la aplicación para comprobar su funcionamiento, accediendo a la dirección IP del host y al puerto que hemos mapeado.
 
