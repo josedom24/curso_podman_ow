@@ -27,7 +27,7 @@ COPY schema.sql /docker-entrypoint-initdb.d/
 Para crear la nueva imagen ejecutamos:
 
 ```
-$ sudo podman build -t josedom24/mibd:latest .
+$ podman build -t josedom24/mibd:latest .
 ```
 
 Cuando creemos un contenedor a partir de esta imagen se inicializará la base de datos con las instrucción del fichero `schema.sql` que crea una tabla `users` e introduce algunos registros en la misma.
@@ -100,13 +100,13 @@ CMD apache2ctl -D FOREGROUND
 Para crear la imagen ejecutamos:
 
 ```
-$ sudo podman build -t josedom24/aplicacion_php .
+$ podman build -t josedom24/aplicacion_php .
 ```     
 
 Comprobamos que la imagen se ha creado:
 
 ```
-$ sudo podman images
+$ podman images
 REPOSITORY                             TAG               IMAGE ID      CREATED        SIZE
 localhost/josedom24/aplicacion_php     latest            338c62a398cf  6 seconds ago  225 MB
 ```
@@ -147,12 +147,12 @@ volumes:
 Y creo el escenario:
 
 ```
-$ sudo podman-compose up -d
+$ podman-compose up -d
 ```
 Podemos comprobar los volúmenes que se han creado:
 
 ```
-$ sudo podman volume ls
+$ podman volume ls
 DRIVER      VOLUME NAME
 local       php_mariadb_data
 local       927dbae27b74585c31fa80369d4a8ed2b35fe08209878205f32bfdbf0badf957
@@ -169,7 +169,7 @@ La aplicación tiene un fichero `info.php` que me da información sobre PHP, en 
 Finalmente elimino los contenedores, sin eliminar los volúmenes:
 
 ```
-$ sudo podman-compose down
+$ podman-compose down
 ```
 
 ### Versión 2: Desde una imagen con PHP instalado
@@ -198,7 +198,7 @@ VOLUME /var/log/apache2
 De forma similar, crearíamos una imagen y un contenedor:
 
 ```
-$ sudo podman build -t josedom24/aplicacion_php .
-$ sudo podman-compose up -d
+$ podman build -t josedom24/aplicacion_php .
+$ podman-compose up -d
 ```
 Hemos utilizado el mismo nombre con la etiqueta `latest` para no cambiar el fichero `compose.yaml`. Ahora podríamos acceder a la aplicación y comprobar que sigue funcionando, además podríamos acceder al fichero `info.php` para comprobar la versión de PHP que estamos utilizando.
