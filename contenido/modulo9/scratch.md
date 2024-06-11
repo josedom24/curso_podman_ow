@@ -6,7 +6,9 @@ Para ello al crear el contenedor de trabajo vamos a usar una imagen especial que
 
 Posteriormente montaremos el sistema de archivo del contenedor y usando alguna herramienta específica de la distribución, copiaremos en él los archivos de un sistema base.
 
-En primer lugar creamos un contenedor vacío usando la imagen `scratch`:
+## Construcción de imagen con la distribución Fedora
+
+En este ejemplo vamos a crear una nueva imagen utilizando un usuario sin privilegio (rootless). En primer lugar creamos un contenedor vacío usando la imagen `scratch`:
 
 ```
 $ buildah --name contenedor-work2 from scratch
@@ -33,22 +35,7 @@ $ buildah unshare
 /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
 ```
 
-Obtenemos el directorio donde hemos montado el contenedor. A continuación usando una herramienta específica de la distribución que estemos usando copiaremos en ese directorio un sistema base.
-
-## Construcción de imagen con la distribución Debian/Ubuntu
-
-Si estamos trabajando con una distribución Debian o Ubuntu vamos a usar la herramienta `debootstrap`, que nos permite inicializar un sistema de archivos de Debian o Ubuntu. Para ello una vez montado el contenedor de trabajo, ejecutamos las siguientes instrucciones en otra terminal:
-
-```
-$ sudo apt install debootstrap 
-$ sudo debootstrap bookworm /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
-```
-
-Al ejecutar `debootstrap` indicamos la distribución (`bookworm` si queremos Debian 12, `jammy` si queremos Ubuntu 22.04,...) y el directorio donde se copiaran los archivos, en nuestro caso el punto de montaje del contenedor.
-
-## Construcción de imagen con la distribución Fedora
-
-En Fedora, podríamos ejecutar la siguiente instrucción:
+Obtenemos el directorio donde hemos montado el contenedor. A continuación usando una herramienta específica de la distribución que estemos usando copiaremos en ese directorio un sistema base. En Fedora, podríamos ejecutar la siguiente instrucción:
 
 ```
 # dnf install --installroot /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged \
@@ -57,6 +44,27 @@ En Fedora, podríamos ejecutar la siguiente instrucción:
 ```
 
 En este caso hemos instalado `bash` y `coreutils` de la distribución 39 de Fedora.
+
+## Construcción de imagen con la distribución Debian/Ubuntu
+
+En este ejemplo vamos a crear una nueva imagen utilizando un usuario con privilegio (rootful). En primer lugar creamos el contenedor de trabajo:
+
+```
+$ sudo su -
+# buildah --name contenedor-work2 from scratch
+# buildah mount contenedor-work2
+/var/lib/containers/storage/overlay/0ada026fe64b76748c6c7ca0c78eeb73a695bbe088e67515f9e81e6ecaf8d4c7/merged
+```
+
+Si estamos trabajando con una distribución Debian o Ubuntu vamos a usar la herramienta `debootstrap`, que nos permite inicializar un sistema de archivos de Debian o Ubuntu. Para ello una vez montado el contenedor de trabajo, ejecutamos las siguientes instrucciones en otra terminal:
+
+```
+# apt install debootstrap 
+# debootstrap bookworm /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
+```
+
+Al ejecutar `debootstrap` indicamos la distribución (`bookworm` si queremos Debian 12, `jammy` si queremos Ubuntu 22.04,...) y el directorio donde se copiaran los archivos, en nuestro caso el punto de montaje del contenedor.
+
 
 ## Configuración final para la construcción de la imagen desde cero
 
