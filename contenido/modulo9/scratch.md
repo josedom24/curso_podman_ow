@@ -37,11 +37,11 @@ Obtenemos el directorio donde hemos montado el contenedor. A continuación usand
 
 ## Construcción de imagen con la distribución Debian/Ubuntu
 
-Si estamos trabajando con una distribución Debian o Ubuntu vamos a usar la herramienta `debootstrap`, que nos permite inicializar un sistema de archivos de Debian o Ubuntu. 
+Si estamos trabajando con una distribución Debian o Ubuntu vamos a usar la herramienta `debootstrap`, que nos permite inicializar un sistema de archivos de Debian o Ubuntu. Para ello una vez montado el contenedor de trabajo, ejecutamos las siguientes instrucciones en otra terminal:
 
 ```
 $ sudo apt install debootstrap 
-$ debootstrap bookworm /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
+$ sudo debootstrap bookworm /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
 ```
 
 Al ejecutar `debootstrap` indicamos la distribución (`bookworm` si queremos Debian 12, `jammy` si queremos Ubuntu 22.04,...) y el directorio donde se copiaran los archivos, en nuestro caso el punto de montaje del contenedor.
