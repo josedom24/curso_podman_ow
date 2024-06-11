@@ -2,7 +2,7 @@
 
 Aunque en los apartados anteriores hemos estudiado cómo se almacenan las imágenes y contenedores de forma general, en este apartado veremos algunos aspectos específicos en el almacenamiento de imágenes y contenedores cuando trabajamos con usuarios sin privilegios.
 
-Para obtener el aislamiento del sistema de ficheros que evita conflictos vamos a utiliza un espacio de nombre de montaje (**mount namespace**) que aísla los puntos del montaje del contenedor con los del host.
+Para obtener el aislamiento del sistema de ficheros que evita conflictos vamos a utilizar un espacio de nombre de montaje (**mount namespace**) que aísla los puntos del montaje del contenedor con los del host.
 
 Además con el uso de los espacios de nombre de montaje en combinación con el espacio de nombres del usuario vamos a conseguir las siguientes características:
 
