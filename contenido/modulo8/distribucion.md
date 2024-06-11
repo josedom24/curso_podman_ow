@@ -59,7 +59,7 @@ Si queremos saber si estamos logueado en algún registro:
 
 ```
 $ podman login --get-login docker.io
-$ podman login --get-login quiay.io
+$ podman login --get-login quay.io
 ```
 
 ### podman push
