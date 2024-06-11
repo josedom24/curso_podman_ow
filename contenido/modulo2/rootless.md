@@ -6,7 +6,7 @@ Los espacios de nombres (**namespaces**) son un mecanismo que el kernel de Linux
 
 Cuando ejecutamos contenedores rootless, hemos visto que podemos ejecutar los procesos dentro del contenedor con otros usuarios. Además dentro de la imagen que estamos usando para crear el contenedor pueden estar definidos varios usuarios. Sin embargo, el kernel de Linux impide a un usuario sin privilegios usar más de un UID, por ello necesitamos un mecanismo que consiga que nuestro usuario sin privilegio pueda utilizar distintos UID y GID.
 
-Es por todo ello, que se use un espacio de nombre de usuario (**user username**):
+Es por todo ello, que se use un espacio de nombre de usuario (**user namespace**):
 
 * Nos permite **asignar un rango de IDs de usuario y grupo** en un espacio de nombres aislado. Esto significa que los procesos que se ejecutan dentro de ese namespace tienen una visión limitada de los usuarios y grupos del sistema en comparación con el sistema anfitrión. 
 * Nos permite establecer una correspondencia entre los ID de usuario del contenedor y los ID de usuario del host.
