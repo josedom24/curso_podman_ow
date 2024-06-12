@@ -36,7 +36,7 @@ Los requisitos para realizar la instalación son los siguientes:
     Iniciamos la máquina virtual:
 
     ```
-    > podan machine start
+    > podman machine start
     ```
     Por defecto la máquina virtual se ha iniciado para trabajar con contenedores rootless. Si queremos usar contenedores rootful, debemos ejecutar con la máquina parada:
 
