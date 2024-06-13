@@ -43,16 +43,16 @@ Al ejecutar un contenedor podemos usar el parámetro `--user` o `-u` para indica
 # id
 uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 
-# podman run -d --rm -u sync --name contenedor2 alpine sleep 1000
+# podman run -d --rm -u sync --name contenedor1 alpine sleep 1000
 6bf3ec46d7f391e3240cbce4e159adfea7d780435f3d324023a8b0875b83fa56
 
-# podman exec contenedor2 id
+# podman exec contenedor1 id
 uid=5(sync) gid=0(root)
 
 #  ps -ef | grep sleep
 sync       23135   23133  0 09:37 ?        00:00:00 sleep 1000
 
-# podman top contenedor2 huser user 
+# podman top contenedor1 huser user 
 HUSER       USER
 sync        sync
 ```
@@ -77,16 +77,16 @@ Veamos un ejemplo:
 $ id
 uid=1000(usuario) gid=1000(usuario) groups=1000(usuario),4(adm),10(wheel),190(systemd-journal) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 
-$ podman run -d --rm --name contenedor3 alpine sleep 1000
+$ podman run -d --rm --name contenedor1 alpine sleep 1000
 f3961860f97280adf64c44a8b42dd39588712d3935469bf97d3ae7d71b8ffa97
 
-$ podman exec contenedor3 id
+$ podman exec contenedor1 id
 uid=0(root) gid=0(root)
 
 $ ps -ef | grep sleep
 usuario     23234   23232  0 09:47 ?        00:00:00 sleep 1000
 
-$ podman top contenedor3 huser user
+$ podman top contenedor1 huser user
 HUSER       USER
 1000        root
 ```
@@ -106,16 +106,16 @@ En el caso de los contenedores rootless, también podemos indicar el usuario que
 $ id
 uid=1000(usuario) gid=1000(usuario) groups=1000(usuario),4(adm),10(wheel),190(systemd-journal) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 
-$ podman run -d --rm -u sync --name contenedor alpine sleep 1000
+$ podman run -d --rm -u sync --name contenedor1 alpine sleep 1000
 96d64bf75b7998de86624dd699f450f83670b4a798e775585edc8c2607de94ca
 
-$ podman exec contenedor id
+$ podman exec contenedor1 id
 uid=5(sync) gid=0(root)
 
 $ ps -ef | grep sleep
 524292     23377   23375  0 09:57 ?        00:00:00 sleep 1000
 
-$ podman top contenedor huser user
+$ podman top contenedor1 huser user
 HUSER       USER
 524292      sync
 ```
