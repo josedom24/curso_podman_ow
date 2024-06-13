@@ -68,7 +68,7 @@ Además si instalamos un servidor web podemos acceder utilizando el puerto que h
 # apk add apache2
 # httpd -D foreground
 ```
-Desde el host podemos probar el acceso:
+Abrimos otra terminal en el host, y comprobamos el acceso:
 ```
 $ curl http://localhost:8080
 <html><body><h1>It works!</h1></body></html>
