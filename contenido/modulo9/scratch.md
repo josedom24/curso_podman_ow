@@ -60,7 +60,7 @@ Si estamos trabajando con una distribución Debian o Ubuntu vamos a usar la herr
 
 ```
 # apt install debootstrap 
-# debootstrap bookworm /home/usuario/.local/share/containers/storage/overlay/6047f1b66e576cb7df3f51449db55d2c08413e8a2fce76d3ccc47e7b5d48bb93/merged
+# debootstrap bookworm /var/lib/containers/storage/overlay/0ada026fe64b76748c6c7ca0c78eeb73a695bbe088e67515f9e81e6ecaf8d4c7/merged
 ```
 
 Al ejecutar `debootstrap` indicamos la distribución (`bookworm` si queremos Debian 12, `jammy` si queremos Ubuntu 22.04,...) y el directorio donde se copiaran los archivos, en nuestro caso el punto de montaje del contenedor.
