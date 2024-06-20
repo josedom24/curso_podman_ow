@@ -68,7 +68,7 @@ Además si instalamos un servidor web podemos acceder utilizando el puerto que h
 # apk add apache2
 # httpd -D foreground
 ```
-Desde el host podemos probar el acceso:
+Abrimos otra terminal en el host, y comprobamos el acceso:
 ```
 $ curl http://localhost:8080
 <html><body><h1>It works!</h1></body></html>
@@ -120,7 +120,7 @@ $ sudo podman inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}
 Creamos el `contenedor3` conectado a la red por defecto e intentamos conectarnos al `contenedor1` mediante su dirección IP y su nombre:
 
 ```
-$ sudo podman run -it -p 8082:80 --name contenedor3 alpine ash
+$ sudo podman run -it --name contenedor3 alpine ash
 / # ping 10.88.0.10
 PING 10.88.0.10 (10.88.0.10): 56 data bytes
 64 bytes from 10.88.0.10: seq=0 ttl=42 time=0.156 ms

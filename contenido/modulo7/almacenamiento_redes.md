@@ -145,7 +145,7 @@ Address: 192.168.10.11
 Y por último, comprobamos que hay conectividad:
 
 ```
-podman-compose exec c1 ping contenedor2
+$ podman-compose exec c1 ping contenedor2
 PING contenedor2 (192.168.10.11): 56 data bytes
 64 bytes from 192.168.20.20: seq=0 ttl=64 time=0.072 ms
 ...

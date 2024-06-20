@@ -114,7 +114,7 @@ Un usuario sin privilegios también pueden definir sus propias redes bridge. Est
 $ podman network create mi_red
 
 $ podman run -d -p 8081:80 --name servidorweb --network mi_red docker.io/nginx
-$ podman run -it --name cliente --network mi_red alpine
+$ podman run -it --name cliente2 --network mi_red alpine
 ```
 
 Y comprobamos la conectividad entre contenedores usando su nombre:

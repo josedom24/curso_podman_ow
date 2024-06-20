@@ -59,7 +59,6 @@ Cuando iniciamos por primera vez Podman Desktop se ejecuta un asistente que inst
 
 * Te indica el estado y la versión de Podman con la que estamos trabajando.
 * **Learning Center**: Tenemos acceso a numerosos artículos donde nos enseñan a trabajar con distintos aspectos sobre los contenedores.
-* **Featured Extensions**: Nos da información de las extensiones más interesantes y si la tenemos instaladas o no.
 
 En el menú lateral encontramos las siguientes secciones:
 
@@ -67,7 +66,7 @@ En el menú lateral encontramos las siguientes secciones:
 * **Pods**: Nos permite la gestión de Pods.
 * **Imágenes**: Nos permite la gestión de Imágenes.
 * **Volúmenes**: Nos permite la gestión de volúmenes.
-* **Kubernetes**: Nos permite gestionar un clúster de Kubernetes. Tenemos varios apartados: Deployments, Services e Ingress.
+* **Extensiones**: Nos permite gestionar las extensiones que podemos instalar en Podman Desktop.
 * **Configuración**:
     * Recursos: Aplicaciones con las que podemos trabajar desde Podman Desktop.
     * Configuración del proxy.
