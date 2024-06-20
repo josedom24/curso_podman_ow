@@ -49,7 +49,7 @@ Veamos más comandos que podemos ejecutar con podman-compose:
 * `podman-compose top`: Muestra  los procesos que están ejecutándose en cada uno de los contenedores de los servicios.
 
 
-Para destruir los contenedores creados en el escenario podemos ejecutar la siguientes instrucción. Hay que indicar que `podman-compose` no borra la red que ha creado a diferencia de `docker-compose`:S
+Para destruir los contenedores creados en el escenario podemos ejecutar la siguientes instrucción. Hay que indicar que `podman-compose` no borra la red que ha creado a diferencia de `docker-compose`.
 
 ```
 $ podman-compose down
