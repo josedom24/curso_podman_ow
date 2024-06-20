@@ -8,7 +8,7 @@ Para crear un contenedor que sirva nuestra aplicación, tendremos que crear una 
 
 Tenemos dos herramientas para realizar la construcción de una imagen OCI:
 
-* **Podman**:Podman nos ofrece distintas instrucciones para construir imágenes OCI. Con Podman podemos crear nuevas imágenes usando dos mecanismos principales:
+* **Podman**: Podman nos ofrece distintas instrucciones para construir imágenes OCI. Con Podman podemos crear nuevas imágenes usando dos mecanismos principales:
     * **A partir de un contenedor**, podemos crear una nueva imagen usando el comando `podman commit`.
     * **Automatizar la construcción** de una imagen OCI declarando los comandos que hay que ejecutar en un fichero llamado `Containerfile` y usando el comando `podman build` para realizar la construcción. Este método nos ofrece algunas ventajas respecto al primero:
         * **Podremos reproducir la imagen fácilmente** ya que en el fichero `Containerfile` tenemos todas y cada una de las órdenes necesarias para la construcción de la imagen. Además el fichero `Containerfile` se puede distribuir de manera muy sencilla y versionar usando un sistema de control de versiones.
