@@ -49,7 +49,7 @@ $ sudo podman run -d --name my-apache-app -v /home/usuario/web:/usr/local/apache
 Podemos comprobar en la información del contenedor los puntos de montaje que tiene configurado:
 
 ```
-$ $ sudo podman inspect --format='{{json .Mounts}}' my-apache-app 
+$ sudo podman inspect --format='{{json .Mounts}}' my-apache-app 
 [{"Type":"bind","Source":"/home/usuario/web","Destination":"/usr/local/apache2/htdocs","Driver":"","Mode":"","Options":["rbind"],"RW":true,"Propagation":"rprivate"}]
 ```
 

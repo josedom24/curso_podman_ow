@@ -9,7 +9,7 @@ Podman puede trabajar con distintos registros remotos de imágenes que cumplan l
 Otra manera de descargar una imagen a nuestro registro local, es usando la instrucción `podman image pull` o `podman pull` e indicando el nombre completo de la imagen qué como hemos visto estará formada por: el nombre del registro, el nombre de la imagen y opcionalmente, el nombre de la etiqueta. Por ejemplo: 
 
 ```
-$  podman pull docker.io/nginx:stable
+$ podman pull docker.io/nginx:stable
 ```
 
 Recordamos que las imágenes descargadas con el usuario `root` se guardarán, por defecto, en el directorio `/var/lib/containers/storage`, si se descargan con un usuario sin privilegios , se guardarán en `$HOME/.local/share/containers/storage/`.
