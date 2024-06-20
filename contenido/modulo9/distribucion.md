@@ -32,7 +32,7 @@ $ buildah login --get-login quiay.io
 * Además de almacenar las imágenes en un registro remoto, `buildah push` puede guardar una imagen local en un fichero o en un directorio:
     ```
     $ buildah push localhost/josedom24/debian-apache:latest oci-archive:debian-apache.tar
-    $ buildah push localhost/josedom24/debian-apache:latest oci:debian-apache:latest
+    $ buildah push localhost/josedom24/debian-apache:latest oci:debian-apache
     ```
  
 ## buildah pull
